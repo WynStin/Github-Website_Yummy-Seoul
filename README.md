@@ -1,63 +1,61 @@
-# 🍱 Website Đặt Món Ăn Vặt Yummy Seoul - Nhóm 3 (NEU)
+# 🍱 Dự án: Website Đặt Món Ăn Vặt Yummy Seoul - Nhóm 3 (NEU)
 
-Dự án phát triển ứng dụng Web theo mô hình MVC, phục vụ việc đặt món và quản lý tiệm ăn Hàn Quốc trực tuyến. Website được tối ưu hóa cho trải nghiệm người dùng hiện đại và quản lý kho hàng thông minh.
-
----
-
-## 📁 Cấu trúc thư mục Chi tiết (MVC Architecture)
-
-### 1. ⚙️ Config/ (Cấu hình hệ thống)
-- **db.php**: Chốt chặn kết nối CSDL MySQL bằng PDO. Đảm bảo tính bảo mật và hiệu suất truy vấn.
-
-### 2. 🧠 Controllers/ (Điều hướng & Logic)
-- **ProductController.php**: Xử lý logic hiển thị món ăn, lọc theo giá và danh mục.
-- **CartController.php**: Quản lý thêm/sửa/xóa món ăn trong giỏ hàng (Session).
-- **OrderController.php**: Xử lý đặt hàng và kiểm tra điều kiện **Hủy đơn hàng < 10 phút**.
-- **UserController.php**: Điều hướng đăng ký, đăng nhập và phân quyền (Admin/User).
-
-### 3. 📊 Models/ (Thao tác Cơ sở dữ liệu)
-- **ProductModel.php**: Chứa các truy vấn SQL lấy **Top 10 món bán chạy**, tìm kiếm và phân trang.
-- **CategoryModel.php**: Quản lý danh mục món ăn (Mỳ cay, Kimbap, Tokbokki...).
-- **OrderModel.php**: Lưu trữ đơn hàng và cập nhật trạng thái đơn.
-- **UserModel.php**: Kiểm tra thông tin người dùng và lưu lịch sử mua hàng.
-
-### 4. 🎨 Views/ (Giao diện người dùng)
-- **layout/**: 
-    - `header.php`: Thanh điều hướng, Logo và ô tìm kiếm.
-    - `footer.php`: Thông tin liên hệ và chính sách.
-- **pages/**:
-    - `home.php`: Trang chủ hiển thị banner khuyến mãi và các bộ sưu tập Top 10.
-    - `menu.php`: Trang thực đơn đầy đủ có lọc giá và phân trang.
-    - `product_detail.php`: Thông tin chi tiết món ăn.
-    - `cart.php`: Giao diện giỏ hàng.
-    - `checkout.php`: Form thanh toán và nhập địa chỉ.
-- **admin/**:
-    - `dashboard.php`: Thống kê doanh thu và đơn hàng.
-    - `manage_products.php`: Giao diện CRUD (Thêm/Sửa/Xóa) món ăn.
-
-### 5. 🌐 Public/ (Tài nguyên tĩnh)
-- **css/**: Chứa `style.css` định dạng giao diện chuẩn Hàn Quốc.
-- **img/**: Chứa ảnh món ăn (Kimbap, Tokbokki...) và Banner khuyến mãi.
-- **js/**: Chứa các script xử lý hiệu ứng và thông báo (Alert).
-
-### 6. 🗄️ SQL/ (Dữ liệu hệ thống)
-- **yummy_seoul.sql**: File kịch bản chứa toàn bộ cấu trúc bảng và dữ liệu mẫu (món ăn, tài khoản, đơn hàng).
+Dự án xây dựng hệ thống đặt món trực tuyến theo mô hình MVC (Model-View-Controller). 
+Website được thiết kế hiện đại, tối ưu trải nghiệm người dùng dựa trên mẫu giao diện Tiệm ăn vặt Yummy Seoul.
 
 ---
 
-## 🚀 Tính năng nổi bật theo yêu cầu
-- ✅ **Hệ thống Top 10**: Tự động lọc 10 món bán chạy nhất, mới nhất và xem nhiều nhất.
-- ✅ **Tìm kiếm nâng cao**: Tìm theo tên và lọc theo khoảng giá linh hoạt.
-- ✅ **Cơ chế Hủy đơn**: Khách hàng chỉ được phép hủy đơn trong vòng 10 phút kể từ khi đặt.
-- ✅ **Quản trị Dashboard**: Thống kê doanh thu trực quan cho chủ cửa hàng.
+## 📁 Cấu trúc Thư mục & Danh sách File Chi tiết
+
+### 1. 📂 Config/ (Cấu hình)
+- **db.php**: Kết nối Cơ sở dữ liệu bằng PDO (Đảm bảo an toàn, bảo mật).
+
+### 2. 📂 Models/ (Xử lý dữ liệu SQL)
+- **ProductModel.php**: Truy vấn danh sách món ăn, Top 10 sản phẩm, tìm kiếm.
+- **CategoryModel.php**: Quản lý các danh mục (Mỳ cay, Kimbap, Tokbokki...).
+- **UserModel.php**: Xử lý thông tin khách hàng và phân quyền Admin.
+- **OrderModel.php**: Lưu đơn hàng và xử lý logic **Hủy đơn hàng < 10 phút**.
+
+### 3. 📂 Controllers/ (Điều hướng & Logic)
+- **ProductController.php**: Điều phối dữ liệu từ Model ra các trang hiển thị món ăn.
+- **CartController.php**: Quản lý thêm/sửa/xóa sản phẩm trong giỏ hàng.
+- **OrderController.php**: Xử lý quy trình thanh toán và lịch sử mua hàng.
+
+### 4. 📂 Views/ (Giao diện hiển thị - Khớp yêu cầu Giảng viên)
+#### 🌐 Nhóm trang Người dùng (Front-end)
+- **layout/**: `header.php` (Thanh menu/search), `footer.php` (Thông tin chân trang).
+- **pages/home.php**: Trang chủ (Banner, Món Hot, Món mới).
+- **pages/menu.php**: Danh sách toàn bộ món ăn (Lọc danh mục & Phân trang).
+- **pages/product_detail.php**: Chi tiết món ăn (Giá, Mô tả, Nút đặt món).
+- **pages/cart.php**: Giỏ hàng của khách.
+- **pages/checkout.php**: Form điền thông tin và đặt hàng.
+- **pages/login.php** & **register.php**: Đăng nhập/Đăng ký.
+- **pages/order_history.php**: Lịch sử đơn (Có tính năng **Hủy đơn hàng**).
+
+#### ⚙️ Nhóm trang Quản trị (Admin)
+- **admin/dashboard.php**: Thống kê doanh thu và đơn hàng.
+- **admin/admin_products.php**: Quản lý danh sách món ăn (Thêm/Sửa/Xóa).
+- **admin/admin_categories.php**: Quản lý danh mục món ăn.
+- **admin/admin_orders.php**: Quản lý trạng thái các đơn hàng từ khách.
+- **admin/admin_users.php**: Quản lý danh sách thành viên.
+
+### 5. 📂 Public/ (Tài nguyên tĩnh)
+- **css/style.css**: Định dạng giao diện chuẩn Hàn Quốc.
+- **img/**: Chứa ảnh món ăn và banner quảng cáo.
+- **js/main.js**: Xử lý hiệu ứng và logic đếm ngược 10 phút hủy đơn.
+
+### 6. 📂 SQL/
+- **yummy_seoul.sql**: Chứa full cấu trúc bảng và dữ liệu mẫu của dự án.
 
 ---
 
-## 🛠 Hướng dẫn cài đặt (Localhost - WarpServer)
-1. **Clone dự án**: `git clone [URL_Github_Của_Bạn]` vào thư mục `www` của WarpServer.
-2. **Import Database**: Tạo database `yummy_seoul` và import file `SQL/yummy_seoul.sql`.
-3. **Cấu hình**: Chỉnh sửa thông số trong `Config/db.php` cho khớp với môi trường máy cá nhân.
-4. **Khởi chạy**: Truy cập `localhost/Github-Website_Yummy-Seoul/index.php`.
+## 🗺️ Lộ trình triển khai (Roadmap)
+
+- [ ] **Giai đoạn 1**: Thiết kế Database chuẩn và Import dữ liệu mẫu vào `yummy_seoul.sql`.
+- [ ] **Giai đoạn 2**: Xây dựng Layout (`header`, `footer`) và Trang chủ (`home.php`) dựa trên mẫu Netlify.
+- [ ] **Giai đoạn 3**: Hoàn thiện logic Giỏ hàng và Đặt hàng.
+- [ ] **Giai đoạn 4**: Cài đặt tính năng nâng cao: **Hủy đơn hàng trong 10 phút** và **Phân trang**.
+- [ ] **Giai đoạn 5**: Kiểm thử (Testing) trên Localhost và chuẩn bị báo cáo.
 
 ---
 *Dự án thuộc học phần Phát triển ứng dụng Web - National Economics University.*
