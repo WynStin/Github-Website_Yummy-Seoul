@@ -2,8 +2,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
--- 1. Bảng Danh mục món ăn
-CREATE TABLE 'danh_muc_mon_an' (
+-- 1. Bảng Danh mục món ăn (ĐÃ SỬA DẤU NHÁY)
+DROP TABLE IF EXISTS `danh_muc_mon_an`;
+CREATE TABLE `danh_muc_mon_an` (
   `id_danh_muc` int NOT NULL AUTO_INCREMENT,
   `ten_danh_muc` varchar(100) NOT NULL,
   `mo_ta` text,
@@ -12,6 +13,7 @@ CREATE TABLE 'danh_muc_mon_an' (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. Bảng Khuyến mãi
+DROP TABLE IF EXISTS `khuyen_mai`;
 CREATE TABLE `khuyen_mai` (
   `id_khuyen_mai` int NOT NULL AUTO_INCREMENT,
   `ma_khuyen_mai` varchar(20) NOT NULL,
@@ -27,6 +29,7 @@ CREATE TABLE `khuyen_mai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 3. Bảng Người dùng
+DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE `nguoi_dung` (
   `id_nguoi_dung` int NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL,
@@ -45,6 +48,7 @@ CREATE TABLE `nguoi_dung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 4. Bảng Món ăn
+DROP TABLE IF EXISTS `mon_an`;
 CREATE TABLE `mon_an` (
   `id_mon_an` int NOT NULL AUTO_INCREMENT,
   `id_danh_muc` int DEFAULT NULL,
@@ -63,6 +67,7 @@ CREATE TABLE `mon_an` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 5. Bảng Đơn hàng
+DROP TABLE IF EXISTS `don_hang`;
 CREATE TABLE `don_hang` (
   `id_don_hang` int NOT NULL AUTO_INCREMENT,
   `id_khach_hang` int NOT NULL,
@@ -82,6 +87,7 @@ CREATE TABLE `don_hang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 6. Bảng Chi tiết đơn hàng
+DROP TABLE IF EXISTS `chi_tiet_don_hang`;
 CREATE TABLE `chi_tiet_don_hang` (
   `id_chi_tiet` int NOT NULL AUTO_INCREMENT,
   `id_don_hang` int NOT NULL,
@@ -96,6 +102,7 @@ CREATE TABLE `chi_tiet_don_hang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 7. Bảng Giỏ hàng
+DROP TABLE IF EXISTS `gio_hang`;
 CREATE TABLE `gio_hang` (
   `id_gio_hang` int NOT NULL AUTO_INCREMENT,
   `id_khach_hang` int NOT NULL,
@@ -109,6 +116,7 @@ CREATE TABLE `gio_hang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 8. Bảng Chi tiết giỏ hàng
+DROP TABLE IF EXISTS `chi_tiet_gio_hang`;
 CREATE TABLE `chi_tiet_gio_hang` (
   `id_chi_tiet` int NOT NULL AUTO_INCREMENT,
   `id_gio_hang` int NOT NULL,
