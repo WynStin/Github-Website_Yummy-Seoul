@@ -2,6 +2,8 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
+    <meta name="Home description" content="Yummy Seoul - Tiệm ăn vặt Hàn Quốc"
+    <meta name="keywords" content="Yummy Seoul - Tiệm ăn vặt Hàn Quốc"
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
     <link

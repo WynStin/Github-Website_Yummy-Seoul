@@ -42,7 +42,7 @@
         overflow-x: hidden;
 
 
-        background: url("../Public/img/homepage/background.png");
+        background-image: url("../img/homepage/background.png");
         background-size: auto;
       }
 
