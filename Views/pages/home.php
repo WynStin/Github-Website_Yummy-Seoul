@@ -8,7 +8,7 @@
     <title>Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
     <link
         rel="stylesheet"
-        href="../../Public/css/home.css"
+        href="/Github-Website_Yummy-Seoul/Public/css/home.css"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
@@ -23,7 +23,7 @@
         <div class="topbar-logo">
           <!-- LOGO: thay src bằng link ảnh logo thực -->
           <img
-            src="../../Public/img/homepage/logo.png"
+            src="/Github-Website_Yummy-Seoul/Public/img/homepage/logo.png"
             style="width: 60px; height: 60px; object-fit: cover"
           />
         </div>
@@ -43,7 +43,7 @@
           <li><a href="#" class="active">Trang chủ</a></li>
           <li><a href="#">Giới thiệu</a></li>
           <li><a href="#">Sản phẩm</a></li>
-          <li><a href="#">Khuyến mãi</a></li>
+          <!-- <li><a href="#">Khuyến mãi</a></li> -->
           <li><a href="#">Tin tức</a></li>
           <li><a href="#">Liên hệ</a></li>
         </ul>
@@ -172,10 +172,10 @@
         <div class="hom-nay-text fade-up">
           <h2>HÔM NAY ĂN GÌ?</h2>
           <p>
-            Khám phá ngay những món ăn đến từ xứ sở kim chi, hòa hẹn sẽ đem lại
-            những trải nghiệm ẩm thực đa dạo đến với bạn!
+          Khám phá ngay những món ăn đến từ xứ sở kim chi,
+          hứa hẹn sẽ đem lại những trải nghiệm ẩm thực độc đáo đến với bạn!
           </p>
-          <a href="#" class="btn-gold">Đặt ngay</a>
+          <a href="#" class="btn-datngay">Đặt ngay</a>
         </div>
         <div class="hom-nay-products">
           <div class="product-card fade-up delay-1">
@@ -235,14 +235,11 @@
       <div class="about-content fade-up">
         <div class="about-title">Tiệm ăn vặt Yummy Seoul</div>
         <p class="about-desc">
-          Tiệm hiện giao nhanh trong 30–45 phút, chỉ nhận đơn trong bán kính
-          dưới 5km gồm các quận Đống Đa, Hoàn Kiếm và Hai Bà Trưng để đảm bảo
-          món ăn luôn nóng hổi khi đến tay khách hàng.<br /><br />
-          Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với đồ nóng giữ
-          nhiệt và đồ uống tách đá riêng, cùng mức phí ship hợp lý theo từng khu
-          vực để khách yên tâm khi đặt món.
+Tiệm hiện giao nhanh trong 30–45 phút, chỉ nhận đơn trong bán kính dưới 5km gồm các quận Đống Đa, Hoàn Kiếm và Hai Bà Trưng để đảm bảo món ăn luôn nóng hổi khi đến tay khách hàng.
+<br /><br />
+Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với đồ nóng giữ nhiệt và đồ uống tách đá riêng, cùng mức phí ship hợp lý theo từng khu vực để khách yên tâm khi đặt món.
         </p>
-        <a href="#" class="btn-gold">Xem thêm</a>
+        <a href="#" class="about-xemthem">Xem thêm</a>
       </div>
     </section>
 
@@ -343,7 +340,7 @@
             </div>
             <div class="news-card-desc">
               Mùa hè nóng bức... Phải giải nhiệt ngay thôi. Toàn bộ đồ uống giảm
-              tới 30%.
+              tới 30%...
             </div>
             <a href="#" class="news-card-more">Xem thêm →</a>
           </div>
@@ -359,9 +356,7 @@
           <div class="news-card-body">
             <div class="news-card-title">Ưu đãi thành viên mới</div>
             <div class="news-card-desc">
-              WOA! Chúng mình xin gửi tặng những khách hàng mới phần giảm giá
-              35.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu
-              đãi.
+WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay “BANMOI” để nhận ưu đãi...
             </div>
             <a href="#" class="news-card-more">Xem thêm →</a>
           </div>
@@ -409,9 +404,9 @@
               📞 0000.000.000
             </div>
             <strong>Giờ hoạt động:</strong> 10:00 a.m – 23:00 p.m<br />
-            Tất cả ngày trong tuần (trừ ngày lễ)<br /><br />
+            Tất cả các ngày trong tuần (trừ ngày lễ)<br /><br />
             <strong>Email:</strong> YummySeoul@gmail.com<br />
-            <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đống Tâm,<br />
+            <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đồng Tâm,<br />
             Q. Hai Bà Trưng, TP. Hà Nội
           </div>
         </div>
