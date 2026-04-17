@@ -61,147 +61,176 @@ header {
   z-index: 2000;
 }
 
+/* --- CSS CHO TOPBAR --- */
 .topbar {
-  background: var(--red-brown);
-  padding: 10px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  height: 80px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  /* Đã xóa transition height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: var(--red-brown, #451715);
 }
 
-.topbar-logo img {
-  transition: transform 0.3s ease;
+/* Container bọc Search và Cart */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 0 1 500px;
 }
 
-.topbar-logo img:hover {
-  transform: scale(1.05);
-}
-
+/* Thanh tìm kiếm */
 .search-bar {
-  flex: 1;
-  max-width: 540px;
-  display: flex;
-  align-items: center;
-  background: var(--baby-yellow);
-  border-radius: 30px;
-  overflow: hidden;
+    display: flex;
+    background: var(--baby-yellow);
+    border-radius: 50px;
+    padding: 4px 4px 4px 20px;
+    align-items: center;
+    width: 100%;
 }
 
 .search-bar input {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 9px 18px;
-  font-family: "Asap", sans-serif;
-  font-size: 14px;
-  color: var(--red-brown);
-  background: transparent;
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    font-size: 15px;
 }
 
-.search-bar button {
-  background: var(--baby-yellow);
-  border: none;
-  cursor: pointer;
-  padding: 9px 16px;
-  font-size: 16px;
-  transition: background 0.2s;
+/* Nút kính lúp tròn đẹp */
+.search-btn {
+    background: var(--brown-light);
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
 }
 
-.search-bar button:hover {
-  background: var(--gold-light);
+.search-btn:hover {
+    background: var(--red-brown, #451715);
 }
 
-.topbar-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+/* Nút Giỏ hàng */
+.cart-wrapper {
+    position: relative;
+    flex-shrink: 0;
 }
 
-.btn-outline, .btn-filled {
-  border: 2px solid var(--baby-yellow);
-  background: var(--baby-yellow);
-  color: var(--red-brown);
-  padding: 7px 18px;
-  border-radius: 30px;
-  font-family: "Asap", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.cart-btn {
+    background: var(--baby-yellow);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
 }
 
-.btn-filled {
-  font-weight: 700;
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ffc107;
+    color: #451715;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--red-brown);
 }
 
-.btn-outline:hover, .btn-filled:hover {
-  background: var(--gold-light);
-  border-color: var(--gold-light);
-  transform: translateY(-2px);
+.cart-btn:hover {
+    background: var(--pink-soft, #f2d9c8);
+    transform: translateY(-2px);
 }
 
-/* NAVBAR */
+/* --- CSS CHO NAVBAR --- */
 .navbar {
-  background: var(--baby-pink);
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: var(--pink-soft, #f2d9c8);
 }
 
 .nav-links {
-  display: flex;
-  list-style: none;
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li a {
-  display: block;
-  padding: 14px 20px;
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--red-brown);
-  position: relative;
-  transition: background 0.2s, color 0.2s;
-}
-
-.nav-links li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-  right: 10px;
-  height: 3px;
-  background: var(--brown-light);
-  transform: scaleX(0);
-  transition: transform 0.2s;
-  border-radius: 2px;
+    text-decoration: none;
+    color: var(--red-brown, #451715);
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-  background: var(--light-pink);
+    color: #ff5722;
 }
 
-.nav-links li a:hover::after,
-.nav-links li a.active::after {
-  transform: scaleX(1);
+/* Trạng thái Active menu */
+.nav-links li a.active {
+    border: 2px solid var(--red-brown);
+    border-radius: 8px;
+    padding: 5px 12px;
 }
 
+/* --- SỐ ĐIỆN THOẠI ĐÃ CẬP NHẬT --- */
 .nav-phone {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  color: var(--red-brown);
-  font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa icon và số */
+    background-color: var(--red-brown, #451715);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.nav-phone svg {
+    flex-shrink: 0; /* Icon không bị bóp méo */
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng rung nhẹ khi hover */
+.nav-phone:hover svg {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+/* CSS cho Topbar actions (Đăng nhập/Đăng ký) */
+.topbar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-outline{
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: var(--baby-yellow, #ffeda3);
+    color: var(--red-brown);
+}
+
+.topbar-actions a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* ======================================================

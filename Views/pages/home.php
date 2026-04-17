@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  <?php $page = "home"; ?>
   <!--Lấy header-->
   <?php include 'layout/header.php'; ?>
 
