@@ -18,43 +18,8 @@
 </head>
 
 <body>
-  <!-- ======= TOP BAR ======= -->
-  <header>
-    <div class="topbar">
-      <div class="topbar-logo">
-        <!-- LOGO: thay src bằng link ảnh logo thực -->
-        <img
-          src="/Github-Website_Yummy-Seoul/Public/img/homepage/logo.png"
-          style="width: 60px; height: 60px; object-fit: cover" />
-      </div>
-      <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm..." />
-        <button>🔍</button>
-      </div>
-      <div class="topbar-actions">
-        <button class="btn-outline">
-          <a href="login_register.php#login">Đăng nhập</a>
-        </button>
-        <button class="btn-filled">
-          <a href="login_register.php#signup" style="color: inherit; text-decoration: none;">Đăng ký</a>
-        </button>
-      </div>
-    </div>
-
-
-    <nav class="navbar">
-      <ul class="nav-links">
-        <li><a href="#" class="active">Trang chủ</a></li>
-        <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Sản phẩm</a></li>
-        <!-- <li><a href="#">Khuyến mãi</a></li> -->
-        <li><a href="#">Tin tức</a></li>
-        <li><a href="#">Liên hệ</a></li>
-      </ul>
-      <div class="nav-phone"><span></span> 0000.000.000</div>
-    </nav>
-  </header>
-
+  <!--Lấy header-->
+  <?php include 'layout/header.php'; ?>
 
   <!-- ======= HERO CAROUSEL ======= -->
   <section class="hero" id="hero">
@@ -367,142 +332,11 @@
     </div>
   </section>
 
-
-  <!-- ======= FOOTER ======= -->
-  <footer>
-    <div class="footer-grid">
-      <!-- Cột 1: Brand -->
-      <div class="footer-brand">
-        <div class="footer-logo-wrap">
-          <img
-            src="../../Public/img/homepage/logo.png"
-            style="width: 75px; height: 75px; object-fit: cover" />
-          <div>
-            <div class="footer-brand-name">
-              Tiệm ăn vặt <br />
-              Yummy Seoul
-            </div>
-          </div>
-        </div>
-        <div class="footer-info">
-          <div class="footer-info" style="margin-top: 8px">
-            📞 0000.000.000
-          </div>
-          <strong>Giờ hoạt động:</strong> 10:00 a.m – 23:00 p.m<br />
-          Tất cả các ngày trong tuần (trừ ngày lễ)<br /><br />
-          <strong>Email:</strong> YummySeoul@gmail.com<br />
-          <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đồng Tâm,<br />
-          Q. Hai Bà Trưng, TP. Hà Nội
-        </div>
-      </div>
-
-
-      <!-- Cột 2: Chính sách -->
-      <div class="footer-col">
-        <h4>Chính Sách</h4>
-        <ul>
-          <li><a href="#">Chính sách thanh toán khi đặt hàng</a></li>
-          <li><a href="#">Chính sách giao nhận hàng</a></li>
-          <li><a href="#">Chính sách về sản phẩm</a></li>
-          <li><a href="#">Chính sách bảo mật</a></li>
-        </ul>
-        <br />
-        <h4>Thông Tin</h4>
-        <ul>
-          <li><a href="#">Tin tức - Sự kiện</a></li>
-        </ul>
-      </div>
-
-
-      <!-- Cột 3: Kết nối + Hướng dẫn -->
-      <div class="footer-col">
-        <h4>Kết Nối</h4>
-        <div class="social-links">
-          <a href="#" class="social-btn social-fb">f</a>
-          <a href="#" class="social-btn social-ig">IG</a>
-          <a href="#" class="social-btn social-yt">▶</a>
-        </div>
-        <br />
-        <h4>Hướng Dẫn</h4>
-        <ul>
-          <li><a href="#">Hướng dẫn đặt đơn hàng</a></li>
-          <li><a href="#">Hướng dẫn thanh toán</a></li>
-          <li><a href="#">Hướng dẫn hủy đơn hàng</a></li>
-        </ul>
-      </div>
-    </div>
-
-
-    <div class="footer-bottom">© 2026 – Tiệm Ăn Vặt Yummy Seoul</div>
-  </footer>
-
+  <!--Lấy footer-->
+  <?php include 'layout/footer.php'; ?>
 
   <!-- ======= JAVASCRIPT ======= -->
-  <script>
-    // ----- Hero Carousel -----
-    const slides = document.querySelectorAll(".hero-slide");
-    const dots = document.querySelectorAll(".hero-dot");
-    let current = 0,
-      autoTimer;
-
-
-    function goTo(n) {
-      slides[current].style.display = "none";
-      dots[current].classList.remove("active");
-      current = (n + slides.length) % slides.length;
-      slides[current].style.display = "block";
-      dots[current].classList.add("active");
-    }
-
-
-    function initCarousel() {
-      slides.forEach(
-        (s, i) => (s.style.display = i === 0 ? "block" : "none"),
-      );
-      dots.forEach((d, i) =>
-        d.addEventListener("click", () => {
-          goTo(i);
-          resetTimer();
-        }),
-      );
-      document.getElementById("heroPrev").addEventListener("click", () => {
-        goTo(current - 1);
-        resetTimer();
-      });
-      document.getElementById("heroNext").addEventListener("click", () => {
-        goTo(current + 1);
-        resetTimer();
-      });
-      autoTimer = setInterval(() => goTo(current + 1), 4500);
-    }
-
-
-    function resetTimer() {
-      clearInterval(autoTimer);
-      autoTimer = setInterval(() => goTo(current + 1), 4500);
-    }
-
-
-    initCarousel();
-
-
-    // ----- Scroll fade-up -----
-    const fadeEls = document.querySelectorAll(".fade-up");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.style.animationPlayState = "running";
-          }
-        });
-      }, {
-        threshold: 0.12
-      },
-    );
-    fadeEls.forEach((el) => {
-      el.style.animationPlayState = "paused";
-      observer.observe(el);
-    });
+  <script src="../../Public/js/home.js">
   </script>
 </body>
 
