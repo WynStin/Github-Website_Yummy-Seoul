@@ -1,1 +1,20 @@
+function updateSlides(current, total) {
+  const slides = document.querySelectorAll('.hero-slide');
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active', 'prev', 'next', 'hidden');
+    if (i === current) {
+      slide.classList.add('active');
+    } else if (i === (current - 1 + total) % total) {
+      slide.classList.add('prev');
+    } else if (i === (current + 1) % total) {
+      slide.classList.add('next');
+    } else {
+      slide.classList.add('hidden');
+    }
+  });
 
+  // Cập nhật dots
+  document.querySelectorAll('.hero-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === current);
+  });
+}

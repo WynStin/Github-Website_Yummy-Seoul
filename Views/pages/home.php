@@ -72,7 +72,7 @@
         <div class="hero-slide">
           <div class="hero-img-placeholder">
             <img
-              src="YOUR_BANNER_IMAGE_2_URL"
+              src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner_right.png"
               alt="Banner 2"
               onerror="this.style.display = 'none'"
             />
@@ -83,7 +83,7 @@
         <div class="hero-slide">
           <div class="hero-img-placeholder">
             <img
-              src="YOUR_BANNER_IMAGE_3_URL"
+              src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner2.jpg"
               alt="Banner 3"
               onerror="this.style.display = 'none'"
             />
@@ -113,53 +113,53 @@
           <div class="product-card-img">
             <!-- HÌNH SẢN PHẨM: thay src bằng link ảnh thực -->
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/mituongden.jpg"
+              alt="Mì tương đen"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
+            <div class="product-name">Mì tương đen</div>
+            <div class="product-price">75.000 VND</div>
           </div>
         </div>
         <div class="product-card fade-up delay-2">
           <div class="product-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/mandu.jpg"
+              alt="Mandu chiên"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
+            <div class="product-name">Mandu chiên</div>
+            <div class="product-price">40.000 VND</div>
           </div>
         </div>
         <div class="product-card fade-up delay-3">
           <div class="product-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/gasottuongtoi.jpg"
+              alt="Gà sốt tương tỏi"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
+            <div class="product-name">Gà sốt tương tỏi</div>
+            <div class="product-price">155.000 VND</div>
           </div>
         </div>
         <div class="product-card fade-up delay-4">
           <div class="product-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/combobulgogi.jpg"
+              alt="Cơm bò xào Bulgogi"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
+            <div class="product-name">Cơm bò xào Bulgogi</div>
+            <div class="product-price">95.000 VND</div>
           </div>
         </div>
       </div>
@@ -181,40 +181,40 @@
           <div class="product-card fade-up delay-1">
             <div class="product-card-img">
               <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
+                src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbapchien.jpg"
+                alt="Kimbap chiên"
                 onerror="this.style.display = 'none'"
               />
             </div>
             <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
+              <div class="product-name">Kimbap chiên</div>
+              <div class="product-price">60.000 VND</div>
             </div>
           </div>
           <div class="product-card fade-up delay-2">
             <div class="product-card-img">
               <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
+                src="/Github-Website_Yummy-Seoul/Public/img/monan/gakhongxuong.jpg"
+                alt="Gà rán không xương"
                 onerror="this.style.display = 'none'"
               />
             </div>
             <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
+              <div class="product-name">Gà rán không xương</div>
+              <div class="product-price">120.000 VND</div>
             </div>
           </div>
           <div class="product-card fade-up delay-3">
             <div class="product-card-img">
               <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
+                src="/Github-Website_Yummy-Seoul/Public/img/monan/milanh.jpg"
+                alt="Mì lạnh Naengmyeon"
                 onerror="this.style.display = 'none'"
               />
             </div>
             <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
+              <div class="product-name">Mì lạnh Naengmyeon</div>
+              <div class="product-price">90.000 VND</div>
             </div>
           </div>
         </div>
@@ -227,7 +227,7 @@
       <div class="about-bg">
         <!-- HÌNH NỀN ABOUT: thay src bằng link ảnh thực -->
         <img
-          src="YOUR_ABOUT_BACKGROUND_IMAGE_URL"
+          src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner1.jpg"
           alt="Background"
           onerror="this.style.display = 'none'"
         />
@@ -259,16 +259,16 @@ Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với
           </div>
           <div class="bs-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/garansotcay.jpg"
               alt="Top 2"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
+            <div class="bs-name">Gà rán sốt cay</div>
             <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
+              <span class="bs-price-current">155.000 VND</span>
+              <span class="bs-price-old">180.000 VND</span>
             </div>
             <button class="btn-buy">Mua ngay</button>
           </div>
@@ -280,16 +280,16 @@ Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với
           </div>
           <div class="bs-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/tokbokki.jpg"
               alt="Top 1"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
+            <div class="bs-name">Tokbokki truyền thống</div>
             <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
+              <span class="bs-price-current">45.000 VND</span>
+              <span class="bs-price-old">60.000 VND</span>
             </div>
             <button class="btn-buy">Mua ngay</button>
           </div>
@@ -301,16 +301,16 @@ Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với
           </div>
           <div class="bs-card-img">
             <img
-              src="YOUR_PRODUCT_IMAGE_URL"
+              src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbaptruyenthong.jpg"
               alt="Top 3"
               onerror="this.style.display = 'none'"
             />
           </div>
           <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
+            <div class="bs-name">Kimbap truyền thống</div>
             <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
+              <span class="bs-price-current">50.000 VND</span>
+              <span class="bs-price-old">65.000 VND</span>
             </div>
             <button class="btn-buy">Mua ngay</button>
           </div>

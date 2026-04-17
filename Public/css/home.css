@@ -217,7 +217,7 @@
         position: relative;
         /* background: var(--baby-cream); */
         overflow: hidden;
-        height: 550px;
+        height: 420px;
       }
       .hero-slides {
         display: flex;
@@ -231,13 +231,12 @@
       .hero-img-placeholder {
         width: 100%;
         height: 100%;
-        /* background: var(--baby-cream); */
         display: flex;
         align-items: center;
         justify-content: center;
       }
       .hero-img-placeholder img {
-        width: 100%;
+        width: 50%;
         height: 100%;
         object-fit: cover;
         opacity: 0.85;
@@ -245,7 +244,6 @@
       .hero-overlay {
         position: absolute;
         inset: 0;
-        /* background: var(--baby-cream); */
       }
       .hero-btn-prev,
       .hero-btn-next {
@@ -272,10 +270,10 @@
         color: var(--brown-deep);
       }
       .hero-btn-prev {
-        left: 50px;
+        left: 350px;
       }
       .hero-btn-next {
-        right: 50px;
+        right: 350px;
       }
       .hero-dots {
         position: absolute;
@@ -373,6 +371,11 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.4s ease; 
+
+      }
+      .product-card:hover .product-card-img img {
+        transform: scale(1.08);
       }
       .product-card-body {
         padding: 14px 16px;
@@ -380,7 +383,7 @@
       .product-name {
         font-weight: 700;
         font-size: 15px;
-        color: var(--brown-deep);
+        color: var(--red-brown);
       }
       .product-price {
         font-size: 14px;
@@ -421,7 +424,7 @@
       .hom-nay-text h2 {
         font-size: 28px;
         font-weight: 800;
-        color: var(--brown-deep);
+        color: var(--red-brown);
         margin-bottom: 16px;
       }
       .hom-nay-text p {
@@ -570,7 +573,7 @@
         position: absolute;
         top: 12px;
         left: 12px;
-        background: var(--brown-deep);
+        background: var(--red-brown);
         border-radius: 50%;
         width: 48px;
         height: 48px;
@@ -634,7 +637,7 @@
       }
       .btn-buy {
         width: 100%;
-        background: var(--brown-deep);
+        background: var(--red-brown);
         color: var(--baby-yellow);
         border: none;
         border-radius: 30px;
