@@ -60,7 +60,7 @@
           <div class="hero-img-placeholder">
             <!-- HÌNH ẢNH BANNER 1: thay src bằng link ảnh thực -->
             <img
-              src="../../Public/img/homepage/banner_center.png"
+              src="../../Public/img/homepage/banner_yummy.png"
               alt="Banner 1"
               onerror="this.style.display = 'none'"
               
@@ -72,7 +72,7 @@
         <div class="hero-slide">
           <div class="hero-img-placeholder">
             <img
-              src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner_right.png"
+              src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner_center.png"
               alt="Banner 2"
               onerror="this.style.display = 'none'"
             />
