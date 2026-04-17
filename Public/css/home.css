@@ -417,18 +417,18 @@
        background: rgba(243, 217, 210, 0.7);
        backdrop-filter: blur(3px);
        border-radius: 20px;
-       top: 30px;
+       top: 50px;
        left: -20px;
        z-index: -1;
       }
       .hom-nay-text h2 {
-        font-size: 28px;
+        font-size: 40px;
         font-weight: 800;
         color: var(--red-brown);
         margin-bottom: 16px;
       }
       .hom-nay-text p {
-        font-size: 15px;
+        font-size: 14px;
         color: var(--text-mid);
         line-height: 1.7;
         margin-bottom: 24px;
@@ -466,6 +466,7 @@
         min-height: 320px;
         display: flex;
         align-items: center;
+        justify-content: center; /* căn giữa ngang */
         overflow: hidden;
       }
       .about-bg {
@@ -488,14 +489,18 @@
       .about-content {
         position: relative;
         z-index: 1;
-        max-width: 600px;
-        padding: 56px 56px;
+        max-width: 1100px; 
+        padding: 40px 48px;
+        background: rgba(51, 28, 6, 0.55); /* nâu mờ */
+        border-radius: 16px;
+        text-align: center; /* căn chữ giữa */
+        margin: 40px 24px;
       }
       .about-title {
-        font-size: 34px;
+        font-size: 50px;
         font-weight: 800;
         font-style: ASAP;
-        color: var(--red-brown);
+        color: var(--baby-yellow);
         text-align: center;
         width: 100%;
         align-items: center;
@@ -504,10 +509,12 @@
         text-shadow: 0 2px 8px rgba(75, 64, 2, 0.3);
       }
       .about-desc {
-        font-size: 15px;
-        color: var(--text-mid);
+        font-size: 30px;
+        color: var(--baby-cream);
         line-height: 1.7;
         margin-bottom: 24px;
+        text-align: left; /* hoặc center nếu muốn */
+
       }
       .about-xemthem {
         background: var(--baby-yellow);
@@ -885,433 +892,6 @@
     </style>
   </head>
   <body>
-    <!-- ======= TOP BAR ======= -->
-    <header>
-      <div class="topbar">
-        <div class="topbar-logo">
-          <!-- LOGO: thay src bằng link ảnh logo thực -->
-          <img
-            src="662340792_899678469698528_1792655347058446073_n-removebg-preview.png"
-            style="width: 60px; height: 60px; object-fit: cover"
-          />
-        </div>
-        <div class="search-bar">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <button>🔍</button>
-        </div>
-        <div class="topbar-actions">
-          <button class="btn-outline">Đăng nhập</button>
-          <button class="btn-filled">Đăng ký</button>
-        </div>
-      </div>
-
-      <nav class="navbar">
-        <ul class="nav-links">
-          <li><a href="#" class="active">Trang chủ</a></li>
-          <li><a href="#">Giới thiệu</a></li>
-          <li><a href="#">Sản phẩm</a></li>
-          <li><a href="#">Khuyến mãi</a></li>
-          <li><a href="#">Tin tức</a></li>
-          <li><a href="#">Liên hệ</a></li>
-        </ul>
-        <div class="nav-phone"><span>📞</span> 0000.000.000</div>
-      </nav>
-    </header>
-
-    <!-- ======= HERO CAROUSEL ======= -->
-    <section class="hero" id="hero">
-      <div class="hero-slides" id="heroSlides">
-        <!-- Slide 1 -->
-        <div class="hero-slide">
-          <div class="hero-img-placeholder">
-            <!-- HÌNH ẢNH BANNER 1: thay src bằng link ảnh thực -->
-            <img
-              src="YOUR_BANNER_IMAGE_1_URL"
-              alt="Banner 1"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="hero-overlay"></div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="hero-slide">
-          <div class="hero-img-placeholder">
-            <img
-              src="YOUR_BANNER_IMAGE_2_URL"
-              alt="Banner 2"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="hero-overlay"></div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="hero-slide">
-          <div class="hero-img-placeholder">
-            <img
-              src="YOUR_BANNER_IMAGE_3_URL"
-              alt="Banner 3"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="hero-overlay"></div>
-        </div>
-      </div>
-      <button class="hero-btn-prev" id="heroPrev">‹</button>
-      <button class="hero-btn-next" id="heroNext">›</button>
-      <div class="hero-dots" id="heroDots">
-        <button class="hero-dot active"></button>
-        <button class="hero-dot"></button>
-        <button class="hero-dot"></button>
-      </div>
-    </section>
-
-    <!-- ======= MÓN MỚI ======= -->
-    <section class="section mon-moi">
-      <div class="section-title-wrap fade-up">
-        <div class="section-title">MÓN MỚI</div>
-        <div class="section-divider"></div>
-      </div>
-      <div class="product-grid">
-        <!-- Lặp lại card này cho từng sản phẩm -->
-        <div class="product-card fade-up delay-1">
-          <div class="product-card-img">
-            <!-- HÌNH SẢN PHẨM: thay src bằng link ảnh thực -->
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-2">
-          <div class="product-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-3">
-          <div class="product-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-4">
-          <div class="product-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Tên món"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Tên món</div>
-            <div class="product-price">35.000 VND</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= HÔM NAY ĂN GÌ? ======= -->
-    <section class="section hom-nay">
-      <div class="hom-nay-inner">
-        <div class="hom-nay-text fade-up">
-          <h2>HÔM NAY ĂN GÌ?</h2>
-          <p>
-            Khám phá ngay những món ăn đến từ xứ sở kim chi, hòa hẹn sẽ đem lại
-            những trải nghiệm ẩm thực đa dạo đến với bạn!
-          </p>
-          <a href="#" class="btn-gold">Đặt ngay</a>
-        </div>
-        <div class="hom-nay-products">
-          <div class="product-card fade-up delay-1">
-            <div class="product-card-img">
-              <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
-                onerror="this.style.display = 'none'"
-              />
-            </div>
-            <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
-            </div>
-          </div>
-          <div class="product-card fade-up delay-2">
-            <div class="product-card-img">
-              <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
-                onerror="this.style.display = 'none'"
-              />
-            </div>
-            <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
-            </div>
-          </div>
-          <div class="product-card fade-up delay-3">
-            <div class="product-card-img">
-              <img
-                src="YOUR_PRODUCT_IMAGE_URL"
-                alt="Tên món"
-                onerror="this.style.display = 'none'"
-              />
-            </div>
-            <div class="product-card-body">
-              <div class="product-name">Tên món</div>
-              <div class="product-price">35.000 VND</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= ABOUT BANNER ======= -->
-    <section class="about-banner">
-      <div class="about-bg">
-        <!-- HÌNH NỀN ABOUT: thay src bằng link ảnh thực -->
-        <img
-          src="YOUR_ABOUT_BACKGROUND_IMAGE_URL"
-          alt="Background"
-          onerror="this.style.display = 'none'"
-        />
-      </div>
-      <div class="about-content fade-up">
-        <div class="about-title">Tiệm ăn vặt Yummy Seoul</div>
-        <p class="about-desc">
-          Tiệm hiện giao nhanh trong 30–45 phút, chỉ nhận đơn trong bán kính
-          dưới 5km gồm các quận Đống Đa, Hoàn Kiếm và Hai Bà Trưng để đảm bảo
-          món ăn luôn nóng hổi khi đến tay khách hàng.<br /><br />
-          Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với đồ nóng giữ
-          nhiệt và đồ uống tách đá riêng, cùng mức phí ship hợp lý theo từng khu
-          vực để khách yên tâm khi đặt món.
-        </p>
-        <a href="#" class="btn-gold">Xem thêm</a>
-      </div>
-    </section>
-
-    <!-- ======= SẢN PHẨM BÁN CHẠY ======= -->
-    <section class="section best-seller">
-      <div class="section-title-wrap fade-up">
-        <div class="best-seller-label">BEST SELLER</div>
-        <div class="section-title">SẢN PHẨM BÁN CHẠY</div>
-        <div class="section-divider"></div>
-      </div>
-      <div class="best-seller-grid">
-        <!-- TOP 2 -->
-        <div class="bs-card fade-up delay-1">
-          <div class="bs-badge">
-            <span class="medal">🥈</span><span class="rank">TOP 2</span>
-          </div>
-          <div class="bs-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Top 2"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
-            <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
-            </div>
-            <button class="btn-buy">Mua ngay</button>
-          </div>
-        </div>
-        <!-- TOP 1 -->
-        <div class="bs-card top1 fade-up delay-2">
-          <div class="bs-badge">
-            <span class="medal">🥇</span><span class="rank">TOP 1</span>
-          </div>
-          <div class="bs-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Top 1"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
-            <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
-            </div>
-            <button class="btn-buy">Mua ngay</button>
-          </div>
-        </div>
-        <!-- TOP 3 -->
-        <div class="bs-card fade-up delay-3">
-          <div class="bs-badge">
-            <span class="medal">🥉</span><span class="rank">TOP 3</span>
-          </div>
-          <div class="bs-card-img">
-            <img
-              src="YOUR_PRODUCT_IMAGE_URL"
-              alt="Top 3"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="bs-card-body">
-            <div class="bs-name">Tên món</div>
-            <div class="bs-prices">
-              <span class="bs-price-current">35.000 VND</span>
-              <span class="bs-price-old">45.000 VND</span>
-            </div>
-            <button class="btn-buy">Mua ngay</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= TIN TỨC – SỰ KIỆN ======= -->
-    <section class="section tin-tuc">
-      <div class="section-title-wrap fade-up">
-        <div class="section-title">TIN TỨC – SỰ KIỆN</div>
-        <div class="section-divider"></div>
-      </div>
-      <div class="news-grid">
-        <div class="news-card fade-up delay-1">
-          <div class="news-card-img">
-            <img
-              src="YOUR_NEWS_IMAGE_URL"
-              alt="Tin tức 1"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="news-card-body">
-            <div class="news-card-title">
-              [Tháng 3 – 4] Chào hè Giảm 30% đồ uống
-            </div>
-            <div class="news-card-desc">
-              Mùa hè nóng bức... Phải giải nhiệt ngay thôi. Toàn bộ đồ uống giảm
-              tới 30%.
-            </div>
-            <a href="#" class="news-card-more">Xem thêm →</a>
-          </div>
-        </div>
-        <div class="news-card fade-up delay-2">
-          <div class="news-card-img">
-            <img
-              src="YOUR_NEWS_IMAGE_URL"
-              alt="Tin tức 2"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="news-card-body">
-            <div class="news-card-title">Ưu đãi thành viên mới</div>
-            <div class="news-card-desc">
-              WOA! Chúng mình xin gửi tặng những khách hàng mới phần giảm giá
-              35.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu
-              đãi.
-            </div>
-            <a href="#" class="news-card-more">Xem thêm →</a>
-          </div>
-        </div>
-        <div class="news-card fade-up delay-3">
-          <div class="news-card-img">
-            <img
-              src="YOUR_NEWS_IMAGE_URL"
-              alt="Tin tức 3"
-              onerror="this.style.display = 'none'"
-            />
-          </div>
-          <div class="news-card-body">
-            <div class="news-card-title">Đôi lời từ đội ngũ phát triển</div>
-            <div class="news-card-desc">
-              Đội ngũ phát triển Yummy Seoul xin chân thành cảm ơn sự tin tưởng
-              và ủng hộ từ khách hàng...
-            </div>
-            <a href="#" class="news-card-more">Xem thêm →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= FOOTER ======= -->
-    <footer>
-      <div class="footer-grid">
-        <!-- Cột 1: Brand -->
-        <div class="footer-brand">
-          <div class="footer-logo-wrap">
-            <img
-              src="662340792_899678469698528_1792655347058446073_n-removebg-preview.png"
-              style="width: 75px; height: 75px; object-fit: cover"
-            />
-            <div>
-              <div class="footer-brand-name">
-                Tiệm ăn vặt <br />
-                Yummy Seoul
-              </div>
-            </div>
-          </div>
-          <div class="footer-info">
-            <div class="footer-info" style="margin-top: 8px">
-              📞 0000.000.000
-            </div>
-            <strong>Giờ hoạt động:</strong> 10:00 a.m – 23:00 p.m<br />
-            Tất cả ngày trong tuần (trừ ngày lễ)<br /><br />
-            <strong>Email:</strong> YummySeoul@gmail.com<br />
-            <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đống Tâm,<br />
-            Q. Hai Bà Trưng, TP. Hà Nội
-          </div>
-        </div>
-
-        <!-- Cột 2: Chính sách -->
-        <div class="footer-col">
-          <h4>Chính Sách</h4>
-          <ul>
-            <li><a href="#">Chính sách thanh toán khi đặt hàng</a></li>
-            <li><a href="#">Chính sách giao nhận hàng</a></li>
-            <li><a href="#">Chính sách về sản phẩm</a></li>
-            <li><a href="#">Chính sách bảo mật</a></li>
-          </ul>
-          <br />
-          <h4>Thông Tin</h4>
-          <ul>
-            <li><a href="#">Tin tức - Sự kiện</a></li>
-          </ul>
-        </div>
-
-        <!-- Cột 3: Kết nối + Hướng dẫn -->
-        <div class="footer-col">
-          <h4>Kết Nối</h4>
-          <div class="social-links">
-            <a href="#" class="social-btn social-fb">f</a>
-            <a href="#" class="social-btn social-ig">IG</a>
-            <a href="#" class="social-btn social-yt">▶</a>
-          </div>
-          <br />
-          <h4>Hướng Dẫn</h4>
-          <ul>
-            <li><a href="#">Hướng dẫn đặt đơn hàng</a></li>
-            <li><a href="#">Hướng dẫn thanh toán</a></li>
-            <li><a href="#">Hướng dẫn hủy đơn hàng</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">© 2026 – Tiệm Ăn Vặt Yummy Seoul</div>
-    </footer>
-
     <!-- ======= JAVASCRIPT ======= -->
     <script>
       // ----- Hero Carousel -----
