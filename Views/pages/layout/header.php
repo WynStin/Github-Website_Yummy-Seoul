@@ -26,12 +26,11 @@
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#" class="active">Trang chủ</a></li>
-            <li><a href="#">Giới thiệu</a></li>
-            <li><a href="#">Sản phẩm</a></li>
-            <!-- <li><a href="#">Khuyến mãi</a></li> -->
-            <li><a href="#">Tin tức</a></li>
-            <li><a href="#">Liên hệ</a></li>
+            <li><a href="home.php" class="<?php echo ($page == 'home') ? 'active' : ''; ?>">Trang chủ</a></li>
+            <li><a href="gioithieu.php" class="<?php echo ($page == 'about') ? 'active' : ''; ?>">Giới thiệu</a></li>
+            <li><a href="sanpham.php" class="<?php echo ($page == 'product') ? 'active' : ''; ?>">Sản phẩm</a></li>
+            <li><a href="tintuc.php" class="<?php echo ($page == 'news') ? 'active' : ''; ?>">Tin tức</a></li>
+            <li><a href="contact.php" class="<?php echo ($page == 'contact') ? 'active' : ''; ?>">Liên hệ</a></li>
         </ul>
         <div class="nav-phone"><span></span> 0000.000.000</div>
     </nav>
