@@ -678,9 +678,20 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 50px;
-  padding-bottom: 40px;
+  /* BƯỚC 1: Giới hạn chiều rộng khung vừa phải (khoảng 900px - 1000px là đẹp nhất) */
+  max-width: 950px; 
+  margin: 0 auto; 
+
+  /* BƯỚC 2: Chia 3 cột có độ rộng bằng nhau */
+  grid-template-columns: repeat(3, 1fr); 
+  
+  /* BƯỚC 3: Khoảng cách giữa các cột */
+  gap: 60px; 
+
+  /* Căn lề trái cho nội dung bên trong mỗi cột để tạo đường thẳng cột đẹp */
+  justify-items: start; 
+  
+  padding: 0 20px 40px 20px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
@@ -748,7 +759,7 @@ footer {
 
 .social-fb:hover { background: #1877F2; }
 .social-ig:hover { background: #E4405F; }
-.social-yt:hover { background: #FF0000; }
+.social-tk:hover { background: #000000; }
 
 .footer-bottom {
   text-align: center;
