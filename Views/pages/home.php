@@ -47,7 +47,7 @@
           <li><a href="#">Tin tức</a></li>
           <li><a href="#">Liên hệ</a></li>
         </ul>
-        <div class="nav-phone"><span>📞</span> 0000.000.000</div>
+        <div class="nav-phone"><span></span> 0000.000.000</div>
       </nav>
     </header>
 

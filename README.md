@@ -23,7 +23,6 @@ Website được thiết kế hiện đại, tối ưu trải nghiệm người 
 
 ### 4. 📂 Views/ (Giao diện hiển thị - Khớp yêu cầu Giảng viên)
 #### 🌐 Nhóm trang Người dùng (Front-end)
-- **layout/**: `header.php` (Thanh menu/search), `footer.php` (Thông tin chân trang).
 - **pages/home.php**: Trang chủ (Banner, Món Hot, Món mới).
 - **pages/menu.php**: Danh sách toàn bộ món ăn (Lọc danh mục & Phân trang).
 - **pages/product_detail.php**: Chi tiết món ăn (Giá, Mô tả, Nút đặt món).

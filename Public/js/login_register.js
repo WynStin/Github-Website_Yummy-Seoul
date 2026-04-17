@@ -1,0 +1,261 @@
+function toggleForms() {
+    document.querySelector('.container').classList.toggle('log-in');
+    clearMessages();
+}
+
+function showLogin() {
+    document.querySelector('.container').classList.remove('log-in');
+    document.querySelectorAll('.mobile-toggle .btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    clearMessages();
+}
+
+function showSignup() {
+    document.querySelector('.container').classList.add('log-in');
+    document.querySelectorAll('.mobile-toggle .btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    clearMessages();
+}
+
+function clearMessages() {
+    document.getElementById('loginMessage').textContent = '';
+    document.getElementById('reMessage').textContent = '';
+    document.getElementById('loginMessage').className = 'message';
+    document.getElementById('reMessage').className = 'message';
+}
+
+function togglePasswordVisibility(inputId, icon) {
+    const input = document.getElementById(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    }
+}
+
+function register(event) {
+    event.preventDefault();
+
+    const fullname = document.getElementById("reFullname").value.trim();
+    const username = document.getElementById("reUsername").value.trim();
+    const email = document.getElementById("reEmail").value.trim();
+    const phone = document.getElementById("rePhone").value.trim();
+    const address = document.getElementById("reAddress").value.trim();
+    const password = document.getElementById("rePassword").value.trim();
+
+    const lowercaseLetter = /[a-z]/g;
+    const uppercaseLetter = /[A-Z]/g;
+    const number = /[0-9]/g;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[0-9]{10,11}$/;
+
+    if (!username || !email || !phone || !password) {
+        showMessage(messageEl, "Vui lòng điền đầy đủ thông tin.", "error");
+        return;
+    }
+
+    if (username.length < 3 || username.length > 20) {
+        showMessage(messageEl, "Tên đăng nhập phải có từ 3-20 ký tự.", "error");
+        return;
+    }
+
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        showMessage(messageEl, "Tên đăng nhập chỉ chứa chữ cái, số và gạch dưới.", "error");
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+        showMessage(messageEl, "Email không hợp lệ.", "error");
+        return;
+    }
+
+    if (!phonePattern.test(phone)) {
+        showMessage(messageEl, "Số điện thoại phải có 10-11 chữ số.", "error");
+        return;
+    }
+
+    if (password.length < 8) {
+        showMessage(messageEl, "Mật khẩu phải có ít nhất 8 ký tự.", "error");
+        return;
+    }
+
+    if (!password.match(lowercaseLetter)) {
+        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ thường.", "error");
+        return;
+    }
+
+    if (!password.match(uppercaseLetter)) {
+        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ hoa.", "error");
+        return;
+    }
+
+    if (!password.match(number)) {
+        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ số.", "error");
+        return;
+    }
+
+    const user = {
+        UserName: username,
+        Matkhau: password,
+        Hoten: fullname,
+        Email: email,
+        SĐT: phone,
+        DiaChiMacDinh: address,
+        VaiTro: "Customer",
+        TrangThaiTaiKhoan: "Active",
+        NgayTaoTaiKhoan: new Date().toISOString()
+    };
+
+    let users = {};
+    const usersData = sessionStorage.getItem("users");
+    if (usersData) {
+        users = JSON.parse(usersData);
+    }
+
+    if (users[username]) {
+        showMessage(messageEl, "Tên đăng nhập đã tồn tại.", "error");
+        return;
+    }
+
+    const emailExists = Object.values(users).some(u => u.email === email);
+    if (emailExists) {
+        showMessage(messageEl, "Email đã được sử dụng.", "error");
+        return;
+    }
+
+    users[username] = user;
+    sessionStorage.setItem("users", JSON.stringify(users));
+
+    showMessage(messageEl, "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.", "success");
+
+    setTimeout(() => {
+        document.querySelector('.form-item.sign-up').reset();
+        if (window.innerWidth <= 768) {
+            showLogin();
+        } else {
+            toggleForms();
+        }
+    }, 1500);
+}
+
+function login(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    const messageEl = document.getElementById("loginMessage");
+
+    if (!username || !password) {
+        showMessage(messageEl, "Vui lòng nhập tên đăng nhập và mật khẩu.", "error");
+        return;
+    }
+
+    const usersData = sessionStorage.getItem("users");
+    if (!usersData) {
+        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+        return;
+    }
+
+    const users = JSON.parse(usersData);
+    const user = users[username];
+
+    if (!user) {
+        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+        return;
+    }
+
+    if (user.password !== password) {
+        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+        return;
+    }
+
+    showMessage(messageEl, "Đăng nhập thành công! Đang chuyển hướng...", "success");
+
+    sessionStorage.setItem("currentUser", JSON.stringify({
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        createdAt: user.createdAt,
+        loginTime: new Date().toISOString()
+    }));
+
+    setTimeout(() => {
+        window.location.href = "/page/account/profile/profile.html";
+    }, 1000);
+}
+
+function showMessage(element, message, type) {
+    element.textContent = message;
+    element.className = 'message ' + type;
+}
+
+function loginWithGoogle() {
+    const mockGoogleUser = {
+        username: "google_user_" + Math.floor(Math.random() * 1000),
+        email: "user@gmail.com",
+        loginMethod: "google",
+        loginTime: new Date().toISOString(),
+        createdAt: new Date().toISOString()
+    };
+
+    sessionStorage.setItem("currentUser", JSON.stringify(mockGoogleUser));
+    window.location.href = "/page/account/profile/profile.html";
+}
+
+function loginWithFacebook() {
+    const mockFacebookUser = {
+        username: "fb_user_" + Math.floor(Math.random() * 1000),
+        email: "user@facebook.com",
+        loginMethod: "facebook",
+        loginTime: new Date().toISOString(),
+        createdAt: new Date().toISOString()
+    };
+
+    sessionStorage.setItem("currentUser", JSON.stringify(mockFacebookUser));
+    window.location.href = "/page/account/profile/profile.html";
+}
+
+function signupWithGoogle() {
+    loginWithGoogle();
+}
+
+function signupWithFacebook() {
+    loginWithFacebook();
+}
+
+function checkURLHash() {
+    const hash = window.location.hash;
+
+    if (hash === '#signup' || hash === '#register') {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.container').classList.add('log-in');
+            document.querySelectorAll('.mobile-toggle .btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.mobile-toggle .btn')[1].classList.add('active');
+        } else {
+            document.querySelector('.container').classList.add('log-in');
+        }
+    } else if (hash === '#login') {
+        if (window.innerWidth <= 768) {
+            document.querySelector('.container').classList.remove('log-in');
+            document.querySelectorAll('.mobile-toggle .btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.mobile-toggle .btn')[0].classList.add('active');
+        } else {
+            document.querySelector('.container').classList.remove('log-in');
+        }
+    }
+}
+
+window.onload = function () {
+    checkURLHash();
+
+    const currentUser = sessionStorage.getItem("currentUser");
+    if (currentUser) {
+        window.location.href = "/page/account/profile/profile.html";
+    }
+};
+
+window.addEventListener('hashchange', checkURLHash);
