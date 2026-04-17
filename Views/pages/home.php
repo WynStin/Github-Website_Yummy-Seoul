@@ -10,7 +10,7 @@
   <title>Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
   <link
     rel="stylesheet"
-    href="/Github-Website_Yummy-Seoul/Public/css/home.css" />
+    href="../../Public/css/home.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
@@ -336,8 +336,7 @@
   <?php include 'layout/footer.php'; ?>
 
   <!-- ======= JAVASCRIPT ======= -->
-  <script src="../../Public/js/home.js">
-  </script>
+  <script src="/Github-Website_Yummy-Seoul/Public/js/home.js"></script>
 </body>
 
 </html>
