@@ -10,7 +10,7 @@
         </a>
         <div>
           <div class="footer-brand-name">
-            Tiệm ăn vặt <br>
+            Tiệm ăn vặt<br>
             Yummy Seoul
           </div>
         </div>
@@ -18,12 +18,12 @@
 
       <div class="footer-info">
         <div class="footer-info" style="margin-top: 8px">
-          📞 0000.000.000
+          <strong>Liên hệ:</strong> 0912.345.678
         </div>
-        <strong>Giờ hoạt động:</strong> 10:00 a.m – 23:00 p.m<br />
-        Tất cả các ngày trong tuần (trừ ngày lễ)<br /><br />
-        <strong>Email:</strong> YummySeoul@gmail.com<br />
-        <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đồng Tâm,<br />
+        <strong>Giờ hoạt động:</strong> 08:00 a.m – 23:00 p.m<br>
+        Tất cả các ngày trong tuần (trừ ngày lễ)<br /><br>
+        <strong>Email:</strong> YummySeoul@gmail.com<br>
+        <strong>Địa chỉ:</strong> 207 Giải Phóng, P. Đồng Tâm,<br>
         Q. Hai Bà Trưng, TP. Hà Nội
       </div>
     </div>
@@ -38,7 +38,7 @@
         <li><a href="#">Chính sách về sản phẩm</a></li>
         <li><a href="#">Chính sách bảo mật</a></li>
       </ul>
-      <br />
+      <br>
       <h4>Thông Tin</h4>
       <ul>
         <li><a href="#">Tin tức - Sự kiện</a></li>
@@ -54,7 +54,7 @@
         <a href="#" class="social-btn social-ig"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" class="social-btn social-tk"><i class="fa-brands fa-tiktok"></i></a>
       </div>
-      <br />
+      <br>
       <h4>Hướng Dẫn</h4>
       <ul>
         <li><a href="#">Hướng dẫn đặt đơn hàng</a></li>

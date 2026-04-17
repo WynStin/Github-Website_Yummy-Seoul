@@ -765,7 +765,8 @@ footer {
   text-align: center;
   padding-top: 20px;
   font-size: 13px;
-  color: rgba(255,255,255,0.5);
+  font-weight: 500px;
+  color: var(--baby-yellow);
 }
 
 /* ======================================================
