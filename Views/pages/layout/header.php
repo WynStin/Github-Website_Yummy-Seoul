@@ -43,9 +43,9 @@
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="home.php" class="<?php echo (isset($page) && $page == 'home') ? 'active' : ''; ?>">Trang chủ</a></li>
-            <li><a href="gioithieu.php" class="<?php echo (isset($page) && $page == 'about') ? 'active' : ''; ?>">Giới thiệu</a></li>
-            <li><a href="sanpham.php" class="<?php echo (isset($page) && $page == 'product') ? 'active' : ''; ?>">Sản phẩm</a></li>
-            <li><a href="tintuc.php" class="<?php echo (isset($page) && $page == 'news') ? 'active' : ''; ?>">Tin tức</a></li>
+            <li><a href="intro.php" class="<?php echo (isset($page) && $page == 'intro') ? 'active' : ''; ?>">Giới thiệu</a></li>
+            <li><a href="product.php" class="<?php echo (isset($page) && $page == 'product') ? 'active' : ''; ?>">Sản phẩm</a></li>
+            <li><a href="news.php" class="<?php echo (isset($page) && $page == 'news') ? 'active' : ''; ?>">Tin tức</a></li>
             <li><a href="contact.php" class="<?php echo (isset($page) && $page == 'contact') ? 'active' : ''; ?>">Liên hệ</a></li>
         </ul>
 
