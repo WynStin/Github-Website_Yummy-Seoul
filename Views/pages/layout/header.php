@@ -34,7 +34,7 @@
                 <a href="login_register.php#login">Đăng nhập</a>
             </button>
             <button class="btn-outline">
-                <a href="login_register.php#login">Đăng ký</a>
+                <a href="login_register.php#signup">Đăng ký</a>
             </button>
         </div>
     </div>
