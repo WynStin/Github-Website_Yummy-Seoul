@@ -6,17 +6,27 @@ let currentProductId = null;
 // Load sản phẩm
 async function loadProducts(category = 'all', sort = 'default', page = 1) {
     try {
-        // Lưu ý: Đảm bảo bạn đã có file get_products.php để xử lý API này
-        const response = await fetch(`product.php?ajax=1&category=${category}&sort=${sort}&page=${page}`);
+        // Lấy từ khóa từ thanh địa chỉ (URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search') || ''; // Lấy giá trị sau dấu ?search=
+
+        // Gửi yêu cầu AJAX có kèm theo tham số search
+        const response = await fetch(`product.php?ajax=1&category=${category}&sort=${sort}&page=${page}&search=${encodeURIComponent(searchQuery)}`);
         const data = await response.json();
 
         if (data.success) {
             displayProducts(data.products);
             displayPagination(data.totalPages, data.currentPage);
-            updateCategoryTitle(category);
+            
+            // Cập nhật tiêu đề hiển thị
+            if (searchQuery) {
+                document.getElementById('categoryTitle').textContent = `Kết quả cho: "${searchQuery}"`;
+            } else {
+                updateCategoryTitle(category);
+            }
         }
     } catch (error) {
-        console.error('Lỗi:', error);
+        console.error('Lỗi khi tải sản phẩm:', error);
     }
 }
 

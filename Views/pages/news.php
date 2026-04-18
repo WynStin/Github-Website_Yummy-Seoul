@@ -137,8 +137,6 @@
     <div data-include="/src/components/chatbot.html"></div>
     <div data-include="/src/components/footer.html"></div>
 
-    <?php include 'layout/footer.php'; ?>
-    <script type="module" src="/src/js/again.js"></script>
   <!--Lấy footer-->
   <?php include 'layout/footer.php'; ?>
 
