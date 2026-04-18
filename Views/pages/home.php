@@ -28,7 +28,6 @@
       <!-- Slide 1 -->
       <div class="hero-slide">
         <div class="hero-img-placeholder">
-          <!-- HÌNH ẢNH BANNER 1: thay src bằng link ảnh thực -->
           <img
             src="../../Public/img/homepage/banner_yummy.png"
             alt="Banner 1"
