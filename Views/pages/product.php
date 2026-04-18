@@ -1,19 +1,45 @@
 <?php
 // 1. Kiểm tra xem đây có phải là yêu cầu lấy dữ liệu từ Javascript không
+// Xử lý logic lấy giá trị từ thanh tìm kiếm
+$search = $_GET['search'] ?? '';
+$displayTitle = "Tất cả sản phẩm";
+
+if (!empty($search)) {
+    $displayTitle = "Kết quả tìm kiếm cho: '" . htmlspecialchars($search) . "'";
+}
+
 if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
     require_once '../../Config/db.php';
     header('Content-Type: application/json');
 
     $category = $_GET['category'] ?? 'all';
     $sort = $_GET['sort'] ?? 'default';
+    $search = $_GET['search'] ?? ''; // Lấy từ khóa tìm kiếm
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $limit = 6;
     $offset = ($page - 1) * $limit;
 
     try {
-        $where = ($category !== 'all') ? "WHERE id_danh_muc = :cat" : "";
+        // Khởi tạo mảng điều kiện và tham số để lọc linh hoạt
+        $whereClauses = [];
+        $params = [];
 
-        // --- BỔ SUNG LOGIC SẮP XẾP TẠI ĐÂY ---
+        // Lọc theo danh mục
+        if ($category !== 'all') {
+            $whereClauses[] = "id_danh_muc = :cat";
+            $params[':cat'] = $category;
+        }
+
+        // Lọc theo từ khóa tìm kiếm (nếu có)
+        if (!empty($search)) {
+            $whereClauses[] = "ten_mon LIKE :search";
+            $params[':search'] = "%$search%";
+        }
+
+        // Tổng hợp câu lệnh WHERE
+        $where = !empty($whereClauses) ? "WHERE " . implode(" AND ", $whereClauses) : "";
+
+        // --- BỔ SUNG LOGIC SẮP XẾP ---
         $orderBy = "ORDER BY id_mon_an DESC"; // Mặc định
         switch ($sort) {
             case 'priceAsc':
@@ -30,17 +56,27 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
                 break;
         }
 
-        // Truy vấn sản phẩm với Order By
-        $stmt = $pdo->prepare("SELECT * FROM mon_an $where $orderBy LIMIT :limit OFFSET :offset");
-        if ($category !== 'all') $stmt->bindValue(':cat', $category);
+        // 2. Truy vấn lấy danh sách sản phẩm
+        $sql = "SELECT * FROM mon_an $where $orderBy LIMIT :limit OFFSET :offset";
+        $stmt = $pdo->prepare($sql);
+
+        // Gán các giá trị lọc (danh mục, tìm kiếm)
+        foreach ($params as $key => $val) {
+            $stmt->bindValue($key, $val);
+        }
+
+        // Gán giá trị phân trang
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Tính tổng trang (giữ nguyên)
-        $countStmt = $pdo->prepare("SELECT COUNT(*) FROM mon_an $where");
-        if ($category !== 'all') $countStmt->bindValue(':cat', $category);
+        // 3. Tính tổng số trang để phân trang
+        $countSql = "SELECT COUNT(*) FROM mon_an $where";
+        $countStmt = $pdo->prepare($countSql);
+        foreach ($params as $key => $val) {
+            $countStmt->bindValue($key, $val);
+        }
         $countStmt->execute();
         $totalPages = ceil($countStmt->fetchColumn() / $limit);
 
