@@ -18,12 +18,13 @@
     <?php $page = "contact"; ?>
     <?php include 'layout/header.php'; ?>
 
+    <!--Hiện bản đồ-->
     <div class="map-wrapper">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.696303803893!2d105.8407530750307!3d21.0048066806359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac76ccab6dd7%3A0x5503454955364808!2zMjA3IEdp4bqjaSBQaMOzbmcsIMSQ4buTbmcgVMOibSwgSGFpIELDoCBUcsawbmcsIEjDoCBO4buZaSwgVmnhu3QgTmFt!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"></iframe>
     </div>
 
     <div class="content">
-
+        <!--Form nhập thông tin bên trái-->
         <div class="contact-form">
             <h2>Gửi tin nhắn cho Yummy Seoul</h2>
             <form id="contactForm">
@@ -55,6 +56,7 @@
             </form>
         </div>
 
+        <!--Thông tin tiệm bên phải-->
         <div class="contact-info">
             <h3>Thông tin tiệm</h3>
 
@@ -65,7 +67,7 @@
 
             <div class="info-item">
                 <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.3 21.01 2.99 13.7 2.99 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.19 2.19z"/></svg>
-                <p>0000.000.000</p>
+                <p>0912.345.678</p>
             </div>
 
             <div class="info-item">
@@ -75,7 +77,7 @@
 
             <div class="info-item">
                 <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 11h4a1 1 0 000-2h-3V7a1 1 0 00-2 0v5a1 1 0 001 1z"/></svg>
-                <p>Thứ 2 – Chủ nhật: 10:00 a.m - 23:00 p.m</p>
+                <p>Thứ 2 – Chủ nhật: 08:00 a.m - 23:00 p.m</p>
             </div>
 
             <div class="link-social">
@@ -93,7 +95,7 @@
     <?php include 'layout/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script src="lienhe.js"></script>
+    <script src="../../Public/js/contact.js"></script>
 </body>
 
 </html>
