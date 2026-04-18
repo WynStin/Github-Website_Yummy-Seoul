@@ -1,5 +1,56 @@
+<?php
+// 1. Kiểm tra xem đây có phải là yêu cầu lấy dữ liệu từ Javascript không
+if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
+    require_once '../../Config/db.php';
+    header('Content-Type: application/json');
+
+    $category = $_GET['category'] ?? 'all';
+    $sort = $_GET['sort'] ?? 'default';
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $limit = 6;
+    $offset = ($page - 1) * $limit;
+
+    try {
+        $where = ($category !== 'all') ? "WHERE id_danh_muc = :cat" : "";
+
+        // Truy vấn sản phẩm
+        $stmt = $pdo->prepare("SELECT * FROM mon_an $where LIMIT :limit OFFSET :offset");
+        if ($category !== 'all') $stmt->bindValue(':cat', $category);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Tính tổng trang
+        $countStmt = $pdo->prepare("SELECT COUNT(*) FROM mon_an $where");
+        if ($category !== 'all') $countStmt->bindValue(':cat', $category);
+        $countStmt->execute();
+        $totalPages = ceil($countStmt->fetchColumn() / $limit);
+
+        echo json_encode([
+            'success' => true,
+            'products' => $products,
+            'totalPages' => $totalPages,
+            'currentPage' => $page
+        ]);
+        exit; // Dừng lại ở đây, không chạy xuống phần HTML bên dưới
+    } catch (Exception $e) {
+        echo json_encode(['success' => false]);
+        exit;
+    }
+}
+
+// Nếu không phải yêu cầu AJAX, trang web sẽ chạy tiếp xuống phần HTML bên dưới như bình thường
+require_once '../../Config/db.php';
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
+
+<?php
+// Nhúng file kết nối database
+require_once '../../Config/db.php';
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +63,6 @@
 
     <link rel="stylesheet" href="../../Public/css/home.css">
     <link rel="stylesheet" href="../../Public/css/product.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 
 <body class="product-page">
@@ -33,24 +83,24 @@
         </div>
     </div>
 
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <button class="mobile-menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
     </button>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="container">
         <aside class="sidebar" id="sidebar">
             <h3>Danh Mục Menu</h3>
             <ul id="menu">
                 <li data-category="all" class="active">Tất Cả Sản Phẩm</li>
-                <li data-category="com">Cơm (Rice)</li>
-                <li data-category="ga">Gà (Chicken)</li>
-                <li data-category="mi">Mì (Noodles)</li>
-                <li data-category="lau-sup">Lẩu & Súp (Stew)</li>
-                <li data-category="an-nhe">Đồ ăn nhẹ (Snacks)</li>
-                <li data-category="do-uong">Đồ uống (Drinks)</li>
+                <li data-category="1">Cơm (Rice)</li>
+                <li data-category="2">Gà (Chicken)</li>
+                <li data-category="3">Mì (Noodles)</li>
+                <li data-category="4">Lẩu & Súp (Stew)</li>
+                <li data-category="5">Đồ ăn nhẹ (Snacks)</li>
+                <li data-category="6">Đồ uống (Drinks)</li>
             </ul>
-
             <h3 style="margin-top: 30px;">Hỗ trợ khách hàng</h3>
             <ul>
                 <li><a href="#"><i class="fas fa-question-circle"></i> Hướng dẫn mua hàng</a></li>
@@ -83,37 +133,52 @@
 
             <section id="productsContainer" class="product-grid">
                 <?php
-                try {
-                    // Sử dụng biến $pdo từ file db.php
-                    $stmt = $pdo->query("SELECT * FROM products");
+                if (isset($pdo)) {
+                    try {
+                        $stmt = $pdo->query("SELECT * FROM mon_an");
+                        $hasProducts = false;
 
-                    while ($row = $stmt->fetch()) {
+                        while ($row = $stmt->fetch()) {
+                            $hasProducts = true;
                 ?>
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="../../Public/img/monan/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name"><?php echo $row['name']; ?></h3>
-                                <div class="price-container">
-                                    <span class="current-price"><?php echo number_format($row['price'], 0, ',', '.'); ?>đ</span>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="../../Public/img/monan/<?php echo $row['hinh_anh']; ?>" alt="<?php echo $row['ten_mon']; ?>">
+                                    <div class="product-overlay">
+                                        <button class="quick-view-btn" onclick="openQuickView(<?php echo htmlspecialchars(json_encode($row)); ?>)">Xem nhanh</button>
+                                    </div>
                                 </div>
-                                <button class="buy-btn">MUA HÀNG</button>
+                                <div class="product-info">
+                                    <h3 class="product-name"><?php echo $row['ten_mon']; ?></h3>
+                                    <div class="product-price">
+                                        <?php echo number_format($row['gia_ban'], 0, ',', '.'); ?>đ
+                                    </div>
+                                    <div class="product-actions">
+                                        <button class="add-to-cart-btn">
+                                            <i class="fas fa-shopping-cart"></i> MUA HÀNG
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                 <?php
+                        }
+
+                        if (!$hasProducts) {
+                            echo "<div class='no-products'>Hiện tại cửa hàng chưa có món nào.</div>";
+                        }
+                    } catch (PDOException $e) {
+                        echo "<div class='no-products'>Lỗi truy vấn: " . $e->getMessage() . "</div>";
                     }
-                } catch (PDOException $e) {
-                    echo "Lỗi truy vấn: " . $e->getMessage();
                 }
                 ?>
             </section>
 
-            <div id="paginationContainer" class="pagination"></div>
+            <div id="paginationContainer" class="pagination">
+            </div>
         </main>
     </div>
 
-    <div class="modal" id="quickActionModal">
+    <div class="modal" id="quickActionModal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Tùy chọn sản phẩm</h2>
@@ -145,6 +210,39 @@
     </div>
 
     <?php include 'layout/footer.php'; ?>
+
+    <script>
+        function openQuickView(product) {
+            document.getElementById('modalProductName').innerText = product.ten_mon;
+            document.getElementById('modalProductPrice').innerText = new Intl.NumberFormat('vi-VN').format(product.gia_ban) + 'đ';
+            document.getElementById('modalQuantity').value = 1;
+            document.getElementById('quickActionModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('quickActionModal').style.display = 'none';
+        }
+
+        function increaseQuantityModal() {
+            let input = document.getElementById('modalQuantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQuantityModal() {
+            let input = document.getElementById('modalQuantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Đóng modal khi click ra ngoài vùng trắng
+        window.onclick = function(event) {
+            let modal = document.getElementById('quickActionModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 
     <script src="../../Public/js/product.js"></script>
 </body>
