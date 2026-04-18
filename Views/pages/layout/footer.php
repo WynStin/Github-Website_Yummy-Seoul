@@ -52,9 +52,9 @@
     <div class="footer-col">
       <h4>Kết Nối</h4>
       <div class="social-links">
-        <a href="#" class="social-btn social-fb"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="social-btn social-ig"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="social-btn social-tk"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/" class="social-btn social-fb"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" class="social-btn social-ig"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/" class="social-btn social-tk"><i class="fa-brands fa-tiktok"></i></a>
       </div>
       <br>
       <h4>Hướng Dẫn</h4>

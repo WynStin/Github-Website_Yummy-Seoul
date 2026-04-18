@@ -1,0 +1,293 @@
+/* Kế thừa các biến màu từ home.css */
+
+.cart-page-container {
+    min-height: 85vh;
+    background: url("/Github-Website_Yummy-Seoul/Public/img/homepage/background.png"), var(--baby-cream);
+    background-size: auto;
+    position: relative;
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+/* HIỆU ỨNG TRANG TRÍ LƠ LỬNG */
+.cart-decorations .decor-item {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.4;
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+.blossom-1 {
+    top: 10%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+    background: var(--baby-pink);
+    border-radius: 50% 0;
+}
+
+.leaf-1 {
+    top: 20%;
+    right: 5%;
+    width: 25px;
+    height: 25px;
+    background: var(--gold-light);
+    border-radius: 0 50%;
+}
+
+.heart-1 {
+    bottom: 15%;
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    background: var(--red-accent);
+    transform: rotate(-45deg);
+}
+
+.blossom-2 {
+    bottom: 20%;
+    right: 10%;
+    width: 30px;
+    height: 30px;
+    background: var(--light-pink);
+    border-radius: 50% 0;
+}
+
+/* CẤU TRÚC HEADER */
+.cart-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.back-to-shop {
+    font-size: 14px;
+    color: var(--brown-mid);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.cart-title {
+    font-size: 45px;
+    color: var(--red-brown);
+    margin: 10px 0;
+}
+
+.cart-subtitle-handwritten {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: var(--gold);
+}
+
+/* LAYOUT CHÍNH */
+.cart-main-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* DANH SÁCH MÓN ĂN */
+.cart-items-column {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    border: 1px solid var(--pink-soft);
+}
+
+.cart-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--pink-soft);
+    font-weight: 700;
+    color: var(--red-brown);
+}
+
+.cart-item-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--pink-soft);
+}
+
+.item-info {
+    display: flex;
+    gap: 20px;
+}
+
+.item-img img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 2px solid var(--white);
+    box-shadow: var(--shadow);
+}
+
+.item-details h3 {
+    font-size: 18px;
+    color: var(--red-brown);
+}
+
+.unit-price {
+    color: var(--brown-light);
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: var(--red-accent);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* ĐIỀU CHỈNH SỐ LƯỢNG */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--pink-soft);
+    width: fit-content;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.quantity-control input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-weight: 700;
+    background: transparent;
+}
+
+.item-total {
+    font-weight: 700;
+    color: var(--red-brown);
+    text-align: right;
+}
+
+/* TÓM TẮT ĐƠN HÀNG */
+.summary-box {
+    background: var(--red-brown);
+    color: var(--baby-yellow);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-hover);
+    position: sticky;
+    top: 20px;
+}
+
+.summary-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed rgba(255, 237, 163, 0.3);
+    padding-bottom: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.summary-row.total {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.promo-box {
+    display: flex;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.promo-box input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--baby-yellow);
+    border-radius: 20px;
+    padding: 8px 15px;
+    color: white;
+}
+
+.promo-box button {
+    background: var(--baby-yellow);
+    border: none;
+    border-radius: 20px;
+    padding: 0 20px;
+    font-weight: 700;
+    color: var(--red-brown);
+}
+
+.btn-checkout {
+    width: 100%;
+    background: var(--baby-yellow);
+    color: var(--red-brown);
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-checkout:hover {
+    background: var(--gold-light);
+    transform: scale(1.02);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .cart-main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .item-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-quantity,
+    .item-total {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+}

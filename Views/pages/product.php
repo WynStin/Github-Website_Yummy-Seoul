@@ -64,11 +64,6 @@ require_once '../../Config/db.php';
 <!DOCTYPE html>
 <html lang="vi">
 
-<?php
-// Nhúng file kết nối database
-require_once '../../Config/db.php';
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
