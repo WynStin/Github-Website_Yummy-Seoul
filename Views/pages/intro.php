@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../Public/css/home.css">
     <link rel="stylesheet" href="../../Public/css/intro.css">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
 </head>
 
 <body class="yummy-story-version">
@@ -102,7 +105,7 @@
                 </div>
                 <div class="stat-box" data-target="100">
                     <h2 class="counter">0</h2>
-                    <span>% Tận tâm</span>
+                    <span>Tận tâm</span>
                 </div>
             </div>
         </div>
