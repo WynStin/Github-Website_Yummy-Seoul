@@ -30,12 +30,8 @@
 
         <!--Đăng nhập và đăng ký-->
         <div class="topbar-actions">
-            <button class="btn-outline">
-                <a href="login_register.php#login">Đăng nhập</a>
-            </button>
-            <button class="btn-outline">
-                <a href="login_register.php#signup">Đăng ký</a>
-            </button>
+            <a href="login_register.php#login" class="btn-outline">Đăng nhập</a>
+            <a href="login_register.php#signup" class="btn-outline">Đăng ký</a>
         </div>
     </div>
 

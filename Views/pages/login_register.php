@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <!--Container con dạng form-->
+            <!--Container con dạng form đăng nhập-->
             <div class="container-form">
                 <form class="form-item log-in" onsubmit="login(event)">
                     <h1>Đăng nhập</h1>
@@ -74,7 +74,7 @@
                     </div>
                 </form>
 
-                <!--Đổi 2 bên container khi nhấn "Đăng ký"-->
+                <!--Container con dạng form đăng ký-->
                 <form class="form-item sign-up" onsubmit="register(event)">
                     <h1>Đăng ký</h1>
                     <div class="input-container">
