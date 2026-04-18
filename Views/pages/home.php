@@ -39,7 +39,7 @@
       <div class="hero-slide">
         <div class="hero-img-placeholder">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner_center.png"
+            src="../../Public/img/homepage/banner_center.png"
             alt="Banner 2"
             onerror="this.style.display = 'none'" />
         </div>
@@ -49,7 +49,7 @@
       <div class="hero-slide">
         <div class="hero-img-placeholder">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner2.jpg"
+            src="../../Public/img/homepage/banner2.jpg"
             alt="Banner 3"
             onerror="this.style.display = 'none'" />
         </div>
@@ -78,7 +78,7 @@
         <div class="product-card-img">
           <!-- HÌNH SẢN PHẨM: thay src bằng link ảnh thực -->
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/mituongden.jpg"
+            src="../../Public/img/monan/mituongden.jpg"
             alt="Mì tương đen"
             onerror="this.style.display = 'none'" />
         </div>
@@ -90,7 +90,7 @@
       <div class="product-card fade-up delay-2">
         <div class="product-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/mandu.jpg"
+            src="../../Public/img/monan/mandu.jpg"
             alt="Mandu chiên"
             onerror="this.style.display = 'none'" />
         </div>
@@ -102,7 +102,7 @@
       <div class="product-card fade-up delay-3">
         <div class="product-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/gasottuongtoi.jpg"
+            src="../../Public/img/monan/gasottuongtoi.jpg"
             alt="Gà sốt tương tỏi"
             onerror="this.style.display = 'none'" />
         </div>
@@ -114,7 +114,7 @@
       <div class="product-card fade-up delay-4">
         <div class="product-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/combobulgogi.jpg"
+            src="../../Public/img/monan/combobulgogi.jpg"
             alt="Cơm bò xào Bulgogi"
             onerror="this.style.display = 'none'" />
         </div>
@@ -142,7 +142,7 @@
         <div class="product-card fade-up delay-1">
           <div class="product-card-img">
             <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbapchien.jpg"
+              src="../../Public/img/monan/kimbapchien.jpg"
               alt="Kimbap chiên"
               onerror="this.style.display = 'none'" />
           </div>
@@ -154,7 +154,7 @@
         <div class="product-card fade-up delay-2">
           <div class="product-card-img">
             <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/gakhongxuong.jpg"
+              src="../../Public/img/monan/gakhongxuong.jpg"
               alt="Gà rán không xương"
               onerror="this.style.display = 'none'" />
           </div>
@@ -166,7 +166,7 @@
         <div class="product-card fade-up delay-3">
           <div class="product-card-img">
             <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/milanh.jpg"
+              src="../../Public/img/monan/milanh.jpg"
               alt="Mì lạnh Naengmyeon"
               onerror="this.style.display = 'none'" />
           </div>
@@ -185,7 +185,7 @@
     <div class="about-bg">
       <!-- HÌNH NỀN ABOUT: thay src bằng link ảnh thực -->
       <img
-        src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner1.jpg"
+        src="../../Public/img/homepage/banner1.jpg"
         alt="Background"
         onerror="this.style.display = 'none'" />
     </div>
@@ -216,7 +216,7 @@
         </div>
         <div class="bs-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/garansotcay.jpg"
+            src="../../Public/img/monan/garansotcay.jpg"
             alt="Top 2"
             onerror="this.style.display = 'none'" />
         </div>
@@ -236,7 +236,7 @@
         </div>
         <div class="bs-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/tokbokki.jpg"
+            src="../../Public/img/monan/tokbokki.jpg"
             alt="Top 1"
             onerror="this.style.display = 'none'" />
         </div>
@@ -256,7 +256,7 @@
         </div>
         <div class="bs-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbaptruyenthong.jpg"
+            src="../../Public/img/monan/kimbaptruyenthong.jpg"
             alt="Top 3"
             onerror="this.style.display = 'none'" />
         </div>
@@ -283,7 +283,7 @@
       <div class="news-card fade-up delay-1">
         <div class="news-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/news/new1.png"
+            src="../../Public/img/news/new1.png"
             alt="Tin tức 1"
             onerror="this.style.display = 'none'" />
         </div>
@@ -301,14 +301,14 @@
       <div class="news-card fade-up delay-2">
         <div class="news-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/news/new2.png"
+            src="../../Public/img/news/new2.png"
             alt="Tin tức 2"
             onerror="this.style.display = 'none'" />
         </div>
         <div class="news-card-body">
           <div class="news-card-title">Ưu đãi thành viên mới</div>
           <div class="news-card-desc">
-            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay “BANMOI” để nhận ưu đãi...
+            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu đãi...
           </div>
           <a href="#" class="news-card-more">Xem thêm →</a>
         </div>
@@ -316,7 +316,7 @@
       <div class="news-card fade-up delay-3">
         <div class="news-card-img">
           <img
-            src="/Github-Website_Yummy-Seoul/Public/img/news/new3.png"
+            src="../../Public/img/news/new3.png"
             alt="Tin tức 3"
             onerror="this.style.display = 'none'" />
         </div>
@@ -336,7 +336,7 @@
   <?php include 'layout/footer.php'; ?>
 
   <!-- ======= JAVASCRIPT ======= -->
-  <script src="/Github-Website_Yummy-Seoul/Public/js/home.js"></script>
+  <script src="../../Public/js/home.js"></script>
 </body>
 
 </html>
