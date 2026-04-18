@@ -691,239 +691,231 @@
     background-color: var(--white);
 }
 
+/* Đưa các class này ra ngoài, không để trong dấu ngoặc của .product-info-modal */
 .product-info-modal {
     margin-bottom: 25px;
     text-align: center;
+}
 
-    .product-name-modal {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--brown-deep);
-        margin-bottom: 10px;
-        font-family: 'Asap', sans-serif;
+.product-name-modal {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brown-deep);
+    margin-bottom: 10px;
+    font-family: 'Asap', sans-serif;
+}
+
+.product-price-modal {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--red-accent);
+}
+
+/* Chọn số lượng */
+.quantity-section-modal {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.quantity-label-modal {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-family: 'Asap', sans-serif;
+}
+
+.quantity-controls-modal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn-modal {
+    width: 40px;
+    height: 40px;
+    background: var(--baby-cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--red-brown);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn-modal:hover {
+    background: var(--red-brown);
+    color: var(--white);
+    border-color: var(--red-brown);
+}
+
+.quantity-input-modal {
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    border: 2px solid var(--cream-dark);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    outline: none;
+    color: var(--brown-deep);
+}
+
+/* Nút bấm cuối trang */
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    padding: 20px 25px;
+    border-top: 2px solid var(--cream-dark);
+    background: var(--baby-cream);
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid var(--red-brown);
+    background: var(--white);
+    color: var(--red-brown);
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Asap', sans-serif;
+}
+
+.modal-btn-primary {
+    background: linear-gradient(135deg, var(--red-brown) 0%, var(--brown-deep) 100%);
+    color: var(--white);
+    border: none;
+}
+
+.modal-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(69, 23, 21, 0.3);
+    background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-deep) 100%);
+}
+
+.modal-btn i {
+    margin-right: 8px;
+}
+
+/*Tương thích thiết bị*/
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
     }
 
-    .product-price-modal {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        /* Bỏ sticky khi ở màn hình vừa */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
         font-size: 2rem;
-        font-weight: 700;
-        color: var(--red-accent);
+        padding: 30px 15px;
+        /* Giảm độ cao tiêu đề trên mobile cho gọn */
     }
 
-    /*Chọn số lượng*/
-    .quantity-section-modal {
+    .mobile-category-bar {
+        display: block;
+        border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .mobile-menu-toggle {
         display: flex;
-        align-items: center;
-        gap: 15px;
-        justify-content: center;
+        background: var(--red-brown);
+        /* Đảm bảo nút có màu nâu đỏ */
+    }
+
+    /* Sidebar trượt ra từ cạnh trái trên điện thoại */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        z-index: 999;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        border-radius: 0 20px 20px 0;
+        /* Bo góc bên phải khi trượt ra */
+        background: var(--white);
+    }
+
+    .sidebar.active {
+        left: 0;
+        box-shadow: 10px 0 30px rgba(59, 26, 14, 0.2);
+    }
+
+    .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .view-options {
+        width: 100%;
+        justify-content: space-between;
         margin-top: 10px;
     }
 
-    .quantity-label-modal {
-        font-weight: 700;
-        color: var(--text-dark);
-        font-size: 1.1rem;
-        font-family: 'Asap', sans-serif;
-    }
-
-    .quantity-controls-modal {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .quantity-btn-modal {
-        width: 40px;
-        height: 40px;
-        background: var(--baby-cream);
-        border: 1px solid var(--cream-dark);
-        border-radius: 8px;
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--red-brown);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .quantity-btn-modal:hover {
-        background: var(--red-brown);
-        color: var(--white);
-        border-color: var(--red-brown);
-    }
-
-    .quantity-input-modal {
-        width: 70px;
-        height: 40px;
-        text-align: center;
-        border: 2px solid var(--cream-dark);
-        border-radius: 8px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        outline: none;
-        color: var(--brown-deep);
-    }
-
-    .quantity-input-modal:focus {
-        border-color: var(--gold);
-    }
-
-    /*Nút bấm cuối trang*/
-    .modal-actions {
-        display: flex;
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 15px;
-        padding: 20px 25px;
-        border-top: 2px solid var(--cream-dark);
-        background: var(--baby-cream);
     }
 
-    .modal-btn {
-        flex: 1;
-        padding: 15px 20px;
-        /* Viền màu nâu đỏ thay cho xanh tím */
-        border: 2px solid var(--red-brown);
-        background: var(--white);
-        color: var(--red-brown);
-        border-radius: 12px;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Asap', sans-serif;
+    .product-list .product-card {
+        flex-direction: column;
     }
 
-    .modal-btn:hover {
-        background: var(--baby-pink);
-        color: var(--red-brown);
+    .product-list .product-image {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.5rem;
+        padding: 20px 10px;
     }
 
-    .modal-btn-primary {
-        background: linear-gradient(135deg, var(--red-brown) 0%, var(--brown-deep) 100%);
-        color: var(--white);
-        border: none;
+    .product-grid {
+        grid-template-columns: 1fr;
+        /* 1 cột duy nhất trên điện thoại nhỏ */
     }
 
-    .modal-btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(69, 23, 21, 0.3);
-        background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-deep) 100%);
+    .modal-content {
+        max-width: 95%;
+        margin: 10px;
     }
 
-    .modal-btn i {
-        margin-right: 8px;
+    .modal-actions {
+        flex-direction: column;
+        /* Nút Thêm giỏ và Mua ngay xếp chồng lên nhau */
     }
 
-    /*Tương thích thiết bị*/
-    @media (max-width: 1024px) {
-        .container {
-            flex-direction: column;
-        }
-
-        .sidebar {
-            width: 100%;
-            position: relative;
-            top: 0;
-            /* Bỏ sticky khi ở màn hình vừa */
-        }
-
-        .product-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
+    .product-price-modal {
+        font-size: 1.6rem;
     }
-
-    @media (max-width: 768px) {
-        .page-title {
-            font-size: 2rem;
-            padding: 30px 15px;
-            /* Giảm độ cao tiêu đề trên mobile cho gọn */
-        }
-
-        .mobile-category-bar {
-            display: block;
-            border-bottom: 1px solid var(--cream-dark);
-        }
-
-        .mobile-menu-toggle {
-            display: flex;
-            background: var(--red-brown);
-            /* Đảm bảo nút có màu nâu đỏ */
-        }
-
-        /* Sidebar trượt ra từ cạnh trái trên điện thoại */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100vh;
-            z-index: 999;
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            border-radius: 0 20px 20px 0;
-            /* Bo góc bên phải khi trượt ra */
-            background: var(--white);
-        }
-
-        .sidebar.active {
-            left: 0;
-            box-shadow: 10px 0 30px rgba(59, 26, 14, 0.2);
-        }
-
-        .products-header {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 15px;
-        }
-
-        .view-options {
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        .product-grid {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .product-list .product-card {
-            flex-direction: column;
-        }
-
-        .product-list .product-image {
-            width: 100%;
-            height: 180px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .page-title {
-            font-size: 1.5rem;
-            padding: 20px 10px;
-        }
-
-        .product-grid {
-            grid-template-columns: 1fr;
-            /* 1 cột duy nhất trên điện thoại nhỏ */
-        }
-
-        .modal-content {
-            max-width: 95%;
-            margin: 10px;
-        }
-
-        .modal-actions {
-            flex-direction: column;
-            /* Nút Thêm giỏ và Mua ngay xếp chồng lên nhau */
-        }
-
-        .product-price-modal {
-            font-size: 1.6rem;
-        }
-    }
+}
 }
 }

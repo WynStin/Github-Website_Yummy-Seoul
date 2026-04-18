@@ -13,15 +13,32 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
     try {
         $where = ($category !== 'all') ? "WHERE id_danh_muc = :cat" : "";
 
-        // Truy vấn sản phẩm
-        $stmt = $pdo->prepare("SELECT * FROM mon_an $where LIMIT :limit OFFSET :offset");
+        // --- BỔ SUNG LOGIC SẮP XẾP TẠI ĐÂY ---
+        $orderBy = "ORDER BY id_mon_an DESC"; // Mặc định
+        switch ($sort) {
+            case 'priceAsc':
+                $orderBy = "ORDER BY gia_ban ASC";
+                break;
+            case 'priceDesc':
+                $orderBy = "ORDER BY gia_ban DESC";
+                break;
+            case 'nameAsc':
+                $orderBy = "ORDER BY ten_mon ASC";
+                break;
+            case 'nameDesc':
+                $orderBy = "ORDER BY ten_mon DESC";
+                break;
+        }
+
+        // Truy vấn sản phẩm với Order By
+        $stmt = $pdo->prepare("SELECT * FROM mon_an $where $orderBy LIMIT :limit OFFSET :offset");
         if ($category !== 'all') $stmt->bindValue(':cat', $category);
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Tính tổng trang
+        // Tính tổng trang (giữ nguyên)
         $countStmt = $pdo->prepare("SELECT COUNT(*) FROM mon_an $where");
         if ($category !== 'all') $countStmt->bindValue(':cat', $category);
         $countStmt->execute();
@@ -33,9 +50,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             'totalPages' => $totalPages,
             'currentPage' => $page
         ]);
-        exit; // Dừng lại ở đây, không chạy xuống phần HTML bên dưới
+        exit;
     } catch (Exception $e) {
-        echo json_encode(['success' => false]);
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         exit;
     }
 }
