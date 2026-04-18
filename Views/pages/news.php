@@ -136,6 +136,8 @@
     <script src="load-sidebar.js"></script>
     <div data-include="/src/components/chatbot.html"></div>
     <div data-include="/src/components/footer.html"></div>
+
+    <?php include 'layout/footer.php'; ?>
     <script type="module" src="/src/js/again.js"></script>
   </body>
 </html>

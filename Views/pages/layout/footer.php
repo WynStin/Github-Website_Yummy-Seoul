@@ -35,15 +35,15 @@
     <div class="footer-col">
       <h4>Chính Sách</h4>
       <ul>
-        <li><a href="#">Chính sách thanh toán khi đặt hàng</a></li>
-        <li><a href="#">Chính sách giao nhận hàng</a></li>
-        <li><a href="#">Chính sách về sản phẩm</a></li>
-        <li><a href="#">Chính sách bảo mật</a></li>
+        <li><a href="payment_policy.php">Chính sách thanh toán khi đặt hàng</a></li>
+        <li><a href="shipping_policy.php">Chính sách giao nhận hàng</a></li>
+        <li><a href="product_policy.php">Chính sách về sản phẩm</a></li>
+        <li><a href="privacy_policy.php">Chính sách bảo mật</a></li>
       </ul>
       <br>
       <h4>Thông Tin</h4>
       <ul>
-        <li><a href="#">Tin tức - Sự kiện</a></li>
+        <li><a href="news.php">Tin tức - Sự kiện</a></li>
       </ul>
     </div>
 
@@ -59,9 +59,9 @@
       <br>
       <h4>Hướng Dẫn</h4>
       <ul>
-        <li><a href="#">Hướng dẫn đặt đơn hàng</a></li>
-        <li><a href="#">Hướng dẫn thanh toán</a></li>
-        <li><a href="#">Hướng dẫn hủy đơn hàng</a></li>
+        <li><a href="order_guide.php">Hướng dẫn đặt đơn hàng</a></li>
+        <li><a href="payment_guide.php">Hướng dẫn thanh toán</a></li>
+        <li><a href="order_cancellation_guide.php">Hướng dẫn hủy đơn hàng</a></li>
       </ul>
     </div>
   </div>
