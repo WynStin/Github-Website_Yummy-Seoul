@@ -28,7 +28,7 @@
             <button class="btn" onclick="showSignup()">Đăng ký</button>
         </div>
 
-        <!--Container phải-->
+        <!--Container con chứa nút chuyển đổi form-->
         <div class="container-forms">
             <div class="container-info">
                 <div class="info-item">
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <!--Container trái-->
+            <!--Container con dạng form-->
             <div class="container-form">
                 <form class="form-item log-in" onsubmit="login(event)">
                     <h1>Đăng nhập</h1>

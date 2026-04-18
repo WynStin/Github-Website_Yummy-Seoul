@@ -66,19 +66,19 @@
             box-shadow: 5px 5px 20px var(--red-brown);
         }
 
-        /*Container con bên phải dài = Container cha*/
+        /*Container chứa nút chuyển form (1) độ dài = Container cha*/
         .container-forms {
             height: 100%;
         }
 
-        /*Căn chỉnh thông tin trong container phải*/
+        /*Căn chỉnh thông tin trong container (1)*/
         .container-info {
             display: flex;
             justify-content: center;
             height: 100%;
         }
 
-        /*Tạo layer title -> text -> button container phải*/
+        /*Tạo layer title -> text -> button container (1)*/
         .info-item {
             display: flex;
             flex-direction: column;
@@ -91,14 +91,14 @@
             transition: all 0.5s ease;
         }
 
-        /*Áp dụng cho thẻ p trong info-item container phải*/
+        /*Áp dụng cho thẻ p trong info-item container (1)*/
         .info-item p {
             font-size: 18px;
             margin: 20px;
             text-align: center;
         }
 
-        /*Nút bên phải*/
+        /*Nút bấm để ghi vào CSDL (1)*/
         .btn {
             text-align: center;
             width: 120px;
@@ -114,7 +114,7 @@
             font-weight: 500;
         }
 
-        /*Hover của nút bên phải*/
+        /*Hover của nút bấm (1)*/
         .btn:hover {
             background-color: var(--white);
             color: var(--brown-mid);
@@ -122,7 +122,7 @@
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
         }
 
-        /*Container con bên trái*/
+        /*Container con dạng form (2)*/
         .container-form {
             position: absolute;
             top: 0;
@@ -137,7 +137,7 @@
             overflow-x: hidden;
         }
 
-        /*Định dạng trong container trái*/
+        /*Định dạng trong container (2)*/
         .form-item {
             position: absolute;
             top: 0;
@@ -153,14 +153,14 @@
             padding: 20px;
         }
 
-        /*Định dạng h1 trong form-item của container trái*/
+        /*Định dạng h1 trong form-item của container (2)*/
         .form-item h1 {
             color: var(--brown-mid);
             margin-bottom: 25px;
             font-size: 28px;
         }
 
-        /*Định dạng input trong form-item của container trái*/
+        /*Định dạng input trong form-item của container (2)*/
         .form-item input {
             display: block;
             margin: 0 auto 15px;
@@ -173,25 +173,25 @@
             outline: none;
         }
 
-        /*Border ô input trong form-item container trái khi click*/
+        /*Border ô input trong form-item container (2) khi click*/
         .form-item input:focus {
             border-color: var(--brown-mid);
             box-shadow: 0 0 10px var(--red-brown);
         }
 
-        /*Áp kiểu ô submit form-item container trái*/
+        /*Áp kiểu ô submit form-item container (2)*/
         .form-item .btn-submit {
             border: none;
             background: var(--brown-mid);
             color: white;
             margin-top: 15px;
-            box-shadow: 0 5px 15px var(--text-light);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /*Áp kiểu ô submit form-item container trái khi chuột di vào*/
+        /*Áp kiểu ô submit form-item container (2) khi chuột di vào*/
         .form-item .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px var(--text-light);
         }
 
         /*Thông báo lỗi/ thành công*/
@@ -209,25 +209,25 @@
             color: #27ae60;
         }
 
-        /*Ẩn form sign-up ban đầu*/
+        /*Ẩn form đăng ký ban đầu*/
         .form-item.sign-up {
             position: absolute;
             left: -100%;
             opacity: 0;
         }
 
-        /*Chuyển sang chế độ log-in*/
+        /*Chuyển sang chế độ đăng nhập*/
         .container.log-in .container-form {
             left: 298px;
         }
 
-        /*Hiển thị form sign-up*/
+        /*Hiển thị form đăng ký*/
         .container.log-in .container-form .form-item.sign-up {
             left: 0;
             opacity: 1;
         }
 
-        /*Ẩn form log-in*/
+        /*Ẩn form đăng nhập*/
         .container.log-in .container-form .form-item.log-in {
             left: -100%;
             opacity: 0;
