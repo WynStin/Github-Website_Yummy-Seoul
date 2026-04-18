@@ -139,8 +139,7 @@
 
     <?php include 'layout/footer.php'; ?>
     <script type="module" src="/src/js/again.js"></script>
-  <!--Lấy footer-->
-  <?php include 'layout/footer.php'; ?>
+
 
   <!-- ======= JAVASCRIPT ======= -->
   <script src="/Github-Website_Yummy-Seoul/Public/js/news.js"></script>
