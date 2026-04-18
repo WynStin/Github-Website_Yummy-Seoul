@@ -6,9 +6,10 @@ let currentProductId = null;
 // Load sản phẩm
 async function loadProducts(category = 'all', sort = 'default', page = 1) {
     try {
-        const response = await fetch(`get_products.php?category=${category}&sort=${sort}&page=${page}`);
+        // Lưu ý: Đảm bảo bạn đã có file get_products.php để xử lý API này
+        const response = await fetch(`product.php?ajax=1&category=${category}&sort=${sort}&page=${page}`);
         const data = await response.json();
-        
+
         if (data.success) {
             displayProducts(data.products);
             displayPagination(data.totalPages, data.currentPage);
@@ -22,29 +23,29 @@ async function loadProducts(category = 'all', sort = 'default', page = 1) {
 // Hiển thị sản phẩm
 function displayProducts(products) {
     const container = document.getElementById('productsContainer');
-    
-    if (products.length === 0) {
-        container.innerHTML = '<p class="no-products">Không có sản phẩm nào.</p>';
+
+    if (!products || products.length === 0) {
+        container.innerHTML = '<p class="no-products">Hiện chưa có món ăn nào trong danh mục này.</p>';
         return;
     }
-    
+
     container.innerHTML = products.map(product => `
         <div class="product-card">
             <div class="product-image">
-                <img src="../../Public/img/products/${product.image}" alt="${product.name}">
+                <img src="../../Public/img/monan/${product.hinh_anh}" alt="${product.ten_mon}">
                 <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="openModal(${product.id}, '${product.name}', ${product.price})">
+                    <button class="quick-view-btn" onclick="openModal(${product.id_mon_an}, '${product.ten_mon}', ${product.gia_ban})">
                         <i class="fas fa-eye"></i> Xem nhanh
                     </button>
                 </div>
             </div>
             <div class="product-info">
-                <h3 class="product-name">${product.name}</h3>
-                <p class="product-description">${product.description || ''}</p>
-                <div class="product-price">${formatPrice(product.price)}</div>
+                <h3 class="product-name">${product.ten_mon}</h3>
+                <p class="product-description">${product.mo_ta || ''}</p>
+                <div class="product-price">${formatPrice(product.gia_ban)}</div>
                 <div class="product-actions">
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
-                        <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                    <button class="add-to-cart-btn" onclick="addToCart(${product.id_mon_an})">
+                        <i class="fas fa-shopping-cart"></i> Mua hàng
                     </button>
                 </div>
             </div>
@@ -52,62 +53,102 @@ function displayProducts(products) {
     `).join('');
 }
 
-// Format giá
+// Format giá - Bỏ Style Currency để giống 85.000đ như bạn muốn
 function formatPrice(price) {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+    return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
 }
 
-// Phân trang
+// Phân trang - Giữ nguyên logic nhưng hãy đảm bảo paginationContainer tồn tại trong HTML
 function displayPagination(totalPages, currentPage) {
     const container = document.getElementById('paginationContainer');
-    
+    if (!container) return;
+
     if (totalPages <= 1) {
         container.innerHTML = '';
         return;
     }
-    
+
+    // Thêm CSS trực tiếp cho container để dàn hàng ngang
+    container.style.display = 'flex';
+    container.style.justifyContent = 'center';
+    container.style.alignItems = 'center';
+    container.style.gap = '10px';
+    container.style.margin = '40px 0';
+    container.style.width = '100%';
+
     let html = '';
-    
+
     // Nút Previous
     if (currentPage > 1) {
-        html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">«</button>`;
+        html += `<button class="page-btn" onclick="changePage(${currentPage - 1})" style="width:40px; height:40px; border-radius:8px; border:2px solid #e5d1b5; background:#fff; cursor:pointer;"><i class="fas fa-chevron-left"></i></button>`;
     }
-    
-    // Các trang
+
+    // Các trang số
     for (let i = 1; i <= totalPages; i++) {
-        if (i === currentPage) {
-            html += `<button class="page-btn active">${i}</button>`;
-        } else {
-            html += `<button class="page-btn" onclick="changePage(${i})">${i}</button>`;
-        }
+        const isActive = (i === currentPage);
+        // Định dạng màu sắc dựa trên trạng thái active
+        const bgColor = isActive ? '#451715' : '#ffffff';
+        const textColor = isActive ? '#ffffff' : '#451715';
+        const borderColor = '#451715';
+
+        html += `
+            <button class="page-btn ${isActive ? 'active' : ''}" 
+                onclick="changePage(${i})" 
+                style="
+                    width: 40px; 
+                    height: 40px; 
+                    border-radius: 8px; 
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    border: 2px solid ${borderColor}; 
+                    background-color: ${bgColor}; 
+                    color: ${textColor};
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">
+                ${i}
+            </button>`;
     }
-    
+
     // Nút Next
     if (currentPage < totalPages) {
-        html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">»</button>`;
+        html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" style="width:40px; height:40px; border-radius:8px; border:2px solid #e5d1b5; background:#fff; cursor:pointer;"><i class="fas fa-chevron-right"></i></button>`;
     }
-    
+
     container.innerHTML = html;
 }
 
 function changePage(page) {
+    console.log("Chuyển sang trang:", page); // Kiểm tra xem hàm có chạy không
     currentPage = page;
+
+    // Gọi lại hàm load sản phẩm với trang mới
     loadProducts(currentCategory, currentSort, page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Cuộn lên đầu danh sách sản phẩm cho mượt
+    const productSection = document.getElementById('pageTitle');
+    if (productSection) {
+        productSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Cập nhật tiêu đề danh mục
 function updateCategoryTitle(category) {
     const titles = {
         'all': 'Tất cả sản phẩm',
-        'com': 'Cơm (Rice)',
+        '1': 'Cơm (Rice)',     // Đổi key thành ID số để khớp với DB
+        '2': 'Gà (Chicken)',
+        '3': 'Mì (Noodles)',
+        '4': 'Lẩu & Súp (Stew)',
+        '5': 'Đồ ăn nhẹ (Snacks)',
+        '6': 'Đồ uống (Drinks)',
+        'com': 'Cơm (Rice)',   // Giữ cả text nếu bạn chưa sửa dataset
         'ga': 'Gà (Chicken)',
-        'mi': 'Mì (Noodles)',
-        'lau-sup': 'Lẩu & Súp (Stew)',
-        'an-nhe': 'Đồ ăn nhẹ (Snacks)',
-        'do-uong': 'Đồ uống (Drinks)'
+        'mi': 'Mì (Noodles)'
     };
-    
+
     document.getElementById('categoryTitle').textContent = titles[category] || titles['all'];
 }
 
@@ -115,6 +156,7 @@ function updateCategoryTitle(category) {
 function openModal(id, name, price) {
     currentProductId = id;
     document.getElementById('modalProductName').textContent = name;
+    // Sử dụng hàm formatPrice đã sửa ở đoạn trước để hiện đúng "85.000đ"
     document.getElementById('modalProductPrice').textContent = formatPrice(price);
     document.getElementById('modalQuantity').value = 1;
     document.getElementById('quickActionModal').style.display = 'flex';
@@ -124,6 +166,7 @@ function closeModal() {
     document.getElementById('quickActionModal').style.display = 'none';
 }
 
+// Các hàm tăng giảm số lượng trong Modal
 function increaseQuantityModal() {
     const input = document.getElementById('modalQuantity');
     input.value = parseInt(input.value) + 1;
@@ -148,8 +191,10 @@ function buyNowFromModal() {
     window.location.href = 'cart.php';
 }
 
+// Hàm gửi dữ liệu vào giỏ hàng (Cần file add_to_cart.php xử lý)
 function addToCart(productId, quantity = 1) {
-    // Gửi request thêm vào giỏ hàng
+    console.log("Adding to cart:", productId, "Quantity:", quantity);
+
     fetch('add_to_cart.php', {
         method: 'POST',
         headers: {
@@ -157,71 +202,101 @@ function addToCart(productId, quantity = 1) {
         },
         body: JSON.stringify({ productId, quantity })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Đã thêm vào giỏ hàng!');
-        }
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Đã thêm món ăn vào giỏ hàng của bạn!');
+                // Có thể thêm code cập nhật số lượng trên icon giỏ hàng ở đây
+            } else {
+                alert('Có lỗi xảy ra: ' + data.message);
+            }
+        })
+        .catch(err => console.error('Lỗi kết nối giỏ hàng:', err));
 }
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', function() {
-    // Load sản phẩm lần đầu
-    loadProducts();
-    
-    // Sidebar menu
+document.addEventListener('DOMContentLoaded', function () {
+    // 1. Chỉ gọi loadProducts() nếu bạn ĐÃ CÓ file get_products.php xử lý đúng DB mới
+    // Nếu chưa có file đó, hãy tạm comment dòng dưới để dùng dữ liệu từ PHP cho hiện hình đã.
+    loadProducts(currentCategory, currentSort, currentPage);
+
+    // 2. Sidebar menu
     document.querySelectorAll('#menu li').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             document.querySelectorAll('#menu li').forEach(i => i.classList.remove('active'));
             this.classList.add('active');
-            
+
             currentCategory = this.dataset.category;
             currentPage = 1;
             loadProducts(currentCategory, currentSort, 1);
         });
     });
-    
-    // Mobile category
+
+    // 3. Mobile category bar
     document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             this.classList.add('active');
-            
+
             currentCategory = this.dataset.category;
             currentPage = 1;
             loadProducts(currentCategory, currentSort, 1);
         });
     });
-    
-    // Sort
-    document.getElementById('sortSelect').addEventListener('change', function() {
-        currentSort = this.value;
-        currentPage = 1;
-        loadProducts(currentCategory, currentSort, 1);
-    });
-    
-    // View mode
-    document.getElementById('gridView').addEventListener('click', function() {
-        document.getElementById('productsContainer').className = 'product-grid';
-        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-    });
-    
-    document.getElementById('listView').addEventListener('click', function() {
-        document.getElementById('productsContainer').className = 'product-list';
-        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-    });
-    
-    // Mobile menu toggle
-    document.getElementById('menuToggle')?.addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('active');
-        document.getElementById('sidebarOverlay').classList.toggle('active');
-    });
-    
-    document.getElementById('sidebarOverlay')?.addEventListener('click', function() {
-        document.getElementById('sidebar').classList.remove('active');
-        this.classList.remove('active');
-    });
+
+    // 4. Sort (Sắp xếp)
+    const sortSelect = document.getElementById('sortSelect');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+            currentSort = this.value;
+            currentPage = 1;
+            loadProducts(currentCategory, currentSort, 1);
+        });
+    }
+
+    // 5. Chuyển đổi Grid/List view
+    const gridBtn = document.getElementById('gridView');
+    const listBtn = document.getElementById('listView');
+    const productsContainer = document.getElementById('productsContainer');
+
+    if (gridBtn && listBtn) {
+        gridBtn.addEventListener('click', function () {
+            productsContainer.className = 'product-grid';
+            gridBtn.classList.add('active');
+            listBtn.classList.remove('active');
+        });
+
+        listBtn.addEventListener('click', function () {
+            productsContainer.className = 'product-list';
+            listBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+        });
+    }
+
+    // 6. QUẢN LÝ MOBILE MENU (SIDEBAR & OVERLAY)
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    if (menuToggle && sidebar && overlay) {
+        // Mở menu
+        menuToggle.onclick = function (e) {
+            e.preventDefault();
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+
+            // Chỉ khóa cuộn nếu là màn hình điện thoại
+            if (window.innerWidth <= 768) {
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        // Đóng menu
+        overlay.onclick = function () {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            // Mở khóa cuộn trang
+            document.body.style.overflow = 'auto';
+        };
+    }
 });

@@ -145,49 +145,49 @@ INSERT INTO `danh_muc_mon_an` (`id_danh_muc`, `ten_danh_muc`, `mo_ta`) VALUES
 (5, 'Đồ ăn nhẹ (Snacks)', 'Món ăn đường phố phổ biến như Tokbokki, Chả cá'),
 (6, 'Đồ uống (Drinks)', 'Rượu Soju, nước gạo và các loại giải khát');
 
--- 2. CHÈN MÓN ĂN (Mỗi danh mục 5 món)
-INSERT INTO `mon_an` (`id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`, `so_luong_ton`) VALUES
+-- 2. CHÈN MÓN ĂN
+INSERT INTO `mon_an` (`id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`, `hinh_anh`, `so_luong_ton`) VALUES
 -- DANH MỤC 1: CƠM
-(1, 'Cơm trộn Bibimbap', 'Cơm với 8 loại rau củ, thịt bò và trứng chần', 85000, 100),
-(1, 'Kimbap truyền thống', 'Cơm cuộn rong biển nhân xúc xích và rau củ', 50000, 80),
-(1, 'Cơm chiên Kimchi', 'Cơm chiên cay với kim chi cải thảo và trứng ốp la', 70000, 100),
-(1, 'Cơm bò xào Bulgogi', 'Cơm trắng ăn kèm thịt bò xào sốt mặn ngọt', 95000, 50),
-(1, 'Kimbap chiên xù', 'Cơm cuộn tẩm bột chiên giòn rụm bên ngoài', 65000, 40),
+(1, 'Cơm trộn Bibimbap', 'Cơm với 8 loại rau củ, thịt bò và trứng chần', 85000, 'comtronbibimbap.jpg', 100),
+(1, 'Kimbap truyền thống', 'Cơm cuộn rong biển nhân xúc xích và rau củ', 50000, 'kimbaptruyenthong.jpg', 80),
+(1, 'Cơm chiên Kimchi', 'Cơm chiên cay với kim chi cải thảo và trứng ốp la', 70000, 'comchienkimchi.jpg', 100),
+(1, 'Cơm bò xào Bulgogi', 'Cơm trắng ăn kèm thịt bò xào sốt mặn ngọt', 95000, 'combobulgogi.jpg', 50),
+(1, 'Kimbap chiên xù', 'Cơm cuộn tẩm bột chiên giòn rụm bên ngoài', 65000, 'kimbapchien.jpg', 40),
 
 -- DANH MỤC 2: GÀ
-(2, 'Gà rán sốt cay', 'Gà chiên giòn rụm với sốt Yangnyeom truyền thống', 155000, 30),
-(2, 'Gà sốt tương tỏi', 'Gà chiên vị mặn ngọt đậm đà mùi tỏi phi', 155000, 30),
-(2, 'Gà không xương chiên', 'Gà fillet tẩm bột chiên giòn dễ ăn cho trẻ em', 120000, 45),
-(2, 'Gà rán sốt phô mai', 'Gà chiên giòn đẫm sốt phô mai tan chảy', 165000, 25),
-(2, 'Cánh gà chiên nước mắm', 'Cánh gà chiên giòn đảo sốt nước mắm kiểu Hàn', 140000, 35),
+(2, 'Gà rán sốt cay', 'Gà chiên giòn rụm với sốt Yangnyeom truyền thống', 155000, 'garansotcay.jpg', 30),
+(2, 'Gà sốt tương tỏi', 'Gà chiên vị mặn ngọt đậm đà mùi tỏi phi', 155000, 'gasottuongtoi.jpg', 30),
+(2, 'Gà không xương chiên', 'Gà fillet tẩm bột chiên giòn dễ ăn cho trẻ em', 120000, 'gakhongxuong.jpg', 45),
+(2, 'Gà rán sốt phô mai', 'Gà chiên giòn đẫm sốt phô mai tan chảy', 165000, 'garanphomai.jpg', 25),
+(2, 'Cánh gà chiên nước mắm', 'Cánh gà chiên giòn đảo sốt nước mắm kiểu Hàn', 140000, 'canhgachienmam.jpg', 35),
 
 -- DANH MỤC 3: MÌ
-(3, 'Mì tương đen Jajangmyeon', 'Mì trộn sốt đậu đen và thịt heo thái lựu', 75000, 60),
-(3, 'Mì lạnh Naengmyeon', 'Mì sợi nhỏ dùng với nước dùng đá lạnh thanh mát', 90000, 20),
-(3, 'Mì cay Ramen hải sản', 'Mì gói Hàn Quốc nấu cay với tôm và mực', 65000, 100),
-(3, 'Mì trộn cay Bibim-guksu', 'Mì sợi nhỏ trộn sốt ớt cay và rau sống', 70000, 50),
-(3, 'Mì Udon hải sản', 'Mì sợi to kiểu Hàn nấu nước dùng hải sản thanh', 110000, 35),
+(3, 'Mì tương đen Jajangmyeon', 'Mì trộn sốt đậu đen và thịt heo thái lựu', 75000, 'mituongden.jpg', 60),
+(3, 'Mì lạnh Naengmyeon', 'Mì sợi nhỏ dùng với nước dùng đá lạnh thanh mát', 90000, 'milanh.jpg', 20),
+(3, 'Mì cay Ramen hải sản', 'Mì gói Hàn Quốc nấu cay với tôm và mực', 65000, 'miramen.jpg', 100),
+(3, 'Mì trộn cay Bibim-guksu', 'Mì sợi nhỏ trộn sốt ớt cay và rau sống', 70000, 'mitroncay.jpg', 50),
+(3, 'Mì Udon hải sản', 'Mì sợi to kiểu Hàn nấu nước dùng hải sản thanh', 110000, 'miudon.jpg', 35),
 
 -- DANH MỤC 4: LẨU & SÚP
-(4, 'Canh Kimchi đậu phụ', 'Súp kim chi nấu cùng thịt ba chỉ béo ngậy', 95000, 40),
-(4, 'Canh rong biển', 'Món canh truyền thống thanh đạm, tốt sức khỏe', 60000, 50),
-(4, 'Lẩu quân đội Budae Jjigae', 'Lẩu xúc xích, đậu phụ, spam và mì', 250000, 15),
-(4, 'Canh đậu phụ non Soondubu', 'Canh đậu phụ siêu mềm với hải sản và trứng', 85000, 40),
-(4, 'Súp sườn bò Galbitang', 'Nước dùng trong, sườn bò hầm mềm ngọt', 150000, 20),
+(4, 'Canh Kimchi đậu phụ', 'Súp kim chi nấu cùng thịt ba chỉ béo ngậy', 95000, 'canhkimchi.jpg', 40),
+(4, 'Canh rong biển', 'Món canh truyền thống thanh đạm, tốt sức khỏe', 60000, 'canhrongbien.jpg', 50),
+(4, 'Lẩu quân đội Budae Jjigae', 'Lẩu xúc xích, đậu phụ, spam và mì', 250000, 'lauquandoi.jpg', 15),
+(4, 'Canh đậu phụ non Soondubu', 'Canh đậu phụ siêu mềm với hải sản và trứng', 85000, 'canhdauphunon.jpg', 40),
+(4, 'Súp sườn bò Galbitang', 'Nước dùng trong, sườn bò hầm mềm ngọt', 150000, 'supsuonbo.jpg', 20),
 
 -- DANH MỤC 5: ĐỒ ĂN NHẸ
-(5, 'Tokbokki truyền thống', 'Bánh gạo dẻo nấu trong sốt ớt cay ngọt', 45000, 150),
-(5, 'Chả cá Odeng', 'Xiên chả cá nóng hổi kèm nước dùng súp', 15000, 200),
-(5, 'Mandu chiên', 'Sủi cảo nhân thịt và rau củ chiên giòn', 40000, 80),
-(5, 'Khoai tây chiên mật ong', 'Khoai tây giòn tẩm bơ và mật ong ngọt ngào', 45000, 60),
-(5, 'Bánh xèo hải sản Pajeon', 'Bánh xèo nhân hành lá và hải sản áp chảo', 120000, 30),
+(5, 'Tokbokki truyền thống', 'Bánh gạo dẻo nấu trong sốt ớt cay ngọt', 45000, 'tokbokki.jpg', 150),
+(5, 'Chả cá Odeng', 'Xiên chả cá nóng hổi kèm nước dùng súp', 15000, 'chaca.jpg', 200),
+(5, 'Mandu chiên', 'Sủi cảo nhân thịt và rau củ chiên giòn', 40000, 'mandu.jpg', 80),
+(5, 'Khoai tây chiên mật ong', 'Khoai tây giòn tẩm bơ và mật ong ngọt ngào', 45000, 'khoaitaychien.jpg', 60),
+(5, 'Bánh xèo hải sản Pajeon', 'Bánh xèo nhân hành lá và hải sản áp chảo', 120000, 'banhxeo.jpg', 30),
 
 -- DANH MỤC 6: ĐỒ UỐNG
-(6, 'Rượu Soju vị Đào', 'Rượu trái cây nồng độ nhẹ dễ uống', 65000, 100),
-(6, 'Nước gạo rang Woongjin', 'Thức uống truyền thống vị thơm, ngọt thanh', 30000, 150),
-(6, 'Coca Cola lon', 'Nước giải khát có gas 330ml', 20000, 200),
-(6, 'Trà sữa khoai môn', 'Trà sữa vị khoai môn đặc trưng', 45000, 100),
-(6, 'Nước ép lê Hàn Quốc', 'Nước ép đóng lon có tép lê tươi', 35000, 80);
+(6, 'Rượu Soju vị Đào', 'Rượu trái cây nồng độ nhẹ dễ uống', 65000, 'soju.jpg', 100),
+(6, 'Nước gạo rang Woongjin', 'Thức uống truyền thống vị thơm, ngọt thanh', 30000, 'nuocgao.png', 150),
+(6, 'Coca Cola lon', 'Nước giải khát có gas 330ml', 20000, 'coca.jpg', 200),
+(6, 'Trà sữa khoai môn', 'Trà sữa vị khoai môn đặc trưng', 45000, 'trasuakhoaimon.jpg', 100),
+(6, 'Nước ép lê Hàn Quốc', 'Nước ép đóng lon có tép lê tươi', 35000, 'nuocle.jpg', 80);
 
 INSERT INTO `khuyen_mai` 
 (`ma_khuyen_mai`, `phan_tram_giam`, `giam_toi_da`, `ngay_het_han`, `co_freeship`, `so_luong`, `don_hang_min`, `trang_thai`) 
