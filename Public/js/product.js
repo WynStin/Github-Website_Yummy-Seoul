@@ -255,19 +255,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 5. Chuyển đổi Grid/List view
+    // Chuyển đổi Grid/List view
     const gridBtn = document.getElementById('gridView');
     const listBtn = document.getElementById('listView');
     const productsContainer = document.getElementById('productsContainer');
 
     if (gridBtn && listBtn) {
         gridBtn.addEventListener('click', function () {
-            productsContainer.className = 'product-grid';
+            productsContainer.classList.remove('product-list');
+            productsContainer.classList.add('product-grid');
             gridBtn.classList.add('active');
             listBtn.classList.remove('active');
         });
 
         listBtn.addEventListener('click', function () {
-            productsContainer.className = 'product-list';
+            productsContainer.classList.remove('product-grid');
+            productsContainer.classList.add('product-list');
             listBtn.classList.add('active');
             gridBtn.classList.remove('active');
         });

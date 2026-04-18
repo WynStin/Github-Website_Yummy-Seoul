@@ -130,39 +130,23 @@
 }
 
 @media (max-width: 768px) {
-
-    /* Ép Sidebar trượt từ bên phải vào */
+    /* Chỉ hiện nút trên mobile */
+    #menuToggle { display: flex !important; }
+    
+    /* Sidebar trượt */
     .sidebar {
         position: fixed !important;
-        top: 0 !important;
         right: -100% !important;
-        /* Giấu bên phải */
-        width: 280px !important;
-        height: 100vh !important;
-        background-color: #ffffff !important;
+        transition: 0.4s !important;
         z-index: 10001 !important;
-        /* Cao hơn overlay */
-        transition: all 0.4s ease-in-out !important;
-        display: block !important;
-        padding: 20px !important;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3) !important;
     }
+    .sidebar.active { right: 0 !important; }
+}
 
-    /* Khi có class active (được JS thêm vào) */
-    .sidebar.active {
-        right: 0 !important;
-    }
-
-    .sidebar-overlay.active {
-        display: block !important;
-    }
-
-    /* Đảm bảo chữ trong menu mobile có màu nâu để nhìn rõ trên nền trắng */
-    .sidebar li {
-        color: #451715 !important;
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
+/* Ẩn nút trên máy tính (Ngoài ngoặc media) */
+@media (min-width: 769px) {
+    #menuToggle, .sidebar-overlay {
+        display: none !important;
     }
 }
 
@@ -345,571 +329,585 @@
 }
 
 /*Hiển thị dạng lưới sản phẩm*/
+/* 1. Xóa bỏ toàn bộ khối .product-grid cũ và thay bằng đoạn này */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
     animation: fadeIn 0.5s ease;
+}
 
-    /*Hiển thị dạng danh sách sản phẩm*/
-    .product-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        animation: fadeIn 0.5s ease;
-    }
+/* 2. Đưa .product-list ra ngoài hẳn, KHÔNG nằm trong ngoặc của cái khác */
+.product-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    animation: fadeIn 0.5s ease;
+}
 
-    .product-list .product-card {
-        display: flex;
-        flex-direction: row;
-        max-width: 100%;
-        align-items: center;
-        background: var(--white);
-        border: 1px solid var(--cream-dark);
-    }
+.product-list .product-card {
+    display: flex !important;
+    /* Buộc card dàn hàng ngang */
+    flex-direction: row !important;
+    align-items: center;
+    width: 100% !important;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid var(--cream-dark);
+}
 
-    .product-list .product-image {
-        width: 250px;
-        height: 200px;
-        flex-shrink: 0;
-        background-color: var(--baby-cream);
-        border-right: 1px solid var(--cream-dark);
-    }
+.product-list .product-image {
+    width: 250px !important;
+    /* Độ rộng ảnh cố định giống ảnh 2 */
+    height: 180px !important;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
 
-    .product-list .product-info {
-        flex: 1;
-        padding: 25px;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+.product-list .product-info {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-    /* Hiệu ứng hiện trang cho mượt */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
+/* Đảm bảo nút mua hàng không bị kéo dài hết chiều ngang */
+.product-list .add-to-cart-btn {
+    width: fit-content !important;
+    padding: 10px 30px;
+}
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+.product-list .add-to-cart-btn {
+    max-width: 200px;
+    /* Giới hạn độ rộng nút */
+}
 
-    /*Thẻ sản phẩm*/
-    .product-card {
-        background: var(--white);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        cursor: pointer;
-        border: 1px solid var(--cream-dark);
-    }
-
-    .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-hover);
-    }
-
-    .product-image {
-        position: relative;
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
-        background-color: var(--baby-cream);
-    }
-
-    .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        padding: 15px;
-        background: var(--baby-cream);
-    }
-
-    .product-card:hover .product-image img {
-        transform: scale(1.1);
-    }
-
-    .product-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(59, 26, 14, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+/* Hiệu ứng hiện trang cho mượt */
+@keyframes fadeIn {
+    from {
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transform: translateY(10px);
     }
 
-    .product-card:hover .product-overlay {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*Thẻ sản phẩm*/
+.product-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    border: 1px solid var(--cream-dark);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: var(--baby-cream);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 15px;
+    background: var(--baby-cream);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(59, 26, 14, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.quick-view-btn {
+    padding: 12px 25px;
+    background: var(--white);
+    color: var(--red-brown);
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.quick-view-btn:hover {
+    background: var(--gold);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--brown-deep);
+    margin-bottom: 8px;
+    font-family: 'Asap', sans-serif;
+    text-transform: capitalize;
+}
+
+.product-description {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--red-accent);
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Nút MUA HÀNG chuẩn màu Yummy Seoul */
+.add-to-cart-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--red-brown) 0%, var(--brown-deep) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.add-to-cart-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(69, 23, 21, 0.4);
+}
+
+.add-to-cart-btn i {
+    margin-right: 8px;
+    color: var(--baby-yellow);
+}
+
+/*Khi không tìm thấy món ăn*/
+.no-products {
+    text-align: center;
+    padding: 80px 20px;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    /* Màu nâu nhạt */
+    background: var(--baby-cream);
+    border-radius: var(--radius);
+    border: 1px dashed var(--cream-dark);
+    font-style: italic;
+}
+
+/*Phân trang*/
+.pagination {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 50px 0 !important;
+    width: 100% !important;
+    clear: both;
+    /* Đảm bảo không bị đè bởi card sản phẩm */
+}
+
+.page-btn {
+    /* Quan trọng: Biến chữ thành ô vuông */
+    display: inline-flex !important;
+    width: 45px !important;
+    height: 45px !important;
+
+    /* Màu sắc thương hiệu */
+    background-color: #ffffff !important;
+    color: #451715 !important;
+    /* Màu Nâu Đỏ */
+    border: 2px solid #e5d1b5 !important;
+    /* Viền Kem */
+
+    /* Căn chỉnh chữ số ra giữa ô */
+    align-items: center;
+    justify-content: center;
+
+    /* Định dạng nút */
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Hiệu ứng khi di chuột vào */
+.page-btn:hover {
+    background-color: #fff0f0 !important;
+    /* Hồng nhạt */
+    color: #451715 !important;
+    border-color: #451715 !important;
+    transform: translateY(-3px);
+}
+
+/* Nút đang được chọn */
+.page-btn.active {
+    background-color: #451715 !important;
+    /* Nâu Đỏ */
+    color: #ffffff !important;
+    border-color: #451715 !important;
+    box-shadow: 0 4px 12px rgba(69, 23, 21, 0.3) !important;
+}
+
+/*Cửa sổ tùy chọn nhanh*/
+.modal {
+    display: none;
+    /* Quan trọng: Phải ẩn đi khi chưa bấm Xem nhanh */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(59, 26, 14, 0.7);
+    z-index: 9999;
+    /* Đảm bảo nó nằm trên cả Header/Footer */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 15px 50px rgba(59, 26, 14, 0.3);
+    animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    border: 1px solid var(--cream-dark);
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-80px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
+}
 
-    .quick-view-btn {
-        padding: 12px 25px;
-        background: var(--white);
-        color: var(--red-brown);
-        border: none;
-        border-radius: 25px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background-color: var(--baby-cream);
+    border-bottom: 2px solid var(--cream-dark);
+}
 
-    .quick-view-btn:hover {
-        background: var(--gold);
-        color: var(--white);
-        transform: scale(1.1);
-    }
+.modal-header h2 {
+    font-size: 1.5rem;
+    color: var(--brown-deep);
+    font-weight: 700;
+}
 
-    .product-info {
-        padding: 20px;
-    }
+.close-btn {
+    width: 35px;
+    height: 35px;
+    background: var(--cream-dark);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .product-name {
-        font-size: 1.2rem;
+.close-btn:hover {
+    background: var(--red-accent);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 25px;
+    background-color: var(--white);
+}
+
+.product-info-modal {
+    margin-bottom: 25px;
+    text-align: center;
+
+    .product-name-modal {
+        font-size: 1.6rem;
         font-weight: 700;
         color: var(--brown-deep);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         font-family: 'Asap', sans-serif;
-        text-transform: capitalize;
     }
 
-    .product-description {
-        font-size: 0.85rem;
-        color: var(--text-mid);
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    .product-price {
-        font-size: 1.4rem;
+    .product-price-modal {
+        font-size: 2rem;
         font-weight: 700;
         color: var(--red-accent);
-        margin-bottom: 15px;
     }
 
-    .product-actions {
+    /*Chọn số lượng*/
+    .quantity-section-modal {
         display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .quantity-label-modal {
+        font-weight: 700;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        font-family: 'Asap', sans-serif;
+    }
+
+    .quantity-controls-modal {
+        display: flex;
+        align-items: center;
         gap: 10px;
     }
 
-    /* Nút MUA HÀNG chuẩn màu Yummy Seoul */
-    .add-to-cart-btn {
+    .quantity-btn-modal {
+        width: 40px;
+        height: 40px;
+        background: var(--baby-cream);
+        border: 1px solid var(--cream-dark);
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--red-brown);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quantity-btn-modal:hover {
+        background: var(--red-brown);
+        color: var(--white);
+        border-color: var(--red-brown);
+    }
+
+    .quantity-input-modal {
+        width: 70px;
+        height: 40px;
+        text-align: center;
+        border: 2px solid var(--cream-dark);
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        outline: none;
+        color: var(--brown-deep);
+    }
+
+    .quantity-input-modal:focus {
+        border-color: var(--gold);
+    }
+
+    /*Nút bấm cuối trang*/
+    .modal-actions {
+        display: flex;
+        gap: 15px;
+        padding: 20px 25px;
+        border-top: 2px solid var(--cream-dark);
+        background: var(--baby-cream);
+    }
+
+    .modal-btn {
         flex: 1;
-        padding: 12px 20px;
+        padding: 15px 20px;
+        /* Viền màu nâu đỏ thay cho xanh tím */
+        border: 2px solid var(--red-brown);
+        background: var(--white);
+        color: var(--red-brown);
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Asap', sans-serif;
+    }
+
+    .modal-btn:hover {
+        background: var(--baby-pink);
+        color: var(--red-brown);
+    }
+
+    .modal-btn-primary {
         background: linear-gradient(135deg, var(--red-brown) 0%, var(--brown-deep) 100%);
         color: var(--white);
         border: none;
-        border-radius: 8px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
-    .add-to-cart-btn:hover {
+    .modal-btn-primary:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(69, 23, 21, 0.4);
+        box-shadow: 0 6px 20px rgba(69, 23, 21, 0.3);
+        background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-deep) 100%);
     }
 
-    .add-to-cart-btn i {
+    .modal-btn i {
         margin-right: 8px;
-        color: var(--baby-yellow);
     }
 
-    /*Khi không tìm thấy món ăn*/
-    .no-products {
-        text-align: center;
-        padding: 80px 20px;
-        font-size: 1.2rem;
-        color: var(--text-light);
-        /* Màu nâu nhạt */
-        background: var(--baby-cream);
-        border-radius: var(--radius);
-        border: 1px dashed var(--cream-dark);
-        font-style: italic;
-    }
-
-    /*Phân trang*/
-    .pagination {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 12px !important;
-        margin: 50px 0 !important;
-        width: 100% !important;
-        clear: both;
-        /* Đảm bảo không bị đè bởi card sản phẩm */
-    }
-
-    .page-btn {
-        /* Quan trọng: Biến chữ thành ô vuông */
-        display: inline-flex !important;
-        width: 45px !important;
-        height: 45px !important;
-
-        /* Màu sắc thương hiệu */
-        background-color: #ffffff !important;
-        color: #451715 !important;
-        /* Màu Nâu Đỏ */
-        border: 2px solid #e5d1b5 !important;
-        /* Viền Kem */
-
-        /* Căn chỉnh chữ số ra giữa ô */
-        align-items: center;
-        justify-content: center;
-
-        /* Định dạng nút */
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        font-size: 1rem !important;
-        cursor: pointer !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Hiệu ứng khi di chuột vào */
-    .page-btn:hover {
-        background-color: #fff0f0 !important;
-        /* Hồng nhạt */
-        color: #451715 !important;
-        border-color: #451715 !important;
-        transform: translateY(-3px);
-    }
-
-    /* Nút đang được chọn */
-    .page-btn.active {
-        background-color: #451715 !important;
-        /* Nâu Đỏ */
-        color: #ffffff !important;
-        border-color: #451715 !important;
-        box-shadow: 0 4px 12px rgba(69, 23, 21, 0.3) !important;
-    }
-
-    /*Cửa sổ tùy chọn nhanh*/
-    .modal {
-        display: none;
-        /* Quan trọng: Phải ẩn đi khi chưa bấm Xem nhanh */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(59, 26, 14, 0.7);
-        z-index: 9999;
-        /* Đảm bảo nó nằm trên cả Header/Footer */
-        justify-content: center;
-        align-items: center;
-        backdrop-filter: blur(4px);
-    }
-
-    .modal-content {
-        background: var(--white);
-        border-radius: var(--radius-lg);
-        max-width: 500px;
-        width: 100%;
-        box-shadow: 0 15px 50px rgba(59, 26, 14, 0.3);
-        animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        overflow: hidden;
-        border: 1px solid var(--cream-dark);
-    }
-
-    @keyframes modalSlideIn {
-        from {
-            transform: translateY(-80px);
-            opacity: 0;
+    /*Tương thích thiết bị*/
+    @media (max-width: 1024px) {
+        .container {
+            flex-direction: column;
         }
 
-        to {
-            transform: translateY(0);
-            opacity: 1;
+        .sidebar {
+            width: 100%;
+            position: relative;
+            top: 0;
+            /* Bỏ sticky khi ở màn hình vừa */
+        }
+
+        .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
     }
 
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 25px;
-        background-color: var(--baby-cream);
-        border-bottom: 2px solid var(--cream-dark);
-    }
-
-    .modal-header h2 {
-        font-size: 1.5rem;
-        color: var(--brown-deep);
-        font-weight: 700;
-    }
-
-    .close-btn {
-        width: 35px;
-        height: 35px;
-        background: var(--cream-dark);
-        border: none;
-        border-radius: 50%;
-        font-size: 20px;
-        color: var(--text-mid);
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .close-btn:hover {
-        background: var(--red-accent);
-        color: var(--white);
-        transform: rotate(90deg);
-    }
-
-    .modal-body {
-        padding: 25px;
-        background-color: var(--white);
-    }
-
-    .product-info-modal {
-        margin-bottom: 25px;
-        text-align: center;
-
-        .product-name-modal {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--brown-deep);
-            margin-bottom: 10px;
-            font-family: 'Asap', sans-serif;
-        }
-
-        .product-price-modal {
+    @media (max-width: 768px) {
+        .page-title {
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--red-accent);
+            padding: 30px 15px;
+            /* Giảm độ cao tiêu đề trên mobile cho gọn */
         }
 
-        /*Chọn số lượng*/
-        .quantity-section-modal {
+        .mobile-category-bar {
+            display: block;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .mobile-menu-toggle {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
+            background: var(--red-brown);
+            /* Đảm bảo nút có màu nâu đỏ */
+        }
+
+        /* Sidebar trượt ra từ cạnh trái trên điện thoại */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            z-index: 999;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            border-radius: 0 20px 20px 0;
+            /* Bo góc bên phải khi trượt ra */
+            background: var(--white);
+        }
+
+        .sidebar.active {
+            left: 0;
+            box-shadow: 10px 0 30px rgba(59, 26, 14, 0.2);
+        }
+
+        .products-header {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 15px;
+        }
+
+        .view-options {
+            width: 100%;
+            justify-content: space-between;
             margin-top: 10px;
         }
 
-        .quantity-label-modal {
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            font-family: 'Asap', sans-serif;
-        }
-
-        .quantity-controls-modal {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quantity-btn-modal {
-            width: 40px;
-            height: 40px;
-            background: var(--baby-cream);
-            border: 1px solid var(--cream-dark);
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--red-brown);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .quantity-btn-modal:hover {
-            background: var(--red-brown);
-            color: var(--white);
-            border-color: var(--red-brown);
-        }
-
-        .quantity-input-modal {
-            width: 70px;
-            height: 40px;
-            text-align: center;
-            border: 2px solid var(--cream-dark);
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            outline: none;
-            color: var(--brown-deep);
-        }
-
-        .quantity-input-modal:focus {
-            border-color: var(--gold);
-        }
-
-        /*Nút bấm cuối trang*/
-        .modal-actions {
-            display: flex;
+        .product-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            padding: 20px 25px;
-            border-top: 2px solid var(--cream-dark);
-            background: var(--baby-cream);
         }
 
-        .modal-btn {
-            flex: 1;
-            padding: 15px 20px;
-            /* Viền màu nâu đỏ thay cho xanh tím */
-            border: 2px solid var(--red-brown);
-            background: var(--white);
-            color: var(--red-brown);
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Asap', sans-serif;
+        .product-list .product-card {
+            flex-direction: column;
         }
 
-        .modal-btn:hover {
-            background: var(--baby-pink);
-            color: var(--red-brown);
-        }
-
-        .modal-btn-primary {
-            background: linear-gradient(135deg, var(--red-brown) 0%, var(--brown-deep) 100%);
-            color: var(--white);
-            border: none;
-        }
-
-        .modal-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(69, 23, 21, 0.3);
-            background: linear-gradient(135deg, var(--brown-mid) 0%, var(--brown-deep) 100%);
-        }
-
-        .modal-btn i {
-            margin-right: 8px;
-        }
-
-        /*Tương thích thiết bị*/
-        @media (max-width: 1024px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                position: relative;
-                top: 0;
-                /* Bỏ sticky khi ở màn hình vừa */
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
-                padding: 30px 15px;
-                /* Giảm độ cao tiêu đề trên mobile cho gọn */
-            }
-
-            .mobile-category-bar {
-                display: block;
-                border-bottom: 1px solid var(--cream-dark);
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-                background: var(--red-brown);
-                /* Đảm bảo nút có màu nâu đỏ */
-            }
-
-            /* Sidebar trượt ra từ cạnh trái trên điện thoại */
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: -300px;
-                width: 280px;
-                height: 100vh;
-                z-index: 999;
-                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                overflow-y: auto;
-                border-radius: 0 20px 20px 0;
-                /* Bo góc bên phải khi trượt ra */
-                background: var(--white);
-            }
-
-            .sidebar.active {
-                left: 0;
-                box-shadow: 10px 0 30px rgba(59, 26, 14, 0.2);
-            }
-
-            .products-header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 15px;
-            }
-
-            .view-options {
-                width: 100%;
-                justify-content: space-between;
-                margin-top: 10px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 15px;
-            }
-
-            .product-list .product-card {
-                flex-direction: column;
-            }
-
-            .product-list .product-image {
-                width: 100%;
-                height: 180px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 1.5rem;
-                padding: 20px 10px;
-            }
-
-            .product-grid {
-                grid-template-columns: 1fr;
-                /* 1 cột duy nhất trên điện thoại nhỏ */
-            }
-
-            .modal-content {
-                max-width: 95%;
-                margin: 10px;
-            }
-
-            .modal-actions {
-                flex-direction: column;
-                /* Nút Thêm giỏ và Mua ngay xếp chồng lên nhau */
-            }
-
-            .product-price-modal {
-                font-size: 1.6rem;
-            }
+        .product-list .product-image {
+            width: 100%;
+            height: 180px;
         }
     }
+
+    @media (max-width: 480px) {
+        .page-title {
+            font-size: 1.5rem;
+            padding: 20px 10px;
+        }
+
+        .product-grid {
+            grid-template-columns: 1fr;
+            /* 1 cột duy nhất trên điện thoại nhỏ */
+        }
+
+        .modal-content {
+            max-width: 95%;
+            margin: 10px;
+        }
+
+        .modal-actions {
+            flex-direction: column;
+            /* Nút Thêm giỏ và Mua ngay xếp chồng lên nhau */
+        }
+
+        .product-price-modal {
+            font-size: 1.6rem;
+        }
+    }
+}
 }
