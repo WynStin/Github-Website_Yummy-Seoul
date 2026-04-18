@@ -283,7 +283,7 @@
       <div class="news-card fade-up delay-1">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="/Github-Website_Yummy-Seoul/Public/img/news/new1.png"
             alt="Tin tức 1"
             onerror="this.style.display = 'none'" />
         </div>
@@ -301,7 +301,7 @@
       <div class="news-card fade-up delay-2">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="/Github-Website_Yummy-Seoul/Public/img/news/new2.png"
             alt="Tin tức 2"
             onerror="this.style.display = 'none'" />
         </div>

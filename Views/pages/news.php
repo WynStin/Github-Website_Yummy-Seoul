@@ -47,7 +47,7 @@
       <div class="news-card fade-up delay-1">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="/Github-Website_Yummy-Seoul/Public/img/news/new1.png"
             alt="Tin tức 1"
             onerror="this.style.display = 'none'" />
         </div>
@@ -65,7 +65,7 @@
       <div class="news-card fade-up delay-2">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="/Github-Website_Yummy-Seoul/Public/img/news/new2.png"
             alt="Tin tức 2"
             onerror="this.style.display = 'none'" />
         </div>
@@ -137,5 +137,10 @@
     <div data-include="/src/components/chatbot.html"></div>
     <div data-include="/src/components/footer.html"></div>
     <script type="module" src="/src/js/again.js"></script>
-  </body>
+  <!--Lấy footer-->
+  <?php include 'layout/footer.php'; ?>
+
+  <!-- ======= JAVASCRIPT ======= -->
+  <script src="/Github-Website_Yummy-Seoul/Public/js/news.js"></script>
+</body>
 </html>

@@ -41,23 +41,7 @@ img {
   max-width: 100%;
   display: block;
 }
-/* .page-title-wrap {
-  display: flex;
-  flex-direction: column;
-  margin-top: 48px;
-  align-items: center;
-  margin-bottom: 45px;
-}
-.page-title {
-  font: "ASAP";
-  background: var(--red-brown);
-  color: var(--baby-yellow);
-  font-size: 32px;
-  font-weight: 700;
-  padding: 12px 35px;
-  border-radius: var(--radius);
-  letter-spacing: 1px;
-} */
+
 .section {
   padding: 60px 40px;
 }
@@ -81,7 +65,7 @@ img {
 
 .section-divider {
   width: 600px;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(
     to right,
     transparent,
@@ -105,7 +89,7 @@ img {
 }
 
 .news-card-img {
-  height: 200px;
+  /* height: 300px; */
   background: #eee;
 }
 
