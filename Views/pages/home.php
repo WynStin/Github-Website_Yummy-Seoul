@@ -316,7 +316,7 @@
       <div class="news-card fade-up delay-3">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="/Github-Website_Yummy-Seoul/Public/img/news/new3.png"
             alt="Tin tức 3"
             onerror="this.style.display = 'none'" />
         </div>
