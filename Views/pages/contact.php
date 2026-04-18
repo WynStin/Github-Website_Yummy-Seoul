@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <label>Số điện thoại</label>
-                    <input type="tel" name="phone" pattern="[0-9]{9,10}" required placeholder="VD: 0987654321">
+                    <input type="tel" name="phone" pattern="[0-9]{10}" required placeholder="VD: 0987654321">
                 </div>
 
                 <div class="form-group">
