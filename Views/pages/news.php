@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tin tức</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Cập nhật tin tức và ưu đãi mới nhất của cửa hàng"
+    />
+    <link rel="icon" type="image/x-icon" href="/assets/logo.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="news.css" />
+    <link rel="stylesheet" href="sidebar.css" />
+    <link rel="stylesheet" href="/src/css/again.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div data-include="/src/components/header.htm"></div>
+    <div id="breadcrumb-container"></div>
+    <script src="/src/js/layouts/breadcrumb.js"></script>
+    <script>
+      renderBreadcrumb([{ name: "Tin tức", link: "" }]);
+    </script>
+
+    <div
+      class="page-title"
+      style="text-align: center; margin-top: 8px; color: #333"
+    >
+      TIN TỨC
+    </div>
+    <div
+      class="page-subtitle"
+      style="
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #666;
+        font-weight: 400;
+      "
+    >
+      Cập nhật thông tin mới nhất và các khuyến mãi hấp dẫn từ cửa hàng
+    </div>
+
+    <main class="container py-4">
+      <div class="row">
+        <!-- SIDEBAR  -->
+        <div class="col-lg-4 col-12">
+          <div id="sidebar-container" class="sidebar"></div>
+        </div>
+
+        <!-- CỘT DANH SÁCH BÀI VIẾT  -->
+        <div class="col-lg-8 col-12 mb-4">
+          <div id="news-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL ZOOM ẢNH-->
+    <div id="imageModal" class="image-modal">
+      <span class="modal-close">&times;</span>
+      <img class="modal-content" id="modalImage" alt="Zoom ảnh" />
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="new-detail/news-data.js"></script>
+    <script src="news.js"></script>
+    <script src="load-sidebar.js"></script>
+    <div data-include="/src/components/chatbot.html"></div>
+    <div data-include="/src/components/footer.html"></div>
+    <script type="module" src="/src/js/again.js"></script>
+  </body>
+</html>
