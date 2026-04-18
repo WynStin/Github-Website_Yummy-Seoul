@@ -63,174 +63,176 @@ header {
 
 /* --- CSS CHO TOPBAR --- */
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    background-color: var(--red-brown, #451715);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: var(--red-brown, #451715);
 }
 
 /* Container bọc Search và Cart */
 .search-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex: 0 1 500px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 0 1 500px;
 }
 
 /* Thanh tìm kiếm */
 .search-bar {
-    display: flex;
-    background: var(--baby-yellow);
-    border-radius: 50px;
-    padding: 4px 4px 4px 20px;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  background: var(--baby-yellow);
+  border-radius: 50px;
+  padding: 4px 4px 4px 20px;
+  align-items: center;
+  width: 100%;
 }
 
 .search-bar input {
-    border: none;
-    outline: none;
-    background: none;
-    width: 100%;
-    font-size: 15px;
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  font-size: 15px;
 }
 
 /* Nút kính lúp tròn đẹp */
 .search-btn {
-    background: var(--brown-light);
-    border: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    flex-shrink: 0;
+  background: var(--brown-light);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+  flex-shrink: 0;
 }
 
 .search-btn:hover {
-    background: var(--red-brown, #451715);
+  background: var(--red-brown, #451715);
 }
 
 /* Nút Giỏ hàng */
 .cart-wrapper {
-    position: relative;
-    flex-shrink: 0;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .cart-btn {
-    background: var(--baby-yellow);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.3s;
+  background: var(--baby-yellow);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    background 0.3s,
+    transform 0.3s;
 }
 
 .cart-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ffc107;
-    color: #451715;
-    font-size: 11px;
-    font-weight: 700;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--red-brown);
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ffc107;
+  color: #451715;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--red-brown);
 }
 
 .cart-btn:hover {
-    background: var(--pink-soft, #f2d9c8);
-    transform: translateY(-2px);
+  background: var(--pink-soft, #f2d9c8);
+  transform: translateY(-2px);
 }
 
 /* --- CSS CHO NAVBAR --- */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    background-color: var(--pink-soft, #f2d9c8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: var(--pink-soft, #f2d9c8);
 }
 
 .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
-    text-decoration: none;
-    color: var(--red-brown, #451715);
-    font-weight: 600;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: var(--red-brown, #451715);
+  font-weight: 600;
+  transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-    color: #ff5722;
+  color: #ff5722;
 }
 
 /* Trạng thái Active menu */
 .nav-links li a.active {
-    border: 2px solid var(--red-brown);
-    border-radius: 8px;
-    padding: 5px 12px;
+  border: 2px solid var(--red-brown);
+  border-radius: 8px;
+  padding: 5px 12px;
 }
 
 /* --- SỐ ĐIỆN THOẠI ĐÃ CẬP NHẬT --- */
 .nav-phone {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa icon và số */
-    background-color: var(--red-brown, #451715);
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa icon và số */
+  background-color: var(--red-brown, #451715);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
 .nav-phone svg {
-    flex-shrink: 0; /* Icon không bị bóp méo */
-    transition: transform 0.3s ease;
+  flex-shrink: 0; /* Icon không bị bóp méo */
+  transition: transform 0.3s ease;
 }
 
 /* Hiệu ứng rung nhẹ khi hover */
 .nav-phone:hover svg {
-    transform: scale(1.1) rotate(-10deg);
+  transform: scale(1.1) rotate(-10deg);
 }
 
 /* CSS cho Topbar actions (Đăng nhập/Đăng ký) */
 .topbar-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-.btn-outline{
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    background: var(--baby-yellow, #ffeda3);
-    color: var(--red-brown);
+.btn-outline {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: var(--baby-yellow, #ffeda3);
+  color: var(--red-brown);
 }
 
 .topbar-actions a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* ======================================================
@@ -240,7 +242,7 @@ header {
   position: relative;
   overflow: hidden;
   height: 420px;
-  z-index: 1; 
+  z-index: 1;
 }
 
 #heroSlides {
@@ -271,7 +273,7 @@ header {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .hero-btn-prev,
@@ -294,10 +296,15 @@ header {
   transition: all 0.2s;
 }
 
-.hero-btn-prev { left: 40px; }
-.hero-btn-next { right: 40px; }
+.hero-btn-prev {
+  left: 40px;
+}
+.hero-btn-next {
+  right: 40px;
+}
 
-.hero-btn-prev:hover, .hero-btn-next:hover {
+.hero-btn-prev:hover,
+.hero-btn-next:hover {
   background: var(--gold-light);
 }
 
@@ -315,7 +322,7 @@ header {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
 }
@@ -351,7 +358,12 @@ header {
 .section-divider {
   width: 200px;
   height: 3px;
-  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold-light),
+    transparent
+  );
   margin-top: 15px;
 }
 
@@ -369,7 +381,9 @@ header {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 1.5px solid var(--pink-soft);
 }
 
@@ -527,7 +541,7 @@ header {
    ====================================================== */
 .best-seller-label {
   font-weight: 700;
-  color: var(--gold);
+  color: var(--gold-light);
   letter-spacing: 2px;
   margin-bottom: 5px;
 }
@@ -679,20 +693,20 @@ footer {
 .footer-grid {
   display: grid;
   /* BƯỚC 1: Giới hạn chiều rộng khung vừa phải (khoảng 900px - 1000px là đẹp nhất) */
-  max-width: 950px; 
-  margin: 0 auto; 
+  max-width: 950px;
+  margin: 0 auto;
 
   /* BƯỚC 2: Chia 3 cột có độ rộng bằng nhau */
-  grid-template-columns: repeat(3, 1fr); 
-  
+  grid-template-columns: repeat(3, 1fr);
+
   /* BƯỚC 3: Khoảng cách giữa các cột */
-  gap: 60px; 
+  gap: 60px;
 
   /* Căn lề trái cho nội dung bên trong mỗi cột để tạo đường thẳng cột đẹp */
-  justify-items: start; 
-  
+  justify-items: start;
+
   padding: 0 20px 40px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-logo-wrap {
@@ -712,7 +726,7 @@ footer {
 .footer-info {
   font-size: 14px;
   line-height: 1.8;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-info strong {
@@ -748,7 +762,7 @@ footer {
 .social-btn {
   width: 40px;
   height: 40px;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -757,9 +771,15 @@ footer {
   transition: 0.3s;
 }
 
-.social-fb:hover { background: #1877F2; }
-.social-ig:hover { background: #E4405F; }
-.social-tk:hover { background: #000000; }
+.social-fb:hover {
+  background: #1877f2;
+}
+.social-ig:hover {
+  background: #e4405f;
+}
+.social-tk:hover {
+  background: #000000;
+}
 
 .footer-bottom {
   text-align: center;
@@ -773,35 +793,77 @@ footer {
    ANIMATIONS
    ====================================================== */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fade-up {
   animation: fadeUp 0.8s ease both;
 }
 
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+.delay-4 {
+  animation-delay: 0.4s;
+}
 
 /* ======================================================
    RESPONSIVE
    ====================================================== */
 @media (max-width: 1024px) {
-  .product-grid { grid-template-columns: repeat(3, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 768px) {
-  body { padding-top: 160px; }
-  body.header-scrolled { padding-top: 120px; }
-  .topbar { height: auto; flex-direction: column; padding: 15px; }
-  .search-bar { width: 100%; order: 3; }
-  .product-grid, .news-grid { grid-template-columns: repeat(2, 1fr); }
-  .hom-nay-inner, .best-seller-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .navbar { height: auto; }
-  .nav-links { flex-wrap: wrap; justify-content: center; }
+  body {
+    padding-top: 160px;
+  }
+  body.header-scrolled {
+    padding-top: 120px;
+  }
+  .topbar {
+    height: auto;
+    flex-direction: column;
+    padding: 15px;
+  }
+  .search-bar {
+    width: 100%;
+    order: 3;
+  }
+  .product-grid,
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hom-nay-inner,
+  .best-seller-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .navbar {
+    height: auto;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

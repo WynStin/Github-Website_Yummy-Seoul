@@ -25,7 +25,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "ASAP", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: var(--text-body);
   background-color: var(--bg-page);
@@ -41,21 +41,109 @@ img {
   max-width: 100%;
   display: block;
 }
+/* .page-title-wrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  align-items: center;
+  margin-bottom: 45px;
+}
 .page-title {
-  font-size: 42px;
-  font-weight: 900;
-  color: #3a4249;
-  text-transform: uppercase;
+  font: "ASAP";
+  background: var(--red-brown);
+  color: var(--baby-yellow);
+  font-size: 32px;
+  font-weight: 700;
+  padding: 12px 35px;
+  border-radius: var(--radius);
+  letter-spacing: 1px;
+} */
+.section {
+  padding: 60px 40px;
+}
+
+.section-title-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 45px;
+}
+
+.section-title {
+  background: var(--red-brown);
+  color: var(--baby-yellow);
+  font-size: 32px;
+  font-weight: 700;
+  padding: 12px 35px;
+  border-radius: var(--radius);
+  letter-spacing: 1px;
+}
+
+.section-divider {
+  width: 600px;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold-light),
+    transparent
+  );
+  margin-top: 15px;
 }
 /* ==================== CARD BÀI VIẾT ==================== */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
 .news-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.news-card-img {
+  height: 200px;
+  background: #eee;
+}
+
+.news-card-body {
+  padding: 20px;
+}
+
+.news-card-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--red-brown);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.news-card-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card-more {
+  color: var(--brown-light);
+  font-weight: 700;
+  font-size: 14px;
+}
+/* .news-card {
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   height: 100%;
-}
+} */
 
 .news-card:hover {
   transform: translateY(-5px);

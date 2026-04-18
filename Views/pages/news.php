@@ -11,35 +11,90 @@
     <link rel="icon" type="image/x-icon" href="/assets/logo.svg" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      href="../../Public/css/news.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../Public/css/home.css"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="news.css" />
-    <link rel="stylesheet" href="sidebar.css" />
-    <link rel="stylesheet" href="/src/css/again.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+      href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet" />
   </head>
 
   <body>
+      <?php $page = "news"; ?>
+      <!--Lấy header-->
+      <?php include 'layout/header.php'; ?>
     <div data-include="/src/components/header.htm"></div>
     <div id="breadcrumb-container"></div>
     <script src="/src/js/layouts/breadcrumb.js"></script>
     <script>
       renderBreadcrumb([{ name: "Tin tức", link: "" }]);
     </script>
-
-    <div
-      class="page-title"
-      style="text-align: center; margin-top: 8px; color: #333"
-    >
-      TIN TỨC
+  <!-- ======= THÔNG TIN ======= -->
+  <section class="section tin-tuc">
+    <div class="section-title-wrap fade-up">
+      <div class="section-title">TIN TỨC – SỰ KIỆN</div>
+      <div class="section-divider"></div>
     </div>
+        <div class="news-grid">
+      <div class="news-card fade-up delay-1">
+        <div class="news-card-img">
+          <img
+            src="YOUR_NEWS_IMAGE_URL"
+            alt="Tin tức 1"
+            onerror="this.style.display = 'none'" />
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">
+            [Tháng 3 – 4] Chào hè Giảm 30% đồ uống
+          </div>
+          <div class="news-card-desc">
+            Mùa hè nóng bức... Phải giải nhiệt ngay thôi. Toàn bộ đồ uống giảm
+            tới 30%...
+          </div>
+          <a href="#" class="news-card-more">Xem thêm →</a>
+        </div>
+      </div>
+      <div class="news-card fade-up delay-2">
+        <div class="news-card-img">
+          <img
+            src="YOUR_NEWS_IMAGE_URL"
+            alt="Tin tức 2"
+            onerror="this.style.display = 'none'" />
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">Ưu đãi thành viên mới</div>
+          <div class="news-card-desc">
+            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay “BANMOI” để nhận ưu đãi...
+          </div>
+          <a href="#" class="news-card-more">Xem thêm →</a>
+        </div>
+      </div>
+      <div class="news-card fade-up delay-3">
+        <div class="news-card-img">
+          <img
+            src="YOUR_NEWS_IMAGE_URL"
+            alt="Tin tức 3"
+            onerror="this.style.display = 'none'" />
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-title">Đôi lời từ đội ngũ phát triển</div>
+          <div class="news-card-desc">
+            Đội ngũ phát triển Yummy Seoul xin chân thành cảm ơn sự tin tưởng
+            và ủng hộ từ khách hàng...
+          </div>
+          <a href="#" class="news-card-more">Xem thêm →</a>
+        </div>
+      </div>
+    </div>
+  </section>
     <div
       class="page-subtitle"
       style="
