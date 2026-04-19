@@ -20,13 +20,16 @@
   margin: 0;
   padding: 0;
 }
-
 body.yummy-story-version {
   font-family: "Asap", sans-serif;
   background-color: var(--baby-cream);
   color: var(--text-dark);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+footer .footer-brand-name {
+  font-family: "Asap", sans-serif;
 }
 
 .container-custom {

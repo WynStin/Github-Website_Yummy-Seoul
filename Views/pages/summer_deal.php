@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../Public/css/home.css" />
     <link rel="stylesheet" href="../../Public/css/summer_deal.css" />
     <link rel="icon" type="image/x-icon" href="../../Public/img/homepage/logo.png">
+    <link rel="stylesheet" href="../../Public/css/intro.css">
+
 </head>
 
 <body>
@@ -16,15 +18,14 @@
     <div class="product-page">
         <article class="news-article fade-up">
             <img src="../../Public/img/news/new1.png" alt="Chào hè rực rỡ" class="article-banner">
-
             <div class="article-body">
-                <h1 style="color: var(--red-brown); font-weight: 800; margin-bottom: 10px;">
-                    [Tháng 3 – 4] CHÀO HÈ RỰC RỠ – GIẢM 30% ĐỒ UỐNG
-                </h1>
-                <p style="color: var(--text-mid);">Ngày đăng: 19/04/2026</p>
-
+            <div class="article-header">
+                   <h1>[Tháng 3 – 4] CHÀO HÈ RỰC RỠ <br>
+                     – GIẢM NGAY 30% ĐỒ UỐNG–</h1>
+            </div>
+            <p style="color: var(--text-mid); margin-top: 0;">Ngày đăng: 19/04/2026</p>
                 <p style="margin-top: 20px;">
-                    Mùa hè đã gõ cửa rồi! Để giải tỏa cơn nóng nực, **Yummy Seoul** xin gửi tới các bạn chương trình ưu đãi mát lạnh nhất trong năm. Toàn bộ các loại đồ uống trong thực đơn sẽ được giảm giá cực sâu.
+                    Mùa hè đã gõ cửa rồi! Để giải tỏa cơn nóng nực, <strong>**Yummy Seoul**</strong> xin gửi tới các bạn chương trình ưu đãi mát lạnh nhất trong năm. Toàn bộ các loại đồ uống trong thực đơn sẽ được giảm giá cực sâu.
                 </p>
 
                 <div class="promo-highlight">
@@ -40,12 +41,12 @@
 
                 <div class="note-box">
                     <strong>📌 Lưu ý quan trọng:</strong>
-                    <p>Chương trình ưu đãi này chỉ áp dụng cho khách hàng đến **thưởng thức trực tiếp tại quán**. Không áp dụng cho đơn hàng giao đi (Delivery) bạn nhé!</p>
+                    <p>Chương trình ưu đãi này chỉ áp dụng cho khách hàng đến <strong>thưởng thức trực tiếp tại quán</strong>. Không áp dụng cho đơn hàng giao đi (Delivery) bạn nhé!</p>
                 </div>
 
                 <div style="text-align: center; margin-top: 40px;">
                     <p style="font-weight: 600;">Ghé tiệm ngay tại khu vực NEU để giải nhiệt thôi nào! 🏃‍♂️💨</p>
-                    <a href="home.php" class="btn-muahang" style="display: inline-block; width: auto; padding: 12px 40px; margin-top: 15px;">XEM ĐỊA CHỈ TIỆM</a>
+                    <a href="contact.php" class="btn-muahang" style="display: inline-block; width: auto; padding: 12px 40px; margin-top: 15px;">XEM ĐỊA CHỈ TIỆM</a>
                 </div>
             </div>
         </article>

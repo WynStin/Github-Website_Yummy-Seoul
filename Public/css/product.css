@@ -175,6 +175,10 @@
     gap: 30px;
 }
 
+.container.offer {
+    flex-direction: column;
+}
+
 /*SIDEBAR*/
 .sidebar {
     width: 280px;

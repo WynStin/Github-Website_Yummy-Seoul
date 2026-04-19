@@ -21,7 +21,7 @@
     <div class="product-page">
         <div class="page-title">ƯU ĐÃI THÀNH VIÊN MỚI</div>
 
-        <div class="container" style="max-width: 850px; margin: 0 auto; padding: 30px; background: #fff; border-radius: 20px; box-shadow: var(--shadow);">
+        <div class="container offer" style="max-width: 850px; margin: 0 auto; padding: 30px; background: #fff; border-radius: 20px; box-shadow: var(--shadow);">
             
             <div style="text-align: center; margin-bottom: 40px;">
                 <img src="../../Public/img/news/new2.png" alt="Chào bạn mới" style="width: 100%; border-radius: 15px; margin-bottom: 20px;">

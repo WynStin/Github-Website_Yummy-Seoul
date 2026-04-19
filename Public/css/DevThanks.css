@@ -1,42 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap");
+
 .letter-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 40px;
-    background: #fff;
-    border-radius: 30px;
-    /* Bo góc tròn trịa đồng bộ */
-    box-shadow: var(--shadow);
-    line-height: 1.8;
-    color: var(--text-dark);
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 30px;
+  /* Bo góc tròn trịa đồng bộ */
+  box-shadow: var(--shadow);
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-family: "Nunito", sans-serif;
 }
 
 .letter-header {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .letter-header h1 {
-    color: var(--red-brown);
-    font-size: 2rem;
-    font-weight: 800;
+  color: var(--red-brown);
+  font-size: 40px;
+  font-weight: 800;
+  font-family: "Baloo 2", cursive;
 }
 
 .letter-content i {
-    color: var(--text-mid);
-    display: block;
-    margin-bottom: 20px;
-    text-align: center;
+  color: var(--text-mid);
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .signature {
-    margin-top: 40px;
-    text-align: right;
-    font-weight: bold;
-    color: var(--red-brown);
+  font: "Asap", sans-serif;
+  margin-top: 40px;
+  text-align: right;
+  font-weight: bold;
+  color: var(--red-brown);
 }
 
 .highlight {
-    color: #C0392B;
-    /* Màu đỏ đất đặc trưng */
-    font-weight: 600;
+  color: #c0392b;
+  /* Màu đỏ đất đặc trưng */
+  font-weight: 600;
 }
