@@ -39,6 +39,7 @@
   });
 
   document.addEventListener("DOMContentLoaded", function () {
+    // Slide món mới
     const swiper = new Swiper('.new-products-slider', {
       slidesPerView: 5,      // Hiện 5 món
       spaceBetween: 15,      // Giảm khoảng cách để cân đối 5 món
@@ -58,7 +59,27 @@
         1300: { slidesPerView: 5 } // Màn hình rộng mới hiện 5 món
       }
     });
-  });
 
-  startAuto();
-})();
+    // Slider Món Xem Nhiều (Thêm mới)
+    const swiperMostViewed = new Swiper('.most-viewed-slider', {
+      slidesPerView: 5,
+      spaceBetween: 15,
+      loop: true,
+      autoplay: {
+        delay: 3500, // Chỉnh thời gian chạy khác đi một chút cho sinh động
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.most-viewed-next', // Trỏ đúng vào nút của slider này
+        prevEl: '.most-viewed-prev',
+      },
+      breakpoints: {
+        320: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+        1300: { slidesPerView: 5 }
+      }
+    });
+  });
+startAuto();
+}) ();

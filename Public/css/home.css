@@ -545,6 +545,11 @@ header {
   margin-top: 15px;
 }
 
+.xem-nhieu {
+    margin-top: 60px; /* Đẩy section này cách phần trên 60px */
+    padding-top: 20px;
+}
+
 /* ======================================================
    PRODUCT GRID & CARDS
    ====================================================== */

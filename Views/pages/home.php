@@ -8,6 +8,7 @@ $productModel = new ProductModel($pdo);
 
 // 3. Lấy dữ liệu cho các section trên trang chủ
 $newProducts = $productModel->getTop10Newest();
+$mostViewedProducts = $productModel->getTop10MostViewed();
 
 // Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
 ?>
@@ -69,7 +70,6 @@ $newProducts = $productModel->getTop10Newest();
       </div>
     </div>
   </section>
-
 
   <!-- ======= MÓN MỚI ======= -->
   <section class="section mon-moi">
@@ -155,6 +155,46 @@ $newProducts = $productModel->getTop10Newest();
     </div>
   </section>
 
+  <section class="section xem-nhieu">
+    <div class="section-title-wrap">
+      <div class="section-title">MÓN XEM NHIỀU NHẤT</div>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="slider-container">
+      <div class="swiper most-viewed-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($mostViewedProducts)): ?>
+            <?php foreach ($mostViewedProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có dữ liệu món ăn.</p>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="swiper-button-prev most-viewed-prev custom-nav"></div>
+      <div class="swiper-button-next most-viewed-next custom-nav"></div>
+    </div>
+  </section>
 
   <!-- ======= ABOUT BANNER ======= -->
   <section class="about-banner">
