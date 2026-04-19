@@ -1,0 +1,42 @@
+.letter-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 30px;
+    /* Bo góc tròn trịa đồng bộ */
+    box-shadow: var(--shadow);
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.letter-header h1 {
+    color: var(--red-brown);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.letter-content i {
+    color: var(--text-mid);
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.signature {
+    margin-top: 40px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--red-brown);
+}
+
+.highlight {
+    color: #C0392B;
+    /* Màu đỏ đất đặc trưng */
+    font-weight: 600;
+}
