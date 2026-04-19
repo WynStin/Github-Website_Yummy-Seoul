@@ -1,0 +1,378 @@
+/* ======================================================
+   TEST CSS - YUMMY SEOUL PREMIUM STORY STYLE
+   ====================================================== */
+
+:root {
+  --red-brown: #451715;
+  --baby-yellow: #ffeda3;
+  --gold-light: #e2b96a;
+  --pink-soft: #f2d9c8;
+  --baby-cream: #fffbe8;
+  --text-dark: #2c1a0e;
+  --text-mid: #5a3825;
+  --white: #ffffff;
+  --shadow-yummy: 0 4px 20px rgba(69, 23, 21, 0.12);
+}
+
+/* --- RESET & BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body.yummy-story-version {
+  font-family: "Asap", sans-serif;
+  background-color: var(--baby-cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+footer .footer-brand-name {
+  font-family: "Asap", sans-serif;
+}
+
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* ================= PHẦN 1: HERO SECTION (INTRO) ================= */
+.storytelling-hero {
+  position: relative;
+  min-height: 95vh; /* Chiều cao vừa đủ để thấy phần tiếp theo */
+  display: flex;
+  align-items: center;
+  padding: 100px 0 60px 0; /* Cân đối khoảng cách trên dưới */
+  overflow: hidden;
+}
+
+.intro-flex-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.intro-handwritten {
+  font-family: "Satisfy", cursive;
+  font-size: 28px;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+
+.main-title {
+  font-size: 4.2rem;
+  font-weight: 800;
+  color: var(--red-brown);
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.highlight {
+  color: var(--gold-light);
+  font-family: "Dancing Script", cursive;
+}
+
+.story-p {
+  font-size: 1.1rem;
+  color: var(--text-mid);
+  max-width: 500px;
+  margin-bottom: 40px;
+}
+
+.btn-polaroid-style {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--red-brown);
+  color: var(--baby-yellow);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(69, 23, 21, 0.2);
+}
+
+.btn-polaroid-style:hover {
+  transform: translateY(-5px);
+  background: var(--baby-yellow);
+  color: var(--red-brown);
+}
+
+/* --- POLAROID GALLERY --- */
+.intro-gallery-wrap {
+  position: relative;
+  height: 520px;
+}
+
+.polaroid-frame {
+  position: absolute;
+  background: #fff;
+  padding: 15px 15px 50px 15px;
+  width: 260px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid #f0f0f0;
+  transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-frame img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.polaroid-label {
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 22px;
+  color: var(--text-mid);
+}
+
+.p-1 {
+  transform: rotate(-8deg);
+  top: 10px;
+  left: 0;
+  z-index: 1;
+}
+.p-2 {
+  transform: rotate(6deg);
+  top: 130px;
+  right: 20px;
+  z-index: 2;
+}
+.p-3 {
+  transform: rotate(-3deg);
+  bottom: 10px;
+  left: 100px;
+  z-index: 3;
+}
+
+.polaroid-frame:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 10;
+}
+
+/* --- FLOATING DECOR --- */
+@keyframes floatAnim {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-25px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.floating-decor div {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.4;
+  animation: floatAnim 7s ease-in-out infinite;
+}
+
+.blossom-1 {
+  top: 10%;
+  left: 3%;
+  width: 45px;
+  height: 45px;
+  background: #ffb9d2;
+  border-radius: 50% 0 50% 0;
+}
+.blossom-2 {
+  top: 70%;
+  right: 5%;
+  width: 35px;
+  height: 35px;
+  background: #ffdbe8;
+  border-radius: 0 50% 0 50%;
+}
+.heart-1 {
+  bottom: 15%;
+  left: 8%;
+  width: 30px;
+  height: 30px;
+  background: #ffb9d2;
+  opacity: 0.3 !important;
+}
+
+/* ================= PHẦN 2: STAGGER GRID SECTION ================= */
+.stagger-grid-section {
+  padding: 80px 0; /* Khoảng cách rộng rãi giữa các phần lớn */
+}
+
+.stagger-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 120px; /* Tăng khoảng cách giữa chữ và ảnh */
+  align-items: center;
+  margin-bottom: 140px; /* Khoảng cách giữa các hàng stagger */
+}
+
+.stagger-grid.reverse {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.stagger-grid.reverse .text-block {
+  order: 2;
+}
+.stagger-grid.reverse .image-block {
+  order: 1;
+}
+
+.text-block {
+  position: relative;
+  z-index: 2;
+}
+
+.text-block h3 {
+  font-size: 2.5rem;
+  color: var(--red-brown);
+  margin-bottom: 20px;
+}
+
+.number-bg {
+  font-size: 9rem;
+  font-weight: 800;
+  color: rgba(69, 23, 21, 0.04);
+  position: absolute;
+  top: -60px;
+  left: -30px;
+  z-index: -1;
+  user-select: none;
+}
+
+.image-block {
+  position: relative;
+}
+
+.image-block img {
+  width: 100%;
+  border-radius: 25px;
+  z-index: 2;
+  position: relative;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  box-shadow: var(--shadow-yummy);
+}
+.image-block img:hover {
+  transform: scale(1.05);
+  transition: 0.5s ease;
+}
+
+.image-deco-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--red-brown);
+  top: 30px;
+  left: -30px;
+  border-radius: 25px;
+  z-index: 1;
+  opacity: 0.08;
+}
+
+.image-deco-box.gold {
+  background: var(--gold-light);
+  left: 30px;
+}
+
+/* ================= PHẦN 3: STATS SECTION ================= */
+.stats-interactive-section {
+  background: var(--red-brown);
+  padding: 110px 0; /* Tăng padding để thanh stats nổi bật */
+  color: var(--baby-yellow);
+  margin-top: 50px;
+}
+
+.stats-wrapper {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-box {
+  flex: 1;
+}
+
+.counter {
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.stat-box span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* --- ANIMATION CLASSES (Trigger by JS) --- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease-out;
+}
+.fade-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: 1s ease-out;
+}
+.fade-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: 1s ease-out;
+}
+
+.is-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .intro-flex-container,
+  .stagger-grid,
+  .stagger-grid.reverse {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .intro-gallery-wrap {
+    height: 400px;
+  }
+  .polaroid-frame {
+    width: 220px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .p-1 {
+    top: 0;
+    margin-left: -80px;
+    transform: rotate(-5deg) !important;
+  }
+  .p-2 {
+    top: 50px;
+    margin-left: 80px;
+    transform: rotate(5deg) !important;
+  }
+  .p-3 {
+    top: 120px;
+    margin-left: 0;
+  }
+
+  .stats-wrapper {
+    flex-direction: column;
+    gap: 60px;
+  }
+}
