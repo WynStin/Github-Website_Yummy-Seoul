@@ -195,3 +195,38 @@ INSERT INTO `nguoi_dung`
 (`user_name`, `mat_khau`, `ho_ten`, `email`, `so_dien_thoai`, `dia_chi_mac_dinh`, `vai_tro`, `trang_thai`) 
 VALUES 
 ('admin', '123456', 'Hàn Quốc Quản', 'admin@yummyseoul.com', '0912345678', 'Hà Nội', 'Quản lý', 'Hoạt động');
+
+-- Cập nhật số lượng lượt xem và số lượng đã bán
+-- Cập nhật số liệu cố định cho 20 món cũ (ID 1 - 20)
+UPDATE `mon_an` SET `so_luot_xem` = 450, `so_luong_da_ban` = 120 WHERE `id_mon_an` = 1;  -- Cơm trộn Bibimbap
+UPDATE `mon_an` SET `so_luot_xem` = 310, `so_luong_da_ban` = 85  WHERE `id_mon_an` = 2;  -- Kimbap truyền thống
+UPDATE `mon_an` SET `so_luot_xem` = 280, `so_luong_da_ban` = 60  WHERE `id_mon_an` = 3;  -- Cơm chiên Kimchi
+UPDATE `mon_an` SET `so_luot_xem` = 520, `so_luong_da_ban` = 145 WHERE `id_mon_an` = 4;  -- Gà rán sốt cay
+UPDATE `mon_an` SET `so_luot_xem` = 380, `so_luong_da_ban` = 90  WHERE `id_mon_an` = 5;  -- Gà sốt tương tỏi
+UPDATE `mon_an` SET `so_luot_xem` = 250, `so_luong_da_ban` = 70  WHERE `id_mon_an` = 6;  -- Gà không xương
+UPDATE `mon_an` SET `so_luot_xem` = 410, `so_luong_da_ban` = 110 WHERE `id_mon_an` = 7;  -- Mì tương đen
+UPDATE `mon_an` SET `so_luot_xem` = 190, `so_luong_da_ban` = 30  WHERE `id_mon_an` = 8;  -- Mì lạnh
+UPDATE `mon_an` SET `so_luot_xem` = 330, `so_luong_da_ban` = 95  WHERE `id_mon_an` = 9;  -- Mì cay Ramen
+UPDATE `mon_an` SET `so_luot_xem` = 150, `so_luong_da_ban` = 40  WHERE `id_mon_an` = 10; -- Mì trộn cay
+UPDATE `mon_an` SET `so_luot_xem` = 290, `so_luong_da_ban` = 75  WHERE `id_mon_an` = 11; -- Canh Kimchi
+UPDATE `mon_an` SET `so_luot_xem` = 180, `so_luong_da_ban` = 50  WHERE `id_mon_an` = 12; -- Canh rong biển
+UPDATE `mon_an` SET `so_luot_xem` = 210, `so_luong_da_ban` = 35  WHERE `id_mon_an` = 13; -- Lẩu quân đội
+UPDATE `mon_an` SET `so_luot_xem` = 175, `so_luong_da_ban` = 45  WHERE `id_mon_an` = 14; -- Canh đậu phụ non
+UPDATE `mon_an` SET `so_luot_xem` = 600, `so_luong_da_ban` = 210 WHERE `id_mon_an` = 15; -- Tokbokki truyền thống
+UPDATE `mon_an` SET `so_luot_xem` = 550, `so_luong_da_ban` = 320 WHERE `id_mon_an` = 16; -- Chả cá Odeng
+UPDATE `mon_an` SET `so_luot_xem` = 320, `so_luong_da_ban` = 80  WHERE `id_mon_an` = 17; -- Rượu Soju
+UPDATE `mon_an` SET `so_luot_xem` = 240, `so_luong_da_ban` = 65  WHERE `id_mon_an` = 18; -- Nước gạo
+UPDATE `mon_an` SET `so_luot_xem` = 400, `so_luong_da_ban` = 150 WHERE `id_mon_an` = 19; -- Coca
+UPDATE `mon_an` SET `so_luot_xem` = 270, `so_luong_da_ban` = 90  WHERE `id_mon_an` = 20; -- Trà sữa
+
+-- Cập nhật số liệu cho 10 món mới (ID 21 - 30, chỉ số thấp hơn vì mới mở bán)
+UPDATE `mon_an` SET `so_luot_xem` = 45, `so_luong_da_ban` = 12 WHERE `id_mon_an` = 21;
+UPDATE `mon_an` SET `so_luot_xem` = 38, `so_luong_da_ban` = 8  WHERE `id_mon_an` = 22;
+UPDATE `mon_an` SET `so_luot_xem` = 62, `so_luong_da_ban` = 15 WHERE `id_mon_an` = 23;
+UPDATE `mon_an` SET `so_luot_xem` = 25, `so_luong_da_ban` = 5  WHERE `id_mon_an` = 24;
+UPDATE `mon_an` SET `so_luot_xem` = 30, `so_luong_da_ban` = 7  WHERE `id_mon_an` = 25;
+UPDATE `mon_an` SET `so_luot_xem` = 18, `so_luong_da_ban` = 3  WHERE `id_mon_an` = 26;
+UPDATE `mon_an` SET `so_luot_xem` = 55, `so_luong_da_ban` = 20 WHERE `id_mon_an` = 27;
+UPDATE `mon_an` SET `so_luot_xem` = 40, `so_luong_da_ban` = 14 WHERE `id_mon_an` = 28;
+UPDATE `mon_an` SET `so_luot_xem` = 22, `so_luong_da_ban` = 4  WHERE `id_mon_an` = 29;
+UPDATE `mon_an` SET `so_luot_xem` = 35, `so_luong_da_ban` = 11 WHERE `id_mon_an` = 30;
