@@ -64,66 +64,162 @@ header {
 
 /* --- CSS CHO TOPBAR --- */
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* Giảm padding bên trái để Logo lùi về sát lề hơn */
-    padding: 10px 40px 10px 20px; 
-    background-color: var(--red-brown, #451715);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Giảm padding bên trái để Logo lùi về sát lề hơn */
+  padding: 10px 40px 10px 20px;
+  background-color: var(--red-brown, #451715);
 }
 
 /* Định dạng cho chữ bên cạnh Logo */
 .topbar-logo {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Khoảng cách giữa Logo và chữ */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* Khoảng cách giữa Logo và chữ */
 }
 
 .logo-text {
-    color: var(--baby-yellow); /* Sử dụng màu vàng nhạt của web */
-    font-size: 18px;
-    font-weight: 700;
-    white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
-    letter-spacing: 0.5px;
-}
-
-/* Điều chỉnh thanh tìm kiếm nhỏ lại */
-.search-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    /* Giảm flex-basis xuống để thanh search ngắn lại (ví dụ 550px) */
-    flex: 0 1 550px; 
+  color: var(--baby-yellow);
+  /* Sử dụng màu vàng nhạt của web */
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  /* Không cho chữ nhảy xuống dòng */
+  letter-spacing: 0.5px;
 }
 
 /* Kiểu dáng nút tròn giống nút giỏ hàng */
+/* CSS Nút bấm Admin */
 .admin-btn {
-  background-color: var(--baby-yellow);
-  /* Màu nền vàng nhạt giống tone web của bạn */
-  width: 42px;
-  /* Kích thước nhỏ gọn */
-  height: 42px;
+  background: var(--baby-yellow);
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  /* Làm nút hình tròn */
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  /* Đổ bóng nhẹ cho mềm mại */
+  transition: 0.3s;
 }
 
 .admin-btn:hover {
-  background-color: var(--pink-soft);
-  /* Đổi màu nhẹ khi di chuột vào */
+  background: var(--pink-soft);
   transform: translateY(-2px);
-  /* Nhích nhẹ lên trên */
 }
 
-.admin-btn svg {
+/* CSS Giao diện Modal (Bảng đăng nhập) */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  /* Ẩn mặc định */
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.admin-modal-overlay.open {
+  display: flex;
+}
+
+.admin-modal-content {
+  background: var(--baby-cream);
+  width: 100%;
+  max-width: 400px;
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-modal-header h3 {
+  color: var(--red-brown);
+  font-size: 20px;
+}
+
+.admin-close {
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--text-light);
+}
+
+.admin-form-group {
+  margin-bottom: 15px;
+}
+
+.admin-form-group label {
   display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--red-brown);
+}
+
+.admin-form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--pink-soft);
+  outline: none;
+}
+
+.admin-modal-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-huy {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--red-brown);
+  cursor: pointer;
+  background: #fff;
+}
+
+.btn-xacnhan {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--red-brown);
+  color: #fff;
+  font-weight: 600;
+}
+
+
+/* Điều chỉnh thanh tìm kiếm nhỏ lại */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Giảm flex-basis xuống để thanh search ngắn lại (ví dụ 550px) */
+  flex: 0 1 550px;
 }
 
 /* Thanh tìm kiếm */
@@ -134,7 +230,7 @@ header {
   padding: 4px 4px 4px 20px;
   align-items: center;
   /* Đảm bảo thanh search chiếm hết không gian được chia trong container */
-  width: 100%; 
+  width: 100%;
 }
 
 .search-bar input {
@@ -209,11 +305,11 @@ header {
 /* --- CSS CHO NAVBAR --- */
 /* Đảm bảo Navbar cũng lùi về trái đồng bộ với Topbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px 10px 20px; 
-    background-color: var(--pink-soft, #f2d9c8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px 10px 20px;
+  background-color: var(--pink-soft, #f2d9c8);
 }
 
 .nav-links {
