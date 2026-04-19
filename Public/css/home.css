@@ -384,11 +384,13 @@ header {
 }
 
 .hero-section {
-  padding: 15px 0; /* Giảm khoảng cách trên dưới */
+  padding: 15px 0;
+  /* Giảm khoảng cách trên dưới */
 }
 
 .hero-container {
-  max-width: 1100px; /* Thu hẹp chiều ngang lại một chút cho xinh */
+  max-width: 1100px;
+  /* Thu hẹp chiều ngang lại một chút cho xinh */
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -396,13 +398,14 @@ header {
 .hero {
   position: relative;
   overflow: hidden;
-  height: 380px;     /* Chiều cao khung hình */
+  height: 380px;
+  /* Chiều cao khung hình */
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  
+
   /* CHỈNH SỬA TẠI ĐÂY: Chuyển màu nền thừa sang màu nâu đỏ của Topbar */
-  background-color: var(--red-brown, #451715); 
+  background-color: var(--red-brown, #451715);
 }
 
 #heroSlides {
@@ -425,10 +428,10 @@ header {
   width: 100%;
   height: 100%;
   /* Giữ contain để không mất thông tin địa chỉ/SĐT trên banner */
-  object-fit: contain; 
+  object-fit: contain;
   object-position: center;
   /* Đảm bảo ảnh không có màu nền trắng riêng lẻ */
-  background: transparent; 
+  background: transparent;
 }
 
 /* Nút bấm điều hướng nhỏ lại cho khớp với banner nhỏ */
@@ -437,23 +440,25 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--baby-yellow); /* Màu vàng nổi bật trên nền nâu */
-  border: 2px solid var(--red-brown); /* Viền đậm hơn tí cho nét */
+  background: var(--baby-yellow);
+  /* Màu vàng nổi bật trên nền nâu */
+  border: 2px solid var(--red-brown);
+  /* Viền đậm hơn tí cho nét */
   color: var(--red-brown);
-  
+
   /* TĂNG KÍCH THƯỚC NÚT */
-  width: 50px; 
+  width: 50px;
   height: 50px;
-  
+
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   /* TĂNG KÍCH THƯỚC BIỂU TƯỢNG MŨI TÊN */
-  font-size: 30px; 
+  font-size: 30px;
   font-weight: bold;
-  
+
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
@@ -463,11 +468,13 @@ header {
    Vì ảnh contain ở giữa, khoảng nâu hai bên khá rộng, 
    ta đẩy nút ra xa mép một chút để nó vào tâm vùng nâu. */
 .hero-btn-prev {
-  left: 15px; /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
+  left: 15px;
+  /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
 .hero-btn-next {
-  right: 15px; /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
+  right: 15px;
+  /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
 /* Hiệu ứng khi di chuột vào */
@@ -475,7 +482,7 @@ header {
 .hero-btn-next:hover {
   background: var(--white);
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .hero-dots {
@@ -538,62 +545,159 @@ header {
 /* ======================================================
    PRODUCT GRID & CARDS
    ====================================================== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
+/* --- Cấu hình cho Slider Món Mới --- */
+.mon-moi {
+    position: relative;
+    padding: 60px 20px; /* Giữ khoảng cách chung cho section */
 }
 
+/* Lớp bọc mới để nút bấm căn theo khung này */
+.slider-container {
+    position: relative;
+    max-width: 1400px; /* Tăng chiều rộng để 5 món không bị chật */
+    margin: 40px auto;
+    padding: 0 60px; /* Khoảng trống 2 bên cho nút điều hướng */
+}
+
+/* Container chứa Slider */
+.new-products-slider {
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+}
+
+.swiper-slide {
+    height: auto; /* Giúp các card cao bằng nhau theo card dài nhất */
+    display: flex;
+}
+
+/* Thẻ card sản phẩm */
 .product-card {
-  background: var(--cream);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border: 1.5px solid var(--pink-soft);
+    background: #fff;
+    border-radius: 25px; /* Tăng độ bo góc cho khung ngoài */
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,0.05); /* Viền cực nhẹ để định hình góc bo */
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
 }
 
+/* Định dạng ảnh sản phẩm */
 .product-card-img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  background: var(--cream-dark);
-  overflow: hidden;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    /* Bo góc nhẹ cho 2 góc trên của ảnh để khớp với card */
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .product-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
 }
 
-.product-card:hover .product-card-img img {
-  transform: scale(1.1);
-}
-
+/* Nội dung card */
 .product-card-body {
-  padding: 18px;
-  text-align: center;
+    padding: 15px;
+    text-align: center;
 }
 
 .product-name {
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--red-brown);
-  margin-bottom: 5px;
+    font-size: 0.95rem; /* Giảm nhẹ font chữ */
+    height: 2.4em;
+    margin-bottom: 8px;
 }
 
-.product-price {
-  font-size: 15px;
-  color: var(--brown-light);
-  font-weight: 600;
+.price-current {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.btn-muahang {
+    background-color: #f34e2c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px; /* Nút hình con nhộng (tròn hẳn 2 đầu) */
+    cursor: pointer;
+    width: 90%; /* Thu nhỏ lại một chút để lộ góc bo của card */
+    margin: 0 auto 15px auto; /* Căn giữa nút */
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-muahang:hover {
+    background-color: #d33d1d;
+}
+
+/* --- Tùy chỉnh nút điều hướng RA NGOÀI lề --- */
+.custom-nav {
+    color: var(--red-brown) !important;
+    background: var(--baby-yellow) !important;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    z-index: 10;
+    
+    /* CỐ ĐỊNH VỊ TRÍ CHÍNH GIỮA DỌC */
+    top: 50% !important;
+    transform: translateY(-50%) !important; 
+    margin-top: 0 !important; /* Xóa margin mặc định gây nhảy nút */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease !important;
+}
+
+.swiper-button-prev.custom-nav {
+    left: 5px !important;
+}
+
+.swiper-button-next.custom-nav {
+    right: 5px !important;
+}
+
+.custom-nav::after {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.custom-nav:hover {
+    background: var(--white) !important;
+    transform: translateY(-50%) scale(1.1) !important; /* Giữ nguyên translateY */
+    box-shadow: var(--shadow-hover);
+}
+
+.custom-nav:active {
+    transform: translateY(-50%) scale(0.9) !important;
+}
+
+.custom-nav:focus {
+    outline: none !important;
+}
+
+/* Responsive: Trên mobile đưa nút vào trong hoặc ẩn đi để tránh tràn màn hình */
+@media (max-width: 1300px) {
+    .slider-container {
+        padding: 0 50px;
+    }
+    .swiper-button-prev.custom-nav { left: 5px; }
+    .swiper-button-next.custom-nav { right: 5px; }
 }
 
 /* ======================================================

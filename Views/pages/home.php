@@ -7,8 +7,7 @@ require_once '../../Models/ProductModel.php';
 $productModel = new ProductModel($pdo);
 
 // 3. Lấy dữ liệu cho các section trên trang chủ
-$bestSellers = $productModel->getTop10BestSeller(); // Lấy top 10 bán chạy
-$newProducts = $productModel->getProducts('all', '', 'default', 4, 0); // Lấy 4 món mới nhất
+$newProducts = $productModel->getTop10Newest();
 
 // Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
 ?>
@@ -29,6 +28,8 @@ $newProducts = $productModel->getProducts('all', '', 'default', 4, 0); // Lấy 
   <link
     href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </head>
 
@@ -72,61 +73,43 @@ $newProducts = $productModel->getProducts('all', '', 'default', 4, 0); // Lấy 
 
   <!-- ======= MÓN MỚI ======= -->
   <section class="section mon-moi">
-    <div class="section-title-wrap fade-up">
+    <div class="section-title-wrap">
       <div class="section-title">MÓN MỚI</div>
       <div class="section-divider"></div>
     </div>
-    <div class="product-grid">
-      <!-- Lặp lại card này cho từng sản phẩm -->
-      <div class="product-card fade-up delay-1">
-        <div class="product-card-img">
-          <!-- HÌNH SẢN PHẨM: thay src bằng link ảnh thực -->
-          <img
-            src="../../Public/img/monan/mituongden.jpg"
-            alt="Mì tương đen"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Mì tương đen</div>
-          <div class="product-price">75.000 VND</div>
-        </div>
-      </div>
-      <div class="product-card fade-up delay-2">
-        <div class="product-card-img">
-          <img
-            src="../../Public/img/monan/mandu.jpg"
-            alt="Mandu chiên"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Mandu chiên</div>
-          <div class="product-price">40.000 VND</div>
-        </div>
-      </div>
-      <div class="product-card fade-up delay-3">
-        <div class="product-card-img">
-          <img
-            src="../../Public/img/monan/gasottuongtoi.jpg"
-            alt="Gà sốt tương tỏi"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Gà sốt tương tỏi</div>
-          <div class="product-price">155.000 VND</div>
+
+    <div class="slider-container">
+      <div class="swiper new-products-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($newProducts)): ?>
+            <?php foreach ($newProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có món mới nào.</p>
+          <?php endif; ?>
         </div>
       </div>
-      <div class="product-card fade-up delay-4">
-        <div class="product-card-img">
-          <img
-            src="../../Public/img/monan/combobulgogi.jpg"
-            alt="Cơm bò xào Bulgogi"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Cơm bò xào Bulgogi</div>
-          <div class="product-price">95.000 VND</div>
-        </div>
-      </div>
+
+      <div class="swiper-button-prev custom-nav"></div>
+      <div class="swiper-button-next custom-nav"></div>
     </div>
   </section>
 

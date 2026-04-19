@@ -123,7 +123,8 @@ class ProductModel
 
     public function getTop10Newest()
     {
-        return $this->db->query("SELECT * FROM mon_an ORDER BY id_mon_an DESC LIMIT 10")->fetchAll(PDO::FETCH_ASSOC);
+        // Sắp xếp theo ngay_tao giảm dần để lấy món mới nhất
+        return $this->db->query("SELECT * FROM mon_an ORDER BY ngay_tao DESC LIMIT 10")->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function incrementViewCount($id)

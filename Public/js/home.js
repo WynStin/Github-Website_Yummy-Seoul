@@ -38,5 +38,27 @@
     dot.addEventListener('click', () => { goTo(i); resetAuto(); });
   });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiper = new Swiper('.new-products-slider', {
+      slidesPerView: 5,      // Hiện 5 món
+      spaceBetween: 15,      // Giảm khoảng cách để cân đối 5 món
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        320: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+        1300: { slidesPerView: 5 } // Màn hình rộng mới hiện 5 món
+      }
+    });
+  });
+
   startAuto();
 })();
