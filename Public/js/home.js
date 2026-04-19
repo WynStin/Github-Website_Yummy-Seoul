@@ -39,15 +39,12 @@
   });
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Slide món mới
-    const swiper = new Swiper('.new-products-slider', {
-      slidesPerView: 5,      // Hiện 5 món
-      spaceBetween: 15,      // Giảm khoảng cách để cân đối 5 món
+    // 1. Khởi tạo Slider Món Mới (Giữ nguyên cái cũ của bạn)
+    new Swiper('.new-products-slider', {
+      slidesPerView: 5,
+      spaceBetween: 15,
       loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
+      autoplay: { delay: 3000 },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -56,22 +53,38 @@
         320: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
         1024: { slidesPerView: 3 },
-        1300: { slidesPerView: 5 } // Màn hình rộng mới hiện 5 món
+        1300: { slidesPerView: 5 }
       }
     });
 
-    // Slider Món Xem Nhiều (Thêm mới)
-    const swiperMostViewed = new Swiper('.most-viewed-slider', {
+    // 2. Khởi tạo Slider Món Xem Nhiều (Nếu bạn đã thêm phần này)
+    new Swiper('.most-viewed-slider', {
       slidesPerView: 5,
       spaceBetween: 15,
       loop: true,
+      autoplay: { delay: 3500 },
+      navigation: {
+        nextEl: '.most-viewed-next',
+        prevEl: '.most-viewed-prev',
+      },
+      breakpoints: {
+        320: { slidesPerView: 1 },
+        1300: { slidesPerView: 5 }
+      }
+    });
+
+    // 3. FIX LỖI: Khởi tạo Slider Món Bán Chạy
+    new Swiper('.best-seller-slider', {
+      slidesPerView: 5,      // Bắt buộc có dòng này để không bị to hình
+      spaceBetween: 15,
+      loop: true,
       autoplay: {
-        delay: 3500, // Chỉnh thời gian chạy khác đi một chút cho sinh động
+        delay: 4000,
         disableOnInteraction: false,
       },
       navigation: {
-        nextEl: '.most-viewed-next', // Trỏ đúng vào nút của slider này
-        prevEl: '.most-viewed-prev',
+        nextEl: '.best-seller-next', // Phải khớp với class ở file PHP
+        prevEl: '.best-seller-prev',
       },
       breakpoints: {
         320: { slidesPerView: 1 },
@@ -81,5 +94,5 @@
       }
     });
   });
-startAuto();
-}) ();
+  startAuto();
+})();

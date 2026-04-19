@@ -9,6 +9,7 @@ $productModel = new ProductModel($pdo);
 // 3. Lấy dữ liệu cho các section trên trang chủ
 $newProducts = $productModel->getTop10Newest();
 $mostViewedProducts = $productModel->getTop10MostViewed();
+$bestSellerProducts = $productModel->getTop10BestSeller();
 
 // Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
 ?>
@@ -218,73 +219,44 @@ $mostViewedProducts = $productModel->getTop10MostViewed();
 
 
   <!-- ======= SẢN PHẨM BÁN CHẠY ======= -->
-  <section class="section best-seller">
-    <div class="section-title-wrap fade-up">
-      <div class="best-seller-label">BEST SELLER</div>
-      <div class="section-title">SẢN PHẨM BÁN CHẠY</div>
+  <section class="section ban-chay">
+    <div class="section-title-wrap">
+      <div class="section-title">MÓN BÁN CHẠY NHẤT</div>
       <div class="section-divider"></div>
     </div>
-    <div class="best-seller-grid">
-      <!-- TOP 2 -->
-      <div class="bs-card fade-up delay-1">
-        <div class="bs-badge">
-          <span class="medal">🥈</span><span class="rank">TOP 2</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="../../Public/img/monan/garansotcay.jpg"
-            alt="Top 2"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Gà rán sốt cay</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">155.000 VND</span>
-            <span class="bs-price-old">180.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
-        </div>
-      </div>
-      <!-- TOP 1 -->
-      <div class="bs-card top1 fade-up delay-2">
-        <div class="bs-badge">
-          <span class="medal">🥇</span><span class="rank">TOP 1</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="../../Public/img/monan/tokbokki.jpg"
-            alt="Top 1"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Tokbokki truyền thống</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">45.000 VND</span>
-            <span class="bs-price-old">60.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
+
+    <div class="slider-container">
+      <div class="swiper best-seller-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($bestSellerProducts)): ?>
+            <?php foreach ($bestSellerProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang btn-bling">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có dữ liệu bán chạy.</p>
+          <?php endif; ?>
         </div>
       </div>
-      <!-- TOP 3 -->
-      <div class="bs-card fade-up delay-3">
-        <div class="bs-badge">
-          <span class="medal">🥉</span><span class="rank">TOP 3</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="../../Public/img/monan/kimbaptruyenthong.jpg"
-            alt="Top 3"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Kimbap truyền thống</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">50.000 VND</span>
-            <span class="bs-price-old">65.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
-        </div>
-      </div>
+
+      <div class="swiper-button-prev best-seller-prev custom-nav"></div>
+      <div class="swiper-button-next best-seller-next custom-nav"></div>
     </div>
   </section>
 

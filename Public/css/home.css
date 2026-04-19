@@ -550,6 +550,160 @@ header {
     padding-top: 20px;
 }
 
+/* Hiệu ứng riêng cho phần Món Xem Nhiều */
+.xem-nhieu .product-card {
+    background: #1a1a1a; /* Nền tối hơn một chút để nổi bật ánh đèn Neon */
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.xem-nhieu .product-name {
+    color: #fff; /* Chữ trắng trên nền tối */
+}
+
+/* Hiệu ứng viền Neon chạy quanh khi Hover */
+.xem-nhieu .product-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent, 
+        transparent, 
+        transparent, 
+        #00fffc /* Màu Cyan Neon */
+    );
+    animation: rotateNeon 4s linear infinite;
+    display: none; /* Mặc định ẩn */
+}
+
+.xem-nhieu .product-card:hover::before {
+    display: block;
+}
+
+.xem-nhieu .product-card::after {
+    content: '';
+    position: absolute;
+    inset: 4px; /* Tạo độ dày cho viền */
+    background: #fff; /* Trả lại nền trắng bên trong */
+    border-radius: 15px;
+    z-index: 1;
+}
+
+/* Đưa nội dung lên trên lớp viền */
+.xem-nhieu .product-card-img, 
+.xem-nhieu .product-card-body {
+    position: relative;
+    z-index: 2;
+}
+
+/* Nhãn "VIEW" kiểu bảng hiệu Neon */
+.xem-nhieu .swiper-slide::after {
+    content: "MOST VIEWED";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    color: #ff0055; /* Màu hồng Neon */
+    border: 2px solid #ff0055;
+    padding: 3px 8px;
+    font-size: 9px;
+    font-weight: bold;
+    border-radius: 4px;
+    z-index: 10;
+    text-shadow: 0 0 5px #ff0055;
+    box-shadow: 0 0 5px #ff0055, inset 0 0 5px #ff0055;
+    animation: blinkNeon 1.5s infinite;
+}
+
+@keyframes rotateNeon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes blinkNeon {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.3; }
+}
+
+.ban-chay {
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+/* Tạo hiệu ứng viền phát sáng nhẹ cho toàn bộ Slider Bán Chạy */
+.ban-chay .product-card {
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+/* Khi di chuột vào card của phần bán chạy */
+.ban-chay .product-card:hover {
+    border-color: #ffc107; /* Màu vàng Gold */
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4); /* Hiệu ứng tỏa sáng vàng */
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Thêm một dải ruy băng "Best Seller" nhỏ ở góc card */
+.ban-chay .swiper-slide::before {
+    content: "HOT";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient đỏ cam rực rỡ */
+    color: white;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: pulseBling 1.5s infinite; /* Hiệu ứng nhịp đập */
+}
+
+/* Animation cho nhãn HOT */
+@keyframes pulseBling {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Làm cho tiêu đề "MÓN BÁN CHẠY NHẤT" rực rỡ hơn */
+.ban-chay .section-title {
+    background: linear-gradient(135deg, #451715 0%, #a0522d 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng ánh sáng chạy ngang qua tiêu đề */
+.ban-chay .section-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    animation: shineTitle 3s infinite;
+}
+
+@keyframes shineTitle {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+.btn-bling {
+    background: linear-gradient(135deg, #c0392b, #451715) !important;
+    border: 1px solid #ffc107 !important;
+}
+
 /* ======================================================
    PRODUCT GRID & CARDS
    ====================================================== */
@@ -557,6 +711,82 @@ header {
 .mon-moi {
     position: relative;
     padding: 60px 20px; /* Giữ khoảng cách chung cho section */
+}
+
+/* Hiệu ứng khung hình theo phong cách Glassmorphism (Kính mờ) */
+.mon-moi .product-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 1;
+}
+
+/* Hiệu ứng hào quang màu sắc (Holographic) khi hover */
+.mon-moi .product-card:hover {
+    transform: translateY(-12px) rotate(1deg);
+    box-shadow: 
+        -5px -5px 20px rgba(173, 216, 230, 0.4), 
+        5px 5px 20px rgba(255, 182, 193, 0.4);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Nhãn NEW kiểu tinh thể lấp lánh */
+.mon-moi .swiper-slide::after {
+    content: "NEW";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #00dbde 0%, #fc00ff 100%); /* Màu xanh tím hiện đại */
+    color: white;
+    padding: 5px 15px;
+    font-size: 11px;
+    font-weight: 900;
+    border-radius: 2px;
+    z-index: 10;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: rainbowBling 3s linear infinite;
+}
+
+/* Animation chuyển màu cầu vồng cho nhãn New */
+@keyframes rainbowBling {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Hiệu ứng tia sét/ánh kim chạy dọc Card khi hover */
+.mon-moi .product-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.8s;
+    z-index: 2;
+}
+
+.mon-moi .product-card:hover::before {
+    left: 150%;
+}
+
+/* Làm cho ảnh sản phẩm có độ trong suốt và sắc nét */
+.mon-moi .product-card-img img {
+    filter: saturate(1.1);
+    transition: 0.5s;
+}
+
+.mon-moi .product-card:hover .product-card-img img {
+    filter: saturate(1.3) brightness(1.1);
 }
 
 /* Lớp bọc mới để nút bấm căn theo khung này */
