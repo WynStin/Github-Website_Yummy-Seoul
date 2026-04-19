@@ -6,51 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[Tháng 3 - 4] Chào hè Giảm 30% đồ uống | Yummy Seoul</title>
     <link rel="stylesheet" href="../../Public/css/home.css" />
+    <link rel="stylesheet" href="../../Public/css/summer_deal.css" />
     <link rel="icon" type="image/x-icon" href="../../Public/img/homepage/logo.png">
-    <style>
-        .news-article {
-            max-width: 900px;
-            margin: 50px auto;
-            background: #fff;
-            border-radius: 30px;
-            /* Bo góc tròn tròn đồng bộ */
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        .article-banner {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-        }
-
-        .article-body {
-            padding: 40px;
-            line-height: 1.8;
-            color: var(--text-dark);
-        }
-
-        .promo-highlight {
-            background: var(--baby-yellow);
-            color: #C0392B;
-            /* Màu đỏ đất của bạn */
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 30px 0;
-            border: 2px dashed #C0392B;
-        }
-
-        .note-box {
-            background: var(--baby-cream);
-            padding: 15px 25px;
-            border-left: 5px solid var(--red-brown);
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 
 <body>
