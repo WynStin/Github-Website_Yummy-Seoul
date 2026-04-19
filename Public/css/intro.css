@@ -1,0 +1,141 @@
+/* Sử dụng biến màu từ home.css để đồng bộ thương hiệu */
+
+.intro-page-wrapper {
+    background: var(--baby-cream);
+    position: relative;
+    overflow: hidden;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.container-custom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* --- ANIMATION HỌA TIẾT BAY BỔNG --- */
+@keyframes floatAnim {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-decor div {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.5;
+    animation: floatAnim 7s ease-in-out infinite;
+}
+
+.blossom-1 { top: 10%; left: 3%; width: 45px; height: 45px; background: var(--baby-pink); border-radius: 50% 0 50% 0; }
+.blossom-2 { top: 75%; right: 8%; width: 35px; height: 35px; background: var(--light-pink); border-radius: 0 50% 0 50%; animation-delay: 1.5s; }
+.blossom-3 { bottom: 5%; left: 15%; width: 25px; height: 25px; background: var(--pink-soft); border-radius: 50% 0; opacity: 0.3 !important; }
+.leaf-1 { top: 20%; right: 5%; width: 30px; height: 30px; background: var(--gold-light); border-radius: 50% 0; animation-delay: 3s; }
+.heart-1 { bottom: 25%; right: 20%; width: 18px; height: 18px; background: var(--red-accent); transform: rotate(-45deg); opacity: 0.2 !important; }
+
+/* --- NỘI DUNG VĂN BẢN --- */
+.intro-flex-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.intro-handwritten {
+    font-family: 'Dancing Script', cursive;
+    color: var(--gold);
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.intro-text-section h1 {
+    font-size: 65px;
+    color: var(--red-brown);
+    margin-bottom: 20px;
+}
+
+.intro-lead {
+    font-size: 22px;
+    color: var(--brown-mid);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.intro-story {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 500px;
+}
+
+.btn-polaroid-style {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 14px 35px;
+    background: var(--red-brown);
+    color: var(--baby-yellow);
+    border-radius: 50px;
+    font-weight: 700;
+    transition: 0.3s;
+    box-shadow: var(--shadow);
+}
+
+.btn-polaroid-style:hover {
+    background: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* --- KHUNG ẢNH POLAROID --- */
+.intro-gallery-wrap {
+    position: relative;
+    height: 520px;
+}
+
+.polaroid-frame {
+    position: absolute;
+    background: #fff;
+    padding: 15px 15px 50px 15px;
+    width: 260px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border: 1px solid #f0f0f0;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-frame img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.polaroid-label {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 22px;
+    color: var(--text-mid);
+}
+
+.p-1 { transform: rotate(-7deg); top: 10px; left: 0; z-index: 5; }
+.p-2 { transform: rotate(6deg); top: 140px; left: 190px; z-index: 4; }
+.p-3 { transform: rotate(-4deg); top: 300px; left: 30px; z-index: 6; }
+
+.polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.1);
+    z-index: 20;
+    box-shadow: var(--shadow-hover);
+}
+
+/* Điều chỉnh khi xem trên điện thoại */
+@media (max-width: 1000px) {
+    .intro-flex-container { grid-template-columns: 1fr; text-align: center; }
+    .intro-story { margin: 0 auto; }
+    .intro-gallery-wrap { height: auto; display: flex; flex-direction: column; align-items: center; gap: 30px; margin-top: 50px; }
+    .polaroid-frame { position: static; transform: none !important; }
+}

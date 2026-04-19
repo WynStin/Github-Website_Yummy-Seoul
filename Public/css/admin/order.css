@@ -1,0 +1,55 @@
+:root {
+    --red-brown: #5d2620;
+    --brown-mid: #966f5d;
+    --baby-cream: #fef9f1;
+    --white: #ffffff;
+    --gold-primary: #f59e0b;
+    --gold-light: #fef3c7;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Asap', sans-serif; background-color: var(--baby-cream); color: var(--red-brown); }
+
+.admin-container { display: flex; }
+
+/* SIDEBAR FIX */
+.admin-sidebar { width: 260px; background: var(--red-brown); color: white; position: fixed; height: 100vh; }
+.sidebar-logo { padding: 25px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-logo img { width: 45px; height: 45px; }
+.sidebar-nav { padding: 20px 0; }
+.nav-link { display: flex; align-items: center; gap: 12px; padding: 15px 25px; color: #dfced5; text-decoration: none; }
+.nav-link.active { background: rgba(255,255,255,0.1); color: white; border-left: 4px solid var(--gold-primary); }
+
+/* MAIN CONTENT */
+.admin-main { flex: 1; margin-left: 260px; padding: 40px; }
+.card { background: var(--white); border-radius: 15px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+
+/* FIX THANH TÌM KIẾM */
+.filter-section { display: flex; gap: 20px; align-items: center; }
+.search-box { flex: 2; position: relative; display: flex; align-items: center; }
+.search-box i { position: absolute; left: 15px; color: var(--gold-primary); }
+.search-box input { width: 100%; padding: 12px 15px 12px 45px; border: 1px solid var(--gold-light); border-radius: 10px; outline: none; }
+.filter-box { flex: 1; }
+.filter-box select { width: 100%; padding: 12px; border: 1px solid var(--gold-light); border-radius: 10px; outline: none; cursor: pointer; }
+
+/* BẢNG ĐƠN HÀNG */
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th { text-align: left; padding: 15px; border-bottom: 2px solid var(--gold-light); color: var(--brown-mid); text-transform: uppercase; font-size: 13px; }
+.admin-table td { padding: 15px; border-bottom: 1px solid var(--gold-light); vertical-align: middle; }
+
+.price-text { font-weight: 700; color: var(--red-brown); }
+.user-name { font-weight: 600; }
+.pay-method { color: var(--brown-mid); font-style: italic; }
+
+/* MÀU SẮC TRẠNG THÁI */
+.badge { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; }
+.status-đã-đặt { background: #e0f2fe; color: #0369a1; } /* Xanh dương - Mới */
+.status-đang-xử-lý { background: #fef3c7; color: #b45309; } /* Vàng - Chờ */
+.status-đang-giao { background: #fae8ff; color: #a21caf; } /* Tím - Ship */
+.status-hoàn-thành { background: #dcfce7; color: #166534; } /* Xanh lá - Xong */
+.status-đã-hủy { background: #fee2e2; color: #991b1b; } /* Đỏ - Hủy */
+
+.action-btns { display: flex; gap: 8px; }
+.btn-view, .btn-edit { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; }
+.btn-view { background: var(--gold-light); color: var(--gold-primary); }
+.btn-edit { background: #eee; color: #555; }
