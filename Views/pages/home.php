@@ -38,45 +38,34 @@ $newProducts = $productModel->getProducts('all', '', 'default', 4, 0); // Lấy 
   <?php include 'layout/header.php'; ?>
 
   <!-- ======= HERO CAROUSEL ======= -->
-  <section class="hero" id="hero">
-    <div class="hero-slides" id="heroSlides">
-      <!-- Slide 1 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <img
-            src="../../Public/img/homepage/banner_yummy.png"
-            alt="Banner 1"
-            onerror="this.style.display = 'none'" />
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero" id="hero">
+        <div class="hero-slides" id="heroSlides">
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner_yummy.png" alt="Banner 1" />
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner_center.png" alt="Banner 2" />
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner2.jpg" alt="Banner 3" />
+            </div>
+          </div>
         </div>
-        <div class="hero-overlay"></div>
-      </div>
-      <!-- Slide 2 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <img
-            src="../../Public/img/homepage/banner_center.png"
-            alt="Banner 2"
-            onerror="this.style.display = 'none'" />
+        <button class="hero-btn-prev" id="heroPrev">‹</button>
+        <button class="hero-btn-next" id="heroNext">›</button>
+        <div class="hero-dots" id="heroDots">
+          <button class="hero-dot active"></button>
+          <button class="hero-dot"></button>
+          <button class="hero-dot"></button>
         </div>
-        <div class="hero-overlay"></div>
       </div>
-      <!-- Slide 3 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <img
-            src="../../Public/img/homepage/banner2.jpg"
-            alt="Banner 3"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="hero-overlay"></div>
-      </div>
-    </div>
-    <button class="hero-btn-prev" id="heroPrev">‹</button>
-    <button class="hero-btn-next" id="heroNext">›</button>
-    <div class="hero-dots" id="heroDots">
-      <button class="hero-dot active"></button>
-      <button class="hero-dot"></button>
-      <button class="hero-dot"></button>
     </div>
   </section>
 

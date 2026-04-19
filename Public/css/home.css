@@ -383,14 +383,26 @@ header {
   color: inherit;
 }
 
-/* ======================================================
-   HERO CAROUSEL
-   ====================================================== */
+.hero-section {
+  padding: 15px 0; /* Giảm khoảng cách trên dưới */
+}
+
+.hero-container {
+  max-width: 1100px; /* Thu hẹp chiều ngang lại một chút cho xinh */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .hero {
   position: relative;
   overflow: hidden;
-  height: 420px;
+  height: 380px;     /* Chiều cao khung hình */
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   z-index: 1;
+  
+  /* CHỈNH SỬA TẠI ĐÂY: Chuyển màu nền thừa sang màu nâu đỏ của Topbar */
+  background-color: var(--red-brown, #451715); 
 }
 
 #heroSlides {
@@ -401,83 +413,92 @@ header {
 
 .hero-slide {
   min-width: 100%;
-  position: relative;
+  height: 100%;
 }
 
 .hero-img-placeholder {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hero-img-placeholder img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* Giữ contain để không mất thông tin địa chỉ/SĐT trên banner */
+  object-fit: contain; 
+  object-position: center;
+  /* Đảm bảo ảnh không có màu nền trắng riêng lẻ */
+  background: transparent; 
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.1);
-}
-
+/* Nút bấm điều hướng nhỏ lại cho khớp với banner nhỏ */
 .hero-btn-prev,
 .hero-btn-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--baby-yellow);
-  border: 1px solid var(--red-brown);
+  background: var(--baby-yellow); /* Màu vàng nổi bật trên nền nâu */
+  border: 2px solid var(--red-brown); /* Viền đậm hơn tí cho nét */
   color: var(--red-brown);
-  width: 50px;
+  
+  /* TĂNG KÍCH THƯỚC NÚT */
+  width: 50px; 
   height: 50px;
+  
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  
+  /* TĂNG KÍCH THƯỚC BIỂU TƯỢNG MŨI TÊN */
+  font-size: 30px; 
+  font-weight: bold;
+  
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
+/* CĂN GIỮA KHOẢNG NÂU: 
+   Vì ảnh contain ở giữa, khoảng nâu hai bên khá rộng, 
+   ta đẩy nút ra xa mép một chút để nó vào tâm vùng nâu. */
 .hero-btn-prev {
-  left: 40px;
+  left: 15px; /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
 .hero-btn-next {
-  right: 40px;
+  right: 15px; /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
+/* Hiệu ứng khi di chuột vào */
 .hero-btn-prev:hover,
 .hero-btn-next:hover {
-  background: var(--gold-light);
+  background: var(--white);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .hero-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  z-index: 10;
+  gap: 8px;
 }
 
 .hero-dot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
   border: none;
-  cursor: pointer;
 }
 
 .hero-dot.active {
   background: var(--red-brown);
+  width: 20px;
+  border-radius: 10px;
 }
 
 /* ======================================================
