@@ -1,6 +1,6 @@
 <?php 
 // Kết nối CSDL
-include '../../../Config/db.php'; 
+include '../../SQL_Connect/db.php'; 
 
 try {
     // 1. Thống kê tổng doanh thu (sử dụng cột 'tong_gia')
@@ -31,23 +31,23 @@ try {
     <title>Dashboard | Yummy Seoul</title>
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../../Public/css/admin/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
     <div class="admin-container">
         <aside class="admin-sidebar">
             <div class="sidebar-logo">
-                <img src="../../../Public/img/homepage/logo.png" alt="Logo">
+                <img src="../../Image/homepage/logo.png" alt="Logo">
                 <span>Yummy Admin</span>
             </div>
             <nav class="sidebar-nav">
                 <a href="dashboard.php" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                <a href="admin_products.php" class="nav-link"><i class="fa-solid fa-bowl-food"></i> Quản lý món ăn</a>
-                <a href="admin_categories.php" class="nav-link"><i class="fa-solid fa-list"></i> Quản lý danh mục</a>
-                <a href="admin_orders.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
-                <a href="admin_users.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
+                <a href="products.php" class="nav-link"><i class="fa-solid fa-bowl-food"></i> Quản lý món ăn</a>
+                <a href="category.php" class="nav-link"><i class="fa-solid fa-list"></i> Quản lý danh mục</a>
+                <a href="orders.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
+                <a href="users.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
                 <div class="nav-divider"></div>
-                <a href="../home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
+                <a href="../../UI_User/php/home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
             </nav>
         </aside>
 

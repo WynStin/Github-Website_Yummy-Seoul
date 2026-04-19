@@ -15,7 +15,7 @@ document.getElementById('adminLoginForm').addEventListener('submit', function (e
 
     // Thay đổi thông tin admin tại đây
     if (email === 'admin@yummyseoul.com' && pass === '123456') {
-        window.location.href = '../admin/index.php'; // Đường dẫn trang quản lý
+        window.location.href = '../../UI_Manager/php/dashboard.php'; // Đường dẫn trang quản lý
     } else {
         alert('Sai tài khoản hoặc mật khẩu quản lý!');
     }

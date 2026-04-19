@@ -1,6 +1,6 @@
 <?php 
 // Kết nối CSDL
-include '../../../Config/db.php'; 
+include '../../SQL_Connect/db.php'; 
 
 try {
     // Lấy danh sách danh mục từ bảng danh_muc_mon_an
@@ -20,13 +20,13 @@ try {
     <title>Quản lý danh mục | Yummy Seoul</title>
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../../Public/css/admin/category.css">
+    <link rel="stylesheet" href="../css/category.css">
 </head>
 <body>
     <div class="admin-container">
         <aside class="admin-sidebar">
             <div class="sidebar-logo">
-                <img src="../../../Public/img/homepage/logo.png" alt="Logo">
+                <img src="../../Image/homepage/logo.png" alt="Logo">
                 <span>Yummy Admin</span>
             </div>
             <nav class="sidebar-nav">
@@ -36,7 +36,7 @@ try {
                 <a href="order.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
                 <a href="member.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
                 <div class="nav-divider"></div>
-                <a href="../home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
+                <a href="../../UI_User/php/home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
             </nav>
         </aside>
 
@@ -84,6 +84,6 @@ try {
             </div>
         </main>
     </div>
-    <script src="../../../Public/js/admin/category.js"></script>
+    <script src="../js/category.js"></script>
 </body>
 </html>
