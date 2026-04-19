@@ -382,14 +382,16 @@ header {
   text-decoration: none;
   color: inherit;
 }
-
+/* ======================================================
+   HERO SECTION
+   ====================================================== */
 .hero-section {
   padding: 15px 0;
   /* Giảm khoảng cách trên dưới */
 }
 
 .hero-container {
-  max-width: 1100px;
+  max-width: 1600px;
   /* Thu hẹp chiều ngang lại một chút cho xinh */
   margin: 0 auto;
   padding: 0 20px;
@@ -405,7 +407,8 @@ header {
   z-index: 1;
 
   /* CHỈNH SỬA TẠI ĐÂY: Chuyển màu nền thừa sang màu nâu đỏ của Topbar */
-  background-color: var(--red-brown, #451715);
+  background: url("/Github-Website_Yummy-Seoul/Public/img/homepage/Caro_Banner.png");
+  background-attachment: fixed;
 }
 
 #heroSlides {
@@ -468,12 +471,12 @@ header {
    Vì ảnh contain ở giữa, khoảng nâu hai bên khá rộng, 
    ta đẩy nút ra xa mép một chút để nó vào tâm vùng nâu. */
 .hero-btn-prev {
-  left: 15px;
+  left: 20px;
   /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
 .hero-btn-next {
-  right: 15px;
+  right: 20px;
   /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
 
@@ -512,7 +515,7 @@ header {
    SECTIONS GENERAL
    ====================================================== */
 .section {
-  padding: 60px 40px;
+  padding: 10px 40px;
 }
 
 .section-title-wrap {
@@ -718,7 +721,7 @@ header {
    ====================================================== */
 .hom-nay-inner {
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 350px 1fr; /* Cột trái chứa văn bản, cột phải chứa danh mục */
   gap: 50px;
   align-items: center;
 }
@@ -752,10 +755,56 @@ header {
   transform: scale(1.05);
 }
 
-.hom-nay-products {
+/* Lưới hiển thị 6 danh mục */
+.hom-nay-categories {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 cột mỗi hàng */
   gap: 20px;
+}
+
+/* Kiểu dáng từng ô danh mục */
+.cat-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.cat-card:hover {
+  transform: translateY(-8px);
+  background: var(--baby-yellow);
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--red-brown);
+}
+
+.cat-icon {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.cat-name {
+  font-weight: 700;
+  color: var(--red-brown);
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 992px) {
+  .hom-nay-inner {
+    grid-template-columns: 1fr; /* Chuyển về 1 cột dọc */
+    text-align: center;
+  }
+  .hom-nay-categories {
+    grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột danh mục */
+  }
 }
 
 /* ======================================================
@@ -768,6 +817,7 @@ header {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: 50px; /* Thêm dòng này để đẩy khoảng cách ra */
 }
 
 .about-bg {

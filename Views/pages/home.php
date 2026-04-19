@@ -123,45 +123,34 @@ $newProducts = $productModel->getTop10Newest();
           Khám phá ngay những món ăn đến từ xứ sở kim chi,
           hứa hẹn sẽ đem lại những trải nghiệm ẩm thực độc đáo đến với bạn!
         </p>
-        <a href="#" class="btn-datngay">Đặt ngay</a>
+        <a href="product.php" class="btn-datngay">Đặt ngay</a>
       </div>
-      <div class="hom-nay-products">
-        <div class="product-card fade-up delay-1">
-          <div class="product-card-img">
-            <img
-              src="../../Public/img/monan/kimbapchien.jpg"
-              alt="Kimbap chiên"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Kimbap chiên</div>
-            <div class="product-price">60.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-2">
-          <div class="product-card-img">
-            <img
-              src="../../Public/img/monan/gakhongxuong.jpg"
-              alt="Gà rán không xương"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Gà rán không xương</div>
-            <div class="product-price">120.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-3">
-          <div class="product-card-img">
-            <img
-              src="../../Public/img/monan/milanh.jpg"
-              alt="Mì lạnh Naengmyeon"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Mì lạnh Naengmyeon</div>
-            <div class="product-price">90.000 VND</div>
-          </div>
-        </div>
+
+      <div class="hom-nay-categories">
+        <a href="product.php?category=1" class="cat-card fade-up delay-1">
+          <div><img src="../../Public/img/monan/comchienkimchi.jpg" alt="Cơm (Rice)" /></div>
+          <div class="cat-name">Cơm (Rice)</div>
+        </a>
+        <a href="product.php?category=2" class="cat-card fade-up delay-2">
+          <div><img src="../../Public/img/monan/gasottuongtoi.jpg" height="230px" alt="Gà (Chicken)" /></div>
+          <div class="cat-name">Gà (Chicken)</div>
+        </a>
+        <a href="product.php?category=3" class="cat-card fade-up delay-3">
+          <div><img src="../../Public/img/monan/milanh.jpg" alt="Mì (Noodles)" /></div>
+          <div class="cat-name">Mì (Noodles)</div>
+        </a>
+        <a href="product.php?category=4" class="cat-card fade-up delay-1">
+          <div><img src="../../Public/img/monan/lauquandoi.jpg" alt="Lẩu & Súp (Stew)" /></div>
+          <div class="cat-name">Lẩu & Súp (Stew)</div>
+        </a>
+        <a href="product.php?category=5" class="cat-card fade-up delay-2">
+          <div><img src="../../Public/img/monan/khoaitaychien.jpg" alt="Đồ ăn nhẹ (Snacks)" /></div>
+          <div class="cat-name">Đồ ăn nhẹ (Snacks)</div>
+        </a>
+        <a href="product.php?category=6" class="cat-card fade-up delay-3">
+          <div><img src="../../Public/img/monan/trasuakhoaimon.jpg" height="200px" alt="Đồ uống (Drinks)" /></div>
+          <div class="cat-name">Đồ uống (Drinks)</div>
+        </a>
       </div>
     </div>
   </section>
@@ -183,7 +172,7 @@ $newProducts = $productModel->getTop10Newest();
         <br /><br />
         Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với đồ nóng giữ nhiệt và đồ uống tách đá riêng, cùng mức phí ship hợp lý theo từng khu vực để khách yên tâm khi đặt món.
       </p>
-      <a href="#" class="about-xemthem">Xem thêm</a>
+      <a href="intro.php" class="about-xemthem">Xem thêm</a>
     </div>
   </section>
 
@@ -282,7 +271,7 @@ $newProducts = $productModel->getTop10Newest();
             Mùa hè nóng bức... Phải giải nhiệt ngay thôi. Toàn bộ đồ uống giảm
             tới 30%...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="summer_deal.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
       <div class="news-card fade-up delay-2">
@@ -297,7 +286,7 @@ $newProducts = $productModel->getTop10Newest();
           <div class="news-card-desc">
             WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu đãi...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="offer.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
       <div class="news-card fade-up delay-3">
@@ -313,7 +302,7 @@ $newProducts = $productModel->getTop10Newest();
             Đội ngũ phát triển Yummy Seoul xin chân thành cảm ơn sự tin tưởng
             và ủng hộ từ khách hàng...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="DevThanks.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
     </div>
