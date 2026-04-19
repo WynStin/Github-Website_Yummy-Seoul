@@ -121,10 +121,14 @@ $bestSellerProducts = $productModel->getTop10BestSeller();
       <div class="hom-nay-text fade-up">
         <h2>HÔM NAY ĂN GÌ?</h2>
         <p>
-          Khám phá ngay những món ăn đến từ xứ sở kim chi,
-          hứa hẹn sẽ đem lại những trải nghiệm ẩm thực độc đáo đến với bạn!
+          Nếu bạn đang băn khoăn không biết chọn món nào, hãy để Yummy Seoul chọn giúp bạn một món cực ngon nhé!
         </p>
-        <a href="product.php" class="btn-datngay">Đặt ngay</a>
+
+        <button id="btnRandomFood" class="btn-datngay btn-random-bling">
+          <i class="fas fa-dice"></i> GỢI Ý MÓN ĂN
+        </button>
+
+        <div id="randomResult" class="random-result-text"></div>
       </div>
 
       <div class="hom-nay-categories">
@@ -155,7 +159,6 @@ $bestSellerProducts = $productModel->getTop10BestSeller();
       </div>
     </div>
   </section>
-
   <section class="section xem-nhieu">
     <div class="section-title-wrap">
       <div class="section-title">MÓN XEM NHIỀU NHẤT</div>

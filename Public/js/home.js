@@ -94,5 +94,35 @@
       }
     });
   });
+
+  // Mở file Public/js/home.js
+  document.addEventListener("DOMContentLoaded", function () {
+    // ... (Giữ nguyên các đoạn code khởi tạo Swiper cũ) ...
+
+    // THÊM LOGIC RANDOM VÀO ĐÂY
+    const btnRandom = document.getElementById('btnRandomFood');
+    const resultDisplay = document.getElementById('randomResult');
+
+    if (btnRandom) {
+      btnRandom.addEventListener('click', function () {
+        const productElements = document.querySelectorAll('.product-name');
+        const foodList = Array.from(productElements).map(el => el.textContent.trim());
+
+        if (foodList.length > 0) {
+          resultDisplay.classList.remove('show');
+          btnRandom.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ĐANG CHỌN...';
+
+          setTimeout(() => {
+            const randomIndex = Math.floor(Math.random() * foodList.length);
+            const chosenFood = foodList[randomIndex];
+            resultDisplay.innerHTML = `Thử ngay: <span style="color: #c0392b;">${chosenFood}</span> ✨`;
+            resultDisplay.classList.add('show');
+            btnRandom.innerHTML = '<i class="fas fa-dice"></i> GỢI Ý MÓN ĂN';
+          }, 700);
+        }
+      });
+    }
+  });
+
   startAuto();
 })();
