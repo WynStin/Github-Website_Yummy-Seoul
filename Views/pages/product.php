@@ -1,6 +1,12 @@
 <?php
-// 1. Kiểm tra xem đây có phải là yêu cầu lấy dữ liệu từ Javascript không
-// Xử lý logic lấy giá trị từ thanh tìm kiếm
+// 1. Nạp các tệp cấu hình và Model cần thiết
+require_once '../../Config/db.php';
+require_once '../../Models/ProductModel.php';
+
+// Khởi tạo đối tượng Model
+$productModel = new ProductModel($pdo);
+
+// 2. Xử lý logic tiêu đề hiển thị (dành cho yêu cầu không phải AJAX)
 $search = $_GET['search'] ?? '';
 $displayTitle = "Tất cả sản phẩm";
 
@@ -8,77 +14,23 @@ if (!empty($search)) {
     $displayTitle = "Kết quả tìm kiếm cho: '" . htmlspecialchars($search) . "'";
 }
 
+// 3. Kiểm tra xem đây có phải là yêu cầu lấy dữ liệu (AJAX) từ Javascript không
 if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
-    require_once '../../Config/db.php';
     header('Content-Type: application/json');
-
     $category = $_GET['category'] ?? 'all';
     $sort = $_GET['sort'] ?? 'default';
-    $search = $_GET['search'] ?? ''; // Lấy từ khóa tìm kiếm
+    $search = $_GET['search'] ?? '';
+    $minPrice = $_GET['minPrice'] ?? null; // Nhận giá min
+    $maxPrice = $_GET['maxPrice'] ?? null; // Nhận giá max
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
     $limit = 6;
     $offset = ($page - 1) * $limit;
 
     try {
-        // Khởi tạo mảng điều kiện và tham số để lọc linh hoạt
-        $whereClauses = [];
-        $params = [];
-
-        // Lọc theo danh mục
-        if ($category !== 'all') {
-            $whereClauses[] = "id_danh_muc = :cat";
-            $params[':cat'] = $category;
-        }
-
-        // Lọc theo từ khóa tìm kiếm (nếu có)
-        if (!empty($search)) {
-            $whereClauses[] = "ten_mon LIKE :search";
-            $params[':search'] = "%$search%";
-        }
-
-        // Tổng hợp câu lệnh WHERE
-        $where = !empty($whereClauses) ? "WHERE " . implode(" AND ", $whereClauses) : "";
-
-        // --- BỔ SUNG LOGIC SẮP XẾP ---
-        $orderBy = "ORDER BY id_mon_an DESC"; // Mặc định
-        switch ($sort) {
-            case 'priceAsc':
-                $orderBy = "ORDER BY gia_ban ASC";
-                break;
-            case 'priceDesc':
-                $orderBy = "ORDER BY gia_ban DESC";
-                break;
-            case 'nameAsc':
-                $orderBy = "ORDER BY ten_mon ASC";
-                break;
-            case 'nameDesc':
-                $orderBy = "ORDER BY ten_mon DESC";
-                break;
-        }
-
-        // 2. Truy vấn lấy danh sách sản phẩm
-        $sql = "SELECT * FROM mon_an $where $orderBy LIMIT :limit OFFSET :offset";
-        $stmt = $pdo->prepare($sql);
-
-        // Gán các giá trị lọc (danh mục, tìm kiếm)
-        foreach ($params as $key => $val) {
-            $stmt->bindValue($key, $val);
-        }
-
-        // Gán giá trị phân trang
-        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->execute();
-        $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // 3. Tính tổng số trang để phân trang
-        $countSql = "SELECT COUNT(*) FROM mon_an $where";
-        $countStmt = $pdo->prepare($countSql);
-        foreach ($params as $key => $val) {
-            $countStmt->bindValue($key, $val);
-        }
-        $countStmt->execute();
-        $totalPages = ceil($countStmt->fetchColumn() / $limit);
+        $products = $productModel->getProducts($category, $search, $sort, $minPrice, $maxPrice, $limit, $offset);
+        $totalItems = $productModel->countProducts($category, $search, $minPrice, $maxPrice);
+        $totalPages = ceil($totalItems / $limit);
 
         echo json_encode([
             'success' => true,
@@ -93,8 +45,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
     }
 }
 
-// Nếu không phải yêu cầu AJAX, trang web sẽ chạy tiếp xuống phần HTML bên dưới như bình thường
-require_once '../../Config/db.php';
+// Nếu không phải yêu cầu AJAX, trang web sẽ tiếp tục chạy xuống phần HTML bên dưới
 ?>
 
 <!DOCTYPE html>
@@ -122,12 +73,12 @@ require_once '../../Config/db.php';
     <div class="mobile-category-bar">
         <div class="nav-scroll-container">
             <button class="nav-item active" data-category="all">Tất cả</button>
-            <button class="nav-item" data-category="com">Cơm (Rice)</button>
-            <button class="nav-item" data-category="ga">Gà (Chicken)</button>
-            <button class="nav-item" data-category="mi">Mì (Noodles)</button>
-            <button class="nav-item" data-category="lau-sup">Lẩu & Súp</button>
-            <button class="nav-item" data-category="an-nhe">Đồ ăn nhẹ</button>
-            <button class="nav-item" data-category="do-uong">Đồ uống</button>
+            <button class="nav-item" data-category="1">Cơm (Rice)</button>
+            <button class="nav-item" data-category="2">Gà (Chicken)</button>
+            <button class="nav-item" data-category="3">Mì (Noodles)</button>
+            <button class="nav-item" data-category="4">Lẩu & Súp</button>
+            <button class="nav-item" data-category="5">Đồ ăn nhẹ</button>
+            <button class="nav-item" data-category="6">Đồ uống</button>
         </div>
     </div>
 
@@ -169,6 +120,14 @@ require_once '../../Config/db.php';
                     </button>
 
                     <span class="sort-label">Sắp xếp:</span>
+
+                    <div class="price-filter" style="display: flex; gap: 5px; align-items: center; margin-right: 15px;">
+                        <input type="number" id="minPriceInput" placeholder="Giá từ" style="width: 80px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                        <span>-</span>
+                        <input type="number" id="maxPriceInput" placeholder="đến" style="width: 80px; padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+                        <button onclick="currentPage=1; loadProducts(currentCategory, currentSort, 1)" style="padding: 5px 10px; cursor: pointer; background: var(--red-brown); color: white; border: none; border-radius: 5px;">Lọc</button>
+                    </div>
+
                     <select class="sort-select" id="sortSelect">
                         <option value="default">Mặc định</option>
                         <option value="priceAsc">Giá tăng dần</option>

@@ -1,3 +1,18 @@
+<?php
+// 1. Nạp cấu hình database và Model
+require_once '../../Config/db.php';
+require_once '../../Models/ProductModel.php';
+
+// 2. Khởi tạo Model
+$productModel = new ProductModel($pdo);
+
+// 3. Lấy dữ liệu cho các section trên trang chủ
+$bestSellers = $productModel->getTop10BestSeller(); // Lấy top 10 bán chạy
+$newProducts = $productModel->getProducts('all', '', 'default', 4, 0); // Lấy 4 món mới nhất
+
+// Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
+?>
+
 <!doctype html>
 <html lang="vi">
 

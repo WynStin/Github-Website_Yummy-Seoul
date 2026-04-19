@@ -4,23 +4,37 @@ let currentPage = 1;
 let currentProductId = null;
 
 // Load sản phẩm
+// Cập nhật hàm loadProducts trong product.js
 async function loadProducts(category = 'all', sort = 'default', page = 1) {
     try {
-        // Lấy từ khóa từ thanh địa chỉ (URL)
         const urlParams = new URLSearchParams(window.location.search);
-        const searchQuery = urlParams.get('search') || ''; // Lấy giá trị sau dấu ?search=
+        
+        // Lấy từ khóa: Ưu tiên lấy từ URL (cho lần đầu load)
+        let searchQuery = urlParams.get('search') || ''; 
 
-        // Gửi yêu cầu AJAX có kèm theo tham số search
-        const response = await fetch(`product.php?ajax=1&category=${category}&sort=${sort}&page=${page}&search=${encodeURIComponent(searchQuery)}`);
+        // Nếu nhấn "Lọc" hoặc "Sắp xếp" mà ô tìm kiếm đang có chữ, phải lấy chữ đó
+        const headerSearchInput = document.querySelector('.search-box input') || document.querySelector('input[type="search"]');
+        if (headerSearchInput && headerSearchInput.value.trim() !== '') {
+            searchQuery = headerSearchInput.value.trim();
+        }
+
+        const minPrice = document.getElementById('minPriceInput')?.value || '';
+        const maxPrice = document.getElementById('maxPriceInput')?.value || '';
+
+        // Tạo query AJAX gửi lên server
+        const query = `ajax=1&category=${category}&sort=${sort}&page=${page}&search=${encodeURIComponent(searchQuery)}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
+
+        const response = await fetch(`product.php?${query}`);
         const data = await response.json();
 
         if (data.success) {
             displayProducts(data.products);
             displayPagination(data.totalPages, data.currentPage);
             
-            // Cập nhật tiêu đề hiển thị
+            // Cập nhật tiêu đề: Nếu có tìm kiếm thì hiện "Kết quả cho...", không thì hiện tên danh mục
+            const titleElement = document.getElementById('categoryTitle');
             if (searchQuery) {
-                document.getElementById('categoryTitle').textContent = `Kết quả cho: "${searchQuery}"`;
+                titleElement.textContent = `Kết quả cho: "${searchQuery}"`;
             } else {
                 updateCategoryTitle(category);
             }
