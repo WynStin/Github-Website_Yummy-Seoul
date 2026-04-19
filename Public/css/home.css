@@ -57,25 +57,73 @@ img {
    HEADER (TOPBAR + NAVBAR) - NORMAL POSITION
    ====================================================== */
 header {
-  position: relative; /* Thay đổi từ fixed sang relative */
+  position: relative;
+  /* Thay đổi từ fixed sang relative */
   z-index: 2000;
 }
 
 /* --- CSS CHO TOPBAR --- */
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
-  background-color: var(--red-brown, #451715);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Giảm padding bên trái để Logo lùi về sát lề hơn */
+    padding: 10px 40px 10px 20px; 
+    background-color: var(--red-brown, #451715);
 }
 
-/* Container bọc Search và Cart */
+/* Định dạng cho chữ bên cạnh Logo */
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa Logo và chữ */
+}
+
+.logo-text {
+    color: var(--baby-yellow); /* Sử dụng màu vàng nhạt của web */
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap; /* Không cho chữ nhảy xuống dòng */
+    letter-spacing: 0.5px;
+}
+
+/* Điều chỉnh thanh tìm kiếm nhỏ lại */
 .search-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Giảm flex-basis xuống để thanh search ngắn lại (ví dụ 550px) */
+    flex: 0 1 550px; 
+}
+
+/* Kiểu dáng nút tròn giống nút giỏ hàng */
+.admin-btn {
+  background-color: var(--baby-yellow);
+  /* Màu nền vàng nhạt giống tone web của bạn */
+  width: 42px;
+  /* Kích thước nhỏ gọn */
+  height: 42px;
+  border-radius: 50%;
+  /* Làm nút hình tròn */
   display: flex;
   align-items: center;
-  gap: 15px;
-  flex: 0 1 500px;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* Đổ bóng nhẹ cho mềm mại */
+}
+
+.admin-btn:hover {
+  background-color: var(--pink-soft);
+  /* Đổi màu nhẹ khi di chuột vào */
+  transform: translateY(-2px);
+  /* Nhích nhẹ lên trên */
+}
+
+.admin-btn svg {
+  display: block;
 }
 
 /* Thanh tìm kiếm */
@@ -85,7 +133,8 @@ header {
   border-radius: 50px;
   padding: 4px 4px 4px 20px;
   align-items: center;
-  width: 100%;
+  /* Đảm bảo thanh search chiếm hết không gian được chia trong container */
+  width: 100%; 
 }
 
 .search-bar input {
@@ -158,12 +207,13 @@ header {
 }
 
 /* --- CSS CHO NAVBAR --- */
+/* Đảm bảo Navbar cũng lùi về trái đồng bộ với Topbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
-  background-color: var(--pink-soft, #f2d9c8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px 10px 20px; 
+    background-color: var(--pink-soft, #f2d9c8);
 }
 
 .nav-links {
@@ -196,7 +246,8 @@ header {
 .nav-phone {
   display: flex;
   align-items: center;
-  gap: 10px; /* Khoảng cách giữa icon và số */
+  gap: 10px;
+  /* Khoảng cách giữa icon và số */
   background-color: var(--red-brown, #451715);
   color: #fff;
   padding: 8px 18px;
@@ -205,7 +256,8 @@ header {
 }
 
 .nav-phone svg {
-  flex-shrink: 0; /* Icon không bị bóp méo */
+  flex-shrink: 0;
+  /* Icon không bị bóp méo */
   transition: transform 0.3s ease;
 }
 
@@ -299,6 +351,7 @@ header {
 .hero-btn-prev {
   left: 40px;
 }
+
 .hero-btn-next {
   right: 40px;
 }
@@ -358,12 +411,10 @@ header {
 .section-divider {
   width: 200px;
   height: 3px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--gold-light),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      var(--gold-light),
+      transparent);
   margin-top: 15px;
 }
 
@@ -779,9 +830,11 @@ footer {
 .social-fb:hover {
   background: #1877f2;
 }
+
 .social-ig:hover {
   background: #e4405f;
 }
+
 .social-tk:hover {
   background: #000000;
 }
@@ -802,6 +855,7 @@ footer {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -815,12 +869,15 @@ footer {
 .delay-1 {
   animation-delay: 0.1s;
 }
+
 .delay-2 {
   animation-delay: 0.2s;
 }
+
 .delay-3 {
   animation-delay: 0.3s;
 }
+
 .delay-4 {
   animation-delay: 0.4s;
 }
@@ -832,6 +889,7 @@ footer {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -841,32 +899,40 @@ footer {
   body {
     padding-top: 160px;
   }
+
   body.header-scrolled {
     padding-top: 120px;
   }
+
   .topbar {
     height: auto;
     flex-direction: column;
     padding: 15px;
   }
+
   .search-bar {
     width: 100%;
     order: 3;
   }
+
   .product-grid,
   .news-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .hom-nay-inner,
   .best-seller-grid {
     grid-template-columns: 1fr;
   }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
   .navbar {
     height: auto;
   }
+
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;

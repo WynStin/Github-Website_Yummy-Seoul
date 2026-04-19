@@ -197,3 +197,9 @@ VALUES
 
 -- Mã 2: Miễn phí vận chuyển cho đơn hàng từ 300k
 ('FREESHIPKOREA', 0, 0.00, '2026-12-31 23:59:59', 'Có', 500, 300000.00, 'Hiệu lực');
+
+-- Thêm 1 quản lý
+INSERT INTO `nguoi_dung` 
+(`user_name`, `mat_khau`, `ho_ten`, `email`, `so_dien_thoai`, `dia_chi_mac_dinh`, `vai_tro`, `trang_thai`) 
+VALUES 
+('admin', '123456', 'Hàn Quốc Quản', 'admin@yummyseoul.com', '0912345678', 'Hà Nội', 'Quản lý', 'Hoạt động');
