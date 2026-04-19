@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../Public/css/home.css" />
     <link rel="stylesheet" href="../../Public/css/summer_deal.css" />
     <link rel="icon" type="image/x-icon" href="../../Public/img/homepage/logo.png">
-    <link rel="stylesheet" href="../../Public/css/intro.css">
 
 </head>
 
