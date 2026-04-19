@@ -1,14 +1,28 @@
 /* ==================== THIẾT LẬP CHUNG ==================== */
 :root {
-  --primary: #ff6b35;
-  --primary-dark: #e85d2a;
-  --text-heading: #1a1a1a;
-  --text-body: #4a4a4a;
+  --cream: #fdf6ec;
+  --cream-dark: #f5e9d5;
+  --brown-deep: #3b1a0e;
+  --brown-mid: #6b3a22;
+  --brown-light: #a0522d;
+  --gold: #c8922a;
+  --gold-light: #e2b96a;
+  --pink-soft: #f2d9c8;
+  --pink-card: #f8ede3;
+  --red-accent: #c0392b;
+  --text-dark: #2c1a0e;
+  --text-mid: #5a3825;
+  --text-light: #8b6047;
+  --white: #ffffff;
+  --red-brown: #451715;
+  --baby-pink: #ffb9d2;
+  --light-pink: #ffdbe8;
+  --baby-yellow: #ffeda3;
+  --baby-cream: #fffbe8;
   --text-placeholder: #9ca3af;
   --bg-page: #f8f9fa;
   --bg-card: #ffffff;
   --border-color: #e5e7eb;
-  --focus-ring: rgba(255, 107, 53, 0.25);
   --radius-md: 12px;
   --radius-sm: 8px;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -91,7 +105,6 @@ img {
 }
 
 .news-card-img {
-  /* height: 300px; */
   background: #eee;
 }
 
