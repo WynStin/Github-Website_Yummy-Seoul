@@ -145,49 +145,41 @@ INSERT INTO `danh_muc_mon_an` (`id_danh_muc`, `ten_danh_muc`, `mo_ta`) VALUES
 (5, 'Đồ ăn nhẹ (Snacks)', 'Món ăn đường phố phổ biến như Tokbokki, Chả cá'),
 (6, 'Đồ uống (Drinks)', 'Rượu Soju, nước gạo và các loại giải khát');
 
--- 2. CHÈN MÓN ĂN (Mỗi danh mục 5 món)
-INSERT INTO `mon_an` (`id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`, `so_luong_ton`) VALUES
--- DANH MỤC 1: CƠM
-(1, 'Cơm trộn Bibimbap', 'Cơm với 8 loại rau củ, thịt bò và trứng chần', 85000, 100),
-(1, 'Kimbap truyền thống', 'Cơm cuộn rong biển nhân xúc xích và rau củ', 50000, 80),
-(1, 'Cơm chiên Kimchi', 'Cơm chiên cay với kim chi cải thảo và trứng ốp la', 70000, 100),
-(1, 'Cơm bò xào Bulgogi', 'Cơm trắng ăn kèm thịt bò xào sốt mặn ngọt', 95000, 50),
-(1, 'Kimbap chiên xù', 'Cơm cuộn tẩm bột chiên giòn rụm bên ngoài', 65000, 40),
+-- CHÈN TẤT CẢ MÓN ĂN VÀO BẢNG mon_an
+INSERT INTO `mon_an` (`id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`, `hinh_anh`, `so_luong_ton`, `ngay_tao`) VALUES
+-- --- NHÓM 20 MÓN TẠO TRONG QUÁ KHỨ ---
+(1, 'Cơm trộn Bibimbap', 'Cơm với 8 loại rau củ, thịt bò và trứng chần', 85000, 'comtronbibimbap.jpg', 100, '2026-01-10 10:30:00'),
+(1, 'Kimbap truyền thống', 'Cơm cuộn rong biển nhân xúc xích và rau củ', 50000, 'kimbaptruyenthong.jpg', 80, '2026-01-12 08:15:00'),
+(1, 'Cơm chiên Kimchi', 'Cơm chiên cay với kim chi cải thảo và trứng ốp la', 70000, 'comchienkimchi.jpg', 100, '2026-01-15 14:20:00'),
+(2, 'Gà rán sốt cay', 'Gà chiên giòn rụm với sốt Yangnyeom truyền thống', 155000, 'garansotcay.jpg', 30, '2026-02-01 09:00:00'),
+(2, 'Gà sốt tương tỏi', 'Gà chiên vị mặn ngọt đậm đà mùi tỏi phi', 155000, 'gasottuongtoi.jpg', 30, '2026-02-05 10:30:00'),
+(2, 'Gà không xương chiên', 'Gà fillet tẩm bột chiên giòn dễ ăn cho trẻ em', 120000, 'gakhongxuong.jpg', 45, '2026-02-10 15:00:00'),
+(3, 'Mì tương đen Jajangmyeon', 'Mì trộn sốt đậu đen và thịt heo thái lựu', 75000, 'mituongden.jpg', 60, '2026-03-01 08:00:00'),
+(3, 'Mì lạnh Naengmyeon', 'Mì sợi nhỏ dùng với nước dùng đá lạnh thanh mát', 90000, 'milanh.jpg', 20, '2026-03-05 11:30:00'),
+(3, 'Mì cay Ramen hải sản', 'Mì gói Hàn Quốc nấu cay với tôm và mực', 65000, 'miramen.jpg', 100, '2026-03-07 12:00:00'),
+(3, 'Mì trộn cay Bibim-guksu', 'Mì sợi nhỏ trộn sốt ớt cay và rau sống', 70000, 'mitroncay.jpg', 50, '2026-03-10 14:15:00'),
+(4, 'Canh Kimchi đậu phụ', 'Súp kim chi nấu cùng thịt ba chỉ béo ngậy', 95000, 'canhkimchi.jpg', 40, '2026-03-15 09:30:00'),
+(4, 'Canh rong biển', 'Món canh truyền thống thanh đạm, tốt sức khỏe', 60000, 'canhrongbien.jpg', 50, '2026-03-20 16:00:00'),
+(4, 'Lẩu quân đội Budae Jjigae', 'Lẩu xúc xích, đậu phụ, spam và mì', 250000, 'lauquandoi.jpg', 15, '2026-03-25 19:00:00'),
+(4, 'Canh đậu phụ non Soondubu', 'Canh đậu phụ siêu mềm với hải sản và trứng', 85000, 'canhdauphunon.jpg', 40, '2026-03-28 11:00:00'),
+(5, 'Tokbokki truyền thống', 'Bánh gạo dẻo nấu trong sốt ớt cay ngọt', 45000, 'tokbokki.jpg', 150, '2026-04-05 08:30:00'),
+(5, 'Chả cá Odeng', 'Xiên chả cá nóng hổi kèm nước dùng súp', 15000, 'chaca.jpg', 200, '2026-04-10 08:45:00'),
+(6, 'Rượu Soju vị Đào', 'Rượu trái cây nồng độ nhẹ dễ uống', 65000, 'soju.jpg', 100, '2026-04-12 13:00:00'),
+(6, 'Nước gạo rang Woongjin', 'Thức uống truyền thống vị thơm, ngọt thanh', 30000, 'nuocgao.png', 150, '2026-04-14 14:00:00'),
+(6, 'Coca Cola lon', 'Nước giải khát có gas 330ml', 20000, 'coca.jpg', 200, '2026-04-15 14:15:00'),
+(6, 'Trà sữa khoai môn', 'Trà sữa vị khoai môn đặc trưng', 45000, 'trasuakhoaimon.jpg', 100, '2026-04-16 15:00:00'),
 
--- DANH MỤC 2: GÀ
-(2, 'Gà rán sốt cay', 'Gà chiên giòn rụm với sốt Yangnyeom truyền thống', 155000, 30),
-(2, 'Gà sốt tương tỏi', 'Gà chiên vị mặn ngọt đậm đà mùi tỏi phi', 155000, 30),
-(2, 'Gà không xương chiên', 'Gà fillet tẩm bột chiên giòn dễ ăn cho trẻ em', 120000, 45),
-(2, 'Gà rán sốt phô mai', 'Gà chiên giòn đẫm sốt phô mai tan chảy', 165000, 25),
-(2, 'Cánh gà chiên nước mắm', 'Cánh gà chiên giòn đảo sốt nước mắm kiểu Hàn', 140000, 35),
-
--- DANH MỤC 3: MÌ
-(3, 'Mì tương đen Jajangmyeon', 'Mì trộn sốt đậu đen và thịt heo thái lựu', 75000, 60),
-(3, 'Mì lạnh Naengmyeon', 'Mì sợi nhỏ dùng với nước dùng đá lạnh thanh mát', 90000, 20),
-(3, 'Mì cay Ramen hải sản', 'Mì gói Hàn Quốc nấu cay với tôm và mực', 65000, 100),
-(3, 'Mì trộn cay Bibim-guksu', 'Mì sợi nhỏ trộn sốt ớt cay và rau sống', 70000, 50),
-(3, 'Mì Udon hải sản', 'Mì sợi to kiểu Hàn nấu nước dùng hải sản thanh', 110000, 35),
-
--- DANH MỤC 4: LẨU & SÚP
-(4, 'Canh Kimchi đậu phụ', 'Súp kim chi nấu cùng thịt ba chỉ béo ngậy', 95000, 40),
-(4, 'Canh rong biển', 'Món canh truyền thống thanh đạm, tốt sức khỏe', 60000, 50),
-(4, 'Lẩu quân đội Budae Jjigae', 'Lẩu xúc xích, đậu phụ, spam và mì', 250000, 15),
-(4, 'Canh đậu phụ non Soondubu', 'Canh đậu phụ siêu mềm với hải sản và trứng', 85000, 40),
-(4, 'Súp sườn bò Galbitang', 'Nước dùng trong, sườn bò hầm mềm ngọt', 150000, 20),
-
--- DANH MỤC 5: ĐỒ ĂN NHẸ
-(5, 'Tokbokki truyền thống', 'Bánh gạo dẻo nấu trong sốt ớt cay ngọt', 45000, 150),
-(5, 'Chả cá Odeng', 'Xiên chả cá nóng hổi kèm nước dùng súp', 15000, 200),
-(5, 'Mandu chiên', 'Sủi cảo nhân thịt và rau củ chiên giòn', 40000, 80),
-(5, 'Khoai tây chiên mật ong', 'Khoai tây giòn tẩm bơ và mật ong ngọt ngào', 45000, 60),
-(5, 'Bánh xèo hải sản Pajeon', 'Bánh xèo nhân hành lá và hải sản áp chảo', 120000, 30),
-
--- DANH MỤC 6: ĐỒ UỐNG
-(6, 'Rượu Soju vị Đào', 'Rượu trái cây nồng độ nhẹ dễ uống', 65000, 100),
-(6, 'Nước gạo rang Woongjin', 'Thức uống truyền thống vị thơm, ngọt thanh', 30000, 150),
-(6, 'Coca Cola lon', 'Nước giải khát có gas 330ml', 20000, 200),
-(6, 'Trà sữa khoai môn', 'Trà sữa vị khoai môn đặc trưng', 45000, 100),
-(6, 'Nước ép lê Hàn Quốc', 'Nước ép đóng lon có tép lê tươi', 35000, 80);
+-- --- NHÓM 10 MÓN NGẪU NHIÊN CÓ NGÀY TẠO HÔM NAY (2026-04-19) ---
+(1, 'Cơm bò xào Bulgogi', 'Cơm trắng ăn kèm thịt bò xào sốt mặn ngọt', 95000, 'combobulgogi.jpg', 50, '2026-04-19 09:00:00'),
+(1, 'Kimbap chiên xù', 'Cơm cuộn tẩm bột chiên giòn rụm bên ngoài', 65000, 'kimbapchien.jpg', 40, '2026-04-19 09:15:00'),
+(2, 'Gà rán sốt phô mai', 'Gà chiên giòn đẫm sốt phô mai tan chảy', 165000, 'garanphomai.jpg', 25, '2026-04-19 10:20:00'),
+(2, 'Cánh gà chiên nước mắm', 'Cánh gà chiên giòn đảo sốt nước mắm kiểu Hàn', 140000, 'canhgachienmam.jpg', 35, '2026-04-19 10:45:00'),
+(3, 'Mì Udon hải sản', 'Mì sợi to kiểu Hàn nấu nước dùng hải sản thanh', 110000, 'miudon.jpg', 35, '2026-04-19 11:30:00'),
+(4, 'Súp sườn bò Galbitang', 'Nước dùng trong, sườn bò hầm mềm ngọt', 150000, 'supsuonbo.jpg', 20, '2026-04-19 12:00:00'),
+(5, 'Mandu chiên', 'Sủi cảo nhân thịt và rau củ chiên giòn', 40000, 'mandu.jpg', 80, '2026-04-19 13:45:00'),
+(5, 'Khoai tây chiên mật ong', 'Khoai tây giòn tẩm bơ và mật ong ngọt ngào', 45000, 'khoaitaychien.jpg', 60, '2026-04-19 14:10:00'),
+(5, 'Bánh xèo hải sản Pajeon', 'Bánh xèo nhân hành lá và hải sản áp chảo', 120000, 'banhxeo.jpg', 30, '2026-04-19 14:50:00'),
+(6, 'Nước ép lê Hàn Quốc', 'Nước ép đóng lon có tép lê tươi', 35000, 'nuocle.jpg', 80, '2026-04-19 15:30:00');
 
 INSERT INTO `khuyen_mai` 
 (`ma_khuyen_mai`, `phan_tram_giam`, `giam_toi_da`, `ngay_het_han`, `co_freeship`, `so_luong`, `don_hang_min`, `trang_thai`) 
@@ -197,3 +189,44 @@ VALUES
 
 -- Mã 2: Miễn phí vận chuyển cho đơn hàng từ 300k
 ('FREESHIPKOREA', 0, 0.00, '2026-12-31 23:59:59', 'Có', 500, 300000.00, 'Hiệu lực');
+
+-- Thêm 1 quản lý
+INSERT INTO `nguoi_dung` 
+(`user_name`, `mat_khau`, `ho_ten`, `email`, `so_dien_thoai`, `dia_chi_mac_dinh`, `vai_tro`, `trang_thai`) 
+VALUES 
+('admin', '123456', 'Hàn Quốc Quản', 'admin@yummyseoul.com', '0912345678', 'Hà Nội', 'Quản lý', 'Hoạt động');
+
+-- Cập nhật số lượng lượt xem và số lượng đã bán
+-- Cập nhật số liệu cố định cho 20 món cũ (ID 1 - 20)
+UPDATE `mon_an` SET `so_luot_xem` = 450, `so_luong_da_ban` = 120 WHERE `id_mon_an` = 1;  -- Cơm trộn Bibimbap
+UPDATE `mon_an` SET `so_luot_xem` = 310, `so_luong_da_ban` = 85  WHERE `id_mon_an` = 2;  -- Kimbap truyền thống
+UPDATE `mon_an` SET `so_luot_xem` = 280, `so_luong_da_ban` = 60  WHERE `id_mon_an` = 3;  -- Cơm chiên Kimchi
+UPDATE `mon_an` SET `so_luot_xem` = 520, `so_luong_da_ban` = 145 WHERE `id_mon_an` = 4;  -- Gà rán sốt cay
+UPDATE `mon_an` SET `so_luot_xem` = 380, `so_luong_da_ban` = 90  WHERE `id_mon_an` = 5;  -- Gà sốt tương tỏi
+UPDATE `mon_an` SET `so_luot_xem` = 250, `so_luong_da_ban` = 70  WHERE `id_mon_an` = 6;  -- Gà không xương
+UPDATE `mon_an` SET `so_luot_xem` = 410, `so_luong_da_ban` = 110 WHERE `id_mon_an` = 7;  -- Mì tương đen
+UPDATE `mon_an` SET `so_luot_xem` = 190, `so_luong_da_ban` = 30  WHERE `id_mon_an` = 8;  -- Mì lạnh
+UPDATE `mon_an` SET `so_luot_xem` = 330, `so_luong_da_ban` = 95  WHERE `id_mon_an` = 9;  -- Mì cay Ramen
+UPDATE `mon_an` SET `so_luot_xem` = 150, `so_luong_da_ban` = 40  WHERE `id_mon_an` = 10; -- Mì trộn cay
+UPDATE `mon_an` SET `so_luot_xem` = 290, `so_luong_da_ban` = 75  WHERE `id_mon_an` = 11; -- Canh Kimchi
+UPDATE `mon_an` SET `so_luot_xem` = 180, `so_luong_da_ban` = 50  WHERE `id_mon_an` = 12; -- Canh rong biển
+UPDATE `mon_an` SET `so_luot_xem` = 210, `so_luong_da_ban` = 35  WHERE `id_mon_an` = 13; -- Lẩu quân đội
+UPDATE `mon_an` SET `so_luot_xem` = 175, `so_luong_da_ban` = 45  WHERE `id_mon_an` = 14; -- Canh đậu phụ non
+UPDATE `mon_an` SET `so_luot_xem` = 600, `so_luong_da_ban` = 210 WHERE `id_mon_an` = 15; -- Tokbokki truyền thống
+UPDATE `mon_an` SET `so_luot_xem` = 550, `so_luong_da_ban` = 320 WHERE `id_mon_an` = 16; -- Chả cá Odeng
+UPDATE `mon_an` SET `so_luot_xem` = 320, `so_luong_da_ban` = 80  WHERE `id_mon_an` = 17; -- Rượu Soju
+UPDATE `mon_an` SET `so_luot_xem` = 240, `so_luong_da_ban` = 65  WHERE `id_mon_an` = 18; -- Nước gạo
+UPDATE `mon_an` SET `so_luot_xem` = 400, `so_luong_da_ban` = 150 WHERE `id_mon_an` = 19; -- Coca
+UPDATE `mon_an` SET `so_luot_xem` = 270, `so_luong_da_ban` = 90  WHERE `id_mon_an` = 20; -- Trà sữa
+
+-- Cập nhật số liệu cho 10 món mới (ID 21 - 30, chỉ số thấp hơn vì mới mở bán)
+UPDATE `mon_an` SET `so_luot_xem` = 45, `so_luong_da_ban` = 12 WHERE `id_mon_an` = 21;
+UPDATE `mon_an` SET `so_luot_xem` = 38, `so_luong_da_ban` = 8  WHERE `id_mon_an` = 22;
+UPDATE `mon_an` SET `so_luot_xem` = 62, `so_luong_da_ban` = 15 WHERE `id_mon_an` = 23;
+UPDATE `mon_an` SET `so_luot_xem` = 25, `so_luong_da_ban` = 5  WHERE `id_mon_an` = 24;
+UPDATE `mon_an` SET `so_luot_xem` = 30, `so_luong_da_ban` = 7  WHERE `id_mon_an` = 25;
+UPDATE `mon_an` SET `so_luot_xem` = 18, `so_luong_da_ban` = 3  WHERE `id_mon_an` = 26;
+UPDATE `mon_an` SET `so_luot_xem` = 55, `so_luong_da_ban` = 20 WHERE `id_mon_an` = 27;
+UPDATE `mon_an` SET `so_luot_xem` = 40, `so_luong_da_ban` = 14 WHERE `id_mon_an` = 28;
+UPDATE `mon_an` SET `so_luot_xem` = 22, `so_luong_da_ban` = 4  WHERE `id_mon_an` = 29;
+UPDATE `mon_an` SET `so_luot_xem` = 35, `so_luong_da_ban` = 11 WHERE `id_mon_an` = 30;

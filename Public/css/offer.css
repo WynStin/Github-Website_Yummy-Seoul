@@ -1,0 +1,28 @@
+/* CSS bổ trợ để các thẻ mã giảm giá trông "xịn" hơn */
+.promo-card-item {
+    border: 2px dashed var(--red-accent);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo-info h3 {
+    color: var(--red-accent);
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.promo-code-display {
+    background: var(--cream);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--red-brown);
+    border: 1px solid var(--pink-soft);
+}

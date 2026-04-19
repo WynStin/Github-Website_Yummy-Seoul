@@ -1,3 +1,19 @@
+<?php
+// 1. Nạp cấu hình database và Model
+require_once '../../Config/db.php';
+require_once '../../Models/ProductModel.php';
+
+// 2. Khởi tạo Model
+$productModel = new ProductModel($pdo);
+
+// 3. Lấy dữ liệu cho các section trên trang chủ
+$newProducts = $productModel->getTop10Newest();
+$mostViewedProducts = $productModel->getTop10MostViewed();
+$bestSellerProducts = $productModel->getTop10BestSeller();
+
+// Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
+?>
+
 <!doctype html>
 <html lang="vi">
 
@@ -14,115 +30,87 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </head>
 
 <body>
+  <?php $page = "home"; ?>
   <!--Lấy header-->
   <?php include 'layout/header.php'; ?>
 
   <!-- ======= HERO CAROUSEL ======= -->
-  <section class="hero" id="hero">
-    <div class="hero-slides" id="heroSlides">
-      <!-- Slide 1 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <!-- HÌNH ẢNH BANNER 1: thay src bằng link ảnh thực -->
-          <img
-            src="../../Public/img/homepage/banner_yummy.png"
-            alt="Banner 1"
-            onerror="this.style.display = 'none'" />
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero" id="hero">
+        <div class="hero-slides" id="heroSlides">
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner_yummy.png" alt="Banner 1" />
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner_center.png" alt="Banner 2" />
+            </div>
+          </div>
+          <div class="hero-slide">
+            <div class="hero-img-placeholder">
+              <img src="../../Public/img/homepage/banner2.jpg" alt="Banner 3" />
+            </div>
+          </div>
         </div>
-        <div class="hero-overlay"></div>
-      </div>
-      <!-- Slide 2 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner_center.png"
-            alt="Banner 2"
-            onerror="this.style.display = 'none'" />
+        <button class="hero-btn-prev" id="heroPrev">‹</button>
+        <button class="hero-btn-next" id="heroNext">›</button>
+        <div class="hero-dots" id="heroDots">
+          <button class="hero-dot active"></button>
+          <button class="hero-dot"></button>
+          <button class="hero-dot"></button>
         </div>
-        <div class="hero-overlay"></div>
       </div>
-      <!-- Slide 3 -->
-      <div class="hero-slide">
-        <div class="hero-img-placeholder">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner2.jpg"
-            alt="Banner 3"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="hero-overlay"></div>
-      </div>
-    </div>
-    <button class="hero-btn-prev" id="heroPrev">‹</button>
-    <button class="hero-btn-next" id="heroNext">›</button>
-    <div class="hero-dots" id="heroDots">
-      <button class="hero-dot active"></button>
-      <button class="hero-dot"></button>
-      <button class="hero-dot"></button>
     </div>
   </section>
 
-
   <!-- ======= MÓN MỚI ======= -->
   <section class="section mon-moi">
-    <div class="section-title-wrap fade-up">
+    <div class="section-title-wrap">
       <div class="section-title">MÓN MỚI</div>
       <div class="section-divider"></div>
     </div>
-    <div class="product-grid">
-      <!-- Lặp lại card này cho từng sản phẩm -->
-      <div class="product-card fade-up delay-1">
-        <div class="product-card-img">
-          <!-- HÌNH SẢN PHẨM: thay src bằng link ảnh thực -->
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/mituongden.jpg"
-            alt="Mì tương đen"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Mì tương đen</div>
-          <div class="product-price">75.000 VND</div>
-        </div>
-      </div>
-      <div class="product-card fade-up delay-2">
-        <div class="product-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/mandu.jpg"
-            alt="Mandu chiên"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Mandu chiên</div>
-          <div class="product-price">40.000 VND</div>
-        </div>
-      </div>
-      <div class="product-card fade-up delay-3">
-        <div class="product-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/gasottuongtoi.jpg"
-            alt="Gà sốt tương tỏi"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Gà sốt tương tỏi</div>
-          <div class="product-price">155.000 VND</div>
+
+    <div class="slider-container">
+      <div class="swiper new-products-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($newProducts)): ?>
+            <?php foreach ($newProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có món mới nào.</p>
+          <?php endif; ?>
         </div>
       </div>
-      <div class="product-card fade-up delay-4">
-        <div class="product-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/combobulgogi.jpg"
-            alt="Cơm bò xào Bulgogi"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="product-card-body">
-          <div class="product-name">Cơm bò xào Bulgogi</div>
-          <div class="product-price">95.000 VND</div>
-        </div>
-      </div>
+
+      <div class="swiper-button-prev custom-nav"></div>
+      <div class="swiper-button-next custom-nav"></div>
     </div>
   </section>
 
@@ -133,59 +121,91 @@
       <div class="hom-nay-text fade-up">
         <h2>HÔM NAY ĂN GÌ?</h2>
         <p>
-          Khám phá ngay những món ăn đến từ xứ sở kim chi,
-          hứa hẹn sẽ đem lại những trải nghiệm ẩm thực độc đáo đến với bạn!
+          Nếu bạn đang băn khoăn không biết chọn món nào, hãy để Yummy Seoul chọn giúp bạn một món cực ngon nhé!
         </p>
-        <a href="#" class="btn-datngay">Đặt ngay</a>
+
+        <button id="btnRandomFood" class="btn-datngay btn-random-bling">
+          <i class="fas fa-dice"></i> GỢI Ý MÓN ĂN
+        </button>
+
+        <div id="randomResult" class="random-result-text"></div>
       </div>
-      <div class="hom-nay-products">
-        <div class="product-card fade-up delay-1">
-          <div class="product-card-img">
-            <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbapchien.jpg"
-              alt="Kimbap chiên"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Kimbap chiên</div>
-            <div class="product-price">60.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-2">
-          <div class="product-card-img">
-            <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/gakhongxuong.jpg"
-              alt="Gà rán không xương"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Gà rán không xương</div>
-            <div class="product-price">120.000 VND</div>
-          </div>
-        </div>
-        <div class="product-card fade-up delay-3">
-          <div class="product-card-img">
-            <img
-              src="/Github-Website_Yummy-Seoul/Public/img/monan/milanh.jpg"
-              alt="Mì lạnh Naengmyeon"
-              onerror="this.style.display = 'none'" />
-          </div>
-          <div class="product-card-body">
-            <div class="product-name">Mì lạnh Naengmyeon</div>
-            <div class="product-price">90.000 VND</div>
-          </div>
-        </div>
+
+      <div class="hom-nay-categories">
+        <a href="product.php?category=1" class="cat-card fade-up delay-1">
+          <div><img src="../../Public/img/monan/comchienkimchi.jpg" alt="Cơm (Rice)" /></div>
+          <div class="cat-name">Cơm (Rice)</div>
+        </a>
+        <a href="product.php?category=2" class="cat-card fade-up delay-2">
+          <div><img src="../../Public/img/monan/gasottuongtoi.jpg" height="230px" alt="Gà (Chicken)" /></div>
+          <div class="cat-name">Gà (Chicken)</div>
+        </a>
+        <a href="product.php?category=3" class="cat-card fade-up delay-3">
+          <div><img src="../../Public/img/monan/milanh.jpg" alt="Mì (Noodles)" /></div>
+          <div class="cat-name">Mì (Noodles)</div>
+        </a>
+        <a href="product.php?category=4" class="cat-card fade-up delay-1">
+          <div><img src="../../Public/img/monan/lauquandoi.jpg" alt="Lẩu & Súp (Stew)" /></div>
+          <div class="cat-name">Lẩu & Súp (Stew)</div>
+        </a>
+        <a href="product.php?category=5" class="cat-card fade-up delay-2">
+          <div><img src="../../Public/img/monan/khoaitaychien.jpg" alt="Đồ ăn nhẹ (Snacks)" /></div>
+          <div class="cat-name">Đồ ăn nhẹ (Snacks)</div>
+        </a>
+        <a href="product.php?category=6" class="cat-card fade-up delay-3">
+          <div><img src="../../Public/img/monan/trasuakhoaimon.jpg" height="200px" alt="Đồ uống (Drinks)" /></div>
+          <div class="cat-name">Đồ uống (Drinks)</div>
+        </a>
       </div>
     </div>
   </section>
+  <section class="section xem-nhieu">
+    <div class="section-title-wrap">
+      <div class="section-title">MÓN XEM NHIỀU NHẤT</div>
+      <div class="section-divider"></div>
+    </div>
 
+    <div class="slider-container">
+      <div class="swiper most-viewed-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($mostViewedProducts)): ?>
+            <?php foreach ($mostViewedProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có dữ liệu món ăn.</p>
+          <?php endif; ?>
+        </div>
+      </div>
+
+      <div class="swiper-button-prev most-viewed-prev custom-nav"></div>
+      <div class="swiper-button-next most-viewed-next custom-nav"></div>
+    </div>
+  </section>
 
   <!-- ======= ABOUT BANNER ======= -->
   <section class="about-banner">
     <div class="about-bg">
       <!-- HÌNH NỀN ABOUT: thay src bằng link ảnh thực -->
       <img
-        src="/Github-Website_Yummy-Seoul/Public/img/homepage/banner1.jpg"
+        src="../../Public/img/homepage/banner1.jpg"
         alt="Background"
         onerror="this.style.display = 'none'" />
     </div>
@@ -196,79 +216,50 @@
         <br /><br />
         Tất cả đơn hàng đều được đóng gói chuẩn chất lượng với đồ nóng giữ nhiệt và đồ uống tách đá riêng, cùng mức phí ship hợp lý theo từng khu vực để khách yên tâm khi đặt món.
       </p>
-      <a href="#" class="about-xemthem">Xem thêm</a>
+      <a href="intro.php" class="about-xemthem">Xem thêm</a>
     </div>
   </section>
 
 
   <!-- ======= SẢN PHẨM BÁN CHẠY ======= -->
-  <section class="section best-seller">
-    <div class="section-title-wrap fade-up">
-      <div class="best-seller-label">BEST SELLER</div>
-      <div class="section-title">SẢN PHẨM BÁN CHẠY</div>
+  <section class="section ban-chay">
+    <div class="section-title-wrap">
+      <div class="section-title">MÓN BÁN CHẠY NHẤT</div>
       <div class="section-divider"></div>
     </div>
-    <div class="best-seller-grid">
-      <!-- TOP 2 -->
-      <div class="bs-card fade-up delay-1">
-        <div class="bs-badge">
-          <span class="medal">🥈</span><span class="rank">TOP 2</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/garansotcay.jpg"
-            alt="Top 2"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Gà rán sốt cay</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">155.000 VND</span>
-            <span class="bs-price-old">180.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
-        </div>
-      </div>
-      <!-- TOP 1 -->
-      <div class="bs-card top1 fade-up delay-2">
-        <div class="bs-badge">
-          <span class="medal">🥇</span><span class="rank">TOP 1</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/tokbokki.jpg"
-            alt="Top 1"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Tokbokki truyền thống</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">45.000 VND</span>
-            <span class="bs-price-old">60.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
+
+    <div class="slider-container">
+      <div class="swiper best-seller-slider">
+        <div class="swiper-wrapper">
+          <?php if (!empty($bestSellerProducts)): ?>
+            <?php foreach ($bestSellerProducts as $product): ?>
+              <div class="swiper-slide">
+                <div class="product-card">
+                  <div class="product-card-img">
+                    <img src="../../Public/img/monan/<?php echo $product['hinh_anh']; ?>"
+                      alt="<?php echo $product['ten_mon']; ?>"
+                      onerror="this.src='../../Public/img/default-food.png'">
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-name"><?php echo $product['ten_mon']; ?></h3>
+                    <div class="product-prices">
+                      <span class="price-current">
+                        <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
+                      </span>
+                    </div>
+                    <button class="btn-muahang btn-bling">MUA HÀNG</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p style="text-align: center; width: 100%;">Hiện chưa có dữ liệu bán chạy.</p>
+          <?php endif; ?>
         </div>
       </div>
-      <!-- TOP 3 -->
-      <div class="bs-card fade-up delay-3">
-        <div class="bs-badge">
-          <span class="medal">🥉</span><span class="rank">TOP 3</span>
-        </div>
-        <div class="bs-card-img">
-          <img
-            src="/Github-Website_Yummy-Seoul/Public/img/monan/kimbaptruyenthong.jpg"
-            alt="Top 3"
-            onerror="this.style.display = 'none'" />
-        </div>
-        <div class="bs-card-body">
-          <div class="bs-name">Kimbap truyền thống</div>
-          <div class="bs-prices">
-            <span class="bs-price-current">50.000 VND</span>
-            <span class="bs-price-old">65.000 VND</span>
-          </div>
-          <button class="btn-buy">Mua ngay</button>
-        </div>
-      </div>
+
+      <div class="swiper-button-prev best-seller-prev custom-nav"></div>
+      <div class="swiper-button-next best-seller-next custom-nav"></div>
     </div>
   </section>
 
@@ -283,7 +274,7 @@
       <div class="news-card fade-up delay-1">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="../../Public/img/news/new1.png"
             alt="Tin tức 1"
             onerror="this.style.display = 'none'" />
         </div>
@@ -295,28 +286,28 @@
             Mùa hè nóng bức... Phải giải nhiệt ngay thôi. Toàn bộ đồ uống giảm
             tới 30%...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="summer_deal.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
       <div class="news-card fade-up delay-2">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="../../Public/img/news/new2.png"
             alt="Tin tức 2"
             onerror="this.style.display = 'none'" />
         </div>
         <div class="news-card-body">
           <div class="news-card-title">Ưu đãi thành viên mới</div>
           <div class="news-card-desc">
-            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay “BANMOI” để nhận ưu đãi...
+            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu đãi...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="offer.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
       <div class="news-card fade-up delay-3">
         <div class="news-card-img">
           <img
-            src="YOUR_NEWS_IMAGE_URL"
+            src="../../Public/img/news/new3.png"
             alt="Tin tức 3"
             onerror="this.style.display = 'none'" />
         </div>
@@ -326,7 +317,7 @@
             Đội ngũ phát triển Yummy Seoul xin chân thành cảm ơn sự tin tưởng
             và ủng hộ từ khách hàng...
           </div>
-          <a href="#" class="news-card-more">Xem thêm →</a>
+          <a href="DevThanks.php" class="news-card-more">Xem thêm →</a>
         </div>
       </div>
     </div>
@@ -336,7 +327,7 @@
   <?php include 'layout/footer.php'; ?>
 
   <!-- ======= JAVASCRIPT ======= -->
-  <script src="/Github-Website_Yummy-Seoul/Public/js/home.js"></script>
+  <script src="../../Public/js/home.js"></script>
 </body>
 
 </html>

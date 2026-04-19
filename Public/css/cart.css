@@ -18,6 +18,7 @@
 }
 
 @keyframes floating {
+<<<<<<< HEAD
     0%, 100% { transform: translateY(0) rotate(0); }
     50% { transform: translateY(-15px) rotate(5deg); }
 }
@@ -26,6 +27,54 @@
 .leaf-1 { top: 20%; right: 5%; width: 25px; height: 25px; background: var(--gold-light); border-radius: 0 50%; }
 .heart-1 { bottom: 15%; left: 10%; width: 20px; height: 20px; background: var(--red-accent); transform: rotate(-45deg); }
 .blossom-2 { bottom: 20%; right: 10%; width: 30px; height: 30px; background: var(--light-pink); border-radius: 50% 0; }
+=======
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+.blossom-1 {
+    top: 10%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+    background: var(--baby-pink);
+    border-radius: 50% 0;
+}
+
+.leaf-1 {
+    top: 20%;
+    right: 5%;
+    width: 25px;
+    height: 25px;
+    background: var(--gold-light);
+    border-radius: 0 50%;
+}
+
+.heart-1 {
+    bottom: 15%;
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    background: var(--red-accent);
+    transform: rotate(-45deg);
+}
+
+.blossom-2 {
+    bottom: 20%;
+    right: 10%;
+    width: 30px;
+    height: 30px;
+    background: var(--light-pink);
+    border-radius: 50% 0;
+}
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
 
 /* CẤU TRÚC HEADER */
 .cart-header {
@@ -231,8 +280,32 @@
 
 /* MOBILE */
 @media (max-width: 900px) {
+<<<<<<< HEAD
     .cart-main-layout { grid-template-columns: 1fr; }
     .cart-item-row { grid-template-columns: 1fr; gap: 15px; text-align: center; }
     .item-info { flex-direction: column; align-items: center; }
     .item-quantity, .item-total { text-align: center; display: flex; justify-content: center; }
+=======
+    .cart-main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .item-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-quantity,
+    .item-total {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
 }

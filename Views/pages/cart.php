@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="/Github-Website_Yummy-Seoul/Public/img/homepage/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<<<<<<< HEAD
     
     <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/home.css">
     <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/cart.css">
@@ -16,6 +21,18 @@
     <?php 
         $page = 'cart'; 
         include 'layout/header.php'; 
+=======
+
+    <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/home.css">
+    <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/cart.css">
+</head>
+
+<body>
+
+    <?php
+    $page = 'cart';
+    include 'layout/header.php';
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
     ?>
 
     <main class="cart-page-container">
@@ -89,7 +106,11 @@
                 <div class="cart-summary-column fade-up delay-2">
                     <div class="summary-box">
                         <h2 class="summary-title">Hóa đơn của bạn</h2>
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
                         <div class="summary-row">
                             <span>Tạm tính</span>
                             <span id="subtotal">135.000đ</span>
@@ -109,7 +130,11 @@
                         </div>
 
                         <div class="summary-divider"></div>
+<<<<<<< HEAD
                         
+=======
+
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
                         <div class="summary-row total">
                             <span>Tổng cộng</span>
                             <span id="total">150.000đ</span>
@@ -127,4 +152,8 @@
     <script src="/Github-Website_Yummy-Seoul/Public/js/home.js"></script>
     <script src="/Github-Website_Yummy-Seoul/Public/js/cart.js"></script>
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 87304a4299906a5e635c73f146a68b2bf396c6c9
 </html>
