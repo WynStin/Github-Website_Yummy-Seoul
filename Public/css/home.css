@@ -619,7 +619,7 @@ header {
 }
 
 .price-current {
-    color: #e74c3c;
+    color: #C0392B;
     font-weight: bold;
     font-size: 1.1rem;
     display: block;
@@ -627,20 +627,33 @@ header {
 }
 
 .btn-muahang {
-    background-color: #f34e2c;
-    color: white;
+    /* Đổi sang màu đỏ nâu đặc trưng của web */
+    background-color: var(--red-brown); 
+    color: var(--white);
+    
     border: none;
     padding: 10px 20px;
-    border-radius: 50px; /* Nút hình con nhộng (tròn hẳn 2 đầu) */
+    
+    /* Giữ độ bo tròn "tròn tròn" như bạn muốn */
+    border-radius: 50px; 
+    
     cursor: pointer;
-    width: 90%; /* Thu nhỏ lại một chút để lộ góc bo của card */
-    margin: 0 auto 15px auto; /* Căn giữa nút */
-    font-weight: bold;
-    transition: 0.3s;
+    width: 90%;
+    margin: 0 auto 15px auto;
+    font-weight: 600;
+    font-family: 'Asap', sans-serif;
+    transition: all 0.3s ease;
+    display: block; /* Căn giữa nút */
+}
+.btn-muahang:hover {
+    /* Khi hover thì sáng lên một chút hoặc chuyển sang màu vàng nhạt */
+    background-color: var(--brown-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(69, 23, 21, 0.3);
 }
 
-.btn-muahang:hover {
-    background-color: #d33d1d;
+.btn-muahang:active {
+    transform: translateY(0);
 }
 
 /* --- Tùy chỉnh nút điều hướng RA NGOÀI lề --- */
