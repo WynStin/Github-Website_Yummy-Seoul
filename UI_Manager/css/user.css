@@ -1,0 +1,142 @@
+/* user.css - Giao diện quản lý người dùng Yummy Seoul */
+
+:root {
+    --red-brown: #5d2620;
+    --brown-sidebar: #4a1e19;
+    --gold-primary: #f59e0b;
+    --gold-light: #fef3c7;
+    --white: #ffffff;
+    --success: #10b981;
+    --baby-cream: #fef9f1;
+    --text-muted: #64748b;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Layout Cơ Bản --- */
+.admin-container { display: flex; background: var(--baby-cream); min-height: 100vh; }
+.admin-main { flex: 1; padding: 30px; overflow-x: hidden; }
+
+/* --- Card Thêm Thành Viên --- */
+.card-add-member {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    border-top: 4px solid var(--gold-primary);
+}
+
+.card-add-member h3 { margin-bottom: 20px; color: var(--red-brown); font-size: 18px; }
+
+.add-member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.form-group label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 5px; color: var(--text-muted); }
+
+/* --- Thanh Tìm Kiếm --- */
+.search-member-box {
+    position: relative;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.search-member-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--gold-primary); }
+
+.search-member-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* --- Bảng Dữ Liệu & Cuộn Ngang --- */
+.member-wrapper {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    overflow-x: auto; /* Kích hoạt cuộn ngang */
+    padding-bottom: 10px;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 1200px; /* Ép độ rộng tối thiểu để cuộn */
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background: #f8fafc;
+    padding: 15px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--red-brown);
+    border-bottom: 2px solid #edf2f7;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+/* --- Input Trong Bảng --- */
+.input-edit, .input-edit-row {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.input-edit-row:focus { border-color: var(--gold-primary); outline: none; background: #fffbeb; }
+
+.contact-inputs { display: flex; flex-direction: column; gap: 5px; }
+
+.input-edit-row.small { font-size: 12px; padding: 4px 8px; }
+
+/* --- Badge & Buttons --- */
+.badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.status-active { background: #dcfce7; color: #166534; }
+
+.btn-add-primary {
+    background: var(--gold-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-save-row {
+    width: 40px;
+    height: 40px;
+    background: #f0fdf4;
+    color: var(--success);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-save-row:hover { background: var(--success); color: white; transform: scale(1.1); }
+
+/* --- Thông báo --- */
+.alert-msg {
+    background: #dcfce7;
+    color: #166534;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
