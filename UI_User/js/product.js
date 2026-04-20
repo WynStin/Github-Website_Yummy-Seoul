@@ -45,31 +45,27 @@ async function loadProducts(category = 'all', sort = 'default', page = 1) {
 }
 
 // Hiển thị sản phẩm
+// Trích xuất trong file product.js
 function displayProducts(products) {
-    const container = document.getElementById('productsContainer');
-
-    if (!products || products.length === 0) {
-        container.innerHTML = '<p class="no-products">Hiện chưa có món ăn nào trong danh mục này.</p>';
-        return;
-    }
-
+    // ...
     container.innerHTML = products.map(product => `
         <div class="product-card">
             <div class="product-image">
-                <img src="../../Image/monan/${product.hinh_anh}" alt="${product.ten_mon}">
-                <div class="product-overlay">
-                    <button class="quick-view-btn" onclick="openModal(${product.id_mon_an}, '${product.ten_mon}', ${product.gia_ban})">
-                        <i class="fas fa-eye"></i> Xem nhanh
-                    </button>
-                </div>
+                <a href="product_detail.php?id=${product.id_mon_an}">
+                    <img src="../../Image/monan/${product.hinh_anh}" alt="${product.ten_mon}">
+                </a>
             </div>
+            
             <div class="product-info">
-                <h3 class="product-name">${product.ten_mon}</h3>
-                <p class="product-description">${product.mo_ta || ''}</p>
+                <a href="product_detail.php?id=${product.id_mon_an}" style="text-decoration: none; color: inherit;">
+                    <h3 class="product-name">${product.ten_mon}</h3>
+                </a>
+                
                 <div class="product-price">${formatPrice(product.gia_ban)}</div>
+                
                 <div class="product-actions">
-                    <button class="add-to-cart-btn" onclick="addToCart(${product.id_mon_an})">
-                        <i class="fas fa-shopping-cart"></i> Mua hàng
+                    <button class="add-to-cart-btn" onclick="window.location.href='product_detail.php?id=${product.id_mon_an}'">
+                        <i class="fas fa-shopping-cart"></i> MUA HÀNG
                     </button>
                 </div>
             </div>

@@ -161,7 +161,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
                                         <?php echo number_format($row['gia_ban'], 0, ',', '.'); ?>đ
                                     </div>
                                     <div class="product-actions">
-                                        <button class="add-to-cart-btn">
+                                        <button class="add-to-cart-btn" onclick="window.location.href='product_detail.php?id=<?php echo $row['id_mon_an']; ?>'">
                                             <i class="fas fa-shopping-cart"></i> MUA HÀNG
                                         </button>
                                     </div>
