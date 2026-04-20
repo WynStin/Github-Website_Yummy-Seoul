@@ -558,7 +558,16 @@ header {
 }
 
 .xem-nhieu .product-name {
-    color: #fff; /* Chữ trắng trên nền tối */
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--red-brown);
+    margin: 10px 0;
+    /* Giới hạn 2 dòng cho tên món */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    height: 2.4em; /* Đảm bảo các card đều nhau */
 }
 
 /* Hiệu ứng viền Neon chạy quanh khi Hover */

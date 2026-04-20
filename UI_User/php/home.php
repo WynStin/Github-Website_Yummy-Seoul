@@ -98,7 +98,10 @@ $bestSellerProducts = getTop10BestSeller();
                         <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
                       </span>
                     </div>
-                    <button class="btn-muahang">MUA HÀNG</button>
+                    <button class="btn-muahang"
+                      onclick="window.location.href='product_detail.php?id=<?php echo $product['id_mon_an']; ?>'">
+                      MUA HÀNG
+                    </button>
                   </div>
                 </div>
               </div>
@@ -184,7 +187,10 @@ $bestSellerProducts = getTop10BestSeller();
                         <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
                       </span>
                     </div>
-                    <button class="btn-muahang">MUA HÀNG</button>
+                    <button class="btn-muahang"
+                      onclick="window.location.href='product_detail.php?id=<?php echo $product['id_mon_an']; ?>'">
+                      MUA HÀNG
+                    </button>
                   </div>
                 </div>
               </div>
@@ -247,7 +253,10 @@ $bestSellerProducts = getTop10BestSeller();
                         <?php echo number_format($product['gia_ban'], 0, ',', '.'); ?> VND
                       </span>
                     </div>
-                    <button class="btn-muahang btn-bling">MUA HÀNG</button>
+                    <button class="btn-muahang"
+                      onclick="window.location.href='product_detail.php?id=<?php echo $product['id_mon_an']; ?>'">
+                      MUA HÀNG
+                    </button>
                   </div>
                 </div>
               </div>

@@ -8,9 +8,9 @@ let currentProductId = null;
 async function loadProducts(category = 'all', sort = 'default', page = 1) {
     try {
         const urlParams = new URLSearchParams(window.location.search);
-        
+
         // Lấy từ khóa: Ưu tiên lấy từ URL (cho lần đầu load)
-        let searchQuery = urlParams.get('search') || ''; 
+        let searchQuery = urlParams.get('search') || '';
 
         // Nếu nhấn "Lọc" hoặc "Sắp xếp" mà ô tìm kiếm đang có chữ, phải lấy chữ đó
         const headerSearchInput = document.querySelector('.search-box input') || document.querySelector('input[type="search"]');
@@ -30,7 +30,7 @@ async function loadProducts(category = 'all', sort = 'default', page = 1) {
         if (data.success) {
             displayProducts(data.products);
             displayPagination(data.totalPages, data.currentPage);
-            
+
             // Cập nhật tiêu đề: Nếu có tìm kiếm thì hiện "Kết quả cho...", không thì hiện tên danh mục
             const titleElement = document.getElementById('categoryTitle');
             if (searchQuery) {
@@ -45,32 +45,44 @@ async function loadProducts(category = 'all', sort = 'default', page = 1) {
 }
 
 // Hiển thị sản phẩm
-// Trích xuất trong file product.js
 function displayProducts(products) {
-    // ...
+    const container = document.getElementById('productsContainer');
+
+    if (!products || products.length === 0) {
+        container.innerHTML = '<p class="no-products">Hiện chưa có món ăn nào trong danh mục này.</p>';
+        return;
+    }
+
     container.innerHTML = products.map(product => `
-        <div class="product-card">
-            <div class="product-image">
-                <a href="product_detail.php?id=${product.id_mon_an}">
-                    <img src="../../Image/monan/${product.hinh_anh}" alt="${product.ten_mon}">
-                </a>
-            </div>
+    <div class="product-card">
+        <div class="product-image">
+            <a href="product_detail.php?id=${product.id_mon_an}">
+                <img src="../../Image/monan/${product.hinh_anh}" alt="${product.ten_mon}">
+            </a>
             
-            <div class="product-info">
-                <a href="product_detail.php?id=${product.id_mon_an}" style="text-decoration: none; color: inherit;">
-                    <h3 class="product-name">${product.ten_mon}</h3>
-                </a>
-                
-                <div class="product-price">${formatPrice(product.gia_ban)}</div>
-                
-                <div class="product-actions">
-                    <button class="add-to-cart-btn" onclick="window.location.href='product_detail.php?id=${product.id_mon_an}'">
-                        <i class="fas fa-shopping-cart"></i> MUA HÀNG
-                    </button>
-                </div>
+            <div class="product-overlay">
+                <button class="quick-view-btn" onclick="openModal(${product.id_mon_an}, '${product.ten_mon}', ${product.gia_ban})">
+                    <i class="fas fa-eye"></i> Xem nhanh
+                </button>
             </div>
         </div>
-    `).join('');
+
+        <div class="product-info">
+            <a href="product_detail.php?id=${product.id_mon_an}" style="text-decoration: none; color: inherit;">
+                <h3 class="product-name">${product.ten_mon}</h3>
+            </a>
+            
+            <p class="product-description">${product.mo_ta || ''}</p>
+            <div class="product-price">${formatPrice(product.gia_ban)}</div>
+            
+            <div class="product-actions">
+                <button class="add-to-cart-btn" onclick="window.location.href='product_detail.php?id=${product.id_mon_an}'">
+                    <i class="fas fa-shopping-cart"></i> Mua hàng
+                </button>
+            </div>
+        </div>
+    </div>
+`   ).join('');
 }
 
 // Format giá - Bỏ Style Currency để giống 85.000đ như bạn muốn

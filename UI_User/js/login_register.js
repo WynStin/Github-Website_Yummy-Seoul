@@ -37,156 +37,156 @@ function togglePasswordVisibility(inputId, icon) {
     }
 }
 
-function register(event) {
-    event.preventDefault();
+// function register(event) {
+//     event.preventDefault();
 
-    const fullname = document.getElementById("reFullname").value.trim();
-    const username = document.getElementById("reUsername").value.trim();
-    const email = document.getElementById("reEmail").value.trim();
-    const phone = document.getElementById("rePhone").value.trim();
-    const address = document.getElementById("reAddress").value.trim();
-    const password = document.getElementById("rePassword").value.trim();
+//     const fullname = document.getElementById("reFullname").value.trim();
+//     const username = document.getElementById("reUsername").value.trim();
+//     const email = document.getElementById("reEmail").value.trim();
+//     const phone = document.getElementById("rePhone").value.trim();
+//     const address = document.getElementById("reAddress").value.trim();
+//     const password = document.getElementById("rePassword").value.trim();
 
-    const lowercaseLetter = /[a-z]/g;
-    const uppercaseLetter = /[A-Z]/g;
-    const number = /[0-9]/g;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phonePattern = /^[0-9]{10,11}$/;
+//     const lowercaseLetter = /[a-z]/g;
+//     const uppercaseLetter = /[A-Z]/g;
+//     const number = /[0-9]/g;
+//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     const phonePattern = /^[0-9]{10,11}$/;
 
-    if (!username || !email || !phone || !password) {
-        showMessage(messageEl, "Vui lòng điền đầy đủ thông tin.", "error");
-        return;
-    }
+//     if (!username || !email || !phone || !password) {
+//         showMessage(messageEl, "Vui lòng điền đầy đủ thông tin.", "error");
+//         return;
+//     }
 
-    if (username.length < 3 || username.length > 20) {
-        showMessage(messageEl, "Tên đăng nhập phải có từ 3-20 ký tự.", "error");
-        return;
-    }
+//     if (username.length < 3 || username.length > 20) {
+//         showMessage(messageEl, "Tên đăng nhập phải có từ 3-20 ký tự.", "error");
+//         return;
+//     }
 
-    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-        showMessage(messageEl, "Tên đăng nhập chỉ chứa chữ cái, số và gạch dưới.", "error");
-        return;
-    }
+//     if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+//         showMessage(messageEl, "Tên đăng nhập chỉ chứa chữ cái, số và gạch dưới.", "error");
+//         return;
+//     }
 
-    if (!emailPattern.test(email)) {
-        showMessage(messageEl, "Email không hợp lệ.", "error");
-        return;
-    }
+//     if (!emailPattern.test(email)) {
+//         showMessage(messageEl, "Email không hợp lệ.", "error");
+//         return;
+//     }
 
-    if (!phonePattern.test(phone)) {
-        showMessage(messageEl, "Số điện thoại phải có 10-11 chữ số.", "error");
-        return;
-    }
+//     if (!phonePattern.test(phone)) {
+//         showMessage(messageEl, "Số điện thoại phải có 10-11 chữ số.", "error");
+//         return;
+//     }
 
-    if (password.length < 8) {
-        showMessage(messageEl, "Mật khẩu phải có ít nhất 8 ký tự.", "error");
-        return;
-    }
+//     if (password.length < 8) {
+//         showMessage(messageEl, "Mật khẩu phải có ít nhất 8 ký tự.", "error");
+//         return;
+//     }
 
-    if (!password.match(lowercaseLetter)) {
-        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ thường.", "error");
-        return;
-    }
+//     if (!password.match(lowercaseLetter)) {
+//         showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ thường.", "error");
+//         return;
+//     }
 
-    if (!password.match(uppercaseLetter)) {
-        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ hoa.", "error");
-        return;
-    }
+//     if (!password.match(uppercaseLetter)) {
+//         showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ hoa.", "error");
+//         return;
+//     }
 
-    if (!password.match(number)) {
-        showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ số.", "error");
-        return;
-    }
+//     if (!password.match(number)) {
+//         showMessage(messageEl, "Mật khẩu phải có ít nhất 1 chữ số.", "error");
+//         return;
+//     }
 
-    const user = {
-        UserName: username,
-        Matkhau: password,
-        Hoten: fullname,
-        Email: email,
-        SĐT: phone,
-        DiaChiMacDinh: address,
-        VaiTro: "Customer",
-        TrangThaiTaiKhoan: "Active",
-        NgayTaoTaiKhoan: new Date().toISOString()
-    };
+//     const user = {
+//         UserName: username,
+//         Matkhau: password,
+//         Hoten: fullname,
+//         Email: email,
+//         SĐT: phone,
+//         DiaChiMacDinh: address,
+//         VaiTro: "Customer",
+//         TrangThaiTaiKhoan: "Active",
+//         NgayTaoTaiKhoan: new Date().toISOString()
+//     };
 
-    let users = {};
-    const usersData = sessionStorage.getItem("users");
-    if (usersData) {
-        users = JSON.parse(usersData);
-    }
+//     let users = {};
+//     const usersData = sessionStorage.getItem("users");
+//     if (usersData) {
+//         users = JSON.parse(usersData);
+//     }
 
-    if (users[username]) {
-        showMessage(messageEl, "Tên đăng nhập đã tồn tại.", "error");
-        return;
-    }
+//     if (users[username]) {
+//         showMessage(messageEl, "Tên đăng nhập đã tồn tại.", "error");
+//         return;
+//     }
 
-    const emailExists = Object.values(users).some(u => u.email === email);
-    if (emailExists) {
-        showMessage(messageEl, "Email đã được sử dụng.", "error");
-        return;
-    }
+//     const emailExists = Object.values(users).some(u => u.email === email);
+//     if (emailExists) {
+//         showMessage(messageEl, "Email đã được sử dụng.", "error");
+//         return;
+//     }
 
-    users[username] = user;
-    sessionStorage.setItem("users", JSON.stringify(users));
+//     users[username] = user;
+//     sessionStorage.setItem("users", JSON.stringify(users));
 
-    showMessage(messageEl, "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.", "success");
+//     showMessage(messageEl, "Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.", "success");
 
-    setTimeout(() => {
-        document.querySelector('.form-item.sign-up').reset();
-        if (window.innerWidth <= 768) {
-            showLogin();
-        } else {
-            toggleForms();
-        }
-    }, 1500);
-}
+//     setTimeout(() => {
+//         document.querySelector('.form-item.sign-up').reset();
+//         if (window.innerWidth <= 768) {
+//             showLogin();
+//         } else {
+//             toggleForms();
+//         }
+//     }, 1500);
+// }
 
-function login(event) {
-    event.preventDefault();
+// function login(event) {
+//     event.preventDefault();
 
-    const username = document.getElementById("loginUsername").value.trim();
-    const password = document.getElementById("loginPassword").value.trim();
-    const messageEl = document.getElementById("loginMessage");
+//     const username = document.getElementById("loginUsername").value.trim();
+//     const password = document.getElementById("loginPassword").value.trim();
+//     const messageEl = document.getElementById("loginMessage");
 
-    if (!username || !password) {
-        showMessage(messageEl, "Vui lòng nhập tên đăng nhập và mật khẩu.", "error");
-        return;
-    }
+//     if (!username || !password) {
+//         showMessage(messageEl, "Vui lòng nhập tên đăng nhập và mật khẩu.", "error");
+//         return;
+//     }
 
-    const usersData = sessionStorage.getItem("users");
-    if (!usersData) {
-        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
-        return;
-    }
+//     const usersData = sessionStorage.getItem("users");
+//     if (!usersData) {
+//         showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+//         return;
+//     }
 
-    const users = JSON.parse(usersData);
-    const user = users[username];
+//     const users = JSON.parse(usersData);
+//     const user = users[username];
 
-    if (!user) {
-        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
-        return;
-    }
+//     if (!user) {
+//         showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+//         return;
+//     }
 
-    if (user.password !== password) {
-        showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
-        return;
-    }
+//     if (user.password !== password) {
+//         showMessage(messageEl, "Tên đăng nhập hoặc mật khẩu không đúng.", "error");
+//         return;
+//     }
 
-    showMessage(messageEl, "Đăng nhập thành công! Đang chuyển hướng...", "success");
+//     showMessage(messageEl, "Đăng nhập thành công! Đang chuyển hướng...", "success");
 
-    sessionStorage.setItem("currentUser", JSON.stringify({
-        username: user.username,
-        email: user.email,
-        phone: user.phone,
-        createdAt: user.createdAt,
-        loginTime: new Date().toISOString()
-    }));
+//     sessionStorage.setItem("currentUser", JSON.stringify({
+//         username: user.username,
+//         email: user.email,
+//         phone: user.phone,
+//         createdAt: user.createdAt,
+//         loginTime: new Date().toISOString()
+//     }));
 
-    setTimeout(() => {
-        window.location.href = "/page/account/profile/profile.html";
-    }, 1000);
-}
+//     setTimeout(() => {
+//         window.location.href = "/page/account/profile/profile.html";
+//     }, 1000);
+// }
 
 function showMessage(element, message, type) {
     element.textContent = message;
