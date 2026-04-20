@@ -197,6 +197,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
                 <div class="product-info-modal">
                     <div class="product-name-modal" id="modalProductName">Tên món ăn</div>
                     <div class="product-price-modal" id="modalProductPrice">0đ</div>
+                    <div class="product-id-modal" id="modalProductId" style="display: none;">0</div>
                 </div>
                 <div class="quantity-section-modal">
                     <span class="quantity-label-modal">Số lượng:</span>
@@ -211,9 +212,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
                 <button class="modal-btn" onclick="addToCartFromModal()">
                     <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
                 </button>
-                <button class="modal-btn modal-btn-primary" onclick="buyNowFromModal()">
+                <!-- <button class="modal-btn modal-btn-primary" onclick="buyNowFromModal()">
                     <i class="fas fa-bolt"></i> Mua ngay
-                </button>
+                </button> -->
             </div>
         </div>
     </div>
@@ -224,6 +225,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
         function openQuickView(product) {
             document.getElementById('modalProductName').innerText = product.ten_mon;
             document.getElementById('modalProductPrice').innerText = new Intl.NumberFormat('vi-VN').format(product.gia_ban) + 'đ';
+            document.getElementById('modalProductId').innerText = product.id_mon_an;
             document.getElementById('modalQuantity').value = 1;
             document.getElementById('quickActionModal').style.display = 'flex';
         }
