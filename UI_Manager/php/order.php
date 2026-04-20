@@ -104,7 +104,7 @@ try {
 
         <main class="admin-main">
             <header class="main-header">
-                <h2>Vận hành Đơn hàng chi tiết</h2>
+                <h2>Quản lý đơn hàng</h2>
 
                 <?php if (isset($_GET['msg']) && $_GET['msg'] == 'updated'): ?>
                     <div id="success-alert">
