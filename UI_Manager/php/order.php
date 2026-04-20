@@ -208,5 +208,8 @@ try {
             }
         });
     </script>
+
+    <script src="../js/order.js"></script>
+
 </body>
 </html>
