@@ -1,31 +1,65 @@
-<?php 
-include '../../../Config/db.php'; 
+<?php
+include '../../SQL_Connect/db.php';
+
+// 1. Xử lý cập nhật trạng thái nhanh
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
+    $id_don = $_POST['id_don_hang'];
+    $status_moi = $_POST['trang_thai'];
+    try {
+        $updateSql = "UPDATE don_hang SET trang_thai = ? WHERE id_don_hang = ?";
+        $pdo->prepare($updateSql)->execute([$status_moi, $id_don]);
+        header("Location: order.php");
+        exit();
+    } catch (PDOException $e) {
+        die("Lỗi: " . $e->getMessage());
+    }
+}
+
+// 2. Lấy tham số lọc từ URL (Nếu có)
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$filterStatus = isset($_GET['status']) ? $_GET['status'] : '';
 
 try {
-    // JOIN với bảng người dùng để lấy họ tên và số điện thoại khách hàng
+    // Xây dựng câu lệnh SQL có điều kiện lọc
     $sql = "SELECT d.*, n.ho_ten, n.so_dien_thoai 
             FROM don_hang d 
             JOIN nguoi_dung n ON d.id_khach_hang = n.id_nguoi_dung 
-            ORDER BY d.ngay_tao_don DESC";
+            WHERE 1=1"; // Điều kiện mặc định để nối chuỗi
+
+    if ($search != '') {
+        $sql .= " AND (d.id_don_hang LIKE '%$search%' OR n.ho_ten LIKE '%$search%' OR d.dia_chi_giao_hang LIKE '%$search%')";
+    }
+
+    if ($filterStatus != '') {
+        $sql .= " AND d.trang_thai = '$filterStatus'";
+    }
+
+    $sql .= " ORDER BY d.ngay_tao_don DESC";
     $stmt = $pdo->query($sql);
     $orders = $stmt->fetchAll();
-} catch (PDOException $e) { die("Lỗi kết nối: " . $e->getMessage()); }
+} catch (PDOException $e) {
+    die("Lỗi: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <title>Hệ thống Quản lý Đơn hàng | Yummy Seoul</title>
+    <title>Quản lý đơn hàng | Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
+    <link rel="icon" type="image/x-icon" href="../../Image/homepage/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../../Public/css/admin/order.css">
+    <link rel="stylesheet" href="../css/order.css">
+    <link rel="stylesheet" href="../../UI_User/css/home.css">
 </head>
+
 <body>
     <div class="admin-container">
         <aside class="admin-sidebar">
             <div class="sidebar-logo">
-                <img src="../../../Public/img/homepage/logo.png" alt="Logo">
+                <img src="../../Image/homepage/logo.png" alt="Logo">
                 <span>Yummy Admin</span>
             </div>
             <nav class="sidebar-nav">
@@ -35,76 +69,96 @@ try {
                 <a href="order.php" class="nav-link active"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
                 <a href="member.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
                 <div class="nav-divider"></div>
-                <a href="../home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
+                <a href="../../UI_User/php/home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
             </nav>
         </aside>
 
         <main class="admin-main">
             <header class="main-header">
-                <h2>Danh sách đơn hàng vận hành</h2>
+                <h2>Vận hành Đơn hàng chi tiết</h2>
             </header>
 
-            <div class="filter-section card">
+            <form method="GET" action="order.php" class="filter-section">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="orderSearch" placeholder="Tìm theo Mã đơn (#DH...) hoặc Tên khách hàng...">
+                    <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Tìm mã đơn, tên khách hoặc địa chỉ...">
                 </div>
                 <div class="filter-box">
-                    <select id="statusFilter">
+                    <select name="status" onchange="this.form.submit()">
                         <option value="">Tất cả trạng thái</option>
-                        <option value="Đã đặt">🆕 Đơn mới (Đã đặt)</option>
-                        <option value="Đang xử lý">⏳ Chờ xử lý</option>
-                        <option value="Đang giao">🚚 Đang giao hàng</option>
-                        <option value="Hoàn thành">✅ Hoàn thành</option>
-                        <option value="Đã hủy">❌ Đã hủy</option>
+                        <?php
+                        $statusOptions = ['Đã đặt', 'Đang xử lý', 'Đang giao', 'Hoàn thành', 'Đã hủy'];
+                        foreach ($statusOptions as $opt) {
+                            $sel = ($filterStatus == $opt) ? 'selected' : '';
+                            echo "<option value='$opt' $sel>$opt</option>";
+                        }
+                        ?>
                     </select>
                 </div>
-            </div>
+                <button type="submit" style="display:none;">Lọc</button>
+            </form>
 
             <div class="order-list card">
-                <table class="admin-table" id="orderTable">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th>Mã đơn</th>
                             <th>Khách hàng</th>
+                            <th>ID KM</th>
                             <th>Ngày đặt</th>
-                            <th>Tổng giá</th>
+                            <th>Phí Ship</th>
+                            <th>Tổng tiền</th>
                             <th>Thanh toán</th>
-                            <th>Trạng thái</th>
-                            <th>Thao tác</th>
+                            <th>Địa chỉ & Ghi chú</th>
+                            <th>Trạng thái & Cập nhật</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($orders as $o): ?>
-                        <tr>
-                            <td><strong>#DH<?php echo $o['id_don_hang']; ?></strong></td>
-                            <td>
-                                <div class="user-info">
-                                    <span class="user-name"><?php echo $o['ho_ten']; ?></span><br>
-                                    <small><?php echo $o['so_dien_thoai']; ?></small>
-                                </div>
-                            </td>
-                            <td class="date-text"><?php echo date('d/m/Y H:i', strtotime($o['ngay_tao_don'])); ?></td>
-                            <td class="price-text"><?php echo number_format($o['tong_gia'], 0, ',', '.'); ?>đ</td>
-                            <td><small class="pay-method"><?php echo $o['pt_thanh_toan']; ?></small></td>
-                            <td>
-                                <span class="badge status-<?php echo str_replace(' ', '-', strtolower($o['trang_thai'])); ?>">
-                                    <?php echo $o['trang_thai']; ?>
-                                </span>
-                            </td>
-                            <td>
-                                <div class="action-btns">
-                                    <a href="order_detail.php?id=<?php echo $o['id_don_hang']; ?>" class="btn-view" title="Xem chi tiết đơn"><i class="fa-solid fa-eye"></i></a>
-                                    <a href="update_order.php?id=<?php echo $o['id_don_hang']; ?>" class="btn-edit" title="Cập nhật trạng thái"><i class="fa-solid fa-pen-to-square"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
+                        <?php if (empty($orders)): ?>
+                            <tr>
+                                <td colspan="9" style="text-align:center; padding: 30px; color: #888;">Không tìm thấy đơn hàng phù hợp.</td>
+                            </tr>
+                        <?php else: ?>
+                            <?php foreach ($orders as $o): ?>
+                                <tr>
+                                    <td><strong>#DH<?php echo $o['id_don_hang']; ?></strong></td>
+                                    <td>
+                                        <strong><?php echo $o['ho_ten']; ?></strong><br>
+                                        <small>ID: <?php echo $o['id_khach_hang']; ?></small>
+                                    </td>
+                                    <td><?php echo $o['id_khuyen_mai'] ?: '-'; ?></td>
+                                    <td><?php echo date('d/m/y H:i', strtotime($o['ngay_tao_don'])); ?></td>
+                                    <td><?php echo number_format($o['tien_ship'], 0, ',', '.'); ?>đ</td>
+                                    <td class="price-text"><?php echo number_format($o['tong_gia'], 0, ',', '.'); ?>đ</td>
+                                    <td><small><?php echo $o['pt_thanh_toan']; ?></small></td>
+                                    <td>
+                                        <div style="max-width: 250px; font-size: 12px;">
+                                            <strong>Đ/C:</strong> <?php echo htmlspecialchars($o['dia_chi_giao_hang']); ?><br>
+                                            <strong>Ghi chú:</strong> <i><?php echo htmlspecialchars($o['ghi_chu'] ?: 'Không'); ?></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form method="POST" style="display: flex; gap: 8px;">
+                                            <input type="hidden" name="id_don_hang" value="<?php echo $o['id_don_hang']; ?>">
+                                            <select name="trang_thai" class="status-select">
+                                                <?php
+                                                foreach ($statusOptions as $st) {
+                                                    $selected = ($o['trang_thai'] == $st) ? 'selected' : '';
+                                                    echo "<option value='$st' $selected>$st</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                            <button type="submit" name="update_status" class="btn-update-fast">Lưu</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
-    <script src="../../../Public/js/admin/order.js"></script>
 </body>
+
 </html>

@@ -4,17 +4,23 @@
 
 :root {
     /* Bảng màu chính thức */
-    --red-brown: #5d2620;    /* Nâu đỏ Sidebar */
-    --brown-mid: #966f5d;    /* Nâu trung tính cho chữ phụ */
-    --baby-cream: #fef9f1;   /* Nền kem toàn trang */
+    --red-brown: #5d2620;
+    /* Nâu đỏ Sidebar */
+    --brown-mid: #966f5d;
+    /* Nâu trung tính cho chữ phụ */
+    --baby-cream: #fef9f1;
+    /* Nền kem toàn trang */
     --white: #ffffff;
-    
+
     /* Tông màu Vàng (Gold) làm điểm nhấn */
-    --gold-primary: #f59e0b;  /* Vàng đậm cho Icon và Chữ nhấn */
-    --gold-light: #fef3c7;    /* Vàng nhạt cho nền Icon */
-    --gold-soft: #fffbeb;     /* Vàng cực nhạt cho Badge */
-    
-    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --gold-primary: #f59e0b;
+    /* Vàng đậm cho Icon và Chữ nhấn */
+    --gold-light: #fef3c7;
+    /* Vàng nhạt cho nền Icon */
+    --gold-soft: #fffbeb;
+    /* Vàng cực nhạt cho Badge */
+
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* 1. Reset & Cơ bản */
@@ -73,21 +79,25 @@ body {
     align-items: center;
     gap: 15px;
     padding: 15px 30px;
-    color: #dfced5; /* Màu chữ nhạt cho sidebar */
+    color: #dfced5;
+    /* Màu chữ nhạt cho sidebar */
     text-decoration: none;
     transition: 0.3s;
     font-weight: 500;
 }
 
 /* Hiệu ứng khi chọn (Active) hoặc di chuột qua */
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
-    border-left: 4px solid var(--gold-primary); /* Điểm nhấn vàng ở gờ trái */
+    border-left: 4px solid var(--gold-primary);
+    /* Điểm nhấn vàng ở gờ trái */
 }
 
 .nav-link.active i {
-    color: var(--gold-primary); /* Icon màu vàng khi active */
+    color: var(--gold-primary);
+    /* Icon màu vàng khi active */
 }
 
 .nav-divider {
@@ -99,7 +109,8 @@ body {
 /* 3. Nội dung chính (Main Content) */
 .admin-main {
     flex: 1;
-    margin-left: 260px; /* Chừa chỗ cho sidebar cố định */
+    margin-left: 260px;
+    /* Chừa chỗ cho sidebar cố định */
     padding: 40px;
 }
 
@@ -142,8 +153,10 @@ body {
 .stat-icon {
     width: 65px;
     height: 65px;
-    background: var(--gold-light); /* Nền vàng nhạt */
-    color: var(--gold-primary);   /* Icon vàng đậm */
+    background: var(--baby-cream);
+    /* Nền vàng nhạt */
+    color: var(--brown-mid);
+    /* Icon vàng đậm */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -200,7 +213,8 @@ body {
 .admin-table th {
     text-align: left;
     padding: 15px;
-    border-bottom: 2px solid var(--gold-light); /* Đường gạch vàng nhạt */
+    border-bottom: 2px solid var(--gold-light);
+    /* Đường gạch vàng nhạt */
     color: var(--brown-mid);
     font-weight: 600;
 }
@@ -222,14 +236,83 @@ body {
     display: inline-block;
 }
 
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-hoàn-thành {
+    background: #e6fffa;
+    color: #38a169;
+}
+
+.status-đã-đặt {
+    background: #ebf8ff;
+    color: #3182ce;
+}
+
+.status-đã-hủy {
+    background: #fff5f5;
+    color: #e53e3e;
+}
+
+.status-đang-xử-lý {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-đang-giao {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+}
+
+/* Đảm bảo bảng có thể cuộn ngang nếu quá nhiều cột trên màn hình nhỏ */
+.recent-orders {
+    overflow-x: auto;
+}
+
+.admin-table {
+    min-width: 1000px;
+}
+
+.badge { padding: 5px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+            .status-hoàn-thành { background: #e6fffa; color: #38a169; }
+            .status-đã-đặt { background: #ebf8ff; color: #3182ce; }
+            .status-đã-hủy { background: #fff5f5; color: #e53e3e; }
+            .status-đang-xử-lý { background: #fef3c7; color: #d97706; }
+            .status-đang-giao { background: #f0fdf4; color: #16a34a; }
+            .empty-state { text-align: center; padding: 40px; color: #888; }
+
 /* Tối ưu hiển thị di động */
 @media (max-width: 1024px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {
-    .admin-sidebar { width: 70px; }
-    .admin-sidebar span, .sidebar-logo img { display: none; }
-    .admin-main { margin-left: 70px; }
-    .stats-grid { grid-template-columns: 1fr; }
+    .admin-sidebar {
+        width: 70px;
+    }
+
+    .admin-sidebar span,
+    .sidebar-logo img {
+        display: none;
+    }
+
+    .admin-main {
+        margin-left: 70px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
