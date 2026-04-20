@@ -94,7 +94,7 @@ $products = $pdo->query("SELECT m.*, d.ten_danh_muc FROM mon_an m LEFT JOIN danh
         </aside>
 
         <main class="admin-main">
-            <header class="main-header"><h2>Quản lý thực đơn Chi tiết</h2></header>
+            <header class="main-header"><h2>Quản lý thực đơn chi tiết</h2></header>
 
             <?php if (isset($_GET['msg'])): ?>
                 <div class="alert-msg" id="alertBox" style="background:#dcfce7; color:#166534; padding:15px; border-radius:8px; margin-bottom:20px;">
