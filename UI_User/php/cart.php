@@ -1,6 +1,10 @@
 <?php
-// CHỖ CẦN SỬA 1: Đưa lệnh khởi tạo lên đầu tiên
-require_once '../../SQL_Connect/db.php'; // File này đã có session_start() bên trong
+// Ngăn chặn cache trình duyệt
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+require_once '../../SQL_Connect/db.php';
 
 $promoData = [];
 try {
@@ -111,11 +115,12 @@ try {
     <div id="toast-container" class="toast-container"></div>
 
     <script>
-        // Kiểm tra session user_id từ PHP và truyền sang biến JavaScript
-        const isLoggedIn = <?php echo (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) ? 'true' : 'false'; ?>;
+        const isLoggedIn = <?php echo (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) ? 1 : 0; ?>;
 
-        // In ra console để Duy dễ kiểm tra khi chạy thử
-        console.log("Trạng thái login:", isLoggedIn);
+        // Vì nằm cùng thư mục php nên gọi trực tiếp tên file
+        const LOGIN_URL = 'login_register.php';
+
+        console.log("Trạng thái Login:", isLoggedIn);
     </script>
 
     <script src="../js/cart.js?v=<?php echo time(); ?>"></script>

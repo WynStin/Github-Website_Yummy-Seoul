@@ -222,23 +222,23 @@ function showNotification(message, type = 'success') {
 }
 
 function checkout() {
-    console.log("Nút đã bấm. Trạng thái đăng nhập:", isLoggedIn);
-
-    if (cart.length === 0) {
+    const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    
+    if (currentCart.length === 0) {
         showNotification('Giỏ hàng của bạn đang trống!', 'warning');
         return;
     }
 
-    if (isLoggedIn === true) {
-        // Vì cart.php và checkout.php nằm cùng thư mục php/
+    if (isLoggedIn == 1) { 
+        // Gọi thẳng tên file vì chúng cùng nằm trong thư mục php
         window.location.href = 'checkout.php';
     } else {
-        showNotification('Bạn cần đăng nhập để thực hiện thanh toán!', 'error');
+        showNotification('Vui lòng đăng nhập để thanh toán', 'warning');
         
         setTimeout(() => {
-            // Vì cart.php và login_register.php nằm cùng thư mục php/
-            window.location.href = 'login_register.php';
-        }, 1500);
+            // Chuyển sang login và kèm tham số quay lại
+            window.location.href = LOGIN_URL + '?redirect=checkout';
+        }, 1200);
     }
 }
 loadCart();

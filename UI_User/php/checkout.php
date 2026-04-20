@@ -1,3 +1,5 @@
+<?php require_once '../../SQL_Connect/db.php'; ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>

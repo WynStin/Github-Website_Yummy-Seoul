@@ -1,9 +1,5 @@
 <?php
-// 1. Luôn khởi tạo Session ở dòng đầu tiên
-session_start(); 
-
-// 2. Nạp file kết nối Database (Duy kiểm tra lại đường dẫn này cho đúng với cấu thư mục)
-require_once '../../SQL_Connect/db.php'; 
+require_once '../../SQL_Connect/db.php';
 
 $error_message = "";
 $success_message = "";
