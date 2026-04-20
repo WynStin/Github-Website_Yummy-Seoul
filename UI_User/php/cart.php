@@ -115,12 +115,12 @@ try {
     <div id="toast-container" class="toast-container"></div>
 
     <script>
-        const isLoggedIn = <?php echo (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) ? 1 : 0; ?>;
+        const isLoggedIn = <?php echo (isset($_SESSION['id_nguoi_dung']) && !empty($_SESSION['id_nguoi_dung'])) ? 1 : 0; ?>;
 
-        // Vì nằm cùng thư mục php nên gọi trực tiếp tên file
+        // URL trang đăng nhập của bạn
         const LOGIN_URL = 'login_register.php';
 
-        console.log("Trạng thái Login:", isLoggedIn);
+        console.log("Trạng thái đăng nhập thực tế:", isLoggedIn);
     </script>
 
     <script src="../js/cart.js?v=<?php echo time(); ?>"></script>

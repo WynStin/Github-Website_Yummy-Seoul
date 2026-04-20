@@ -1,12 +1,31 @@
-<?php require_once '../../SQL_Connect/db.php'; ?>
+<?php 
+require_once '../../SQL_Connect/db.php'; // File này đã có session_start()
+
+// Nếu không có session, đẩy về login ngay lập tức
+if (!isset($_SESSION['id_nguoi_dung'])) {
+    header("Location: login_register.php?redirect=checkout.php");
+    exit();
+}
+
+// Lấy thông tin để hiện luôn ra form khi vừa vào trang
+$userId = $_SESSION['id_nguoi_dung'];
+$stmt = $pdo->prepare("SELECT * FROM nguoi_dung WHERE id_nguoi_dung = ?");
+$stmt->execute([$userId]);
+$currentUser = $stmt->fetch();
+?>
+<script>
+    // Truyền dữ liệu sang cho checkout.js sử dụng
+    const userData = <?php echo json_encode($currentUser); ?>;
+</script>
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh toán | Yummy Seoul - Tiệm ăn vặt Hàn Quốc</title>
-    
+
     <link rel="icon" type="image/x-icon" href="../../Image/homepage/logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -58,10 +77,25 @@
         </div>
     </div>
 
+    <div class="modal-checkout" id="successModal">
+        <div class="modal-content-checkout">
+            <div class="modal-header-checkout">
+                <h2>🎉 Đặt hàng thành công!</h2>
+            </div>
+            <div class="modal-body-checkout">
+                <p class="modal-body-text"></p>
+                <p>Cảm ơn bạn đã ủng hộ Yummy Seoul!</p>
+            </div>
+            <div class="modal-actions-checkout">
+                <button class="modal-btn-checkout modal-btn-primary-checkout" onclick="window.location.href='../../index.php'">Về trang chủ</button>
+            </div>
+        </div>
+    </div>
+
     <?php include '../../Header_Footer/php/footer.php'; ?>
 
     <script src="../js/checkout.js"></script>
-    
+
     <script>
         // Kiểm tra giỏ hàng để tránh lỗi treo trang
         document.addEventListener('DOMContentLoaded', function() {
@@ -73,4 +107,5 @@
         });
     </script>
 </body>
+
 </html>

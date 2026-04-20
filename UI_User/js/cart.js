@@ -229,15 +229,15 @@ function checkout() {
         return;
     }
 
-    if (isLoggedIn == 1) { 
-        // Gọi thẳng tên file vì chúng cùng nằm trong thư mục php
+    // Nếu isLoggedIn là 1 (đã có session từ PHP)
+    if (isLoggedIn === 1) { 
         window.location.href = 'checkout.php';
     } else {
         showNotification('Vui lòng đăng nhập để thanh toán', 'warning');
         
         setTimeout(() => {
-            // Chuyển sang login và kèm tham số quay lại
-            window.location.href = LOGIN_URL + '?redirect=checkout';
+            // Quan trọng: Gửi thêm tham số redirect để trang Login xử lý
+            window.location.href = LOGIN_URL + '?redirect=checkout.php';
         }, 1200);
     }
 }

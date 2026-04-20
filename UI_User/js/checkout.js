@@ -33,13 +33,15 @@ function closeConfirmModal() {
     pendingConfirmAction = null;
 }
 
-// Hàm này để gán vào nút Xác nhận trong modal xác nhận
-document.getElementById('confirmBtn').onclick = function() {
-    if (pendingConfirmAction && typeof pendingConfirmAction === 'function') {
-        pendingConfirmAction();
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmBtn = document.getElementById('confirmBtn');
+    if(confirmBtn) {
+        confirmBtn.onclick = function() {
+            if (pendingConfirmAction) pendingConfirmAction();
+            closeConfirmModal();
+        };
     }
-    closeConfirmModal();
-};
+});
 
 // Đóng modal khi bấm ra ngoài
 document.addEventListener('DOMContentLoaded', function() {
@@ -56,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuth() {
     const currentUser = sessionStorage.getItem("currentUser");
     if (!currentUser) {
-        window.location.href = "/page/account/login/login.html#login";
+        // Sửa đường dẫn này cho đúng với file login của bạn
+        window.location.href = "../php/checkout.php"; 
         return null;
     }
     return JSON.parse(currentUser);
@@ -105,7 +108,7 @@ function showSuccessModal(totalStr, method) {
     if(modal) {
         const content = modal.querySelector('.modal-body-text');
         if(content) content.innerHTML = `Tổng thanh toán: <b>${totalStr}</b><br>Hình thức: ${method}`;
-        modal.classList.add('show');
+        modal.classList.add('active');
     }
 }
 
@@ -134,25 +137,33 @@ function removePromoCode() {
     renderCheckout(checkAuth());
 }
 
-function placeOrder(event) {
+async function placeOrder(event) {
     event.preventDefault();
-    const form = event.target;
-    if (!form.checkValidity()) return;
-
-    const phone = form.querySelector('input[name="phone"]').value;
-    if (!/^0\d{9,10}$/.test(phone)) {
-        showMessageModal("Lỗi", "Số điện thoại không hợp lệ!");
-        return;
-    }
-
     const cartItems = getCartItems();
-    const paymentMethodText = document.querySelector('.payment-option.active h4').innerText;
-    const totalStr = document.querySelector('.summary-line.total span:last-child').innerText;
+    const address = document.querySelector('input[name="address"]').value;
+    const paymentMethod = document.getElementById('selectedPaymentMethod').value;
+    
+    const orderData = {
+        items: cartItems,
+        address: address,
+        paymentMethod: paymentMethod,
+        total: calculateTotal(cartItems)
+    };
 
-    recordUserPurchases(cartItems);
-    localStorage.removeItem('cart');
-    localStorage.removeItem('appliedPromoCode');
-    showSuccessModal(totalStr, paymentMethodText);
+    // Gửi dữ liệu về Server
+    const response = await fetch('save_order.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+    });
+
+    const result = await response.json();
+    if (result.success) {
+        localStorage.removeItem('cart'); // Xóa giỏ hàng sau khi đặt xong
+        showSuccessModal(formatMoney(orderData.total + 20000), paymentMethod);
+    } else {
+        alert("Có lỗi xảy ra: " + result.message);
+    }
 }
 
 function recordUserPurchases(cartItems) {
@@ -275,6 +286,10 @@ function renderCheckout(user) {
 }
 
 window.onload = function() {
-    const user = checkAuth();
-    if (user) renderCheckout(user);
+    // Không dùng sessionStorage nữa mà dùng userData từ PHP đổ ra
+    if (typeof userData !== 'undefined' && userData !== null) {
+        renderCheckout(userData);
+    } else {
+        window.location.href = 'login_register.php';
+    }
 };

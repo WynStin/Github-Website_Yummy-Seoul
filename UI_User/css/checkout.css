@@ -188,3 +188,8 @@
     padding: 30px 20px;
     text-align: center;
     color: var(--text-dark);
+} 
+
+.modal-checkout.active {
+    display: flex !important;
+}
