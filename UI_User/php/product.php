@@ -104,9 +104,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
             </ul>
             <h3 style="margin-top: 30px;">Hỗ trợ khách hàng</h3>
             <ul>
-                <li><a href="#"><i class="fas fa-question-circle"></i> Hướng dẫn mua hàng</a></li>
+                <li><a href="payment_policy.php"><i class="fas fa-money-bill-wave"></i> Chính sách thanh toán</a></li>
                 <li><a href="shipping_policy.php"><i class="fas fa-shipping-fast"></i> Chính sách giao hàng</a></li>
-                <li><a href="#"><i class="fas fa-undo"></i> Chính sách đổi trả</a></li>
+                <li><a href="privacy_policy.php"><i class="fas fa-user-shield"></i> Chính sách bảo mật</a></li>
             </ul>
         </aside>
 

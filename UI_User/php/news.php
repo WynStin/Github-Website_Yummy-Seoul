@@ -96,7 +96,7 @@
         color: #666;
         font-weight: 400;
       ">
-    Cập nhật thông tin mới nhất và các khuyến mãi hấp dẫn từ cửa hàng
+    <strong>Cập nhật thông tin mới nhất và các khuyến mãi hấp dẫn từ cửa hàng</strong>
   </div>
 
   <!--Lấy footer-->

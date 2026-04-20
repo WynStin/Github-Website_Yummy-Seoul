@@ -72,10 +72,18 @@ if ($id_mon_an > 0) {
                         </div>
 
                         <div class="action-buttons">
-                            <button class="btn-add-cart" id="btnAddToCart" data-id="<?= $product['id_mon_an'] ?>">
+                            <button class="btn-add-cart" id="btnAddToCart"
+                                data-id="<?= $product['id_mon_an'] ?>"
+                                data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
+                                data-price="<?= $product['gia_ban'] ?>"
+                                data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
                                 <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
                             </button>
-                            <button class="btn-buy-now" id="btnBuyNow" data-id="<?= $product['id_mon_an'] ?>">
+                            <button class="btn-buy-now" id="btnBuyNow"
+                                data-id="<?= $product['id_mon_an'] ?>"
+                                data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
+                                data-price="<?= $product['gia_ban'] ?>"
+                                data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
                                 MUA NGAY
                             </button>
                         </div>

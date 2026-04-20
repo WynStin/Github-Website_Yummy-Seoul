@@ -1,3 +1,27 @@
+<?php
+// CHỖ CẦN SỬA 1: Đưa lệnh khởi tạo lên đầu tiên
+require_once '../../SQL_Connect/db.php'; // File này đã có session_start() bên trong
+
+$promoData = [];
+try {
+    // Truy vấn các mã còn hạn và đang có hiệu lực từ Database của Duy
+    $stmt = $pdo->query("SELECT ma_khuyen_mai, phan_tram_giam, giam_toi_da, don_hang_min, co_freeship 
+                         FROM khuyen_mai 
+                         WHERE trang_thai = 'Hiệu lực' AND ngay_het_han >= NOW()");
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($rows as $row) {
+        $promoData[$row['ma_khuyen_mai']] = [
+            'phan_tram' => (int)$row['phan_tram_giam'],
+            'giam_max' => (int)$row['giam_toi_da'],
+            'min_don' => (int)$row['don_hang_min'],
+            'freeship' => ($row['co_freeship'] === 'Có')
+        ];
+    }
+} catch (PDOException $e) {
+    // Duy có thể để trống hoặc ghi log lỗi tại đây
+}
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -10,8 +34,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/home.css">
-    <link rel="stylesheet" href="/Github-Website_Yummy-Seoul/Public/css/cart.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/cart.css">
 </head>
 
 <body>
@@ -28,62 +52,21 @@
 
         <div class="container-custom">
             <div class="cart-header fade-up">
-                <a href="home.php" class="back-to-shop"><i class="fa-solid fa-arrow-left"></i> Tiếp tục mua sắm</a>
-                <h1 class="cart-title">Giỏ hàng của bạn</h1>
+                <a href="home.php" class="back-to-shop">
+                    <i class="fa-solid fa-arrow-left"></i> <strong>Tiếp tục mua sắm</strong>
+                </a>
+
+                <div class="title-with-badge">
+                    <h1 class="cart-title">Giỏ hàng</h1>
+                    <span id="itemCountBadge" class="cart-badge-orange">0 sản phẩm</span>
+                </div>
+
                 <div class="cart-subtitle-handwritten">Đừng để bụng đói khi về nhà nhé!</div>
             </div>
 
             <div class="cart-main-layout">
-                <div class="cart-items-column fade-up delay-1">
-                    <div class="cart-table-header">
-                        <span>Sản phẩm</span>
-                        <span>Số lượng</span>
-                        <span>Tổng</span>
-                    </div>
 
-                    <div id="cartItemsList">
-                        <div class="cart-item-row">
-                            <div class="item-info">
-                                <div class="item-img">
-                                    <img src="/Github-Website_Yummy-Seoul/Public/img/monan/combobulgogi.jpg" alt="Cơm Bulgogi">
-                                </div>
-                                <div class="item-details">
-                                    <h3>Cơm bò xào Bulgogi</h3>
-                                    <p class="unit-price">95.000đ</p>
-                                    <button class="remove-item"><i class="fa-solid fa-trash-can"></i> Xóa</button>
-                                </div>
-                            </div>
-                            <div class="item-quantity">
-                                <div class="quantity-control">
-                                    <button>-</button>
-                                    <input type="number" value="1" min="1">
-                                    <button>+</button>
-                                </div>
-                            </div>
-                            <div class="item-total">95.000đ</div>
-                        </div>
-
-                        <div class="cart-item-row">
-                            <div class="item-info">
-                                <div class="item-img">
-                                    <img src="/Github-Website_Yummy-Seoul/Public/img/monan/coca.jpg" alt="Coca">
-                                </div>
-                                <div class="item-details">
-                                    <h3>Coca Cola lon</h3>
-                                    <p class="unit-price">20.000đ</p>
-                                    <button class="remove-item"><i class="fa-solid fa-trash-can"></i> Xóa</button>
-                                </div>
-                            </div>
-                            <div class="item-quantity">
-                                <div class="quantity-control">
-                                    <button>-</button>
-                                    <input type="number" value="2" min="1">
-                                    <button>+</button>
-                                </div>
-                            </div>
-                            <div class="item-total">40.000đ</div>
-                        </div>
-                    </div>
+                <div class="cart-items-column fade-up delay-1" id="cartItemsList">
                 </div>
 
                 <div class="cart-summary-column fade-up delay-2">
@@ -91,29 +74,32 @@
                         <h2 class="summary-title">Hóa đơn của bạn</h2>
                         <div class="summary-row">
                             <span>Tạm tính</span>
-                            <span id="subtotal">135.000đ</span>
+                            <span id="subtotal">0đ</span>
                         </div>
                         <div class="summary-row">
                             <span>Vận chuyển</span>
-                            <span id="shipping">15.000đ</span>
+                            <span id="shipping">20.000đ</span>
                         </div>
                         <div class="summary-row discount">
                             <span>Giảm giá</span>
                             <span id="discount">-0đ</span>
                         </div>
 
+                        <div id="promoDisplay"></div>
                         <div class="promo-box">
-                            <input type="text" placeholder="Nhập mã ưu đãi...">
-                            <button>Áp dụng</button>
+                            <input type="text" id="promoInput" placeholder="Nhập mã ưu đãi...">
+                            <button onclick="applyPromo()">Áp dụng</button>
                         </div>
 
                         <div class="summary-divider"></div>
                         <div class="summary-row total">
                             <span>Tổng cộng</span>
-                            <span id="total">150.000đ</span>
+                            <span id="total">0đ</span>
                         </div>
 
-                        <button class="btn-checkout">Tiến hành thanh toán</button>
+                        <button type="button" class="btn-checkout" id="checkoutBtn" onclick="checkout()">
+                            Tiến hành thanh toán
+                        </button>
                     </div>
                 </div>
             </div>
@@ -122,7 +108,18 @@
 
     <?php include '../../Header_Footer/php/footer.php'; ?>
 
-    <script src="../../js/cart.js"></script>
+    <div id="toast-container" class="toast-container"></div>
+
+    <script>
+        // Kiểm tra session user_id từ PHP và truyền sang biến JavaScript
+        const isLoggedIn = <?php echo (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) ? 'true' : 'false'; ?>;
+
+        // In ra console để Duy dễ kiểm tra khi chạy thử
+        console.log("Trạng thái login:", isLoggedIn);
+    </script>
+
+    <script src="../js/cart.js?v=<?php echo time(); ?>"></script>
+
 </body>
 
 </html>

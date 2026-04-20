@@ -2,9 +2,8 @@
 // ==========================================================================
 // SQL_Connect/db.php - KẾT NỐI CSDL & CÁC HÀM XỬ LÝ DỮ LIỆU CHUNG
 // ==========================================================================
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+
 // 1. Khai báo các thông số kết nối
 $host = 'localhost';
 $db   = 'yummy_seoul';

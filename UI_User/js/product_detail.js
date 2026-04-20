@@ -5,81 +5,62 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnAddToCart = document.getElementById('btnAddToCart');
     const btnBuyNow = document.getElementById('btnBuyNow');
 
-    if (!qtyInput) return; // Nếu không tìm thấy sản phẩm, bỏ qua script
+    if (!qtyInput) return;
 
-// Thay thế đoạn xử lý tăng giảm bằng đoạn này
-btnDecrease.addEventListener('click', () => {
-    let currentValue = parseInt(qtyInput.value);
-    if (currentValue > 1) {
-        qtyInput.value = currentValue - 1;
-    }
-});
-
-btnIncrease.addEventListener('click', () => {
-    let currentValue = parseInt(qtyInput.value);
-    // Lấy giá trị max từ attribute của thẻ input (chính là so_luong_ton)
-    let maxStock = parseInt(qtyInput.getAttribute('max')) || 99; 
-    
-    if (currentValue < maxStock) {
-        qtyInput.value = currentValue + 1;
-    } else {
-        alert('Số lượng vượt quá sản phẩm có sẵn trong kho!');
-    }
-});
-
-// Chặn người dùng gõ tay số quá lớn
-qtyInput.addEventListener('change', () => {
-    let val = parseInt(qtyInput.value);
-    let maxStock = parseInt(qtyInput.getAttribute('max')) || 99;
-
-    if (isNaN(val) || val < 1) qtyInput.value = 1;
-    if (val > maxStock) {
-        qtyInput.value = maxStock;
-        alert('Chỉ còn ' + maxStock + ' sản phẩm trong kho!');
-    }
-});
-
-    // Xử lý Thêm vào giỏ hàng
-    const processCart = (productId, quantity, redirect = false) => {
-        fetch('add_to_cart.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ productId: productId, quantity: quantity })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (redirect) {
-                    window.location.href = 'cart.php'; // Chuyển sang trang giỏ hàng
-                } else {
-                    alert('Đã thêm ' + quantity + ' phần vào giỏ hàng!');
-                    // Gọi hàm update UI số lượng giỏ hàng trên Header ở đây nếu có
-                }
-            } else {
-                alert('Lỗi: ' + (data.message || 'Không thể thêm vào giỏ hàng'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Có lỗi xảy ra khi kết nối máy chủ.');
-        });
+    // 1. Xử lý tăng giảm số lượng
+    btnDecrease.onclick = () => {
+        let val = parseInt(qtyInput.value);
+        if (val > 1) qtyInput.value = val - 1;
     };
 
-    if (btnAddToCart) {
-        btnAddToCart.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            const qty = parseInt(qtyInput.value);
-            processCart(productId, qty, false);
-        });
-    }
+    btnIncrease.onclick = () => {
+        let val = parseInt(qtyInput.value);
+        let max = parseInt(qtyInput.getAttribute('max')) || 99;
+        if (val < max) qtyInput.value = val + 1;
+        else alert('Số lượng vượt quá sản phẩm có sẵn!');
+    };
 
-    if (btnBuyNow) {
-        btnBuyNow.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            const qty = parseInt(qtyInput.value);
-            processCart(productId, qty, true);
-        });
-    }
+    // 2. Logic thêm vào LocalStorage (Đồng bộ với cart.js)
+    const handleCart = (button, isRedirect) => {
+        const product = {
+            id: button.getAttribute('data-id'),
+            title: button.getAttribute('data-name'), // Đồng bộ key 'title' với cart.js
+            price: parseInt(button.getAttribute('data-price')),
+            image: button.getAttribute('data-image'),
+            quantity: parseInt(qtyInput.value)
+        };
+
+        if (!product.id || isNaN(product.price)) {
+            alert('Lỗi dữ liệu sản phẩm!');
+            return;
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.quantity += product.quantity;
+        } else {
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Kích hoạt sự kiện để Header (nếu có) cập nhật số lượng ngay
+        window.dispatchEvent(new Event('cartUpdated'));
+
+        if (isRedirect) {
+            window.location.href = 'cart.php';
+        } else {
+            if (typeof showNotification === 'function') {
+                showNotification(`Đã thêm ${product.quantity} phần vào giỏ hàng!`, 'success');
+            } else {
+                alert('Đã thêm sản phẩm vào giỏ hàng!');
+            }
+        }
+    };
+
+    // 3. Gán sự kiện cho nút bấm
+    if (btnAddToCart) btnAddToCart.onclick = function () { handleCart(this, false); };
+    if (btnBuyNow) btnBuyNow.onclick = function () { handleCart(this, true); };
 });

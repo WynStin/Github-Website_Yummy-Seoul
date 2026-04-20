@@ -1,21 +1,17 @@
-<?php
-session_start();
-// Đảm bảo không có khoảng trắng nào trước thẻ <?php này
-?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh toán | Yummy Seoul</title>
+    <title>Thanh toán | Yummy Seoul - Tiệm ăn vặt Hàn Quốc</title>
     
-    <link rel="icon" type="image/x-icon" href="../../../Image/homepage/logo.png">
+    <link rel="icon" type="image/x-icon" href="../../Image/homepage/logo.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../Public/css/home.css">
-    <link rel="stylesheet" href="../../../Public/css/checkout.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/checkout.css">
 </head>
 
 <body>
@@ -62,7 +58,7 @@ session_start();
 
     <?php include '../../Header_Footer/php/footer.php'; ?>
 
-    <script src="../../../Public/js/checkout.js"></script>
+    <script src="../js/checkout.js"></script>
     
     <script>
         // Kiểm tra giỏ hàng để tránh lỗi treo trang

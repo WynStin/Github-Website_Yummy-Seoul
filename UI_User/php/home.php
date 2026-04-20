@@ -140,7 +140,7 @@ $bestSellerProducts = getTop10BestSeller();
           <div class="cat-name">Cơm (Rice)</div>
         </a>
         <a href="product.php?category=2" class="cat-card fade-up delay-2">
-          <div><img src="../../Image/monan/gasottuongtoi.jpg" height="230px" alt="Gà (Chicken)" /></div>
+          <div><img src="../../Image/monan/gasottuongtoi.jpg" height="195px" alt="Gà (Chicken)" /></div>
           <div class="cat-name">Gà (Chicken)</div>
         </a>
         <a href="product.php?category=3" class="cat-card fade-up delay-3">
@@ -156,7 +156,7 @@ $bestSellerProducts = getTop10BestSeller();
           <div class="cat-name">Đồ ăn nhẹ (Snacks)</div>
         </a>
         <a href="product.php?category=6" class="cat-card fade-up delay-3">
-          <div><img src="../../Image/monan/trasuakhoaimon.jpg" height="200px" alt="Đồ uống (Drinks)" /></div>
+          <div><img src="../../Image/monan/trasuakhoaimon.jpg" height="169px" alt="Đồ uống (Drinks)" /></div>
           <div class="cat-name">Đồ uống (Drinks)</div>
         </a>
       </div>
