@@ -1,14 +1,25 @@
 <?php
-// Nạp file kết nối và các hàm xử lý (db.php đã có session_start inside)
 require_once '../../SQL_Connect/db.php';
 
-// Lấy ID từ URL
+// 1. Lấy ID từ URL
 $id_mon_an = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 $product = null;
 
 if ($id_mon_an > 0) {
-    // SỬ DỤNG LUÔN HÀM CÓ SẴN TRONG db.php ĐỂ GỘP LOGIC
-    $product = getProductById($id_mon_an);
+    try {
+        // 2. Tăng lượt xem ngay khi vừa vào trang (Cập nhật trước)
+        $updateStmt = $pdo->prepare("UPDATE mon_an SET so_luot_xem = so_luot_xem + 1 WHERE id_mon_an = ?");
+        $updateStmt->execute([$id_mon_an]);
+
+        // 3. Sau đó mới truy vấn để lấy thông tin món ăn (Lúc này so_luot_xem đã tăng)
+        $stmt = $pdo->prepare("SELECT * FROM mon_an WHERE id_mon_an = ?");
+        $stmt->execute([$id_mon_an]);
+        $product = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    } catch (PDOException $e) {
+        // Trong môi trường làm việc thực tế, ta nên ghi log lỗi thay vì die()
+        error_log("Lỗi cập nhật lượt xem: " . $e->getMessage());
+    }
 }
 ?>
 
