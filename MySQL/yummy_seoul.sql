@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 20, 2026 lúc 06:16 AM
+-- Thời gian đã tạo: Th4 20, 2026 lúc 07:54 AM
 -- Phiên bản máy phục vụ: 8.4.7
 -- Phiên bản PHP: 8.3.28
 
@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `chi_tiet_gio_hang` (
 DROP TABLE IF EXISTS `danh_muc_mon_an`;
 CREATE TABLE IF NOT EXISTS `danh_muc_mon_an` (
   `id_danh_muc` int NOT NULL AUTO_INCREMENT,
-  `ten_danh_muc` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mo_ta` text COLLATE utf8mb4_unicode_ci,
+  `ten_danh_muc` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mo_ta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id_danh_muc`),
   UNIQUE KEY `ten_danh_muc` (`ten_danh_muc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -98,22 +98,23 @@ CREATE TABLE IF NOT EXISTS `don_hang` (
   `ngay_tao_don` datetime DEFAULT CURRENT_TIMESTAMP,
   `tien_ship` decimal(10,2) NOT NULL DEFAULT '0.00',
   `tong_gia` decimal(10,2) NOT NULL,
-  `trang_thai` enum('Đã đặt','Đang xử lý','Đang giao','Hoàn thành','Đã hủy') COLLATE utf8mb4_unicode_ci DEFAULT 'Đã đặt',
-  `dia_chi_giao_hang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pt_thanh_toan` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ghi_chu` text COLLATE utf8mb4_unicode_ci,
+  `trang_thai` enum('Đã đặt','Đang xử lý','Đang giao','Hoàn thành','Đã hủy') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Đã đặt',
+  `dia_chi_giao_hang` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pt_thanh_toan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ghi_chu` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id_don_hang`),
   KEY `id_khach_hang` (`id_khach_hang`),
   KEY `id_khuyen_mai` (`id_khuyen_mai`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `don_hang`
 --
 
 INSERT INTO `don_hang` (`id_don_hang`, `id_khach_hang`, `id_khuyen_mai`, `ngay_tao_don`, `tien_ship`, `tong_gia`, `trang_thai`, `dia_chi_giao_hang`, `pt_thanh_toan`, `ghi_chu`) VALUES
-(1, 1, 1, '2026-04-20 10:14:16', 0.00, 40000.00, 'Hoàn thành', 'hhh', 'hhh', 'hhh'),
-(2, 1, 1, '2026-04-20 10:40:05', 0.00, 50000.00, 'Hoàn thành', 'gg', 'gg', 'gg');
+(1, 1, NULL, '2026-04-17 10:14:16', 10000.00, 40000.00, 'Hoàn thành', 'Cầu Giấy, Hà Nội', 'Ngân hàng', ''),
+(2, 1, NULL, '2026-04-18 10:40:05', 0.00, 50000.00, 'Hoàn thành', 'Đống Đa, Hà Nội', 'Tiền mặt', ''),
+(3, 2, NULL, '2026-04-20 14:38:59', 0.00, 35000.00, 'Hoàn thành', 'Đại học KTQD', 'Ngân hàng', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,14 +143,14 @@ CREATE TABLE IF NOT EXISTS `gio_hang` (
 DROP TABLE IF EXISTS `khuyen_mai`;
 CREATE TABLE IF NOT EXISTS `khuyen_mai` (
   `id_khuyen_mai` int NOT NULL AUTO_INCREMENT,
-  `ma_khuyen_mai` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ma_khuyen_mai` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `phan_tram_giam` int DEFAULT NULL,
   `giam_toi_da` decimal(10,2) DEFAULT NULL,
   `ngay_het_han` datetime NOT NULL,
-  `co_freeship` enum('Có','Không') COLLATE utf8mb4_unicode_ci DEFAULT 'Không',
+  `co_freeship` enum('Có','Không') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Không',
   `so_luong` int NOT NULL,
   `don_hang_min` decimal(10,2) DEFAULT '0.00',
-  `trang_thai` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'Hiệu lực',
+  `trang_thai` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Hiệu lực',
   PRIMARY KEY (`id_khuyen_mai`),
   UNIQUE KEY `ma_khuyen_mai` (`ma_khuyen_mai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -172,11 +173,11 @@ DROP TABLE IF EXISTS `mon_an`;
 CREATE TABLE IF NOT EXISTS `mon_an` (
   `id_mon_an` int NOT NULL AUTO_INCREMENT,
   `id_danh_muc` int DEFAULT NULL,
-  `ten_mon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mo_ta` text COLLATE utf8mb4_unicode_ci,
+  `ten_mon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mo_ta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `gia_ban` decimal(10,2) NOT NULL,
-  `hinh_anh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trang_thai` enum('Còn hàng','Hết hàng') COLLATE utf8mb4_unicode_ci DEFAULT 'Còn hàng',
+  `hinh_anh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trang_thai` enum('Còn hàng','Hết hàng') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Còn hàng',
   `so_luong_ton` int NOT NULL,
   `so_luot_xem` int DEFAULT '0',
   `so_luong_da_ban` int DEFAULT '0',
@@ -230,14 +231,14 @@ INSERT INTO `mon_an` (`id_mon_an`, `id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`,
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE IF NOT EXISTS `nguoi_dung` (
   `id_nguoi_dung` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mat_khau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ho_ten` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `so_dien_thoai` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dia_chi_mac_dinh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vai_tro` enum('Khách hàng','Quản lý') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Khách hàng',
-  `trang_thai` enum('Hoạt động','Bị khóa') COLLATE utf8mb4_unicode_ci DEFAULT 'Hoạt động',
+  `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mat_khau` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ho_ten` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `so_dien_thoai` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia_chi_mac_dinh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vai_tro` enum('Khách hàng','Quản lý') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Khách hàng',
+  `trang_thai` enum('Hoạt động','Bị khóa') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'Hoạt động',
   `ngay_tao` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_nguoi_dung`),
   UNIQUE KEY `user_name` (`user_name`),
