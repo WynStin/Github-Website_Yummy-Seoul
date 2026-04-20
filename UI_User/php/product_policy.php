@@ -30,7 +30,7 @@
             CHÍNH SÁCH VỀ SẢN PHẨM
         </div>
 
-        <div class="container" style="max-width: 850px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <div class="container" style="display: flex; flex-direction: column; max-width: 850px; margin: 0 auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
 
             <div class="guide-section" style="margin-bottom: 35px;">
                 <h2 style="color: var(--red-brown); border-bottom: 2px solid var(--cream-dark); padding-bottom: 10px; font-size: 1.5rem;">

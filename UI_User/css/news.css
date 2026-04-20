@@ -60,11 +60,16 @@ img {
   padding: 60px 40px;
 }
 
+.tin-tuc {
+  padding-top: 60px;
+}
+
 .section-title-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 45px;
+  margin-top: 40px;
 }
 
 .section-title {
