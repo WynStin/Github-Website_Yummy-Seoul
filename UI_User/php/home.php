@@ -1,17 +1,17 @@
 <?php
-// 1. Nạp cấu hình database và Model
+// 1. Nạp cấu hình database (Lúc này db.php đã chứa toàn bộ các hàm getTop10Newest, getTop10MostViewed,...)
 require_once '../../SQL_Connect/db.php';
-require_once '../../Models/ProductModel.php';
 
-// 2. Khởi tạo Model
-$productModel = new ProductModel($pdo);
+/**
+ * 2. Lấy dữ liệu trực tiếp từ các hàm toàn cục
+ * Bạn không cần khởi tạo $productModel = new ProductModel($pdo) nữa
+ */
+$newProducts = getTop10Newest();
+$mostViewedProducts = getTop10MostViewed();
+$bestSellerProducts = getTop10BestSeller();
 
-// 3. Lấy dữ liệu cho các section trên trang chủ
-$newProducts = $productModel->getTop10Newest();
-$mostViewedProducts = $productModel->getTop10MostViewed();
-$bestSellerProducts = $productModel->getTop10BestSeller();
-
-// Sau khi có dữ liệu ở trên, phần dưới sẽ là HTML để hiển thị
+// Sau khi đã có các biến $newProducts, $mostViewedProducts, $bestSellerProducts, 
+// bạn giữ nguyên phần HTML bên dưới để hiển thị dữ liệu như cũ.
 ?>
 
 <!doctype html>

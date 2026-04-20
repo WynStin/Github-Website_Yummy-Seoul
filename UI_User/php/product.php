@@ -1,10 +1,8 @@
 <?php
-// 1. Nạp các tệp cấu hình và Model cần thiết
+// 1. Nạp cấu hình database (Lúc này db.php đã chứa các hàm xử lý món ăn như getProducts, countProducts)
 require_once '../../SQL_Connect/db.php';
-require_once '../../Models/ProductModel.php';
 
-// Khởi tạo đối tượng Model
-$productModel = new ProductModel($pdo);
+// --- ĐÃ LOẠI BỎ KHỞI TẠO MODEL ---
 
 // 2. Xử lý logic tiêu đề hiển thị (dành cho yêu cầu không phải AJAX)
 $search = $_GET['search'] ?? '';
@@ -20,16 +18,20 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 1) {
     $category = $_GET['category'] ?? 'all';
     $sort = $_GET['sort'] ?? 'default';
     $search = $_GET['search'] ?? '';
-    $minPrice = $_GET['minPrice'] ?? null; // Nhận giá min
-    $maxPrice = $_GET['maxPrice'] ?? null; // Nhận giá max
+    $minPrice = $_GET['minPrice'] ?? null;
+    $maxPrice = $_GET['maxPrice'] ?? null;
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
     $limit = 6;
     $offset = ($page - 1) * $limit;
 
     try {
-        $products = $productModel->getProducts($category, $search, $sort, $minPrice, $maxPrice, $limit, $offset);
-        $totalItems = $productModel->countProducts($category, $search, $minPrice, $maxPrice);
+        /**
+         * GỌI HÀM TRỰC TIẾP TỪ db.php
+         * Không còn dùng $productModel-> nữa
+         */
+        $products = getProducts($category, $search, $sort, $minPrice, $maxPrice, $limit, $offset);
+        $totalItems = countProducts($category, $search, $minPrice, $maxPrice);
         $totalPages = ceil($totalItems / $limit);
 
         echo json_encode([
