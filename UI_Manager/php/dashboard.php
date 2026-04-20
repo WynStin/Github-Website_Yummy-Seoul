@@ -60,10 +60,10 @@ try {
                 </div>
                 <nav class="sidebar-nav">
                     <a href="dashboard.php" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                    <a href="products.php" class="nav-link"><i class="fa-solid fa-bowl-food"></i> Quản lý món ăn</a>
+                    <a href="product.php" class="nav-link"><i class="fa-solid fa-bowl-food"></i> Quản lý món ăn</a>
                     <a href="category.php" class="nav-link"><i class="fa-solid fa-list"></i> Quản lý danh mục</a>
                     <a href="order.php" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
-                    <a href="users.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
+                    <a href="user.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
                     <div class="nav-divider"></div>
                     <a href="../../UI_User/php/home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
                 </nav>

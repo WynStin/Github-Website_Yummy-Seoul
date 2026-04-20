@@ -33,10 +33,12 @@ body {
 }
 
 .sidebar-logo {
-    padding: 25px;
+    padding: 30px;
     display: flex;
     align-items: center;
     gap: 15px;
+    font-size: 20px;
+    font-weight: 700;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -62,6 +64,12 @@ body {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border-left: 4px solid var(--gold-primary);
+}
+
+.nav-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
 }
 
 /* MAIN CONTENT */

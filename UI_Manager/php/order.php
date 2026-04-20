@@ -60,7 +60,7 @@ try {
 
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý đơn hàng | Yummy Seoul</title>
+    <title>Quản lý đơn hàng | Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
     <link rel="icon" type="image/x-icon" href="../../Image/homepage/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -96,7 +96,7 @@ try {
                 <a href="product.php" class="nav-link"><i class="fa-solid fa-bowl-food"></i> Quản lý món ăn</a>
                 <a href="category.php" class="nav-link"><i class="fa-solid fa-list"></i> Quản lý danh mục</a>
                 <a href="order.php" class="nav-link active"><i class="fa-solid fa-cart-shopping"></i> Quản lý đơn hàng</a>
-                <a href="member.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
+                <a href="user.php" class="nav-link"><i class="fa-solid fa-users"></i> Quản lý thành viên</a>
                 <div class="nav-divider"></div>
                 <a href="../../UI_User/php/home.php" class="nav-link"><i class="fa-solid fa-house"></i> Về trang chủ</a>
             </nav>

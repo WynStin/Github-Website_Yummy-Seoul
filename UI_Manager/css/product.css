@@ -3,77 +3,265 @@
    ========================================================================== */
 
 :root {
-    --red-brown: #5d2620;    /* Nâu đỏ Sidebar */
-    --brown-mid: #966f5d;    
-    --baby-cream: #fef9f1;   /* Nền kem */
+    --red-brown: #5d2620;
+    /* Nâu đỏ Sidebar */
+    --brown-mid: #966f5d;
+    --baby-cream: #fef9f1;
+    /* Nền kem */
     --white: #ffffff;
-    --gold-primary: #f59e0b;  /* Vàng điểm nhấn */
-    --gold-light: #fef3c7;    
+    --gold-primary: #f59e0b;
+    /* Vàng điểm nhấn */
+    --gold-light: #fef3c7;
     --gold-soft: #fffbeb;
     --success: #10b981;
     --danger: #ef4444;
-    --shadow: 0 4px 15px rgba(0,0,0,0.05);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 /* 1. Reset & Layout Cơ bản */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Asap', sans-serif; background-color: var(--baby-cream); color: var(--red-brown); }
-.admin-container { display: flex; min-height: 100vh; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Asap", sans-serif;
+    background-size: auto;
+    background-color: var(--baby-cream);
+    background: url("../../Image/homepage/background.png");
+    color: var(--red-brown);
+}
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
 
 /* 2. Sidebar (Khung bên trái) */
 .admin-sidebar {
     width: 260px;
-    background-color: var(--red-brown);
+    background-color: #43211d;
     color: var(--white);
     position: fixed;
     height: 100vh;
     z-index: 100;
 }
-.sidebar-logo { padding: 30px; display: flex; align-items: center; gap: 15px; font-size: 20px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.sidebar-logo img { width: 40px; height: 40px; }
-.sidebar-nav { flex: 1; padding: 20px 0; }
-.nav-link { display: flex; align-items: center; gap: 15px; padding: 15px 30px; color: #dfced5; text-decoration: none; transition: 0.3s; font-weight: 500; }
-.nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.1); color: var(--white); border-left: 4px solid var(--gold-primary); }
-.nav-link.active i { color: var(--gold-primary); }
-.nav-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+
+.sidebar-logo {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    color: #dfced5;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border-left: 4px solid var(--gold-primary);
+}
+
+.nav-link.active i {
+    color: var(--gold-primary);
+}
+
+.nav-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
 
 /* 3. Nội dung chính */
-.admin-main { flex: 1; margin-left: 260px; padding: 40px; }
-.main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-.btn-add-primary { background-color: var(--gold-primary); color: var(--white); border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
-.btn-add-primary:hover { background-color: #d97706; transform: translateY(-2px); }
+.admin-main {
+    flex: 1;
+    margin-left: 260px;
+    padding: 40px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.btn-add-primary {
+    background-color: var(--gold-primary);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-add-primary:hover {
+    background-color: #d97706;
+    transform: translateY(-2px);
+}
 
 /* 4. Bảng danh sách món ăn (Chi tiết) */
-.card { background: var(--white); border-radius: 15px; padding: 30px; box-shadow: var(--shadow); }
-.admin-table { width: 100%; border-collapse: collapse; }
-.admin-table th { text-align: left; padding: 15px; border-bottom: 2px solid var(--gold-light); color: var(--brown-mid); font-size: 14px; text-transform: uppercase; }
-.admin-table td { padding: 15px; border-bottom: 1px solid var(--gold-light); vertical-align: middle; }
+.card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid var(--gold-light);
+    color: var(--brown-mid);
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--gold-light);
+    vertical-align: middle;
+}
 
 /* Các thành phần nhỏ trong bảng */
-.product-thumb { width: 70px; height: 70px; object-fit: cover; border-radius: 10px; border: 2px solid var(--gold-light); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.desc-text { font-size: 12px; color: var(--brown-mid); margin-top: 5px; max-width: 150px; }
-.category-tag { background-color: var(--baby-cream); padding: 4px 10px; border-radius: 6px; font-size: 12px; color: var(--brown-mid); border: 1px solid var(--gold-light); }
-.price-text { font-weight: 700; color: var(--red-brown); }
-.stock-info span { font-weight: 600; font-size: 14px; }
-.stock-info small { color: var(--gold-primary); display: block; }
+.product-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.desc-text {
+    font-size: 12px;
+    color: var(--brown-mid);
+    margin-top: 5px;
+    max-width: 150px;
+}
+
+.category-tag {
+    background-color: var(--baby-cream);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--brown-mid);
+    border: 1px solid var(--gold-light);
+}
+
+.price-text {
+    font-weight: 700;
+    color: var(--red-brown);
+}
+
+.stock-info span {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.stock-info small {
+    color: var(--gold-primary);
+    display: block;
+}
 
 /* Badge Trạng thái */
-.badge { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; display: inline-block; }
-.status-on { background-color: #dcfce7 !important; color: #166534 !important; }
-.status-off { background-color: #fee2e2 !important; color: #991b1b !important; }
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.status-on {
+    background-color: #dcfce7 !important;
+    color: #166534 !important;
+}
+
+.status-off {
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
+}
 
 /* Thao tác (Sửa/Xóa) */
-.action-btns { display: flex; gap: 8px; }
-.btn-edit, .btn-delete { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; text-decoration: none; transition: 0.3s; }
-.btn-edit { background-color: var(--gold-light); color: var(--gold-primary); }
-.btn-delete { background-color: #fee2e2; color: var(--danger); }
-.btn-edit:hover { background-color: var(--gold-primary); color: var(--white); }
-.btn-delete:hover { background-color: var(--danger); color: var(--white); }
+.action-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-edit {
+    background-color: var(--gold-light);
+    color: var(--gold-primary);
+}
+
+.btn-delete {
+    background-color: #fee2e2;
+    color: var(--danger);
+}
+
+.btn-edit:hover {
+    background-color: var(--gold-primary);
+    color: var(--white);
+}
+
+.btn-delete:hover {
+    background-color: var(--danger);
+    color: var(--white);
+}
+
 /* Tối ưu cho bảng nhiều thuộc tính */
-.admin-table th, .admin-table td {
+.admin-table th,
+.admin-table td {
     padding: 12px 10px;
     font-size: 14px;
-    white-space: nowrap; /* Tránh xuống dòng lung tung */
+    white-space: nowrap;
+    /* Tránh xuống dòng lung tung */
 }
 
 .desc-text {
@@ -94,6 +282,7 @@ body { font-family: 'Asap', sans-serif; background-color: var(--baby-cream); col
     font-size: 11px;
     font-weight: 600;
 }
+
 /* ... Giữ lại các phần cũ, thêm đoạn này vào ... */
 
 .filter-section {
