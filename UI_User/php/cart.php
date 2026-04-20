@@ -116,11 +116,11 @@ try {
 
     <script>
         const isLoggedIn = <?php echo (isset($_SESSION['id_nguoi_dung']) && !empty($_SESSION['id_nguoi_dung'])) ? 1 : 0; ?>;
+    
+    // URL trang đăng nhập của bạn
+    const LOGIN_URL = 'login_register.php'; 
 
-        // URL trang đăng nhập của bạn
-        const LOGIN_URL = 'login_register.php';
-
-        console.log("Trạng thái đăng nhập thực tế:", isLoggedIn);
+    console.log("Trạng thái đăng nhập thực tế:", isLoggedIn);
     </script>
 
     <script src="../js/cart.js?v=<?php echo time(); ?>"></script>

@@ -290,6 +290,6 @@ window.onload = function() {
     if (typeof userData !== 'undefined' && userData !== null) {
         renderCheckout(userData);
     } else {
-        window.location.href = 'login_register.php';
+        window.location.href = '../php/login_register.php';
     }
 };
