@@ -5,10 +5,17 @@ include '../../SQL_Connect/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
     $id_don = $_POST['id_don_hang'];
     $status_moi = $_POST['trang_thai'];
+    
+    // Lấy lại các bộ lọc hiện tại để khi redirect không bị mất dữ liệu
+    $current_search = isset($_POST['search_hidden']) ? $_POST['search_hidden'] : '';
+    $current_filter = isset($_POST['status_hidden']) ? $_POST['status_hidden'] : '';
+
     try {
         $updateSql = "UPDATE don_hang SET trang_thai = ? WHERE id_don_hang = ?";
         $pdo->prepare($updateSql)->execute([$status_moi, $id_don]);
-        header("Location: order.php");
+        
+        // SỬA: Dùng tham số 'msg' thay vì 'status' để tránh trùng với bộ lọc SQL bên dưới
+        header("Location: order.php?msg=updated&search=" . urlencode($current_search) . "&status=" . urlencode($current_filter));
         exit();
     } catch (PDOException $e) {
         die("Lỗi: " . $e->getMessage());
@@ -20,22 +27,28 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
 $filterStatus = isset($_GET['status']) ? $_GET['status'] : '';
 
 try {
-    // Xây dựng câu lệnh SQL có điều kiện lọc
     $sql = "SELECT d.*, n.ho_ten, n.so_dien_thoai 
             FROM don_hang d 
             JOIN nguoi_dung n ON d.id_khach_hang = n.id_nguoi_dung 
-            WHERE 1=1"; // Điều kiện mặc định để nối chuỗi
+            WHERE 1=1";
 
     if ($search != '') {
-        $sql .= " AND (d.id_don_hang LIKE '%$search%' OR n.ho_ten LIKE '%$search%' OR d.dia_chi_giao_hang LIKE '%$search%')";
+        $sql .= " AND (d.id_don_hang LIKE :search OR n.ho_ten LIKE :search OR d.dia_chi_giao_hang LIKE :search OR CONCAT('#DH', d.id_don_hang) LIKE :search)";
     }
 
-    if ($filterStatus != '') {
-        $sql .= " AND d.trang_thai = '$filterStatus'";
+    // SỬA: Chỉ lọc theo trạng thái nếu giá trị $filterStatus thực sự hợp lệ (không phải là 'updated')
+    $statusOptions = ['Đã đặt', 'Đang xử lý', 'Đang giao', 'Hoàn thành', 'Đã hủy'];
+    if (in_array($filterStatus, $statusOptions)) {
+        $sql .= " AND d.trang_thai = :status_filter";
     }
 
     $sql .= " ORDER BY d.ngay_tao_don DESC";
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo->prepare($sql);
+    
+    if ($search != '') $stmt->bindValue(':search', "%$search%");
+    if (in_array($filterStatus, $statusOptions)) $stmt->bindValue(':status_filter', $filterStatus);
+
+    $stmt->execute();
     $orders = $stmt->fetchAll();
 } catch (PDOException $e) {
     die("Lỗi: " . $e->getMessage());
@@ -47,12 +60,28 @@ try {
 
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý đơn hàng | Yummy Seoul – Tiệm ăn vặt Hàn Quốc</title>
+    <title>Quản lý đơn hàng | Yummy Seoul</title>
     <link rel="icon" type="image/x-icon" href="../../Image/homepage/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/order.css">
     <link rel="stylesheet" href="../../UI_User/css/home.css">
+    <style>
+        /* CSS cho thông báo tự biến mất */
+        #success-alert {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #bbf7d0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: opacity 0.5s ease;
+        }
+    </style>
 </head>
 
 <body>
@@ -76,6 +105,12 @@ try {
         <main class="admin-main">
             <header class="main-header">
                 <h2>Vận hành Đơn hàng chi tiết</h2>
+
+                <?php if (isset($_GET['msg']) && $_GET['msg'] == 'updated'): ?>
+                    <div id="success-alert">
+                        <i class="fa-solid fa-circle-check"></i> Cập nhật trạng thái đơn hàng thành công!
+                    </div>
+                <?php endif; ?>
             </header>
 
             <form method="GET" action="order.php" class="filter-section">
@@ -87,7 +122,6 @@ try {
                     <select name="status" onchange="this.form.submit()">
                         <option value="">Tất cả trạng thái</option>
                         <?php
-                        $statusOptions = ['Đã đặt', 'Đang xử lý', 'Đang giao', 'Hoàn thành', 'Đã hủy'];
                         foreach ($statusOptions as $opt) {
                             $sel = ($filterStatus == $opt) ? 'selected' : '';
                             echo "<option value='$opt' $sel>$opt</option>";
@@ -95,7 +129,6 @@ try {
                         ?>
                     </select>
                 </div>
-                <button type="submit" style="display:none;">Lọc</button>
             </form>
 
             <div class="order-list card">
@@ -140,6 +173,10 @@ try {
                                     <td>
                                         <form method="POST" style="display: flex; gap: 8px;">
                                             <input type="hidden" name="id_don_hang" value="<?php echo $o['id_don_hang']; ?>">
+                                            
+                                            <input type="hidden" name="search_hidden" value="<?php echo htmlspecialchars($search); ?>">
+                                            <input type="hidden" name="status_hidden" value="<?php echo htmlspecialchars($filterStatus); ?>">
+                                            
                                             <select name="trang_thai" class="status-select">
                                                 <?php
                                                 foreach ($statusOptions as $st) {
@@ -159,6 +196,17 @@ try {
             </div>
         </main>
     </div>
-</body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
 </html>

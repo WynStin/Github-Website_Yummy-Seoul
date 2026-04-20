@@ -111,7 +111,7 @@ try {
                     <div class="recent-orders card" style="overflow-x: auto;">
                         <div class="card-header">
                             <h3>Đơn hàng mới nhất</h3>
-                            <a href="orders.php" class="view-all">Xem tất cả</a>
+                            <a href="order.php" class="view-all">Xem tất cả</a>
                         </div>
                         <table class="admin-table">
                             <thead>
