@@ -1,16 +1,22 @@
-// --- CONFIG DATA ---
 const validPromoCodes = {
-    'CHAOBANMOI': { type: 'percent', value: 10, desc: 'Giảm 10% (Lần đầu mua)', minOrder: 0, firstTimeOnly: true },
-    'MUC10': { type: 'fixed', value: 10000, desc: 'Giảm 10k', minOrder: 99000 },
-    'MUC20': { type: 'fixed', value: 20000, desc: 'Giảm 20k', minOrder: 169000 },
-    'MUC30': { type: 'fixed', value: 30000, desc: 'Giảm 30k', minOrder: 249000 },
-    'THITOTNHA': { type: 'shipping', value: 15000, desc: 'Giảm 15k phí vận chuyển' }
+    'XINCHAO20': { 
+        id: 1, 
+        type: 'percent', 
+        value: 20, 
+        max: 50000, 
+        minOrder: 150000 
+    },
+    'FREESHIPKOREA': { 
+        id: 2, 
+        type: 'shipping', 
+        value: 20000, 
+        minOrder: 300000 
+    }
 };
 
 let appliedPromoCode = '';
 let pendingConfirmAction = null;
 
-// ===== MODAL FUNCTIONS =====
 function showMessageModal(title, message) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalMessage').textContent = message;
@@ -33,11 +39,10 @@ function closeConfirmModal() {
     pendingConfirmAction = null;
 }
 
-// Thiết lập sự kiện Modal
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const confirmBtn = document.getElementById('confirmBtn');
-    if(confirmBtn) {
-        confirmBtn.onclick = function() {
+    if (confirmBtn) {
+        confirmBtn.onclick = function () {
             if (pendingConfirmAction) pendingConfirmAction();
             closeConfirmModal();
         };
@@ -47,25 +52,24 @@ document.addEventListener('DOMContentLoaded', function() {
     modals.forEach(id => {
         const modal = document.getElementById(id);
         if (modal) {
-            modal.addEventListener('click', (e) => { 
-                if (e.target === modal) id === 'messageModal' ? closeMessageModal() : closeConfirmModal(); 
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) id === 'messageModal' ? closeMessageModal() : closeConfirmModal();
             });
         }
     });
 });
 
-// Helper functions
 function getCartItems() { return JSON.parse(localStorage.getItem('cart') || '[]'); }
 function formatMoney(amount) { return amount.toLocaleString('vi-VN') + 'đ'; }
 function calculateTotal(items) { return items.reduce((sum, item) => sum + (item.price * item.quantity), 0); }
 
 function removeItem(productId) {
-    showConfirmModal("Xác nhận xóa", "Bạn chắc chắn muốn xóa món này?", function() {
+    showConfirmModal("Xác nhận xóa", "Bạn chắc chắn muốn xóa món này?", function () {
         let cart = getCartItems();
         cart = cart.filter(item => item.id != productId);
         localStorage.setItem('cart', JSON.stringify(cart));
         showToast('Đã xóa món ăn', 'success');
-        startCheckoutProcess(); // Gọi lại hàm khởi tạo chính
+        startCheckoutProcess();
     });
 }
 
@@ -86,18 +90,18 @@ function showToast(msg, type = 'success') {
 
 function showSuccessModal(totalStr, method) {
     const modal = document.getElementById('successModal');
-    if(modal) {
+    if (modal) {
         const content = modal.querySelector('.modal-body-text');
-        if(content) content.innerHTML = `Tổng thanh toán: <b>${totalStr}</b><br>Hình thức: ${method}`;
+        if (content) content.innerHTML = `Tổng thanh toán: <b>${totalStr}</b><br>Hình thức: ${method}`;
         modal.classList.add('active');
     }
 }
 
-window.selectPaymentNew = function(element, method) {
-    const parent = element.parentElement;
-    parent.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
+window.selectPaymentNew = function(element, methodValue) {
+    const options = document.querySelectorAll('.payment-option');
+    options.forEach(el => el.classList.remove('active'));
     element.classList.add('active');
-    document.getElementById('selectedPaymentMethod').value = method;
+    document.getElementById('selectedPaymentMethod').value = methodValue;
 }
 
 function applyPromoCode() {
@@ -105,7 +109,7 @@ function applyPromoCode() {
     const code = input.value.trim().toUpperCase();
     if (!code) { showToast('Vui lòng nhập mã!', 'warning'); return; }
     if (!validPromoCodes[code]) { showToast('Mã không tồn tại', 'error'); return; }
-    
+
     localStorage.setItem('appliedPromoCode', code);
     showToast(`Áp dụng thành công`, 'success');
     startCheckoutProcess();
@@ -121,7 +125,7 @@ async function placeOrder(event) {
     const cartItems = getCartItems();
     const address = document.querySelector('input[name="address"]').value;
     const paymentMethod = document.getElementById('selectedPaymentMethod').value;
-    
+
     const orderData = {
         items: cartItems,
         address: address,
@@ -144,11 +148,10 @@ async function placeOrder(event) {
     }
 }
 
-// ===== HÀM RENDER CHÍNH =====
 function renderCheckout(user) {
     const cartItems = getCartItems();
     const app = document.getElementById('app');
-    
+
     if (cartItems.length === 0) {
         app.innerHTML = `
             <div class="checkout-page" style="text-align:center;">
@@ -163,80 +166,79 @@ function renderCheckout(user) {
     const shipping = 20000;
     const savedPromo = localStorage.getItem('appliedPromoCode') || '';
     let discount = 0;
-    
+    let promoIdForDB = ""; 
+
     const promo = validPromoCodes[savedPromo];
     if (promo && subtotal >= (promo.minOrder || 0)) {
-        if (promo.type === 'percent') discount = subtotal * (promo.value / 100);
+        promoIdForDB = promo.id;
+        if (promo.type === 'percent') discount = Math.min(subtotal * (promo.value / 100), promo.max || 999999);
         else if (promo.type === 'fixed') discount = promo.value;
         else if (promo.type === 'shipping') discount = Math.min(promo.value, shipping);
     }
 
+    const finalTotal = subtotal + shipping - discount;
+
     app.innerHTML = `
         <div class="checkout-page">
             <h1 class="page-title">Xác nhận thanh toán</h1>
-            <div id="toast-container"></div>
+            <form action="checkout.php" method="POST" class="checkout-grid">
+                <input type="hidden" name="cart_data" value='${JSON.stringify(cartItems)}'>
 
-            <form onsubmit="placeOrder(event)" class="checkout-grid">
                 <div class="checkout-main">
                     <div class="card-checkout">
                         <h3><i class="fas fa-map-marker-alt"></i> Thông tin giao hàng</h3>
+                        
                         <div class="form-group-checkout">
                             <label>Người nhận</label>
                             <input type="text" name="fullname" value="${user.username}" required>
                         </div>
+
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
                             <div class="form-group-checkout">
-                                <label>Số điện thoại</label>
-                                <input type="tel" name="phone" value="${user.phone}" required>
+                                <label>Số điện thoại (Không thể đổi)</label>
+                                <input type="tel" value="${user.phone}" readonly style="background:#f0f0f0; cursor:not-allowed;">
                             </div>
                             <div class="form-group-checkout">
-                                <label>Email</label>
-                                <input type="email" name="email" value="${user.email}" required>
+                                <label>Email (Không thể đổi)</label>
+                                <input type="email" value="${user.email}" readonly style="background:#f0f0f0; cursor:not-allowed;">
                             </div>
                         </div>
+
                         <div class="form-group-checkout">
-                            <label>Địa chỉ chi tiết</label>
-                            <input type="text" name="address" placeholder="Số nhà, tên đường..." required>
+                            <label>Ghi chú đơn hàng</label>
+                            <textarea name="note" placeholder="Ví dụ: Không lấy hành, giao giờ hành chính..."></textarea>
+                        </div>
+
+                        <div class="form-group-checkout">
+                            <label>Địa chỉ giao hàng chi tiết</label>
+                            <input type="text" name="address" value="${user.address || ''}" required>
                         </div>
                     </div>
 
                     <div class="card-checkout">
                         <h3><i class="fas fa-wallet"></i> Phương thức thanh toán</h3>
-                        <input type="hidden" id="selectedPaymentMethod" name="paymentMethod" value="cod">
-                        <div class="payment-option active" onclick="selectPaymentNew(this, 'cod')">
+                        <input type="hidden" id="selectedPaymentMethod" name="pt_thanh_toan" value="Tiền mặt (COD)">
+                        <div class="payment-option active" onclick="selectPaymentNew(this, 'Tiền mặt (COD)')">
                             <h4>Thanh toán tiền mặt (COD)</h4>
-                            <p style="font-size:12px; color:#666;">Thanh toán khi nhận hàng</p>
                         </div>
-                        <div class="payment-option" onclick="selectPaymentNew(this, 'banking')">
+                        <div class="payment-option" onclick="selectPaymentNew(this, 'Chuyển khoản VietQR')">
                             <h4>Chuyển khoản VietQR</h4>
-                            <p style="font-size:12px; color:#666;">Techcombank - 3023022006</p>
                         </div>
                     </div>
+
+                    <input type="hidden" name="id_khuyen_mai" value="${promoIdForDB}">
+                    <input type="hidden" name="tien_ship" value="${shipping}">
+                    <input type="hidden" name="tong_gia" value="${finalTotal}">
                 </div>
 
                 <div class="checkout-summary">
                     <div class="card-summary">
                         <h3>Đơn hàng của bạn</h3>
-                        <div style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
-                            ${cartItems.map(item => `
-                                <div class="item-minimal">
-                                    <span>${item.title} x${item.quantity}</span>
-                                    <span>${formatMoney(item.price * item.quantity)}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="promo-section" style="margin-bottom:20px;">
-                            <div style="display:flex; gap:5px;">
-                                <input type="text" id="checkoutPromoInput" placeholder="Mã giảm giá" style="flex:1; padding:8px; border-radius:5px; border:none; color:#333;">
-                                <button type="button" onclick="applyPromoCode()" style="padding:8px 15px; background:#e2b96a; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">Dùng</button>
-                            </div>
-                            ${savedPromo ? `<div style="margin-top:8px; font-size:13px; color:#ffeda3;">Đang dùng: <b>${savedPromo}</b> <i class="fas fa-times-circle" onclick="removePromoCode()" style="cursor:pointer; margin-left:5px;"></i></div>` : ''}
-                        </div>
                         <div class="summary-line"><span>Tạm tính</span><span>${formatMoney(subtotal)}</span></div>
                         <div class="summary-line"><span>Phí ship</span><span>${formatMoney(shipping)}</span></div>
                         ${discount > 0 ? `<div class="summary-line"><span>Giảm giá</span><span>-${formatMoney(discount)}</span></div>` : ''}
-                        <div class="summary-line total"><span>Tổng cộng</span><span>${formatMoney(subtotal + shipping - discount)}</span></div>
-                        <button type="submit" class="btn-place-order">XÁC NHẬN ĐẶT HÀNG</button>
+                        <div class="summary-line total"><span>Tổng cộng</span><span>${formatMoney(finalTotal)}</span></div>
+                        <button type="submit" name="place_order" class="btn-place-order">XÁC NHẬN ĐẶT HÀNG</button>
                     </div>
                 </div>
             </form>
@@ -244,23 +246,19 @@ function renderCheckout(user) {
     `;
 }
 
-// ===== HÀM KHỞI TẠO DUY NHẤT =====
 function startCheckoutProcess() {
-    // Ưu tiên lấy từ biến toàn cục userData do PHP nhúng sẵn
     if (typeof userData !== 'undefined' && userData !== null) {
         const formattedUser = {
-            username: userData.ho_ten || userData.ten_dang_nhap,
+            username: userData.ho_ten || userData.user_name,
             phone: userData.so_dien_thoai || '',
-            email: userData.email || ''
+            email: userData.email || '',
+            address: userData.dia_chi_mac_dinh || '',
         };
-        // Cập nhật lại session storage để đồng bộ
         sessionStorage.setItem("currentUser", JSON.stringify(formattedUser));
         renderCheckout(formattedUser);
     } else {
-        // Nếu không có userData (chưa đăng nhập), chuyển về login kèm theo lệnh redirect
         window.location.href = '../php/login_register.php?redirect=checkout.php';
     }
 }
 
-// Chạy ngay lập tức để hiện luôn form
 startCheckoutProcess();

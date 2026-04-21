@@ -201,6 +201,43 @@
     cursor: pointer;
 }
 
+.payment-option {
+    padding: 15px;
+    border: 1.5px solid var(--pink-soft);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    background-color: var(--baby-cream);
+}
+
+.payment-option.active {
+    border-color: var(--gold-light);
+    background-color: var(--baby-cream);
+    box-shadow: 0 0 8px rgba(226, 185, 106, 0.3);
+    position: relative;
+}
+
+/* Thêm dấu tích nhỏ khi được chọn (tùy chọn) */
+.payment-option.active::after {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-light);
+}
+
+input[readonly] {
+    border: 1px solid #ddd !important;
+    color: #888 !important;
+}
+
 @keyframes popIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
