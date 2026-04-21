@@ -308,7 +308,7 @@ $bestSellerProducts = getTop10BestSeller();
         <div class="news-card-body">
           <div class="news-card-title">Ưu đãi thành viên mới</div>
           <div class="news-card-desc">
-            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá 20.000VND cho đơn hàng đầu tiên. Nhập ngay "BANMOI" để nhận ưu đãi...
+            WOA! Chúng mình xin gửi tới những khách hàng mới phiếu giảm giá lên đến 50.000VND cho đơn hàng đầu tiên. Hãy nhập ngay "XINCHAO20" để nhận ưu đãi...
           </div>
           <a href="offer.php" class="news-card-more">Xem thêm →</a>
         </div>
