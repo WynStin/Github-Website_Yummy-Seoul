@@ -6,7 +6,6 @@
   padding: 40px;
   background: #fff;
   border-radius: 30px;
-  /* Bo góc tròn trịa đồng bộ */
   box-shadow: var(--shadow);
   line-height: 1.8;
   color: var(--text-dark);
@@ -42,6 +41,5 @@
 
 .highlight {
   color: #c0392b;
-  /* Màu đỏ đất đặc trưng */
   font-weight: 600;
 }

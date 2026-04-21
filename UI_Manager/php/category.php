@@ -1,7 +1,5 @@
 <?php
 include '../../SQL_Connect/db.php';
-
-// --- 1. XỬ LÝ THÊM DANH MỤC ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
     $ten = $_POST['ten_danh_muc'];
     $mota = $_POST['mo_ta'];
@@ -14,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
         $error = "Lỗi thêm: " . $e->getMessage();
     }
 }
-
-// --- 2. XỬ LÝ CẬP NHẬT DANH MỤC (Sửa ngay tại chỗ) ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_category'])) {
     $id = $_POST['id_danh_muc'];
     $ten = $_POST['ten_danh_muc'];
@@ -29,16 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_category'])) {
         $error = "Lỗi cập nhật: " . $e->getMessage();
     }
 }
-
-// --- 3. XỬ LÝ XÓA DANH MỤC (Xóa cả món ăn liên quan) ---
 if (isset($_GET['delete_id'])) {
     $id = $_GET['delete_id'];
     try {
         $pdo->beginTransaction();
-        // Xóa tất cả món ăn thuộc danh mục này trước
         $stmt1 = $pdo->prepare("DELETE FROM mon_an WHERE id_danh_muc = ?");
         $stmt1->execute([$id]);
-        // Sau đó xóa danh mục
         $stmt2 = $pdo->prepare("DELETE FROM danh_muc_mon_an WHERE id_danh_muc = ?");
         $stmt2->execute([$id]);
 
@@ -50,8 +42,6 @@ if (isset($_GET['delete_id'])) {
         die("Lỗi xóa: " . $e->getMessage());
     }
 }
-
-// Lấy danh sách danh mục
 $categories = $pdo->query("SELECT * FROM danh_muc_mon_an ORDER BY id_danh_muc ASC")->fetchAll();
 ?>
 
@@ -163,7 +153,6 @@ $categories = $pdo->query("SELECT * FROM danh_muc_mon_an ORDER BY id_danh_muc AS
     </div>
 
     <script>
-        // Tự động ẩn thông báo sau 3 giây
         const alertBox = document.getElementById('alertBox');
         if (alertBox) {
             setTimeout(() => {

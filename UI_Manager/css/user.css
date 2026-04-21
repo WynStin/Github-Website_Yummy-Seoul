@@ -1,4 +1,3 @@
-/* --- BIẾN TOÀN CỤC --- */
 :root {
     --red-brown: #5d2620;
     --brown-mid: #966f5d;
@@ -11,8 +10,6 @@
     --text-muted: #64748b;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
-
-/* --- RESET & LAYOUT --- */
 * {
     margin: 0;
     padding: 0;
@@ -30,8 +27,6 @@ body {
     display: flex;
     min-height: 100vh;
 }
-
-/* --- SIDEBAR --- */
 .admin-sidebar {
     width: 260px;
     background-color: #43211d;
@@ -87,8 +82,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
 }
-
-/* --- NỘI DUNG CHÍNH --- */
 .admin-main {
     flex: 1;
     margin-left: 260px;
@@ -98,8 +91,6 @@ body {
 .main-header {
     margin-bottom: 40px;
 }
-
-/* --- CARD THÊM THÀNH VIÊN --- */
 .card-add-member {
     background: var(--white);
     padding: 25px;
@@ -153,8 +144,6 @@ body {
     background-color: #d97706;
     transform: translateY(-2px);
 }
-
-/* --- THANH TÌM KIẾM --- */
 .search-member-box {
     position: relative;
     max-width: 500px;
@@ -183,8 +172,6 @@ body {
     border-color: var(--gold-primary);
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
-
-/* --- BẢNG DỮ LIỆU --- */
 .member-wrapper {
     background: var(--white);
     border-radius: 15px;
@@ -215,11 +202,9 @@ body {
     vertical-align: middle;
     text-align: center;
 }
-
-/* --- INPUT TRONG DÒNG BẢNG --- */
 .input-edit-row {
     width: 100%;
-    height: 38px; /* Cố định chiều cao để đồng bộ với Badge */
+    height: 38px;
     padding: 8px 10px;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
@@ -250,12 +235,10 @@ body {
     font-weight: bold;
     color: var(--red-brown);
 }
-
-/* --- TRẠNG THÁI & BADGE (SỬA LỖI HIỂN THỊ) --- */
 .status-cell-container {
     display: flex;
-    justify-content: center; /* Căn giữa ngang */
-    align-items: center;     /* Căn giữa dọc */
+    justify-content: center; 
+    align-items: center;     
     width: 100%;
     min-height: 40px;
 }
@@ -264,22 +247,20 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 34px;           /* Chiều cao khớp với select input */
+    height: 34px;           
     padding: 0 16px;
-    border-radius: 20px;    /* Bo tròn hiện đại */
+    border-radius: 20px;    
     font-size: 12px;
     font-weight: 700;
-    min-width: 130px;       /* Độ rộng cố định giúp bảng cân đối */
+    min-width: 130px;       
     white-space: nowrap;
 }
 
 .status-on {
-    background-color: #ecfdf5; /* Màu nền xanh dịu */
-    color: #059669;            /* Màu chữ xanh đậm */
-    border: 1px solid #10b981; /* Viền xanh */
+    background-color: #ecfdf5; 
+    color: #059669;            
+    border: 1px solid #10b981; 
 }
-
-/* --- THAO TÁC --- */
 .btn-save-row {
     width: 38px;
     height: 38px;
@@ -301,8 +282,6 @@ body {
     color: var(--text-muted);
     margin-top: 4px;
 }
-
-/* --- THÔNG BÁO TOAST --- */
 #toast-container {
     position: fixed;
     top: 20px;

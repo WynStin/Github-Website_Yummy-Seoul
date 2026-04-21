@@ -1,10 +1,7 @@
-<!--Lấy icon-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!--FOOTER-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <footer>
   <div class="footer-grid">
-    <!-- Cột 1: Brand -->
     <div class="footer-brand">
       <div class="footer-logo-wrap">
         <a href="home.php">
@@ -30,8 +27,6 @@
       </div>
     </div>
 
-
-    <!-- Cột 2: Chính sách -->
     <div class="footer-col">
       <h4>Chính Sách</h4>
       <ul>
@@ -47,8 +42,6 @@
       </ul>
     </div>
 
-
-    <!-- Cột 3: Kết nối + Hướng dẫn -->
     <div class="footer-col">
       <h4>Kết Nối</h4>
       <div class="social-links">

@@ -1,11 +1,28 @@
+<<<<<<< HEAD
+<?php 
+require_once '../../SQL_Connect/db.php'; 
+
+=======
 <?php
 require_once '../../SQL_Connect/db.php'; 
 
+<<<<<<< HEAD
+=======
+// 1. CHẶN TRUY CẬP TRÁI PHÉP: Nếu chưa đăng nhập, đẩy sang login kèm lệnh quay lại
+>>>>>>> 67a989c2c13c95a3ec6d6f124ecda703c5e6316f
+>>>>>>> c1aedc6a1637a843a3ab575670c60f0d39147ddc
 if (!isset($_SESSION['id_nguoi_dung'])) {
     header("Location: login_register.php?redirect=checkout.php");
     exit();
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+// 2. LẤY DỮ LIỆU: Truy vấn thông tin người dùng để đổ vào form ngay lập tức
+>>>>>>> 67a989c2c13c95a3ec6d6f124ecda703c5e6316f
+>>>>>>> c1aedc6a1637a843a3ab575670c60f0d39147ddc
 $userId = $_SESSION['id_nguoi_dung'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
@@ -61,6 +78,12 @@ $stmt = $pdo->prepare("SELECT * FROM nguoi_dung WHERE id_nguoi_dung = ?");
 $stmt->execute([$userId]);
 $currentUser = $stmt->fetch();
 ?>
+<<<<<<< HEAD
+<script>
+    const userData = <?php echo json_encode($currentUser); ?>;
+</script>
+=======
+>>>>>>> 67a989c2c13c95a3ec6d6f124ecda703c5e6316f
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -147,6 +170,18 @@ $currentUser = $stmt->fetch();
 
     <script src="../js/checkout.js"></script>
 
+<<<<<<< HEAD
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if (cart.length === 0) {
+                alert('Giỏ hàng trống, mời bạn chọn món!');
+                window.location.href = 'product.php';
+            }
+        });
+    </script>
+=======
+>>>>>>> 67a989c2c13c95a3ec6d6f124ecda703c5e6316f
 </body>
 
 </html>

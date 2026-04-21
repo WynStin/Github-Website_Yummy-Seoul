@@ -1,7 +1,3 @@
-/* ======================================================
-   TEST CSS - YUMMY SEOUL PREMIUM STORY STYLE
-   ====================================================== */
-
 :root {
   --red-brown: #451715;
   --baby-yellow: #ffeda3;
@@ -13,8 +9,6 @@
   --white: #ffffff;
   --shadow-yummy: 0 4px 20px rgba(69, 23, 21, 0.12);
 }
-
-/* --- RESET & BASE --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -37,14 +31,12 @@ footer .footer-brand-name {
   margin: 0 auto;
   padding: 0 30px;
 }
-
-/* ================= PHẦN 1: HERO SECTION (INTRO) ================= */
 .storytelling-hero {
   position: relative;
-  min-height: 95vh; /* Chiều cao vừa đủ để thấy phần tiếp theo */
+  min-height: 95vh; 
   display: flex;
   align-items: center;
-  padding: 100px 0 60px 0; /* Cân đối khoảng cách trên dưới */
+  padding: 100px 0 60px 0; 
   overflow: hidden;
 }
 
@@ -101,8 +93,6 @@ footer .footer-brand-name {
   background: var(--baby-yellow);
   color: var(--red-brown);
 }
-
-/* --- POLAROID GALLERY --- */
 .intro-gallery-wrap {
   position: relative;
   height: 520px;
@@ -155,8 +145,6 @@ footer .footer-brand-name {
   transform: scale(1.08) rotate(0deg) !important;
   z-index: 10;
 }
-
-/* --- FLOATING DECOR --- */
 @keyframes floatAnim {
   0% {
     transform: translateY(0px) rotate(0deg);
@@ -200,18 +188,16 @@ footer .footer-brand-name {
   background: #ffb9d2;
   opacity: 0.3 !important;
 }
-
-/* ================= PHẦN 2: STAGGER GRID SECTION ================= */
 .stagger-grid-section {
-  padding: 80px 0; /* Khoảng cách rộng rãi giữa các phần lớn */
+  padding: 80px 0; 
 }
 
 .stagger-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 120px; /* Tăng khoảng cách giữa chữ và ảnh */
+  gap: 120px;
   align-items: center;
-  margin-bottom: 140px; /* Khoảng cách giữa các hàng stagger */
+  margin-bottom: 140px;
 }
 
 .stagger-grid.reverse {
@@ -280,11 +266,9 @@ footer .footer-brand-name {
   background: var(--gold-light);
   left: 30px;
 }
-
-/* ================= PHẦN 3: STATS SECTION ================= */
 .stats-interactive-section {
   background: var(--red-brown);
-  padding: 110px 0; /* Tăng padding để thanh stats nổi bật */
+  padding: 110px 0;
   color: var(--baby-yellow);
   margin-top: 50px;
 }
@@ -315,8 +299,6 @@ footer .footer-brand-name {
   letter-spacing: 1px;
   opacity: 0.9;
 }
-
-/* --- ANIMATION CLASSES (Trigger by JS) --- */
 .fade-up {
   opacity: 0;
   transform: translateY(40px);
@@ -337,8 +319,6 @@ footer .footer-brand-name {
   opacity: 1 !important;
   transform: translate(0, 0) !important;
 }
-
-/* --- RESPONSIVE --- */
 @media (max-width: 992px) {
   .intro-flex-container,
   .stagger-grid,

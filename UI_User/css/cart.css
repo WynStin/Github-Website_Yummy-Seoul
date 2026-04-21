@@ -1,5 +1,3 @@
-/* Kế thừa các biến màu từ home.css */
-
 :root {
   --red-brown: #451715;
   --brown-deep: #3b1a0e;
@@ -25,8 +23,6 @@
   padding: 2px 12px;
   border-radius: 20px;
 }
-
-/* HIỆU ỨNG TRANG TRÍ LƠ LỬNG */
 .cart-decorations .decor-item {
   position: absolute;
   z-index: 1;
@@ -81,12 +77,11 @@
   border-radius: 50% 0;
 }
 
-/* CẤU TRÚC HEADER */
 .cart-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-left: 20px; /* Lùi sang phải 20px - bạn có thể tăng số này nếu muốn lùi nhiều hơn */
+  padding-left: 20px; 
   margin-top: 40px;
   margin-bottom: 30px;
 }
@@ -96,7 +91,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 15px;
-  color: var(--brown-deep); /* Sử dụng màu nâu đậm của bạn */
+  color: var(--brown-deep); 
   text-decoration: none;
   font-size: 0.9rem;
   opacity: 0.8;
@@ -105,7 +100,7 @@
 
 .back-to-shop:hover {
   opacity: 1;
-  transform: translateX(5px); /* Hiệu ứng trượt nhẹ khi hover */
+  transform: translateX(5px);
 }
 
 .cart-title {
@@ -119,16 +114,12 @@
   font-size: 24px;
   color: var(--gold);
 }
-
-/* Đảm bảo tiêu đề và badge cũng căn trái */
 .title-with-badge {
   display: flex;
   align-items: center;
   gap: 15px;
   justify-content: flex-start;
 }
-
-/* LAYOUT CHÍNH */
 .cart-main-layout {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
@@ -137,7 +128,6 @@
   z-index: 2;
 }
 
-/* DANH SÁCH MÓN ĂN */
 .cart-table-header {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -157,11 +147,11 @@
 
 .cart-item-card {
   background-color: var(--white);
-  border: 1px solid #ffe4e1; /* Màu hồng nhạt cho nhẹ nhàng */
+  border: 1px solid #ffe4e1; 
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
-  position: relative; /* Để cái nút xóa nằm góc trên bên phải */
+  position: relative;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -171,10 +161,10 @@
   border-radius: var(--radius-lg);
   padding: 30px;
   border: 1px solid var(--pink-soft);
-  /* Thêm các dòng dưới đây */
+
   display: flex;
   flex-direction: column;
-  min-height: 400px; /* Đảm bảo khung trắng có độ cao tối thiểu để thấy rõ hiệu ứng căn giữa */
+  min-height: 400px;
 }
 
 .item-main-info {
@@ -243,8 +233,6 @@
   cursor: pointer;
   padding: 0;
 }
-
-/* ĐIỀU CHỈNH SỐ LƯỢNG */
 .quantity-control {
   display: flex;
   align-items: center;
@@ -310,8 +298,6 @@
   color: var(--red-brown);
   text-align: right;
 }
-
-/* TÓM TẮT ĐƠN HÀNG */
 .summary-box {
   background: #ffffff;
   padding: 30px;
@@ -321,7 +307,7 @@
   top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Tạo khoảng cách đều giữa các dòng */
+  gap: 15px; 
 }
 
 .summary-title {
@@ -344,7 +330,7 @@
 .summary-row.total {
   font-size: 24px;
   font-weight: bold;
-  color: #ff5722; /* Màu cam đỏ nổi bật */
+  color: #ff5722; 
   margin-top: 10px;
   padding-top: 20px;
   border-top: 1px solid #eee;
@@ -352,7 +338,7 @@
 
 .promo-box {
   display: flex;
-  gap: 0; /* Gắn liền input và button */
+  gap: 0;
   margin: 10px 0;
 }
 
@@ -387,7 +373,7 @@
   background-color: var(--red-brown) !important;
   color: var(--white) !important;
   border: none;
-  border-radius: 50px; /* Bo tròn hẳn cho đẹp */
+  border-radius: 50px;
   padding: 15px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -440,9 +426,9 @@
 }
 
 .container-custom {
-  max-width: 1200px; /* Giới hạn độ rộng tối đa để không bị tràn màn hình lớn */
-  margin: 0 auto; /* Căn giữa toàn bộ khối */
-  padding: 0 15px; /* Khoảng cách an toàn so với mép trình duyệt */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px; 
 }
 
 .toast {
@@ -468,13 +454,11 @@
   font-size: 1.1rem;
   color: #333;
 }
-
-/* Thêm đoạn này vào cart.css */
 .empty-cart-box {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Căn giữa tuyệt đối */
+  transform: translate(-50%, -50%); 
   text-align: center;
   width: 100%;
   display: flex;
@@ -484,7 +468,7 @@
 }
 
 .empty-cart-icon {
-  font-size: 80px; /* Tăng kích thước icon cho đẹp */
+  font-size: 80px;
   margin-bottom: 10px;
 }
 

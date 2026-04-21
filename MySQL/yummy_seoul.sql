@@ -1,32 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 5.2.3
--- https://www.phpmyadmin.net/
---
--- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 20, 2026 lúc 07:54 AM
--- Phiên bản máy phục vụ: 8.4.7
--- Phiên bản PHP: 8.3.28
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
 -- Cơ sở dữ liệu: `yummy_seoul`
---
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `chi_tiet_don_hang`
---
-
 DROP TABLE IF EXISTS `chi_tiet_don_hang`;
 CREATE TABLE IF NOT EXISTS `chi_tiet_don_hang` (
   `id_chi_tiet` int NOT NULL AUTO_INCREMENT,
@@ -39,12 +18,7 @@ CREATE TABLE IF NOT EXISTS `chi_tiet_don_hang` (
   KEY `id_mon_an` (`id_mon_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `chi_tiet_gio_hang`
---
-
 DROP TABLE IF EXISTS `chi_tiet_gio_hang`;
 CREATE TABLE IF NOT EXISTS `chi_tiet_gio_hang` (
   `id_chi_tiet` int NOT NULL AUTO_INCREMENT,
@@ -57,12 +31,7 @@ CREATE TABLE IF NOT EXISTS `chi_tiet_gio_hang` (
   KEY `id_mon_an` (`id_mon_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `danh_muc_mon_an`
---
-
 DROP TABLE IF EXISTS `danh_muc_mon_an`;
 CREATE TABLE IF NOT EXISTS `danh_muc_mon_an` (
   `id_danh_muc` int NOT NULL AUTO_INCREMENT,
@@ -72,10 +41,7 @@ CREATE TABLE IF NOT EXISTS `danh_muc_mon_an` (
   UNIQUE KEY `ten_danh_muc` (`ten_danh_muc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
 -- Đang đổ dữ liệu cho bảng `danh_muc_mon_an`
---
-
 INSERT INTO `danh_muc_mon_an` (`id_danh_muc`, `ten_danh_muc`, `mo_ta`) VALUES
 (1, 'Cơm (Rice)', 'Các món cơm trộn, cơm cuộn và cơm phần truyền thống'),
 (2, 'Gà (Chicken)', 'Gà rán và gà sốt đặc trưng kiểu Hàn Quốc'),
@@ -84,12 +50,7 @@ INSERT INTO `danh_muc_mon_an` (`id_danh_muc`, `ten_danh_muc`, `mo_ta`) VALUES
 (5, 'Đồ ăn nhẹ (Snacks)', 'Món ăn đường phố phổ biến như Tokbokki, Chả cá'),
 (6, 'Đồ uống (Drinks)', 'Rượu Soju, nước gạo và các loại giải khát');
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `don_hang`
---
-
 DROP TABLE IF EXISTS `don_hang`;
 CREATE TABLE IF NOT EXISTS `don_hang` (
   `id_don_hang` int NOT NULL AUTO_INCREMENT,
@@ -106,22 +67,13 @@ CREATE TABLE IF NOT EXISTS `don_hang` (
   KEY `id_khach_hang` (`id_khach_hang`),
   KEY `id_khuyen_mai` (`id_khuyen_mai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Đang đổ dữ liệu cho bảng `don_hang`
---
-
 INSERT INTO `don_hang` (`id_don_hang`, `id_khach_hang`, `id_khuyen_mai`, `ngay_tao_don`, `tien_ship`, `tong_gia`, `trang_thai`, `dia_chi_giao_hang`, `pt_thanh_toan`, `ghi_chu`) VALUES
 (1, 1, NULL, '2026-04-17 10:14:16', 10000.00, 40000.00, 'Hoàn thành', 'Cầu Giấy, Hà Nội', 'Ngân hàng', ''),
 (2, 1, NULL, '2026-04-18 10:40:05', 0.00, 50000.00, 'Hoàn thành', 'Đống Đa, Hà Nội', 'Tiền mặt', ''),
 (3, 2, NULL, '2026-04-20 14:38:59', 0.00, 35000.00, 'Hoàn thành', 'Đại học KTQD', 'Ngân hàng', NULL);
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `gio_hang`
---
-
 DROP TABLE IF EXISTS `gio_hang`;
 CREATE TABLE IF NOT EXISTS `gio_hang` (
   `id_gio_hang` int NOT NULL AUTO_INCREMENT,
@@ -134,12 +86,7 @@ CREATE TABLE IF NOT EXISTS `gio_hang` (
   KEY `fk_gio_hang_km` (`id_khuyen_mai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `khuyen_mai`
---
-
 DROP TABLE IF EXISTS `khuyen_mai`;
 CREATE TABLE IF NOT EXISTS `khuyen_mai` (
   `id_khuyen_mai` int NOT NULL AUTO_INCREMENT,
@@ -154,20 +101,11 @@ CREATE TABLE IF NOT EXISTS `khuyen_mai` (
   PRIMARY KEY (`id_khuyen_mai`),
   UNIQUE KEY `ma_khuyen_mai` (`ma_khuyen_mai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Đang đổ dữ liệu cho bảng `khuyen_mai`
---
-
 INSERT INTO `khuyen_mai` (`id_khuyen_mai`, `ma_khuyen_mai`, `phan_tram_giam`, `giam_toi_da`, `ngay_het_han`, `co_freeship`, `so_luong`, `don_hang_min`, `trang_thai`) VALUES
 (1, 'XINCHAO20', 20, 50000.00, '2026-12-31 23:59:59', 'Không', 100, 150000.00, 'Hiệu lực'),
 (2, 'FREESHIPKOREA', 0, 0.00, '2026-12-31 23:59:59', 'Có', 500, 300000.00, 'Hiệu lực');
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `mon_an`
---
 
 DROP TABLE IF EXISTS `mon_an`;
 CREATE TABLE IF NOT EXISTS `mon_an` (
@@ -186,10 +124,7 @@ CREATE TABLE IF NOT EXISTS `mon_an` (
   KEY `id_danh_muc` (`id_danh_muc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
 -- Đang đổ dữ liệu cho bảng `mon_an`
---
-
 INSERT INTO `mon_an` (`id_mon_an`, `id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`, `hinh_anh`, `trang_thai`, `so_luong_ton`, `so_luot_xem`, `so_luong_da_ban`, `ngay_tao`) VALUES
 (1, 1, 'Cơm trộn Bibimbap', 'Cơm với 8 loại rau củ, thịt bò và trứng chần', 85000.00, 'comtronbibimbap.jpg', 'Còn hàng', 100, 450, 120, '2026-01-10 10:30:00'),
 (2, 1, 'Kimbap truyền thống', 'Cơm cuộn rong biển nhân xúc xích và rau củ', 50000.00, 'kimbaptruyenthong.jpg', 'Còn hàng', 80, 310, 85, '2026-01-12 08:15:00'),
@@ -222,12 +157,7 @@ INSERT INTO `mon_an` (`id_mon_an`, `id_danh_muc`, `ten_mon`, `mo_ta`, `gia_ban`,
 (29, 5, 'Bánh xèo hải sản Pajeon', 'Bánh xèo nhân hành lá và hải sản áp chảo', 120000.00, 'banhxeo.jpg', 'Còn hàng', 30, 22, 4, '2026-04-19 14:50:00'),
 (30, 6, 'Nước ép lê Hàn Quốc', 'Nước ép đóng lon có tép lê tươi', 35000.00, 'nuocle.jpg', 'Còn hàng', 80, 35, 11, '2026-04-19 15:30:00');
 
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `nguoi_dung`
---
-
 DROP TABLE IF EXISTS `nguoi_dung`;
 CREATE TABLE IF NOT EXISTS `nguoi_dung` (
   `id_nguoi_dung` int NOT NULL AUTO_INCREMENT,
@@ -246,53 +176,27 @@ CREATE TABLE IF NOT EXISTS `nguoi_dung` (
   UNIQUE KEY `so_dien_thoai` (`so_dien_thoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
 -- Đang đổ dữ liệu cho bảng `nguoi_dung`
---
-
 INSERT INTO `nguoi_dung` (`id_nguoi_dung`, `user_name`, `mat_khau`, `ho_ten`, `email`, `so_dien_thoai`, `dia_chi_mac_dinh`, `vai_tro`, `trang_thai`, `ngay_tao`) VALUES
 (1, 'admin', '123456', 'Hàn Quốc Quản', 'admin@yummyseoul.com', '0912345678', 'Hà Nội', 'Quản lý', 'Hoạt động', '2026-04-19 08:19:54'),
 (2, 'TDuong', '11223344', 'Nguyễn Vũ Tùng Dương', 'tDNguyenVU@gmail.com', '0975864531', 'Hai Bà Trưng, Hà Nội', 'Khách hàng', 'Hoạt động', '2026-04-20 12:11:26');
-
---
--- Ràng buộc đối với các bảng kết xuất
---
-
---
 -- Ràng buộc cho bảng `chi_tiet_don_hang`
---
 ALTER TABLE `chi_tiet_don_hang`
   ADD CONSTRAINT `fk_ctdh_don_hang` FOREIGN KEY (`id_don_hang`) REFERENCES `don_hang` (`id_don_hang`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_ctdh_mon_an` FOREIGN KEY (`id_mon_an`) REFERENCES `mon_an` (`id_mon_an`);
-
---
 -- Ràng buộc cho bảng `chi_tiet_gio_hang`
---
 ALTER TABLE `chi_tiet_gio_hang`
   ADD CONSTRAINT `fk_ctgh_gio_hang` FOREIGN KEY (`id_gio_hang`) REFERENCES `gio_hang` (`id_gio_hang`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_ctgh_mon_an` FOREIGN KEY (`id_mon_an`) REFERENCES `mon_an` (`id_mon_an`) ON DELETE CASCADE;
-
---
 -- Ràng buộc cho bảng `don_hang`
---
 ALTER TABLE `don_hang`
   ADD CONSTRAINT `fk_don_hang_khach` FOREIGN KEY (`id_khach_hang`) REFERENCES `nguoi_dung` (`id_nguoi_dung`),
   ADD CONSTRAINT `fk_don_hang_km` FOREIGN KEY (`id_khuyen_mai`) REFERENCES `khuyen_mai` (`id_khuyen_mai`);
-
---
 -- Ràng buộc cho bảng `gio_hang`
---
 ALTER TABLE `gio_hang`
   ADD CONSTRAINT `fk_gio_hang_khach` FOREIGN KEY (`id_khach_hang`) REFERENCES `nguoi_dung` (`id_nguoi_dung`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_gio_hang_km` FOREIGN KEY (`id_khuyen_mai`) REFERENCES `khuyen_mai` (`id_khuyen_mai`) ON DELETE SET NULL;
-
---
 -- Ràng buộc cho bảng `mon_an`
---
 ALTER TABLE `mon_an`
   ADD CONSTRAINT `fk_mon_an_danh_muc` FOREIGN KEY (`id_danh_muc`) REFERENCES `danh_muc_mon_an` (`id_danh_muc`) ON DELETE SET NULL;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

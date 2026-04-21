@@ -5,7 +5,6 @@
             --white: #ffffff;
             --red-brown: #451715;
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,8 +24,6 @@
             justify-content: center;
             align-items: center;
         }
-
-        /*Container cha*/
         .container {
             position: relative;
             width: 600px;
@@ -36,8 +33,6 @@
             box-shadow: 5px 5px 20px var(--text-light);
             transition: all 0.5s ease;
         }
-
-        /*Nút back home*/
         .back-home {
             position: fixed;
             top: 30px;
@@ -57,28 +52,20 @@
             z-index: 1000;
             box-shadow: 5px 5px 20px var(--text-light);
         }
-
-        /*Hover của nút back home*/
         .back-home:hover {
             background: var(--brown-mid);
             color: white;
             transform: scale(1.15) rotate(-10deg);
             box-shadow: 5px 5px 20px var(--red-brown);
         }
-
-        /*Container chứa nút chuyển form (1) độ dài = Container cha*/
         .container-forms {
             height: 100%;
         }
-
-        /*Căn chỉnh thông tin trong container (1)*/
         .container-info {
             display: flex;
             justify-content: center;
             height: 100%;
         }
-
-        /*Tạo layer title -> text -> button container (1)*/
         .info-item {
             display: flex;
             flex-direction: column;
@@ -90,15 +77,11 @@
             opacity: 1;
             transition: all 0.5s ease;
         }
-
-        /*Áp dụng cho thẻ p trong info-item container (1)*/
         .info-item p {
             font-size: 18px;
             margin: 20px;
             text-align: center;
         }
-
-        /*Nút bấm để ghi vào CSDL (1)*/
         .btn {
             text-align: center;
             width: 120px;
@@ -114,15 +97,12 @@
             font-weight: 500;
         }
 
-        /*Hover của nút bấm (1)*/
         .btn:hover {
             background-color: var(--white);
             color: var(--brown-mid);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
         }
-
-        /*Container con dạng form (2)*/
         .container-form {
             position: absolute;
             top: 0;
@@ -136,8 +116,6 @@
             overflow-y: auto;
             overflow-x: hidden;
         }
-
-        /*Định dạng trong container (2)*/
         .form-item {
             position: absolute;
             top: 0;
@@ -152,15 +130,11 @@
             align-items: center;
             padding: 20px;
         }
-
-        /*Định dạng h1 trong form-item của container (2)*/
         .form-item h1 {
             color: var(--brown-mid);
             margin-bottom: 25px;
             font-size: 28px;
         }
-
-        /*Định dạng input trong form-item của container (2)*/
         .form-item input {
             display: block;
             margin: 0 auto 15px;
@@ -172,14 +146,10 @@
             transition: all 0.3s ease;
             outline: none;
         }
-
-        /*Border ô input trong form-item container (2) khi click*/
         .form-item input:focus {
             border-color: var(--brown-mid);
             box-shadow: 0 0 10px var(--red-brown);
         }
-
-        /*Áp kiểu ô submit form-item container (2)*/
         .form-item .btn-submit {
             border: none;
             background: var(--brown-mid);
@@ -187,14 +157,10 @@
             margin-top: 15px;
             box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
         }
-
-        /*Áp kiểu ô submit form-item container (2) khi chuột di vào*/
         .form-item .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px var(--text-light);
         }
-
-        /*Thông báo lỗi/ thành công*/
         .message {
             min-height: 20px;
             font-size: 13px;
@@ -209,44 +175,38 @@
             color: #27ae60;
         }
 
-        /*Ẩn form đăng ký ban đầu*/
         .form-item.sign-up {
             position: absolute;
             left: -100%;
             opacity: 0;
         }
 
-        /*Chuyển sang chế độ đăng nhập*/
         .container.log-in .container-form {
             left: 298px;
         }
 
-        /*Hiển thị form đăng ký*/
         .container.log-in .container-form .form-item.sign-up {
             left: 0;
             opacity: 1;
         }
 
-        /*Ẩn form đăng nhập*/
         .container.log-in .container-form .form-item.log-in {
             left: -100%;
             opacity: 0;
         }
 
-        /*container để chứa ô nhập password và icon hiện/ẩn mật khẩu*/
         .password-container {
             position: relative;
             width: 240px;
             margin: 0 auto 15px;
         }
-        /*chỉnh input password chiếm toàn bộ container và chừa chỗ cho icon bên phải.*/
+
         .password-container input {
             width: 100%;
             margin: 0;
             padding-right: 40px;
         }
 
-        /*đặt icon con mắt bên phải input để bật/tắt hiển thị mật khẩu*/
         .toggle-password {
             position: absolute;
             right: 15px;
@@ -257,25 +217,21 @@
             transition: color 0.3s;
         }
 
-        /*Hover của con mắt*/
         .toggle-password:hover {
             color: var(--brown-mid);
         }
 
-        /*container để bọc input và icon bên trong*/
         .input-container {
             position: relative;
             width: 240px;
             margin: 0 auto 15px;
         }
 
-        /*làm input chiếm toàn bộ chiều rộng container*/
         .input-container input {
             width: 100%;
             margin: 0;
         }
 
-        /*đặt icon bên trong input ở phía bên trái*/
         .input-icon {
             position: absolute;
             left: 15px;
@@ -285,12 +241,10 @@
             pointer-events: none;
         }
 
-        /*đổi màu icon khi input được chọn (focus)*/
         .input-container input:focus~.input-icon {
             color: var(--brown-mid);
         }
 
-        /*tạo dòng phân cách ngang có chữ ở giữa*/
         .divider {
             display: flex;
             align-items: center;
@@ -298,7 +252,6 @@
             width: 240px;
         }
 
-        /*tạo hai đường kẻ ngang hai bên chữ*/
         .divider::before,
         .divider::after {
             content: '';
@@ -307,14 +260,11 @@
             background-color: #e0e0e0;
         }
 
-        /*style chữ nằm giữa đường phân cách*/
         .divider span {
             padding: 0 10px;
             color: #999;
             font-size: 13px;
         }
-
-        /*container chứa các nút đăng nhập mạng xã hội (Google, Facebook) xếp theo cột*/
         .social-login {
             display: flex;
             flex-direction: column;
@@ -323,7 +273,6 @@
             margin-top: 15px;
         }
 
-        /*style chung cho nút đăng nhập mạng xã hội*/
         .social-btn {
             display: flex;
             align-items: center;
@@ -340,42 +289,34 @@
             font-weight: 500;
         }
 
-        /*tạo hiệu ứng nổi lên khi hover*/
         .social-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /*style riêng cho nút đăng nhập Google*/
         .social-btn.google {
             color: #DB4437;
             border-color: #DB4437;
         }
 
-        /*khi hover nút Google sẽ đổi nền đỏ*/
         .social-btn.google:hover {
             background-color: #DB4437;
             color: white;
         }
-
-        /*style riêng cho nút đăng nhập Facebook*/
         .social-btn.facebook {
             color: #4267B2;
             border-color: #4267B2;
         }
 
-        /*khi hover nút Facebook đổi nền xanh*/
         .social-btn.facebook:hover {
             background-color: #4267B2;
             color: white;
         }
 
-        /*chỉnh icon bên trong nút social*/
         .social-btn i {
             font-size: 18px;
         }
 
-        /* Thiết kế cho màn hình nhỏ */
         @media screen and (max-width: 768px) {
             body {
                 padding: 0;
