@@ -59,6 +59,23 @@ function saveCart() {
   window.dispatchEvent(new Event("cartUpdated"));
 }
 
+function updateQtyManual(index, value) {
+    let newQty = parseInt(value);
+    const maxStock = cart[index].stock || 99;
+
+    if (isNaN(newQty) || newQty < 1) {
+        newQty = 1;
+    } else if (newQty > maxStock) {
+        showNotification(`Chỉ còn ${maxStock} sản phẩm!`, 'warning');
+        newQty = maxStock;
+    }
+
+    cart[index].quantity = newQty;
+    saveCart();
+    renderCart();
+    updateSummary();
+}
+
 function renderCart() {
   const cartItemsList = document.getElementById("cartItemsList");
   const badge = document.getElementById("itemCountBadge");
@@ -94,8 +111,18 @@ function renderCart() {
                 <p class="item-price-text" style="margin:0; color: #ff5722; font-weight: bold;">${formatPrice(item.price)}</p>
                 
                 <div class="quantity-control-small">
+<<<<<<< HEAD
+                    <button onclick="decreaseQty(${index})">−</</button>
+                    <input type="number" 
+                        value="${item.quantity}" 
+                        onchange="updateQtyManual(${index}, this.value)" 
+                        min="1" 
+                        max="${item.stock}"
+                    >
+=======
                     <button onclick="decreaseQty(${index})">−</button>
                     <input type="number" value="${item.quantity}" readonly>
+>>>>>>> 3e393c24026ddd9f8844897682e738cf91321251
                     <button onclick="increaseQty(${index})">+</button>
                 </div>
             </div>
@@ -116,10 +143,27 @@ function renderCart() {
 }
 
 function increaseQty(index) {
+<<<<<<< HEAD
+    console.log("Số lượng hiện tại:", cart[index].quantity);
+    console.log("Tồn kho tối đa:", cart[index].stock);
+    
+    const maxStock = cart[index].stock || 0;
+
+    if (cart[index].quantity < maxStock) {
+        cart[index].quantity++;
+        saveCart();
+        renderCart();
+        updateSummary();
+    } else {
+        // Thông báo cho khách khi chạm trần
+        showNotification(`Rất tiếc, Yummy Seoul chỉ còn ${maxStock} phần cho món này!`, 'warning');
+    }
+=======
   cart[index].quantity++;
   saveCart();
   renderCart();
   updateSummary();
+>>>>>>> 3e393c24026ddd9f8844897682e738cf91321251
 }
 
 function decreaseQty(index) {
@@ -247,6 +291,26 @@ function showNotification(message, type = "success") {
 }
 
 function checkout() {
+<<<<<<< HEAD
+    const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    if (currentCart.length === 0) {
+        showNotification('Giỏ hàng của bạn đang trống!', 'warning');
+        return;
+    }
+
+    // Nếu isLoggedIn là 1 (đã có session từ PHP)
+    if (isLoggedIn === 1) {
+        window.location.href = 'checkout.php';
+    } else {
+        showNotification('Vui lòng đăng nhập để thanh toán', 'warning');
+
+        setTimeout(() => {
+            // Quan trọng: Gửi thêm tham số redirect để trang Login xử lý
+            window.location.href = LOGIN_URL + '?redirect=checkout.php';
+        }, 1200);
+    }
+=======
   const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
   if (currentCart.length === 0) {
@@ -265,5 +329,6 @@ function checkout() {
       window.location.href = LOGIN_URL + "?redirect=checkout.php";
     }, 1200);
   }
+>>>>>>> 3e393c24026ddd9f8844897682e738cf91321251
 }
 loadCart();

@@ -40,10 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const handleCart = (button, isRedirect) => {
         const product = {
             id: button.getAttribute('data-id'),
-            title: button.getAttribute('data-name'), // Đồng bộ key 'title' với cart.js
+            title: button.getAttribute('data-name'),
             price: parseInt(button.getAttribute('data-price')),
             image: button.getAttribute('data-image'),
-            quantity: parseInt(qtyInput.value)
+            quantity: parseInt(qtyInput.value),
+            stock: parseInt(qtyInput.getAttribute('max')) // THÊM DÒNG NÀY
         };
 
         if (!product.id || isNaN(product.price)) {
