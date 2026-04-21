@@ -9,29 +9,35 @@ if (isset($_POST['login_action'])) {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    // Kiểm tra xem biến $pdo có tồn tại không để tránh lỗi Fatal Error
+    // Kiểm tra xem biến $pdo có tồn tại không
     if (!isset($pdo)) {
-        die("Lỗi: Biến kết nối database \$pdo chưa được định nghĩa. Hãy kiểm tra file db.php.");
+        die("Lỗi: Biến kết nối database \$pdo chưa được định nghĩa.");
     }
 
     $stmt = $pdo->prepare("SELECT * FROM nguoi_dung WHERE user_name = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
-    // So sánh trực tiếp mật khẩu dạng 11223344
     if ($user && $password === $user['mat_khau']) {
         if ($user['trang_thai'] === 'Bị khóa') {
             $error_message = "Tài khoản của bạn đã bị khóa!";
         } else {
-            // Lưu thông tin vào Session để web "nhớ" Duy đã đăng nhập
-            $_SESSION['user_id'] = $user['id_nguoi_dung'];
+            // --- SỬA TÊN BIẾN SESSION TẠI ĐÂY ---
+            // Đổi từ 'user_id' thành 'id_nguoi_dung' để khớp với checkout.php
+            $_SESSION['id_nguoi_dung'] = $user['id_nguoi_dung']; 
             $_SESSION['username'] = $user['user_name'];
             $_SESSION['ho_ten'] = $user['ho_ten'];
             $_SESSION['vai_tro'] = $user['vai_tro'];
             $_SESSION['logged_in'] = true;
 
-            // Chuyển hướng về trang chủ
-            header("Location: home.php");
+            // Kiểm tra xem có yêu cầu chuyển hướng cụ thể không
+            if (!empty($_POST['redirect'])) {
+                $location = $_POST['redirect'];
+            } else {
+                $location = "home.php"; // Mặc định về trang chủ
+            }
+
+            header("Location: " . $location);
             exit();
         }
     } else {
@@ -52,7 +58,7 @@ if (isset($_POST['register_action'])) {
     // 1. Kiểm tra trùng lặp (Thêm check cả số điện thoại)
     $stmt = $pdo->prepare("SELECT id_nguoi_dung FROM nguoi_dung WHERE user_name = ? OR email = ? OR so_dien_thoai = ?");
     $stmt->execute([$user_name, $email, $so_dien_thoai]);
-    
+
     if ($stmt->rowCount() > 0) {
         // Lấy dữ liệu đã tồn tại để báo lỗi cụ thể cho người dùng
         $existing = $stmt->fetch();
@@ -103,7 +109,6 @@ if (isset($_POST['register_action'])) {
             <button class="btn" onclick="showSignup()">Đăng ký</button>
         </div>
 
-        <!--Container con chứa nút chuyển đổi form-->
         <div class="container-forms">
             <div class="container-info">
                 <div class="info-item">
@@ -116,10 +121,12 @@ if (isset($_POST['register_action'])) {
                 </div>
             </div>
 
-            <!--Container con dạng form đăng nhập-->
             <div class="container-form">
                 <form class="form-item log-in" method="POST" action="">
                     <h1>Đăng nhập</h1>
+
+                    <input type="hidden" name="redirect" value="<?php echo isset($_GET['redirect']) ? htmlspecialchars($_GET['redirect']) : ''; ?>">
+
                     <?php if (isset($error_message)) echo "<p style='color:red;'>$error_message</p>"; ?>
 
                     <div class="input-container">
@@ -133,9 +140,7 @@ if (isset($_POST['register_action'])) {
 
                     <button class="btn btn-submit" type="submit" name="login_action">Đăng nhập</button>
 
-                    <div class="divider">
-                        <span>hoặc</span>
-                    </div>
+                    <div class="divider"><span>hoặc</span></div>
 
                     <div class="social-login">
                         <button type="button" class="social-btn google" onclick="loginWithGoogle()">
@@ -149,9 +154,11 @@ if (isset($_POST['register_action'])) {
                     </div>
                 </form>
 
-                <!--Container con dạng form đăng ký-->
                 <form class="form-item sign-up" method="POST" action="">
                     <h1>Đăng ký</h1>
+
+                    <input type="hidden" name="redirect" value="<?php echo isset($_GET['redirect']) ? htmlspecialchars($_GET['redirect']) : ''; ?>">
+
                     <?php if (isset($success_message)) echo "<p style='color:green;'>$success_message</p>"; ?>
                     <?php if (isset($error_message) && isset($_POST['register_action'])) echo "<p style='color:red;'>$error_message</p>"; ?>
 
@@ -185,10 +192,9 @@ if (isset($_POST['register_action'])) {
                 </form>
             </div>
         </div>
-    </div>
 
-    <script src="../js/login_register.js">
-    </script>
+        <script src="../js/login_register.js">
+        </script>
 </body>
 
 </html>

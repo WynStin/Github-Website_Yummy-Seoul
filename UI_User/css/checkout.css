@@ -159,7 +159,7 @@
     justify-content: center;
 }
 
-.modal-checkout.active { display: flex; }
+.modal-checkout.active { display: flex !important; }
 
 .modal-content-checkout {
     background: var(--white);
@@ -170,26 +170,38 @@
     animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+/* Thêm style cho nút bấm trong Modal để Duy bấm được */
+.modal-actions-checkout {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    background: var(--baby-cream);
+}
+
+.modal-btn-checkout {
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-btn-primary-checkout {
+    background: var(--red-brown);
+    color: var(--baby-yellow);
+}
+
+.close-btn-checkout {
+    background: none;
+    border: none;
+    color: var(--baby-yellow);
+    font-size: 24px;
+    cursor: pointer;
+}
+
 @keyframes popIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
-}
-
-.modal-header-checkout {
-    background: var(--red-brown);
-    color: var(--baby-yellow);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-body-checkout {
-    padding: 30px 20px;
-    text-align: center;
-    color: var(--text-dark);
-} 
-
-.modal-checkout.active {
-    display: flex !important;
 }
