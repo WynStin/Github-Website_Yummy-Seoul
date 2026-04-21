@@ -19,7 +19,7 @@ if (isset($_POST['login_action'])) {
     $user = $stmt->fetch();
 
     // So sánh trực tiếp mật khẩu dạng 11223344
-    if ($user && $password === $user['mat_khau']) { 
+    if ($user && $password === $user['mat_khau']) {
         if ($user['trang_thai'] === 'Bị khóa') {
             $error_message = "Tài khoản của bạn đã bị khóa!";
         } else {
@@ -29,13 +29,46 @@ if (isset($_POST['login_action'])) {
             $_SESSION['ho_ten'] = $user['ho_ten'];
             $_SESSION['vai_tro'] = $user['vai_tro'];
             $_SESSION['logged_in'] = true;
-            
+
             // Chuyển hướng về trang chủ
             header("Location: home.php");
             exit();
         }
     } else {
         $error_message = "Tên đăng nhập hoặc mật khẩu không đúng!";
+    }
+}
+
+// --- Thêm đoạn này vào sau phần xử lý Đăng nhập (login_action) ---
+
+if (isset($_POST['register_action'])) {
+    $ho_ten = trim($_POST['ho_ten'] ?? '');
+    $user_name = trim($_POST['user_name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $so_dien_thoai = trim($_POST['so_dien_thoai'] ?? '');
+    $dia_chi = trim($_POST['dia_chi'] ?? '');
+    $mat_khau = $_POST['mat_khau'] ?? '';
+
+    // 1. Kiểm tra trùng lặp (Thêm check cả số điện thoại)
+    $stmt = $pdo->prepare("SELECT id_nguoi_dung FROM nguoi_dung WHERE user_name = ? OR email = ? OR so_dien_thoai = ?");
+    $stmt->execute([$user_name, $email, $so_dien_thoai]);
+    
+    if ($stmt->rowCount() > 0) {
+        // Lấy dữ liệu đã tồn tại để báo lỗi cụ thể cho người dùng
+        $existing = $stmt->fetch();
+        $error_message = "Tên đăng nhập, Email hoặc Số điện thoại này đã được sử dụng!";
+    } else {
+        // 2. Nếu không trùng thì mới INSERT
+        try {
+            $sql = "INSERT INTO nguoi_dung (ho_ten, user_name, email, so_dien_thoai, dia_chi_mac_dinh, mat_khau, vai_tro, trang_thai) 
+                    VALUES (?, ?, ?, ?, ?, ?, 'Khách hàng', 'Hoạt động')";
+            $insert = $pdo->prepare($sql);
+            $insert->execute([$ho_ten, $user_name, $email, $so_dien_thoai, $dia_chi, $mat_khau]);
+            $success_message = "Đăng ký thành công! Vui lòng đăng nhập.";
+        } catch (PDOException $e) {
+            // Trường hợp có lỗi bất ngờ khác từ CSDL
+            $error_message = "Lỗi hệ thống: " . $e->getMessage();
+        }
     }
 }
 ?>
@@ -85,84 +118,71 @@ if (isset($_POST['login_action'])) {
 
             <!--Container con dạng form đăng nhập-->
             <div class="container-form">
-                    <form class="form-item log-in" method="POST" action="">
-                        <h1>Đăng nhập</h1>
-                        <?php if (isset($error_message)) echo "<p style='color:red;'>$error_message</p>"; ?>
+                <form class="form-item log-in" method="POST" action="">
+                    <h1>Đăng nhập</h1>
+                    <?php if (isset($error_message)) echo "<p style='color:red;'>$error_message</p>"; ?>
 
-                        <div class="input-container">
-                            <input type="text" name="username" placeholder="Tên đăng nhập" required />
-                            <i class="fas fa-user input-icon"></i>
-                        </div>
-                        <div class="password-container">
-                            <input type="password" name="password" id="loginPassword" placeholder="Mật khẩu" required />
-                            <i class="fas fa-lock input-icon"></i>
-                        </div>
+                    <div class="input-container">
+                        <input type="text" name="username" placeholder="Tên đăng nhập" required />
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div class="password-container">
+                        <input type="password" name="password" id="loginPassword" placeholder="Mật khẩu" required />
+                        <i class="fas fa-lock input-icon"></i>
+                    </div>
 
-                        <button class="btn btn-submit" type="submit" name="login_action">Đăng nhập</button>
+                    <button class="btn btn-submit" type="submit" name="login_action">Đăng nhập</button>
 
-                        <div class="divider">
-                            <span>hoặc</span>
-                        </div>
+                    <div class="divider">
+                        <span>hoặc</span>
+                    </div>
 
-                        <div class="social-login">
-                            <button type="button" class="social-btn google" onclick="loginWithGoogle()">
-                                <i class="fab fa-google"></i>
-                                <span>Đăng nhập với Google</span>
-                            </button>
-                            <button type="button" class="social-btn facebook" onclick="loginWithFacebook()">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Đăng nhập với Facebook</span>
-                            </button>
-                        </div>
-                    </form>
+                    <div class="social-login">
+                        <button type="button" class="social-btn google" onclick="loginWithGoogle()">
+                            <i class="fab fa-google"></i>
+                            <span>Đăng nhập với Google</span>
+                        </button>
+                        <button type="button" class="social-btn facebook" onclick="loginWithFacebook()">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Đăng nhập với Facebook</span>
+                        </button>
+                    </div>
+                </form>
 
-                    <!--Container con dạng form đăng ký-->
-                    <form class="form-item sign-up" onsubmit="register(event)">
-                        <h1>Đăng ký</h1>
-                        <div class="input-container">
-                            <input type="text" id="reFullname" placeholder="Họ và tên" required />
-                            <i class="fas fa-address-card input-icon"></i>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" id="reUsername" placeholder="Tên đăng nhập" required />
-                            <i class="fas fa-user input-icon"></i>
-                        </div>
-                        <div class="input-container">
-                            <input type="email" id="reEmail" placeholder="Email" required />
-                            <i class="fas fa-envelope input-icon"></i>
-                        </div>
-                        <div class="input-container">
-                            <input type="tel" id="rePhone" placeholder="Số điện thoại" required />
-                            <i class="fas fa-phone input-icon"></i>
-                        </div>
-                        <div class="input-container">
-                            <input type="text" id="reAddress" placeholder="Địa chỉ mặc định" required />
-                            <i class="fas fa-map-marker-alt input-icon"></i>
-                        </div>
-                        <div class="password-container">
-                            <input type="password" id="rePassword" placeholder="Mật khẩu" required />
-                            <i class="fas fa-lock input-icon"></i>
-                            <i class="fas fa-eye-slash toggle-password"
-                                onclick="togglePasswordVisibility('rePassword', this)"></i>
-                        </div>
-                        <div id="reMessage" class="message"></div>
-                        <button class="btn btn-submit" type="submit">Đăng ký</button>
+                <!--Container con dạng form đăng ký-->
+                <form class="form-item sign-up" method="POST" action="">
+                    <h1>Đăng ký</h1>
+                    <?php if (isset($success_message)) echo "<p style='color:green;'>$success_message</p>"; ?>
+                    <?php if (isset($error_message) && isset($_POST['register_action'])) echo "<p style='color:red;'>$error_message</p>"; ?>
 
-                        <div class="divider">
-                            <span>hoặc</span>
-                        </div>
+                    <div class="input-container">
+                        <input type="text" name="ho_ten" placeholder="Họ và tên" required />
+                        <i class="fas fa-address-card input-icon"></i>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" name="user_name" placeholder="Tên đăng nhập" required />
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" name="email" placeholder="Email" required />
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                    <div class="input-container">
+                        <input type="tel" name="so_dien_thoai" placeholder="Số điện thoại" required />
+                        <i class="fas fa-phone input-icon"></i>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" name="dia_chi" placeholder="Địa chỉ mặc định" required />
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                    </div>
+                    <div class="password-container">
+                        <input type="password" name="mat_khau" id="rePassword" placeholder="Mật khẩu" required />
+                        <i class="fas fa-lock input-icon"></i>
+                        <i class="fas fa-eye-slash toggle-password" onclick="togglePasswordVisibility('rePassword', this)"></i>
+                    </div>
 
-                        <div class="social-login">
-                            <button type="button" class="social-btn google" onclick="signupWithGoogle()">
-                                <i class="fab fa-google"></i>
-                                <span>Đăng ký với Google</span>
-                            </button>
-                            <button type="button" class="social-btn facebook" onclick="signupWithFacebook()">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Đăng ký với Facebook</span>
-                            </button>
-                        </div>
-                    </form>
+                    <button class="btn btn-submit" type="submit" name="register_action">Đăng ký</button>
+                </form>
             </div>
         </div>
     </div>
