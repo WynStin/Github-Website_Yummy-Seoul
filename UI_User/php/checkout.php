@@ -1,26 +1,22 @@
 <?php 
-require_once '../../SQL_Connect/db.php'; // File này đã có session_start()
+require_once '../../SQL_Connect/db.php'; 
 
-// Nếu không có session, đẩy về login ngay lập tức
 if (!isset($_SESSION['id_nguoi_dung'])) {
     header("Location: login_register.php?redirect=checkout.php");
     exit();
 }
 
-// Lấy thông tin để hiện luôn ra form khi vừa vào trang
 $userId = $_SESSION['id_nguoi_dung'];
 $stmt = $pdo->prepare("SELECT * FROM nguoi_dung WHERE id_nguoi_dung = ?");
 $stmt->execute([$userId]);
 $currentUser = $stmt->fetch();
 ?>
 <script>
-    // Truyền dữ liệu sang cho checkout.js sử dụng
     const userData = <?php echo json_encode($currentUser); ?>;
 </script>
 
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +93,6 @@ $currentUser = $stmt->fetch();
     <script src="../js/checkout.js"></script>
 
     <script>
-        // Kiểm tra giỏ hàng để tránh lỗi treo trang
         document.addEventListener('DOMContentLoaded', function() {
             const cart = JSON.parse(localStorage.getItem('cart') || '[]');
             if (cart.length === 0) {

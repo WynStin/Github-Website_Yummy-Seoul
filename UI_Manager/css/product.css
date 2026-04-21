@@ -1,30 +1,20 @@
-/* ==========================================================================
-   FULL ADMIN PRODUCT CSS - YUMMY SEOUL (BẢN GỘP TẤT CẢ)
-   ========================================================================== */
-
 :root {
     --red-brown: #5d2620;
-    /* Nâu đỏ Sidebar */
     --brown-mid: #966f5d;
     --baby-cream: #fef9f1;
-    /* Nền kem */
     --white: #ffffff;
     --gold-primary: #f59e0b;
-    /* Vàng điểm nhấn */
     --gold-light: #fef3c7;
     --gold-soft: #fffbeb;
     --success: #10b981;
     --danger: #ef4444;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
-/* 1. Reset & Layout Cơ bản */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: "Asap", sans-serif;
     background-size: auto;
@@ -32,13 +22,10 @@ body {
     background: url("../../Image/homepage/background.png");
     color: var(--red-brown);
 }
-
 .admin-container {
     display: flex;
     min-height: 100vh;
 }
-
-/* 2. Sidebar (Khung bên trái) */
 .admin-sidebar {
     width: 260px;
     background-color: #43211d;
@@ -47,7 +34,6 @@ body {
     height: 100vh;
     z-index: 100;
 }
-
 .sidebar-logo {
     padding: 30px;
     display: flex;
@@ -95,8 +81,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
 }
-
-/* 3. Nội dung chính */
 .admin-main {
     flex: 1;
     margin-left: 260px;
@@ -128,8 +112,6 @@ body {
     background-color: #d97706;
     transform: translateY(-2px);
 }
-
-/* 4. Bảng danh sách món ăn (Chi tiết) */
 .card {
     background: var(--white);
     border-radius: 15px;
@@ -156,8 +138,6 @@ body {
     border-bottom: 1px solid var(--gold-light);
     vertical-align: middle;
 }
-
-/* Các thành phần nhỏ trong bảng */
 .product-thumb {
     width: 70px;
     height: 70px;
@@ -197,8 +177,6 @@ body {
     color: var(--gold-primary);
     display: block;
 }
-
-/* Badge Trạng thái */
 .badge {
     padding: 6px 12px;
     border-radius: 20px;
@@ -216,8 +194,6 @@ body {
     background-color: #fee2e2 !important;
     color: #991b1b !important;
 }
-
-/* Thao tác (Sửa/Xóa) */
 .action-btns {
     display: flex;
     gap: 8px;
@@ -254,14 +230,11 @@ body {
     background-color: var(--danger);
     color: var(--white);
 }
-
-/* Tối ưu cho bảng nhiều thuộc tính */
 .admin-table th,
 .admin-table td {
     padding: 12px 10px;
     font-size: 14px;
     white-space: nowrap;
-    /* Tránh xuống dòng lung tung */
 }
 
 .desc-text {
@@ -282,9 +255,6 @@ body {
     font-size: 11px;
     font-weight: 600;
 }
-
-/* ... Giữ lại các phần cũ, thêm đoạn này vào ... */
-
 .filter-section {
     display: flex;
     gap: 20px;

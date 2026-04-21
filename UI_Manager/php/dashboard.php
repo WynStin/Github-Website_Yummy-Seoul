@@ -1,26 +1,19 @@
 <?php
-// 1. Kết nối CSDL
 include '../../SQL_Connect/db.php';
 
 try {
-    // 2. Thống kê tổng doanh thu (Chỉ tính những đơn hàng đã 'Hoàn thành')
     $stmtRev = $pdo->query("SELECT SUM(tong_gia) FROM don_hang WHERE trang_thai = 'Hoàn thành'");
     $totalRevenue = $stmtRev->fetchColumn() ?: 0;
 
-    // 3. Thống kê tổng đơn hàng (Tất cả trạng thái)
     $stmtOrders = $pdo->query("SELECT COUNT(*) FROM don_hang");
     $totalOrders = $stmtOrders->fetchColumn() ?: 0;
 
-    // 4. Thống kê số lượng khách hàng (Lọc theo vai_tro)
     $stmtUsers = $pdo->query("SELECT COUNT(*) FROM nguoi_dung WHERE vai_tro = 'Khách hàng'");
     $totalUsers = $stmtUsers->fetchColumn() ?: 0;
 
-    // 5. Lấy danh sách 5 đơn hàng mới nhất
     $stmtLatest = $pdo->query("SELECT * FROM don_hang ORDER BY ngay_tao_don DESC LIMIT 5");
     $latestOrders = $stmtLatest->fetchAll(PDO::FETCH_ASSOC);
 
-    // --- MỚI: Lấy doanh thu 7 ngày gần nhất cho biểu đồ ---
-    // Truy vấn này lấy tổng giá các đơn 'Hoàn thành' theo từng ngày
     $stmtChart = $pdo->query("SELECT DATE_FORMAT(ngay_tao_don, '%d/%m') as ngay, SUM(tong_gia) as doanh_thu 
                               FROM don_hang 
                               WHERE trang_thai = 'Hoàn thành' 
@@ -29,7 +22,6 @@ try {
                               LIMIT 7");
     $chartRows = $stmtChart->fetchAll(PDO::FETCH_ASSOC);
     
-    // Tách dữ liệu ra 2 mảng để JS dễ đọc
     $chartLabels = array_column($chartRows, 'ngay');
     $chartValues = array_column($chartRows, 'doanh_thu');
 

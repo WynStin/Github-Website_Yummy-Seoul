@@ -1,12 +1,9 @@
 <?php
 include '../../SQL_Connect/db.php';
-
-// 1. Xử lý cập nhật trạng thái nhanh
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
     $id_don = $_POST['id_don_hang'];
     $status_moi = $_POST['trang_thai'];
     
-    // Lấy lại các bộ lọc hiện tại để khi redirect không bị mất dữ liệu
     $current_search = isset($_POST['search_hidden']) ? $_POST['search_hidden'] : '';
     $current_filter = isset($_POST['status_hidden']) ? $_POST['status_hidden'] : '';
 
@@ -14,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
         $updateSql = "UPDATE don_hang SET trang_thai = ? WHERE id_don_hang = ?";
         $pdo->prepare($updateSql)->execute([$status_moi, $id_don]);
         
-        // SỬA: Dùng tham số 'msg' thay vì 'status' để tránh trùng với bộ lọc SQL bên dưới
         header("Location: order.php?msg=updated&search=" . urlencode($current_search) . "&status=" . urlencode($current_filter));
         exit();
     } catch (PDOException $e) {
@@ -22,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
     }
 }
 
-// 2. Lấy tham số lọc từ URL (Nếu có)
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $filterStatus = isset($_GET['status']) ? $_GET['status'] : '';
 
@@ -36,7 +31,6 @@ try {
         $sql .= " AND (d.id_don_hang LIKE :search OR n.ho_ten LIKE :search OR d.dia_chi_giao_hang LIKE :search OR CONCAT('#DH', d.id_don_hang) LIKE :search)";
     }
 
-    // SỬA: Chỉ lọc theo trạng thái nếu giá trị $filterStatus thực sự hợp lệ (không phải là 'updated')
     $statusOptions = ['Đã đặt', 'Đang xử lý', 'Đang giao', 'Hoàn thành', 'Đã hủy'];
     if (in_array($filterStatus, $statusOptions)) {
         $sql .= " AND d.trang_thai = :status_filter";
@@ -67,7 +61,6 @@ try {
     <link rel="stylesheet" href="../css/order.css">
     <link rel="stylesheet" href="../../UI_User/css/home.css">
     <style>
-        /* CSS cho thông báo tự biến mất */
         #success-alert {
             background-color: #dcfce7;
             color: #166534;

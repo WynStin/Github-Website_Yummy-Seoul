@@ -1,29 +1,13 @@
-/* ==========================================================================
-   ADMIN DASHBOARD CSS - YUMMY SEOUL (GOLD EDITION)
-   ========================================================================== */
-
 :root {
-    /* Bảng màu chính thức */
     --red-brown: #5d2620;
-    /* Nâu đỏ Sidebar */
     --brown-mid: #966f5d;
-    /* Nâu trung tính cho chữ phụ */
     --baby-cream: #fef9f1;
-    /* Nền kem toàn trang */
     --white: #ffffff;
-
-    /* Tông màu Vàng (Gold) làm điểm nhấn */
     --gold-primary: #f59e0b;
-    /* Vàng đậm cho Icon và Chữ nhấn */
     --gold-light: #fef3c7;
-    /* Vàng nhạt cho nền Icon */
     --gold-soft: #fffbeb;
-    /* Vàng cực nhạt cho Badge */
-
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
-/* 1. Reset & Cơ bản */
 * {
     margin: 0;
     padding: 0;
@@ -40,8 +24,6 @@ body {
     display: flex;
     min-height: 100vh;
 }
-
-/* 2. Thanh điều hướng bên trái (Sidebar) */
 .admin-sidebar {
     width: 260px;
     background-color: var(--red-brown);
@@ -80,24 +62,19 @@ body {
     gap: 15px;
     padding: 15px 30px;
     color: #dfced5;
-    /* Màu chữ nhạt cho sidebar */
     text-decoration: none;
     transition: 0.3s;
     font-weight: 500;
 }
-
-/* Hiệu ứng khi chọn (Active) hoặc di chuột qua */
 .nav-link:hover,
 .nav-link.active {
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
     border-left: 4px solid var(--gold-primary);
-    /* Điểm nhấn vàng ở gờ trái */
 }
 
 .nav-link.active i {
     color: var(--gold-primary);
-    /* Icon màu vàng khi active */
 }
 
 .nav-divider {
@@ -105,35 +82,27 @@ body {
     background: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
 }
-
-/* 3. Nội dung chính (Main Content) */
 .admin-main {
     flex: 1;
     margin-left: 260px;
-    /* Chừa chỗ cho sidebar cố định */
     padding: 40px;
 }
-
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
 }
-
 .main-header h2 {
     font-size: 28px;
     font-weight: 700;
 }
-
-/* 4. Thẻ thống kê (Stat Cards) */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 40px;
 }
-
 .stat-card {
     background: var(--white);
     padding: 25px;
@@ -148,15 +117,11 @@ body {
 .stat-card:hover {
     transform: translateY(-5px);
 }
-
-/* Chỉnh màu vàng cho Icon Circle */
 .stat-icon {
     width: 65px;
     height: 65px;
     background: var(--baby-cream);
-    /* Nền vàng nhạt */
     color: var(--brown-mid);
-    /* Icon vàng đậm */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,8 +141,6 @@ body {
     font-weight: 700;
     color: var(--red-brown);
 }
-
-/* 5. Bảng dữ liệu và Thẻ (Table & Card) */
 .card {
     background: var(--white);
     border-radius: 15px;
@@ -191,8 +154,6 @@ body {
     align-items: center;
     margin-bottom: 25px;
 }
-
-/* Link chuyển hướng màu vàng */
 .view-all {
     color: var(--gold-primary);
     text-decoration: none;
@@ -214,7 +175,6 @@ body {
     text-align: left;
     padding: 15px;
     border-bottom: 2px solid var(--gold-light);
-    /* Đường gạch vàng nhạt */
     color: var(--brown-mid);
     font-weight: 600;
 }
@@ -224,8 +184,6 @@ body {
     border-bottom: 1px solid var(--gold-light);
     font-size: 15px;
 }
-
-/* Nhãn trạng thái (Badge) màu vàng */
 .badge {
     background: var(--gold-soft);
     color: var(--gold-primary);
@@ -273,8 +231,6 @@ body {
     padding: 40px;
     color: #888;
 }
-
-/* Đảm bảo bảng có thể cuộn ngang nếu quá nhiều cột trên màn hình nhỏ */
 .recent-orders {
     overflow-x: auto;
 }
@@ -290,28 +246,22 @@ body {
             .status-đang-xử-lý { background: #fef3c7; color: #d97706; }
             .status-đang-giao { background: #f0fdf4; color: #16a34a; }
             .empty-state { text-align: center; padding: 40px; color: #888; }
-
-/* Tối ưu hiển thị di động */
 @media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (max-width: 768px) {
     .admin-sidebar {
         width: 70px;
     }
-
     .admin-sidebar span,
     .sidebar-logo img {
         display: none;
     }
-
     .admin-main {
         margin-left: 70px;
     }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }

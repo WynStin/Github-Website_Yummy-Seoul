@@ -1,9 +1,4 @@
-/* ======================================================
-   CONTACT CSS - YUMMY SEOUL STYLE
-   ====================================================== */
-
 :root {
-  /* Lấy mã màu chuẩn từ hệ thống Yummy Seoul của bạn */
   --red-brown: #451715;
   --baby-yellow: #ffeda3;
   --gold-light: #e2b96a;
@@ -18,14 +13,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: "Asap", sans-serif; /* Đổi font đồng bộ với home.css */
+  font-family: "Asap", sans-serif;
   background: url("../../Image/homepage/background.png");
   background-size: auto;
   color: var(--text-dark);
   line-height: 1.6;
 }
-
-/* ================= MAP ================= */
 .map-wrapper {
   width: 100%;
   height: 420px;
@@ -39,22 +32,17 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
-  /* Giữ filter cũ của bạn cho bản đồ trông nghệ thuật hơn */
   filter: saturate(110%) contrast(105%);
 }
-
-/* ================= CONTENT LAYOUT ================= */
 .content {
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 30px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr; /* Điều chỉnh lại tỷ lệ */
+  grid-template-columns: 1.2fr 0.8fr; 
   gap: 100px;
   animation: fadeUp 1s ease;
 }
-
-/* ================= FORM LIÊN HỆ ================= */
 .contact-form h2 {
   font-size: 28px;
   font-weight: 700;
@@ -62,8 +50,6 @@ body {
   margin-bottom: 25px;
   position: relative;
 }
-
-/* Gạch chân trang trí dưới tiêu đề */
 .contact-form h2::after {
   content: "";
   display: block;
@@ -94,8 +80,6 @@ body {
   font-size: 15px;
   transition: all 0.3s ease;
 }
-
-/* Hiệu ứng khi tương tác với input */
 .form-group input:hover,
 .form-group textarea:hover {
   border-color: var(--red-brown);
@@ -106,10 +90,8 @@ body {
   outline: none;
   border-color: var(--red-brown);
   box-shadow: 0 0 0 4px rgba(69, 23, 21, 0.1);
-  background: #fffef8; /* Hơi vàng nhẹ khi focus */
+  background: #fffef8; 
 }
-
-/* Nút gửi phong cách Yummy Seoul */
 .btn-submit {
   background: var(--red-brown);
   color: var(--baby-yellow);
@@ -131,7 +113,6 @@ body {
   box-shadow: 0 12px 20px rgba(69, 23, 21, 0.3);
 }
 
-/* Thông báo thành công */
 .success-message {
   font-size: 14px;
   color: #27ae60;
@@ -140,9 +121,8 @@ body {
   display: none;
 }
 
-/* ================= THÔNG TIN BÊN PHẢI ================= */
 .contact-info {
-  background: rgba(255, 255, 255, 0.6); /* Nền mờ nhẹ cho sang */
+  background: rgba(255, 255, 255, 0.6); 
   padding: 30px;
   border-radius: var(--radius-md);
   border: 1px solid var(--pink-soft);
@@ -167,11 +147,9 @@ body {
 .info-item svg {
   width: 24px;
   height: 24px;
-  fill: var(--red-brown); /* Đổi màu icon sang đỏ nâu */
+  fill: var(--red-brown); 
   flex-shrink: 0;
 }
-
-/* ================= ICON MẠNG XÃ HỘI ================= */
 .link-social {
   display: flex;
   gap: 15px;
@@ -183,8 +161,6 @@ body {
   height: 40px;
   transition: transform 0.3s ease;
 }
-
-/* Đổi màu nền của các rect trong SVG mạng xã hội */
 .link-social a svg rect {
   fill: var(--red-brown) !important;
 }
@@ -194,7 +170,6 @@ body {
   opacity: 1;
 }
 
-/* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .content { 
     grid-template-columns: 1fr; 
@@ -203,7 +178,6 @@ body {
   .page-title { font-size: 32px; }
 }
 
-/* ================= ANIMATIONS ================= */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }

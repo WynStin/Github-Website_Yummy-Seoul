@@ -1,4 +1,3 @@
-/* ===== CSS VARIABLES ===== */
 :root {
   --cream: #fdf6ec;
   --cream-dark: #f5e9d5;
@@ -24,8 +23,6 @@
   --radius: 12px;
   --radius-lg: 20px;
 }
-
-/* ===== RESET & BASE ===== */
 *,
 *::before,
 *::after {
@@ -52,45 +49,30 @@ img {
   max-width: 100%;
 }
 
-/* ======================================================
-   HEADER (TOPBAR + NAVBAR) - NORMAL POSITION
-   ====================================================== */
 header {
   position: relative;
-  /* Thay đổi từ fixed sang relative */
   z-index: 2000;
 }
-
-/* --- CSS CHO TOPBAR --- */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* Giảm padding bên trái để Logo lùi về sát lề hơn */
   padding: 10px 40px 10px 20px;
   background-color: var(--red-brown, #451715);
 }
-
-/* Định dạng cho chữ bên cạnh Logo */
 .topbar-logo {
   display: flex;
   align-items: center;
   gap: 15px;
-  /* Khoảng cách giữa Logo và chữ */
 }
 
 .logo-text {
   color: var(--baby-yellow);
-  /* Sử dụng màu vàng nhạt của web */
   font-size: 18px;
   font-weight: 700;
   white-space: nowrap;
-  /* Không cho chữ nhảy xuống dòng */
   letter-spacing: 0.5px;
 }
-
-/* Kiểu dáng nút tròn giống nút giỏ hàng */
-/* CSS Nút bấm Admin */
 .admin-btn {
   background: var(--baby-yellow);
   width: 45px;
@@ -108,14 +90,11 @@ header {
   background: var(--pink-soft);
   transform: translateY(-2px);
 }
-
-/* CSS Giao diện Modal (Bảng đăng nhập) */
 .admin-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   display: none;
-  /* Ẩn mặc định */
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -211,24 +190,19 @@ header {
   font-weight: 600;
 }
 
-
-/* Điều chỉnh thanh tìm kiếm nhỏ lại */
 .search-container {
   display: flex;
   align-items: center;
   gap: 12px;
-  /* Giảm flex-basis xuống để thanh search ngắn lại (ví dụ 550px) */
   flex: 0 1 550px;
 }
 
-/* Thanh tìm kiếm */
 .search-bar {
   display: flex;
   background: var(--baby-yellow);
   border-radius: 50px;
   padding: 4px 4px 4px 20px;
   align-items: center;
-  /* Đảm bảo thanh search chiếm hết không gian được chia trong container */
   width: 100%;
 }
 
@@ -239,8 +213,6 @@ header {
   width: 100%;
   font-size: 15px;
 }
-
-/* Nút kính lúp tròn đẹp */
 .search-btn {
   background: var(--brown-light);
   border: none;
@@ -258,8 +230,6 @@ header {
 .search-btn:hover {
   background: var(--red-brown, #451715);
 }
-
-/* Nút Giỏ hàng */
 .cart-wrapper {
   position: relative;
   flex-shrink: 0;
@@ -300,9 +270,6 @@ header {
   background: var(--pink-soft, #f2d9c8);
   transform: translateY(-2px);
 }
-
-/* --- CSS CHO NAVBAR --- */
-/* Đảm bảo Navbar cũng lùi về trái đồng bộ với Topbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -329,20 +296,15 @@ header {
 .nav-links li a:hover {
   color: #ff5722;
 }
-
-/* Trạng thái Active menu */
 .nav-links li a.active {
   border: 2px solid var(--red-brown);
   border-radius: 8px;
   padding: 5px 12px;
 }
-
-/* --- SỐ ĐIỆN THOẠI ĐÃ CẬP NHẬT --- */
 .nav-phone {
   display: flex;
   align-items: center;
   gap: 10px;
-  /* Khoảng cách giữa icon và số */
   background-color: var(--red-brown, #451715);
   color: #fff;
   padding: 8px 18px;
@@ -352,16 +314,13 @@ header {
 
 .nav-phone svg {
   flex-shrink: 0;
-  /* Icon không bị bóp méo */
   transition: transform 0.3s ease;
 }
 
-/* Hiệu ứng rung nhẹ khi hover */
 .nav-phone:hover svg {
   transform: scale(1.1) rotate(-10deg);
 }
 
-/* CSS cho Topbar actions (Đăng nhập/Đăng ký) */
 .topbar-actions {
   display: flex;
   gap: 10px;
@@ -381,17 +340,12 @@ header {
   text-decoration: none;
   color: inherit;
 }
-/* ======================================================
-   HERO SECTION
-   ====================================================== */
 .hero-section {
   padding: 15px 0;
-  /* Giảm khoảng cách trên dưới */
 }
 
 .hero-container {
   max-width: 1600px;
-  /* Thu hẹp chiều ngang lại một chút cho xinh */
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -400,7 +354,6 @@ header {
   position: relative;
   overflow: hidden;
   height: 380px;
-  /* Chiều cao khung hình */
   border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -428,26 +381,18 @@ header {
 .hero-img-placeholder img {
   width: 100%;
   height: 100%;
-  /* Giữ contain để không mất thông tin địa chỉ/SĐT trên banner */
   object-fit: contain;
   object-position: center;
-  /* Đảm bảo ảnh không có màu nền trắng riêng lẻ */
   background: transparent;
 }
-
-/* Nút bấm điều hướng nhỏ lại cho khớp với banner nhỏ */
 .hero-btn-prev,
 .hero-btn-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: var(--baby-yellow);
-  /* Màu vàng nổi bật trên nền nâu */
   border: 2px solid var(--red-brown);
-  /* Viền đậm hơn tí cho nét */
   color: var(--red-brown);
-
-  /* TĂNG KÍCH THƯỚC NÚT */
   width: 50px;
   height: 50px;
 
@@ -456,7 +401,6 @@ header {
   align-items: center;
   justify-content: center;
 
-  /* TĂNG KÍCH THƯỚC BIỂU TƯỢNG MŨI TÊN */
   font-size: 30px;
   font-weight: bold;
 
@@ -465,20 +409,14 @@ header {
   transition: all 0.3s ease;
 }
 
-/* CĂN GIỮA KHOẢNG NÂU: 
-   Vì ảnh contain ở giữa, khoảng nâu hai bên khá rộng, 
-   ta đẩy nút ra xa mép một chút để nó vào tâm vùng nâu. */
 .hero-btn-prev {
   left: 20px;
-  /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
+  
 }
 
 .hero-btn-next {
   right: 20px;
-  /* Điều chỉnh con số này nếu muốn dịch sang trái/phải thêm */
 }
-
-/* Hiệu ứng khi di chuột vào */
 .hero-btn-prev:hover,
 .hero-btn-next:hover {
   background: var(--white);
@@ -509,9 +447,6 @@ header {
   border-radius: 10px;
 }
 
-/* ======================================================
-   SECTIONS GENERAL
-   ====================================================== */
 .section {
   padding: 10px 40px;
 }
@@ -544,13 +479,11 @@ header {
 }
 
 .xem-nhieu {
-    margin-top: 60px; /* Đẩy section này cách phần trên 60px */
+    margin-top: 60px;
     padding-top: 20px;
 }
-
-/* Hiệu ứng riêng cho phần Món Xem Nhiều */
 .xem-nhieu .product-card {
-    background: #1a1a1a; /* Nền tối hơn một chút để nổi bật ánh đèn Neon */
+    background: #1a1a1a;
     border: none;
     position: relative;
     overflow: hidden;
@@ -562,15 +495,13 @@ header {
     font-weight: 700;
     color: var(--red-brown);
     margin: 10px 0;
-    /* Giới hạn 2 dòng cho tên món */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;  
     overflow: hidden;
-    height: 2.4em; /* Đảm bảo các card đều nhau */
+    height: 2.4em;
 }
 
-/* Hiệu ứng viền Neon chạy quanh khi Hover */
 .xem-nhieu .product-card::before {
     content: '';
     position: absolute;
@@ -582,10 +513,10 @@ header {
         transparent, 
         transparent, 
         transparent, 
-        #00fffc /* Màu Cyan Neon */
+        #00fffc
     );
     animation: rotateNeon 4s linear infinite;
-    display: none; /* Mặc định ẩn */
+    display: none;
 }
 
 .xem-nhieu .product-card:hover::before {
@@ -595,27 +526,23 @@ header {
 .xem-nhieu .product-card::after {
     content: '';
     position: absolute;
-    inset: 4px; /* Tạo độ dày cho viền */
-    background: #fff; /* Trả lại nền trắng bên trong */
+    inset: 4px; 
+    background: #fff;
     border-radius: 15px;
     z-index: 1;
 }
-
-/* Đưa nội dung lên trên lớp viền */
 .xem-nhieu .product-card-img, 
 .xem-nhieu .product-card-body {
     position: relative;
     z-index: 2;
 }
-
-/* Nhãn "VIEW" kiểu bảng hiệu Neon */
 .xem-nhieu .swiper-slide::after {
     content: "MOST VIEWED";
     position: absolute;
     top: 15px;
     right: 15px;
     background: transparent;
-    color: #ff0055; /* Màu hồng Neon */
+    color: #ff0055;
     border: 2px solid #ff0055;
     padding: 3px 8px;
     font-size: 9px;
@@ -641,28 +568,22 @@ header {
     margin-top: 60px;
     margin-bottom: 20px;
 }
-
-/* Tạo hiệu ứng viền phát sáng nhẹ cho toàn bộ Slider Bán Chạy */
 .ban-chay .product-card {
     border: 2px solid transparent;
     transition: all 0.4s ease;
     position: relative;
 }
-
-/* Khi di chuột vào card của phần bán chạy */
 .ban-chay .product-card:hover {
-    border-color: #ffc107; /* Màu vàng Gold */
-    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4); /* Hiệu ứng tỏa sáng vàng */
+    border-color: #ffc107; 
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4); 
     transform: translateY(-10px) scale(1.02);
 }
-
-/* Thêm một dải ruy băng "Best Seller" nhỏ ở góc card */
 .ban-chay .swiper-slide::before {
     content: "HOT";
     position: absolute;
     top: 15px;
     right: 15px;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient đỏ cam rực rỡ */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b); 
     color: white;
     padding: 3px 10px;
     font-size: 10px;
@@ -670,24 +591,20 @@ header {
     border-radius: 20px;
     z-index: 10;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    animation: pulseBling 1.5s infinite; /* Hiệu ứng nhịp đập */
-}
+    animation: pulseBling 1.5s infinite; 
 
-/* Animation cho nhãn HOT */
 @keyframes pulseBling {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.1); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
 }
 
-/* Làm cho tiêu đề "MÓN BÁN CHẠY NHẤT" rực rỡ hơn */
 .ban-chay .section-title {
     background: linear-gradient(135deg, #451715 0%, #a0522d 100%);
     position: relative;
     overflow: hidden;
 }
 
-/* Hiệu ứng ánh sáng chạy ngang qua tiêu đề */
 .ban-chay .section-title::after {
     content: "";
     position: absolute;
@@ -711,16 +628,10 @@ header {
     border: 1px solid #ffc107 !important;
 }
 
-/* ======================================================
-   PRODUCT GRID & CARDS
-   ====================================================== */
-/* --- Cấu hình cho Slider Món Mới --- */
 .mon-moi {
     position: relative;
-    padding: 60px 20px; /* Giữ khoảng cách chung cho section */
+    padding: 60px 20px; 
 }
-
-/* Hiệu ứng khung hình theo phong cách Glassmorphism (Kính mờ) */
 .mon-moi .product-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(5px);
@@ -730,7 +641,6 @@ header {
     z-index: 1;
 }
 
-/* Hiệu ứng hào quang màu sắc (Holographic) khi hover */
 .mon-moi .product-card:hover {
     transform: translateY(-12px) rotate(1deg);
     box-shadow: 
@@ -738,8 +648,6 @@ header {
         5px 5px 20px rgba(255, 182, 193, 0.4);
     border-color: rgba(255, 255, 255, 0.9);
 }
-
-/* Nhãn NEW kiểu tinh thể lấp lánh */
 .mon-moi .swiper-slide::after {
     content: "NEW";
     position: absolute;
@@ -757,13 +665,10 @@ header {
     animation: rainbowBling 3s linear infinite;
 }
 
-/* Animation chuyển màu cầu vồng cho nhãn New */
 @keyframes rainbowBling {
     0% { filter: hue-rotate(0deg); }
     100% { filter: hue-rotate(360deg); }
 }
-
-/* Hiệu ứng tia sét/ánh kim chạy dọc Card khi hover */
 .mon-moi .product-card::before {
     content: "";
     position: absolute;
@@ -785,8 +690,6 @@ header {
 .mon-moi .product-card:hover::before {
     left: 150%;
 }
-
-/* Làm cho ảnh sản phẩm có độ trong suốt và sắc nét */
 .mon-moi .product-card-img img {
     filter: saturate(1.1);
     transition: 0.5s;
@@ -795,16 +698,13 @@ header {
 .mon-moi .product-card:hover .product-card-img img {
     filter: saturate(1.3) brightness(1.1);
 }
-
-/* Lớp bọc mới để nút bấm căn theo khung này */
 .slider-container {
     position: relative;
-    max-width: 1400px; /* Tăng chiều rộng để 5 món không bị chật */
+    max-width: 1400px; 
     margin: 40px auto;
-    padding: 0 60px; /* Khoảng trống 2 bên cho nút điều hướng */
+    padding: 0 60px; 
 }
 
-/* Container chứa Slider */
 .new-products-slider {
     width: 100%;
     overflow: hidden;
@@ -812,33 +712,30 @@ header {
 }
 
 .swiper-slide {
-    height: auto; /* Giúp các card cao bằng nhau theo card dài nhất */
+    height: auto;
     display: flex;
 }
 
-/* Thẻ card sản phẩm */
 .product-card {
     background: #fff;
-    border-radius: 25px; /* Tăng độ bo góc cho khung ngoài */
+    border-radius: 25px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     height: 100%;
-    border: 1px solid rgba(0,0,0,0.05); /* Viền cực nhẹ để định hình góc bo */
+    border: 1px solid rgba(0,0,0,0.05); 
 }
 
 .product-card:hover {
     transform: translateY(-5px);
 }
 
-/* Định dạng ảnh sản phẩm */
 .product-card-img {
     width: 100%;
     height: 160px;
     overflow: hidden;
-    /* Bo góc nhẹ cho 2 góc trên của ảnh để khớp với card */
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
@@ -850,15 +747,13 @@ header {
     display: block;
     transition: transform 0.5s ease;
 }
-
-/* Nội dung card */
 .product-card-body {
     padding: 15px;
     text-align: center;
 }
 
 .product-name {
-    font-size: 0.95rem; /* Giảm nhẹ font chữ */
+    font-size: 0.95rem;
     height: 2.4em;
     margin-bottom: 8px;
 }
@@ -872,14 +767,12 @@ header {
 }
 
 .btn-muahang {
-    /* Đổi sang màu đỏ nâu đặc trưng của web */
     background-color: var(--red-brown); 
     color: var(--white);
     
     border: none;
     padding: 10px 20px;
     
-    /* Giữ độ bo tròn "tròn tròn" như bạn muốn */
     border-radius: 50px; 
     
     cursor: pointer;
@@ -888,10 +781,9 @@ header {
     font-weight: 600;
     font-family: 'Asap', sans-serif;
     transition: all 0.3s ease;
-    display: block; /* Căn giữa nút */
+    display: block;
 }
 .btn-muahang:hover {
-    /* Khi hover thì sáng lên một chút hoặc chuyển sang màu vàng nhạt */
     background-color: var(--brown-light);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(69, 23, 21, 0.3);
@@ -900,8 +792,6 @@ header {
 .btn-muahang:active {
     transform: translateY(0);
 }
-
-/* --- Tùy chỉnh nút điều hướng RA NGOÀI lề --- */
 .custom-nav {
     color: var(--red-brown) !important;
     background: var(--baby-yellow) !important;
@@ -911,10 +801,9 @@ header {
     box-shadow: var(--shadow);
     z-index: 10;
     
-    /* CỐ ĐỊNH VỊ TRÍ CHÍNH GIỮA DỌC */
     top: 50% !important;
     transform: translateY(-50%) !important; 
-    margin-top: 0 !important; /* Xóa margin mặc định gây nhảy nút */
+    margin-top: 0 !important;
     
     display: flex;
     align-items: center;
@@ -948,8 +837,6 @@ header {
 .custom-nav:focus {
     outline: none !important;
 }
-
-/* Responsive: Trên mobile đưa nút vào trong hoặc ẩn đi để tránh tràn màn hình */
 @media (max-width: 1300px) {
     .slider-container {
         padding: 0 50px;
@@ -958,10 +845,6 @@ header {
     .swiper-button-next.custom-nav { right: 5px; }
 }
 
-/* ======================================================
-   HOM NAY AN GI
-   ====================================================== */
-/* Hiệu ứng Bling Bling cực mạnh cho nút Random */
 .btn-random-bling {
     background: linear-gradient(-45deg, #451715, #c0392b, #f39c12, #d35400);
     background-size: 400% 400%;
@@ -980,22 +863,16 @@ header {
     text-transform: uppercase;
     transition: 0.3s;
 }
-
-/* Hiệu ứng đổi màu nền liên tục */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
-/* Hiệu ứng co giãn nhịp nhàng */
 @keyframes pulseBling {
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.7); }
     70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(192, 57, 43, 0); }
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); }
 }
-
-/* Kết quả hiển thị món ăn */
 .random-result-text {
     margin-top: 25px;
     font-size: 1.3rem;
@@ -1018,7 +895,7 @@ header {
 
 .hom-nay-inner {
   display: grid;
-  grid-template-columns: 350px 1fr; /* Cột trái chứa văn bản, cột phải chứa danh mục */
+  grid-template-columns: 350px 1fr; 
   gap: 50px;
   align-items: center;
 }
@@ -1051,15 +928,11 @@ header {
   background: var(--gold-light);
   transform: scale(1.05);
 }
-
-/* Lưới hiển thị 6 danh mục */
 .hom-nay-categories {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột mỗi hàng */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
-/* Kiểu dáng từng ô danh mục */
 .cat-card {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1093,20 +966,15 @@ header {
   text-transform: uppercase;
 }
 
-/* Responsive cho màn hình nhỏ */
 @media (max-width: 992px) {
   .hom-nay-inner {
-    grid-template-columns: 1fr; /* Chuyển về 1 cột dọc */
+    grid-template-columns: 1fr;
     text-align: center;
   }
   .hom-nay-categories {
-    grid-template-columns: repeat(2, 1fr); /* Chuyển thành 2 cột danh mục */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* ======================================================
-   ABOUT BANNER
-   ====================================================== */
 .about-banner {
   position: relative;
   min-height: 450px;
@@ -1114,7 +982,7 @@ header {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-top: 50px; /* Thêm dòng này để đẩy khoảng cách ra */
+  margin-top: 50px; 
 }
 
 .about-bg {
@@ -1168,9 +1036,6 @@ header {
   background: var(--brown-mid);
 }
 
-/* ======================================================
-   BEST SELLER
-   ====================================================== */
 .best-seller-label {
   font-weight: 700;
   color: var(--gold-light);
@@ -1263,9 +1128,6 @@ header {
   background: var(--red-accent);
 }
 
-/* ======================================================
-   TIN TUC
-   ====================================================== */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1317,9 +1179,6 @@ header {
   font-size: 14px;
 }
 
-/* ======================================================
-   FOOTER
-   ====================================================== */
 footer {
   background: var(--red-brown);
   color: var(--white);
@@ -1329,17 +1188,13 @@ footer {
 
 .footer-grid {
   display: grid;
-  /* BƯỚC 1: Giới hạn chiều rộng khung vừa phải (khoảng 900px - 1000px là đẹp nhất) */
   max-width: 950px;
   margin: 0 auto;
 
-  /* BƯỚC 2: Chia 3 cột có độ rộng bằng nhau */
   grid-template-columns: repeat(3, 1fr);
 
-  /* BƯỚC 3: Khoảng cách giữa các cột */
   gap: 60px;
 
-  /* Căn lề trái cho nội dung bên trong mỗi cột để tạo đường thẳng cột đẹp */
   justify-items: start;
 
   padding: 0 20px 40px 20px;
@@ -1428,9 +1283,6 @@ footer {
   color: var(--baby-yellow);
 }
 
-/* ======================================================
-   ANIMATIONS
-   ====================================================== */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -1462,10 +1314,6 @@ footer {
 .delay-4 {
   animation-delay: 0.4s;
 }
-
-/* ======================================================
-   RESPONSIVE
-   ====================================================== */
 @media (max-width: 1024px) {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);

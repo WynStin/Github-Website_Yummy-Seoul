@@ -1,7 +1,5 @@
 <?php
 include '../../SQL_Connect/db.php';
-
-// --- XỬ LÝ AJAX ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['add_member']) || isset($_POST['update_member']))) {
     header('Content-Type: application/json');
     $response = ['status' => 'error', 'message' => 'Có lỗi xảy ra'];
@@ -14,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['add_member']) || isse
         $dia_chi_mac_dinh = $_POST['dia_chi_mac_dinh'] ?? '';
         $vai_tro = $_POST['vai_tro'];
         $trang_thai = ($vai_tro == 'Quản lý' || $vai_tro == 'Quản trị viên') ? 'Hoạt động' : $_POST['trang_thai'];
-        
-        // SỬA TẠI ĐÂY: Lưu trực tiếp 123456 thay vì dùng password_hash
+    
         $mat_khau = '123456'; 
 
         try {

@@ -7,23 +7,18 @@
     --white: #ffffff;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Asap', sans-serif;
     background-color: var(--baby-cream);
 }
-
 .admin-container {
     display: flex;
 }
-
-/* FIX LỖI SIDEBAR VÀ LOGO */
 .admin-sidebar {
     width: 260px;
     background-color: var(--red-brown);
@@ -43,19 +38,15 @@ body {
     font-weight: 700;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* KHỐNG CHẾ KÍCH THƯỚC LOGO */
 .sidebar-logo img {
     width: 45px !important;
     height: 45px !important;
     object-fit: contain;
 }
-
 .sidebar-nav {
     flex: 1;
     padding: 20px 0;
 }
-
 .nav-link {
     display: flex;
     align-items: center;
@@ -65,27 +56,22 @@ body {
     text-decoration: none;
     font-weight: 500;
 }
-
 .nav-link:hover,
 .nav-link.active {
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
     border-left: 4px solid var(--gold-primary);
 }
-
 .nav-divider {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 20px 0;
 }
-
 .admin-main {
     flex: 1;
     margin-left: 260px;
     padding: 40px;
 }
-
-/* THÀNH PHẦN NỘI DUNG */
 .card {
     background: var(--white);
     border-radius: 15px;
@@ -93,13 +79,11 @@ body {
     box-shadow: var(--shadow);
     margin-bottom: 30px;
 }
-
 .main-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
 }
-
 .btn-add-gold {
     background: var(--gold-primary);
     color: white;
@@ -109,8 +93,6 @@ body {
     font-weight: 700;
     cursor: pointer;
 }
-
-/* SEARCH BOX */
 .search-box {
     position: relative;
     display: flex;
@@ -122,7 +104,6 @@ body {
     left: 15px;
     color: var(--gold-primary);
 }
-
 .search-box input {
     width: 100%;
     padding: 12px 15px 12px 45px;
@@ -130,8 +111,6 @@ body {
     border-radius: 10px;
     outline: none;
 }
-
-/* TABLE */
 .admin-table {
     width: 100%;
     border-collapse: collapse;

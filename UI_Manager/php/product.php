@@ -1,7 +1,6 @@
 <?php
 include '../../SQL_Connect/db.php';
 
-// --- 1. XỬ LÝ THÊM MÓN MỚI ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_product'])) {
     $ten = $_POST['ten_mon'];
     $mo_ta = $_POST['mo_ta'];
@@ -11,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_product'])) {
     $hinh = "default.jpg"; 
 
     try {
-        // Cột ngay_tao được gán NOW() để lấy thời gian thực
         $sql = "INSERT INTO mon_an (ten_mon, mo_ta, gia_ban, id_danh_muc, so_luong_ton, hinh_anh, ngay_tao) VALUES (?, ?, ?, ?, ?, ?, NOW())";
         $pdo->prepare($sql)->execute([$ten, $mo_ta, $gia, $id_dm, $ton, $hinh]);
         header("Location: product.php?msg=added");
@@ -20,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_product'])) {
         die("Lỗi thêm: " . $e->getMessage());
     }
 }
-
-// --- 2. XỬ LÝ CẬP NHẬT ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
     $id = $_POST['id_mon_an'];
     $ten = $_POST['ten_mon'];
@@ -41,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_product'])) {
         die("Lỗi cập nhật: " . $e->getMessage());
     }
 }
-
-// --- 3. XỬ LÝ XÓA ---
 if (isset($_GET['delete_id'])) {
     $id = $_GET['delete_id'];
     try {
@@ -54,7 +48,6 @@ if (isset($_GET['delete_id'])) {
     }
 }
 
-// Lấy dữ liệu
 $categories = $pdo->query("SELECT * FROM danh_muc_mon_an")->fetchAll();
 $products = $pdo->query("SELECT m.*, d.ten_danh_muc FROM mon_an m LEFT JOIN danh_muc_mon_an d ON m.id_danh_muc = d.id_danh_muc ORDER BY m.id_mon_an DESC")->fetchAll();
 ?>
@@ -69,7 +62,6 @@ $products = $pdo->query("SELECT m.*, d.ten_danh_muc FROM mon_an m LEFT JOIN danh
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/product.css">
     <style>
-        /* CSS bổ sung để đáp ứng yêu cầu cuộn ngang và tìm kiếm */
         .product-list-wrapper { overflow-x: auto; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .admin-table { min-width: 1500px; width: 100%; border-collapse: collapse; }
         .search-container { margin-bottom: 20px; display: flex; gap: 10px; }
@@ -183,7 +175,6 @@ $products = $pdo->query("SELECT m.*, d.ten_danh_muc FROM mon_an m LEFT JOIN danh
     </div>
 
     <script>
-        // Tìm kiếm Real-time
         document.getElementById('searchInput').addEventListener('keyup', function() {
             let filter = this.value.toLowerCase();
             let rows = document.querySelectorAll('#productTable tbody tr');
@@ -193,8 +184,6 @@ $products = $pdo->query("SELECT m.*, d.ten_danh_muc FROM mon_an m LEFT JOIN danh
                 row.style.display = text.includes(filter) ? '' : 'none';
             });
         });
-
-        // Tự tắt thông báo sau 3s
         setTimeout(() => {
             let box = document.getElementById('alertBox');
             if (box) box.style.display = 'none';
