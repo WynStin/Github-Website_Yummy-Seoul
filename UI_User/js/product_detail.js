@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!qtyInput) return;
 
     // 1. Xử lý tăng giảm số lượng
+    const maxStock = parseInt(qtyInput.getAttribute('max')) || 0;
+
     btnDecrease.onclick = () => {
         let val = parseInt(qtyInput.value);
         if (val > 1) qtyInput.value = val - 1;
@@ -15,9 +17,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btnIncrease.onclick = () => {
         let val = parseInt(qtyInput.value);
-        let max = parseInt(qtyInput.getAttribute('max')) || 99;
-        if (val < max) qtyInput.value = val + 1;
-        else alert('Số lượng vượt quá sản phẩm có sẵn!');
+        if (val < maxStock) {
+            qtyInput.value = val + 1;
+        } else {
+            alert('Số lượng vượt quá sản phẩm có sẵn trong kho!');
+        }
+    };
+
+    // BỔ SUNG: Kiểm tra khi khách tự nhập số vào ô
+    qtyInput.onchange = function () {
+        let val = parseInt(this.value);
+        if (isNaN(val) || val < 1) {
+            alert('Số lượng phải lớn hơn 0!');
+            this.value = 1;
+        } else if (val > maxStock) {
+            alert('Yummy Seoul chỉ còn ' + maxStock + ' sản phẩm!');
+            this.value = maxStock;
+        }
     };
 
     // 2. Logic thêm vào LocalStorage (Đồng bộ với cart.js)

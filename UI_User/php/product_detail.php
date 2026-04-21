@@ -15,7 +15,6 @@ if ($id_mon_an > 0) {
         $stmt = $pdo->prepare("SELECT * FROM mon_an WHERE id_mon_an = ?");
         $stmt->execute([$id_mon_an]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
-        
     } catch (PDOException $e) {
         // Trong môi trường làm việc thực tế, ta nên ghi log lỗi thay vì die()
         error_log("Lỗi cập nhật lượt xem: " . $e->getMessage());
@@ -77,26 +76,37 @@ if ($id_mon_an > 0) {
                             <span class="qty-label">Số Lượng:</span>
                             <div class="qty-controls">
                                 <button type="button" class="qty-btn" id="decreaseQty">-</button>
-                                <input type="number" id="quantityInput" value="1" min="1" max="<?= $product['so_luong_ton'] ?>">
+                                <input type="number" id="quantityInput" value="1" min="1"
+                                    max="<?= (int)$product['so_luong_ton'] ?>"
+                                    oninput="validity.valid||(value='1');">
                                 <button type="button" class="qty-btn" id="increaseQty">+</button>
                             </div>
                         </div>
 
                         <div class="action-buttons">
-                            <button class="btn-add-cart" id="btnAddToCart"
-                                data-id="<?= $product['id_mon_an'] ?>"
-                                data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
-                                data-price="<?= $product['gia_ban'] ?>"
-                                data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
-                                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
-                            </button>
-                            <button class="btn-buy-now" id="btnBuyNow"
-                                data-id="<?= $product['id_mon_an'] ?>"
-                                data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
-                                data-price="<?= $product['gia_ban'] ?>"
-                                data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
-                                MUA NGAY
-                            </button>
+                            <?php if ($product['so_luong_ton'] > 0): ?>
+                                <button class="btn-add-cart" id="btnAddToCart"
+                                    data-id="<?= $product['id_mon_an'] ?>"
+                                    data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
+                                    data-price="<?= $product['gia_ban'] ?>"
+                                    data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
+                                    <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+                                </button>
+                                <button class="btn-buy-now" id="btnBuyNow"
+                                    data-id="<?= $product['id_mon_an'] ?>"
+                                    data-name="<?= htmlspecialchars($product['ten_mon']) ?>"
+                                    data-price="<?= $product['gia_ban'] ?>"
+                                    data-image="../../Image/monan/<?= htmlspecialchars($product['hinh_anh']) ?>">
+                                    MUA NGAY
+                                </button>
+                            <?php else: ?>
+                                <button class="btn-add-cart" disabled style="opacity: 0.6; cursor: not-allowed; filter: grayscale(1);">
+                                    <i class="fas fa-box-open"></i> Tạm hết hàng
+                                </button>
+                                <button class="btn-buy-now" disabled style="opacity: 0.6; cursor: not-allowed; filter: grayscale(1);">
+                                    HẾT HÀNG
+                                </button>
+                            <?php endif; ?>
                         </div>
 
                         <div class="product-stats">
